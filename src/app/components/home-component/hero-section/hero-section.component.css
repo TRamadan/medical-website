@@ -25,19 +25,21 @@
     font-size: 1.2rem;
     color: #333;
     margin-bottom: 40px;
+    letter-spacing: 3px;
+
 }
 
 .hero-btn {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 16px;
+    font-size: 22px;
+    font-weight: 700;
     border-radius: 10px;
-    background-color: #bd9654;
+    background-color: #BD9251;
     color: white;
     border: none;
     border-radius: 30px;
-    width: 538px;
-    height: 80px;
+    width: 270px;
+    box-shadow: 1px 1px 15px 0px gray;
 }
 
 .hero-img img {
