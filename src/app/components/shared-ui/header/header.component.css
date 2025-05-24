@@ -46,16 +46,14 @@
     border: none;
     border-radius: 25px;
     padding: 8px 20px;
-    font-weight: 500;
+    font-weight: 700;
     margin-right: 10px;
     transition: all 0.3s ease;
+    font-size: 30px;
+    line-height: 100%;
+
 }
 
-.btn-login:hover {
-    background-color: #BD9251;
-    color: #fff;
-    transform: translateY(-1px);
-}
 
 .btn-register {
     background-color: #BD9251;
@@ -63,12 +61,12 @@
     border: none;
     border-radius: 25px;
     padding: 8px 20px;
-    font-weight: 500;
+    font-weight: 700;
     margin-right: 10px;
     transition: all 0.3s ease;
+    font-size: 30px;
+    line-height: 100%;
 }
-
-
 
 .theme-toggle {
     background-color: #c8860d;
@@ -149,6 +147,8 @@
     .btn-login, .btn-register {
         margin-right: 0;
         flex: 1;
+        font-weight: 400;
+        font-size: 20px;
     }
 }
 
