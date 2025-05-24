@@ -35,6 +35,9 @@
     background-color: #bd9654;
     color: white;
     border: none;
+    border-radius: 30px;
+    width: 538px;
+    height: 80px;
 }
 
 .hero-img img {
