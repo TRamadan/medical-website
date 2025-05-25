@@ -3,6 +3,7 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { BrandsSectionComponent } from './brands-section/brands-section.component';
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ServicesComponent } from './services/services.component';
 @Component({
   standalone: true,
   imports: [
@@ -10,6 +11,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     BrandsSectionComponent,
     AboutUsSectionComponent,
     ContactUsComponent,
+    ServicesComponent,
   ],
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
