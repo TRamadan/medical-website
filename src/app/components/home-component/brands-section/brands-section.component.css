@@ -1,3 +1,16 @@
+.flex-responsive {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* On small screens, reverse the order (image first, text second) */
+@media (max-width: 768px) {
+    .flex-responsive {
+        flex-direction: column-reverse;
+    }
+}
+
 .section-title {
     font-weight: 700;
     font-size: 30px;
@@ -22,11 +35,10 @@
 .responsive-img {
     max-width: 100%;
     height: auto;
-    transform: translateY(-60px);
+    transform: translateY(-40px);
     transition: transform 0.3s ease;
 }
 
-/* Responsive behavior */
 @media (max-width: 768px) {
     .section-description {
         text-align: left;
