@@ -4,7 +4,6 @@
     flex-wrap: wrap;
 }
 
-/* On small screens, reverse the order (image first, text second) */
 @media (max-width: 768px) {
     .flex-responsive {
         flex-direction: column-reverse;
@@ -17,6 +16,16 @@
     text-shadow: 1px 1px 1px #00000040;
     margin-bottom: 1.5rem;
     text-align: center;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background-color: #BD9251;
+    margin: 5px auto 0 auto;
+    border-radius: 2px;
 }
 
 .section-subtitle,
@@ -41,7 +50,7 @@
 
 @media (max-width: 768px) {
     .section-description {
-        text-align: left;
+        text-align: center;
         line-height: 1.6;
     }
 
@@ -62,6 +71,6 @@
 
     .responsive-img {
         transform: none;
-        margin-top: 20px;
+        margin-top: 15px;
     }
 }
