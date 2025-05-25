@@ -6,13 +6,50 @@
     text-align: center;
 }
 
-.section-subtitle, .section-description {
+.section-subtitle,
+.section-description {
     font-size: 20px;
     color: #000;
-    text-align: center;
     font-weight: 400;
+    text-align: center;
 }
 
 .section-description {
     text-align: justify;
+    line-height: 1.8;
+}
+
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    transform: translateY(-60px);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .section-description {
+        text-align: left;
+        line-height: 1.6;
+    }
+
+    .responsive-img {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 24px;
+    }
+
+    .section-subtitle,
+    .section-description {
+        font-size: 18px;
+    }
+
+    .responsive-img {
+        transform: none;
+        margin-top: 20px;
+    }
 }
