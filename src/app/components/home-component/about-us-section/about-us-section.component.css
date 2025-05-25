@@ -1,30 +1,13 @@
-.about-us-section-title {
-    text-shadow: 1px 1px 1px #5F503780;
-    font-size: 49px;
-    font-weight: 700;
-}
-
-.section-title {
+.title {
+    margin: 5px 0 5px;
     text-align: center;
-    margin-bottom: 40px;
-    position: relative;
+    font-weight: 700;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #5F503780;
 }
 
-.section-title h2 {
-    font-size: 3rem;
-    font-weight: 800;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 10px;
-    color: #000;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.section-title .underline {
-    height: 5px;
-    width: 130px;
+.divider {
+    width: 129px;
+    border: 3px;
     background-color: #BD9251;
-    margin: 0 auto;
-    border-radius: 5px;
 }

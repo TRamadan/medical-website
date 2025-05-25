@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="contact-section">
+        <h2 class="section-title">If You Have Any Inquiries</h2>
+        <p class="section-subtitle">Get in touch now !</p>
+
+        <form [formGroup]="contactUsForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-row">
+                <label for="firstName" class="form-label">First Name</label>
+                <div class="icon-input">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Enter your first name"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please provide your first name.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-row">
+                <label for="lastName" class="form-label">Last Name</label>
+                <div class="icon-input">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Enter your last name"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-row">
+            <label for="email" class="form-label">Email</label>
+            <div class="icon-input">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter your email here"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-row">
+            <label for="message" class="form-label">Message</label>
+            <div class="icon-input">
+              <i class="fas fa-comment" style="top: 20px"></i>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                placeholder="Enter your message here"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Your Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
