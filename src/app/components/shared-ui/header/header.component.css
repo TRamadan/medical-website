@@ -33,14 +33,14 @@
     margin: 0 15px;
     transition: color 0.3s ease;
     position: relative;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .navbar-nav .nav-link:hover {
     color: #BD9251 !important;
 }
 
-.btn-login {
+.btn-login, .btn-register {
     background-color: #BD9251;
     color: #fff;
     border: none;
@@ -49,23 +49,10 @@
     font-weight: 700;
     margin-right: 10px;
     transition: all 0.3s ease;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 100%;
 }
 
-
-.btn-register {
-    background-color: #BD9251;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    padding: 8px 20px;
-    font-weight: 700;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-    font-size: 30px;
-    line-height: 100%;
-}
 
 .theme-toggle {
     background-color: #c8860d;
