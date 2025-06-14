@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import "primeicons/primeicons.css";
+
+@import "../node_modules/bootstrap-icons";
+
 
 @font-face {
     font-family: Cairo;
@@ -10,4 +12,8 @@
 
 * {
     font-family: 'Cairo';
+}
+
+:root {
+    --transition: all 0.3s ease;
 }

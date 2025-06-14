@@ -1,13 +1,110 @@
-.title {
-    margin: 5px 0 5px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    text-shadow: 1px 1px 1px #5F503780;
+/* About Component Styles */
+
+/* Section Styling */
+#about {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
 
-.divider {
-    width: 129px;
-    border: 3px;
-    background-color: #BD9251;
+/* Team Image Hover Effect */
+.team-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Hover Effects */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Icon Container Styling */
+.rounded-circle {
+    transition: transform 0.3s ease;
+}
+
+.rounded-circle:hover {
+    transform: scale(1.1);
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* Certification Items */
+.bg-light .bg-white {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bg-light .bg-white:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #about {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .display-4 {
+        font-size: 2.5rem;
+    }
+
+    .display-5 {
+        font-size: 2rem;
+    }
+
+    .team-image {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .display-5 {
+        font-size: 1.75rem;
+    }
+
+    .card-body {
+        padding: 1.5rem !important;
+    }
+
+    .bg-light.rounded-3 {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Animation for scroll-in effects */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional: Add animation classes */
+.animate-on-scroll {
+    animation: fadeInUp 0.6s ease-out;
 }

@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="row">
       <div class="col-12 text-center mb-5">
-        <h4 class="display-4 fw-bold text-dark mb-4">Contact Us</h4>
+        <h4 class="display-5 fw-bold text-dark mb-4">Contact Us</h4>
         <p class="lead text-muted mx-auto" style="max-width: 600px">
           Have questions about our services? Need help with your recovery
           journey? We're here to help and would love to hear from you.
@@ -140,12 +140,12 @@
                     [class.is-invalid]="isFieldInvalid('subject')"
                   >
                     <option value="">Select subject</option>
-                    <option
-                      *ngFor="let option of subjectOptions"
-                      [value]="option.value"
-                    >
+                    @for(option of subjectOptions; track option){
+
+                    <option [value]="option.value">
                       {{ option.label }}
                     </option>
+                    }
                   </select>
                   <div class="invalid-feedback">
                     {{ getFieldError("subject") }}

@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { BrandsSectionComponent } from './brands-section/brands-section.component';
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ServicesComponent } from './services/services.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { EducationalVideosComponent } from './educational-videos/educational-videos.component';
+import { JoinOutTeamComponent } from './join-out-team/join-out-team.component';
 @Component({
   standalone: true,
   imports: [
+    HowItWorksComponent,
+    EducationalVideosComponent,
     HeroSectionComponent,
-    BrandsSectionComponent,
+    JoinOutTeamComponent,
     AboutUsSectionComponent,
     ContactUsComponent,
     ServicesComponent,

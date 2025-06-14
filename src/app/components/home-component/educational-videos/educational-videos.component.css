@@ -1,0 +1,109 @@
+.video-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.sub-section-title {
+    color: #0f299a
+}
+
+.educational-bg {
+    background: linear-gradient(to bottom, #dbeafe, #ffffff);
+}
+
+.video-thumbnail {
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail {
+    transform: scale(1.05);
+}
+
+.video-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover .video-overlay {
+    opacity: 1;
+}
+
+.btn-link:hover {
+    color: var(--bs-primary-rgb) !important;
+    text-decoration: none !important;
+}
+
+/* Custom responsive adjustments */
+@media (max-width: 575.98px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .video-thumbnail {
+        height: 180px !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .video-thumbnail {
+        height: 200px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .video-thumbnail {
+        height: 220px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .video-thumbnail {
+        height: 200px !important;
+    }
+}
+
+/* Ensure equal card heights */
+.card {
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+}
+
+/* Button hover effects */
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.all-content {
+    background-color: #0d6efd;
+
+    color: #fff;
+}

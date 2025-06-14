@@ -1,0 +1,284 @@
+<section class="py-5 bg-gradient-to-b" id="joinus">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold text-dark mb-3">Join Our Team</h2>
+          <p class="lead text-muted mx-auto" style="max-width: 800px">
+            Be part of a revolutionary platform that's changing how people
+            recover from injuries. We offer exciting opportunities for
+            physiotherapists, doctors, and healthcare professionals.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Left Column - Team Overview -->
+          <div class="col-12 col-lg-6">
+            <!-- Why Join Us Section -->
+            <div class="mb-4">
+              <h3 class="h3 fw-bold text-dark mb-4">Why Join Us?</h3>
+              <div class="d-flex flex-column gap-3">
+                <div class="d-flex align-items-start">
+                  <div
+                    class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                    style="width: 32px; height: 32px; margin-top: 4px"
+                  >
+                    <i
+                      class="fas fa-check text-white"
+                      style="font-size: 12px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="h6 fw-semibold text-dark mb-1">
+                      Cutting-edge Technology
+                    </h4>
+                    <p class="text-muted mb-0 small">
+                      Work with the latest rehabilitation technologies and
+                      digital health tools.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                  <div
+                    class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                    style="width: 32px; height: 32px; margin-top: 4px"
+                  >
+                    <i
+                      class="fas fa-check text-white"
+                      style="font-size: 12px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="h6 fw-semibold text-dark mb-1">
+                      Professional Growth
+                    </h4>
+                    <p class="text-muted mb-0 small">
+                      Continuous learning opportunities and career advancement
+                      paths.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                  <div
+                    class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0"
+                    style="width: 32px; height: 32px; margin-top: 4px"
+                  >
+                    <i
+                      class="fas fa-check text-white"
+                      style="font-size: 12px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="h6 fw-semibold text-dark mb-1">
+                      Flexible Work Environment
+                    </h4>
+                    <p class="text-muted mb-0 small">
+                      Hybrid work options with both clinic and remote
+                      consultations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Internship Program -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <i
+                    class="fas fa-graduation-cap text-primary me-3"
+                    style="font-size: 2rem"
+                  ></i>
+                  <h3 class="h5 fw-bold text-dark mb-0">Internship Program</h3>
+                </div>
+                <p class="text-muted mb-3">
+                  Our comprehensive internship program offers hands-on
+                  experience in digital health, mentorship from industry
+                  experts, and a pathway to full-time opportunities.
+                </p>
+                <ul class="list-unstyled small text-muted">
+                  <li class="mb-1">• 6-month structured program</li>
+                  <li class="mb-1">
+                    • Direct mentorship from senior physiotherapists
+                  </li>
+                  <li class="mb-1">• Real patient case experience</li>
+                  <li class="mb-1">• Technology training and certification</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column - Application Form -->
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-lg">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-4">
+                  <i
+                    class="fas fa-briefcase text-primary me-3"
+                    style="font-size: 2rem"
+                  ></i>
+                  <h3 class="h4 fw-bold text-dark mb-0">Submit Application</h3>
+                </div>
+
+                <form (ngSubmit)="onSubmit()">
+                  <div class="row g-3">
+                    <!-- Full Name -->
+                    <div class="col-12">
+                      <label for="fullName" class="form-label fw-medium"
+                        >Full Name *</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="fullName"
+                        name="fullName"
+                        [(ngModel)]="applicationData.fullName"
+                        placeholder="Enter your full name"
+                        required
+                      />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-12 col-md-6">
+                      <label for="email" class="form-label fw-medium"
+                        >Email Address *</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        [(ngModel)]="applicationData.email"
+                        placeholder="your.email@example.com"
+                        required
+                      />
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-12 col-md-6">
+                      <label for="phone" class="form-label fw-medium"
+                        >Phone Number *</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        [(ngModel)]="applicationData.phone"
+                        placeholder="+1 (555) 123-4567"
+                        required
+                      />
+                    </div>
+
+                    <!-- Position -->
+                    <div class="col-12 col-md-6">
+                      <label for="position" class="form-label fw-medium"
+                        >Position of Interest *</label
+                      >
+                      <select
+                        class="form-select"
+                        id="position"
+                        name="position"
+                        [(ngModel)]="applicationData.position"
+                        required
+                      >
+                        <option value="">Select position</option>
+                        @for(pos of positions; track pos){
+                        <option [value]="pos.value">
+                          {{ pos.label }}
+                        </option>
+                        }
+                      </select>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="col-12 col-md-6">
+                      <label for="experience" class="form-label fw-medium"
+                        >Years of Experience</label
+                      >
+                      <select
+                        class="form-select"
+                        id="experience"
+                        name="experience"
+                        [(ngModel)]="applicationData.experience"
+                      >
+                        <option value="">Select experience level</option>
+                        @for(exp of experienceLevels; track exp){
+                        <option [value]="exp.value">
+                          {{ exp.label }}
+                        </option>
+                        }
+                      </select>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="col-12">
+                      <label for="education" class="form-label fw-medium"
+                        >Highest Education Level</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="education"
+                        name="education"
+                        [(ngModel)]="applicationData.education"
+                        placeholder="e.g., DPT, MD, Bachelor's in Physiotherapy"
+                      />
+                    </div>
+
+                    <!-- Resume Upload -->
+                    <div class="col-12">
+                      <label for="resume" class="form-label fw-medium"
+                        >Resume/CV Upload</label
+                      >
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="resume"
+                        name="resume"
+                        accept=".pdf,.doc,.docx"
+                        (change)="onFileChange($event)"
+                      />
+                      <div class="form-text">
+                        Accepted formats: PDF, DOC, DOCX
+                      </div>
+                    </div>
+
+                    <!-- Cover Letter -->
+                    <div class="col-12">
+                      <label for="coverLetter" class="form-label fw-medium"
+                        >Cover Letter</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="coverLetter"
+                        name="coverLetter"
+                        [(ngModel)]="applicationData.coverLetter"
+                        rows="4"
+                        placeholder="Tell us why you want to join our team and what unique value you can bring..."
+                      ></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="col-12">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg w-100"
+                      >
+                        <i class="fas fa-paper-plane me-2"></i>
+                        Submit Application
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
