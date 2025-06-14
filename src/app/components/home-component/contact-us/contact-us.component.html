@@ -1,85 +1,207 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <div class="contact-section">
-        <h2 class="section-title">If You Have Any Inquiries</h2>
-        <p class="section-subtitle">Get in touch now !</p>
+<section id="contact" class="py-5 contact-bg">
+  <div class="container">
+    <!-- Header -->
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h4 class="display-4 fw-bold text-dark mb-4">Contact Us</h4>
+        <p class="lead text-muted mx-auto" style="max-width: 600px">
+          Have questions about our services? Need help with your recovery
+          journey? We're here to help and would love to hear from you.
+        </p>
+      </div>
+    </div>
 
-        <form [formGroup]="contactUsForm">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-row">
-                <label for="firstName" class="form-label">First Name</label>
-                <div class="icon-input">
-                  <i class="fas fa-user"></i>
+    <div class="row g-4">
+      <!-- Contact Information -->
+      <div class="col-lg-4 col-md-12">
+        <h3 class="h4 fw-bold text-dark mb-4">Get in Touch</h3>
+
+        <div class="d-flex flex-column gap-3">
+          @for(info of contactInfo; track info){
+          <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-start mb-3">
+                <div
+                  class="d-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 me-3"
+                  style="width: 48px; height: 48px; min-width: 48px"
+                >
+                  <i
+                    [class]="info.icon + ' text-primary'"
+                    style="font-size: 1.5rem"
+                  ></i>
+                </div>
+                <div class="flex-grow-1">
+                  <h5 class="fw-bold text-dark mb-1">{{ info.title }}</h5>
+                  <p class="text-muted small mb-0">{{ info.description }}</p>
+                </div>
+              </div>
+              <div class="ms-5 ps-3">
+                @for(detail of info.details; track detail){
+                <p class="text-dark small mb-1">
+                  {{ detail }}
+                </p>
+                }
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="mt-4">
+          <h5 class="fw-bold text-dark mb-3">Follow Us</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            @for(social of socialLinks; track social){
+            <a
+              [href]="social.url"
+              [title]="social.name"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-sm rounded-circle d-flex align-items-center justify-content-center"
+              style="width: 40px; height: 40px"
+            >
+              <i [class]="social.icon"></i>
+            </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-8 col-md-12">
+        <div class="card shadow border-0">
+          <div class="card-body p-4 p-md-5">
+            <div class="d-flex align-items-center mb-4">
+              <i
+                class="bi-chat-dots text-primary me-3"
+                style="font-size: 2rem"
+              ></i>
+              <h3 class="h4 fw-bold text-dark mb-0">Send us a Message</h3>
+            </div>
+
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+              <div class="row g-3">
+                <!-- Name and Email -->
+                <div class="col-md-6">
+                  <label for="name" class="form-label fw-semibold"
+                    >Full Name *</label
+                  >
                   <input
                     type="text"
+                    id="name"
+                    formControlName="name"
                     class="form-control"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="Enter your first name"
-                    required
+                    [class.is-invalid]="isFieldInvalid('name')"
+                    placeholder="Enter your full name"
                   />
                   <div class="invalid-feedback">
-                    Please provide your first name.
+                    {{ getFieldError("name") }}
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div class="col-md-6">
-              <div class="form-row">
-                <label for="lastName" class="form-label">Last Name</label>
-                <div class="icon-input">
-                  <i class="fas fa-user"></i>
+                <div class="col-md-6">
+                  <label for="email" class="form-label fw-semibold"
+                    >Email Address *</label
+                  >
                   <input
-                    type="text"
+                    type="email"
+                    id="email"
+                    formControlName="email"
                     class="form-control"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Enter your last name"
-                    required
+                    [class.is-invalid]="isFieldInvalid('email')"
+                    placeholder="your.email@example.com"
+                  />
+                  <div class="invalid-feedback">
+                    {{ getFieldError("email") }}
+                  </div>
+                </div>
+
+                <!-- Phone and Subject -->
+                <div class="col-md-6">
+                  <label for="phone" class="form-label fw-semibold"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    formControlName="phone"
+                    class="form-control"
+                    placeholder="+1 (555) 123-4567"
                   />
                 </div>
+
+                <div class="col-md-6">
+                  <label for="subject" class="form-label fw-semibold"
+                    >Subject *</label
+                  >
+                  <select
+                    id="subject"
+                    formControlName="subject"
+                    class="form-select"
+                    [class.is-invalid]="isFieldInvalid('subject')"
+                  >
+                    <option value="">Select subject</option>
+                    <option
+                      *ngFor="let option of subjectOptions"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback">
+                    {{ getFieldError("subject") }}
+                  </div>
+                </div>
+
+                <!-- Message -->
+                <div class="col-12">
+                  <label for="message" class="form-label fw-semibold"
+                    >Message *</label
+                  >
+                  <textarea
+                    id="message"
+                    formControlName="message"
+                    class="form-control"
+                    [class.is-invalid]="isFieldInvalid('message')"
+                    rows="6"
+                    placeholder="Please describe your inquiry in detail..."
+                  ></textarea>
+                  <div class="invalid-feedback">
+                    {{ getFieldError("message") }}
+                  </div>
+                </div>
+
+                <!-- Response Time Info -->
+                <div class="col-12">
+                  <div
+                    class="alert alert-info d-flex align-items-start"
+                    role="alert"
+                  >
+                    <i class="bi-info-circle me-2 mt-1"></i>
+                    <div>
+                      <strong>Response Time:</strong> We typically respond to
+                      inquiries within 24 hours during business days. For urgent
+                      matters, please call us directly at 01144877526.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-12">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-lg w-100"
+                    [disabled]="isSubmitting"
+                  >
+                    <i class="fa fa-paper-plane"></i>
+
+                    Send Message
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-
-          <!-- Email -->
-          <div class="form-row">
-            <label for="email" class="form-label">Email</label>
-            <div class="icon-input">
-              <i class="fas fa-envelope"></i>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="Enter your email here"
-                required
-              />
-            </div>
-          </div>
-
-          <!-- Message -->
-          <div class="form-row">
-            <label for="message" class="form-label">Message</label>
-            <div class="icon-input">
-              <i class="fas fa-comment" style="top: 20px"></i>
-              <textarea
-                class="form-control"
-                id="message"
-                name="message"
-                placeholder="Enter your message here"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-          </div>
-
-          <button type="submit" class="submit-btn">Send Your Inquiry</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
