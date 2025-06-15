@@ -58,4 +58,8 @@ export class AboutUsSectionComponent {
     'Evidence-Based Practice Certification',
     'Patient Safety & Quality Improvement Certified',
   ];
+
+  viewAllContent(): void {
+    console.log('sflksjf');
+  }
 }

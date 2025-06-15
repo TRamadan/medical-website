@@ -1,0 +1,93 @@
+<section class="overflow-hidden bg-gradient">
+  <div class="row">
+    <div class="col-12 text-center mb-5">
+      <h4 class="display-5 fw-bold text-dark p-3">Our super stars</h4>
+    </div>
+  </div>
+  <div
+    class="carousel-container position-relative overflow-hidden p-4 p-md-5 rounded-4"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <!-- Main carousel content -->
+    <div class="row g-3 g-md-4 justify-content-center">
+      @for(superstar of getVisibleSlides(); track superstar; let i = $index){
+      <div class="col-12 col-md-6 col-lg-4">
+        <div
+          class="card shadow-lg border-0 h-100 slide-card"
+          [class.center-slide]="i === 1 && itemsPerSlide === 3"
+          [class.side-slide]="i !== 1 && itemsPerSlide === 3"
+        >
+          <!-- Card Image -->
+          <div class="position-relative">
+            <img
+              [src]="superstar.image"
+              [alt]="superstar.name"
+              class="card-img-top object-fit-cover"
+              style="height: 250px"
+            />
+            <div class="position-absolute top-0 end-0 m-3">
+              <div
+                class="bg-warning rounded-circle p-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="fas fa-star text-white"
+                  style="font-size: 0.875rem"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Body -->
+          <div class="card-body p-4">
+            <h3 class="card-title h4 fw-bold text-dark mb-2">
+              {{ superstar.name }}
+            </h3>
+            <p class="text-primary fw-semibold mb-2">{{ superstar.sport }}</p>
+            <p class="text-success small fw-medium mb-3">
+              {{ superstar.achievement }}
+            </p>
+            <blockquote
+              class="blockquote-footer small text-muted fst-italic border-start border-primary border-4 ps-3 mb-0"
+            >
+              "{{ superstar.testimonial }}"
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button
+      type="button"
+      class="btn btn-primary rounded-circle position-absolute start-0 top-50 translate-middle-y ms-2 nav-btn"
+      (click)="prevSlide()"
+      aria-label="Previous slide"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-primary rounded-circle position-absolute end-0 top-50 translate-middle-y me-2 nav-btn"
+      (click)="nextSlide()"
+      aria-label="Next slide"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Progress Indicators -->
+    <div class="d-flex justify-content-center mt-5 gap-2">
+      @for(superstar of superstars; track superstar; let i = $index){
+      <button
+        type="button"
+        class="btn p-0 indicator-btn"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"
+      ></button>
+      }
+    </div>
+  </div>
+</section>

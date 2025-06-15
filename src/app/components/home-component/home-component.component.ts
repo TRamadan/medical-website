@@ -6,9 +6,13 @@ import { ServicesComponent } from './services/services.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { EducationalVideosComponent } from './educational-videos/educational-videos.component';
 import { JoinOutTeamComponent } from './join-out-team/join-out-team.component';
+import { OurPartnersComponent } from './our-partners/our-partners.component';
+import { SuperStarsComponent } from './super-stars/super-stars.component';
 @Component({
   standalone: true,
   imports: [
+    SuperStarsComponent,
+    OurPartnersComponent,
     HowItWorksComponent,
     EducationalVideosComponent,
     HeroSectionComponent,

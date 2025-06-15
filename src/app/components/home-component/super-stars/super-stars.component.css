@@ -1,0 +1,153 @@
+/* Main container styling */
+.carousel-container {
+    min-height: 400px;
+}
+
+/* Card animations and transforms */
+.slide-card {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.slide-card:hover {
+    transform: scale(1.05) !important;
+    z-index: 10;
+}
+
+/* Center slide emphasis (for desktop 3-column layout) */
+.center-slide {
+    /* transform: scale(1.1); */
+    z-index: 5;
+}
+
+.side-slide {
+    transform: scale(0.95);
+}
+
+/* Navigation buttons */
+.nav-btn {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn i {
+    font-size: 1.125rem;
+}
+
+/* Progress indicators */
+.indicator-btn {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #d1d5db;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.indicator-btn:hover {
+    background-color: #9ca3af;
+}
+
+.indicator-btn.active {
+    width: 2rem;
+    border-radius: 1rem;
+    background-color: #2563eb;
+}
+
+/* Card specific styling */
+.card {
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .carousel-container {
+        padding: 1rem !important;
+    }
+
+    .nav-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .nav-btn i {
+        font-size: 1rem;
+    }
+
+    .card-img-top {
+        height: 200px !important;
+    }
+
+    /* Remove transforms on mobile for better performance */
+    .slide-card,
+    .center-slide,
+    .side-slide {
+        transform: none !important;
+    }
+
+    .slide-card:hover {
+        transform: translateY(-5px) !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .card-img-top {
+        height: 220px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-img-top {
+        height: 250px !important;
+    }
+}
+
+/* Animation for slide transitions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-card {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Accessibility improvements */
+.nav-btn:focus,
+.indicator-btn:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Bootstrap utility overrides for better gradient */
+.bg-gradient {
+    background: linear-gradient(to bottom, #dbeafe, #ffffff) !important;
+}
