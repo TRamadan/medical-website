@@ -64,9 +64,8 @@ export class BookingFormComponent implements OnInit {
   ngOnInit() {}
 
   steps: string[] = [
-    'Location',
-    'Doctor & Time',
-    'Injury Type',
+    'Choose location and service',
+    'Pick your time slot',
     'Patient Info',
     'Confirmation',
   ];
