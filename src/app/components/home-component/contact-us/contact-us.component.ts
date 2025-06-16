@@ -6,10 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 interface ContactInfo {
   icon: string;
   title: string;
@@ -25,14 +21,7 @@ interface SocialLink {
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    IconFieldModule,
-    InputIconModule,
-    InputTextareaModule,
-  ],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css'],
 })

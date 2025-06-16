@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 interface NavItem {
   name: string;
   href: string;
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Contact', href: '#contact' },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -61,7 +62,7 @@ export class HeaderComponent implements OnInit {
     this.closeMenu();
 
     // You can add routing or modal logic here
-    // this.router.navigate(['/appointment']);
+    this.router.navigate(['/appointment']);
     // or open a modal, etc.
   }
 

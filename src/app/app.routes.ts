@@ -8,4 +8,12 @@ export const routes: Routes = [
         (c) => c.HomeComponentComponent
       ),
   },
+
+  {
+    path: 'appointment',
+    loadComponent: () =>
+      import('./components/home-component/booking/booking.component').then(
+        (c) => c.BookingComponent
+      ),
+  },
 ];

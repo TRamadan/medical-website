@@ -1,0 +1,104 @@
+ .how-it-works-section {
+     padding: 4rem 0;
+ }
+
+ .how-it-works-card {
+     background: #ffffff;
+     border-radius: 1rem;
+     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+     padding: 2rem;
+     margin-bottom: 4rem;
+ }
+
+ .section-title {
+     font-size: 1.875rem;
+     font-weight: 700;
+     color: #111827;
+     margin-bottom: 2rem;
+ }
+
+ .step-number {
+     width: 3rem;
+     height: 3rem;
+     background-color: #dbeafe;
+     color: #2563eb;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto 1rem auto;
+     font-weight: 700;
+     font-size: 1.125rem;
+ }
+
+ .step-title {
+     font-weight: 600;
+     font-size: 1rem;
+     color: #111827;
+     margin-bottom: 0.5rem;
+ }
+
+ .step-description {
+     font-size: 1rem;
+     color: #6b7280;
+     line-height: 1.5;
+ }
+
+ .step-item {
+     padding: 1rem;
+     margin-bottom: 1.5rem;
+ }
+
+ /* Mobile optimizations */
+ @media (max-width: 575.98px) {
+     .how-it-works-card {
+         padding: 1.5rem;
+         margin-bottom: 2rem;
+     }
+
+     .section-title {
+         font-size: 1.5rem;
+         margin-bottom: 1.5rem;
+     }
+
+     .step-item {
+         padding: 0.5rem;
+         margin-bottom: 2rem;
+     }
+
+     .step-number {
+         width: 2.5rem;
+         height: 2.5rem;
+         font-size: 1rem;
+     }
+ }
+
+ @media (min-width: 576px) and (max-width: 767.98px) {
+     .step-item {
+         margin-bottom: 2rem;
+     }
+ }
+
+ @media (min-width: 768px) and (max-width: 991.98px) {
+     .step-item {
+         margin-bottom: 1rem;
+     }
+ }
+
+ /* Add connecting lines on larger screens */
+ @media (min-width: 768px) {
+     .step-connector {
+         position: relative;
+     }
+
+     .step-connector:not(:last-child)::after {
+         content: '';
+         position: absolute;
+         top: 1.5rem;
+         right: -50%;
+         width: 100%;
+         height: 2px;
+         background: linear-gradient(to right, #dbeafe, #e5e7eb);
+         z-index: -1;
+     }
+ }

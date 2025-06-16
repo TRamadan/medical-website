@@ -1,0 +1,27 @@
+.bg-gradient-to-br {
+    background: linear-gradient(to bottom right, #eff6ff, #ffffff);
+}
+
+.booking-btn {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    font-weight: 600;
+    font-size: 1.125rem;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.booking-btn:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
+}
+
+.booking-btn:focus {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+}
