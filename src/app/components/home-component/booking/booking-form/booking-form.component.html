@@ -85,9 +85,11 @@
             </button>
           </div>
           <div class="col-6 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary d-flex align-items-center" (click)="handleNext()">
-              <span class="d-none d-sm-inline me-2">Next</span>
-              <i class="fas fa-arrow-right"></i>
+
+            <button type="button" class="btn btn-primary d-flex align-items-center"
+              (click)="currentStep == 3 ? confirmBooking() :  handleNext()">
+              <span class="d-none d-sm-inline me-2">{{ currentStep == 3 ? 'Create booking' :'Next'}}</span>
+              <i [class]="currentStep == 3  ? 'fas fa-check-circle'  : 'fas fa-arrow-right'"></i>
             </button>
           </div>
       </div>

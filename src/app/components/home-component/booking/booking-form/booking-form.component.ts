@@ -47,7 +47,7 @@ export interface BookingData {
 export class BookingFormComponent implements OnInit {
   @Output() back = new EventEmitter<void>();
   currentStep: number = 1;
-  totalSteps: number = 5;
+  totalSteps: number = 4;
 
   bookingData: BookingData = {
     location: '',
@@ -118,4 +118,6 @@ export class BookingFormComponent implements OnInit {
   updateBookingData(data: Partial<BookingData>): void {
     this.bookingData = { ...this.bookingData, ...data };
   }
+
+  confirmBooking(): void {}
 }

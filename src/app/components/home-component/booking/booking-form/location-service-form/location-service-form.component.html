@@ -1,3 +1,103 @@
-<p>
-  location-service-form works!
-</p>
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <h2 class="h3 fw-bold text-dark mb-2">Select Your Location And Service</h2>
+        <p class="text-muted">Choose your preferred location and service for the appointment</p>
+      </div>
+
+      <!-- Search -->
+      <div class="position-relative mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="fas fa-search text-muted"></i>
+          </span>
+          <input type="text" class="form-control border-start-0 ps-0"
+            placeholder="Search here for location or service..." [(ngModel)]="searchTerm">
+        </div>
+      </div>
+
+      <!-- services cards-->
+      <div class="row g-3 mb-4">
+        <p class="fw-bold mb-0">
+          Select service
+        </p>
+        @for(service of services; track service; let i = $index){
+        <div class="col-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-header card-header border-0">
+              <h5 class="card-title mb-0 d-flex align-items-center">
+                <i class="bi bi-gear text-primary me-2"></i>
+                <span>{{ service.name }} <span class="badge text-bg-info">{{service.categories.length}}</span>
+                </span>
+              </h5>
+            </div>
+
+            <div class="card-body">
+              <div class="row g-2">
+                @for(category of service.categories; track category; let i = $index){
+                <div class="col-6 col-md-4 col-lg-3">
+                  <button type="button" class="btn w-100 btn-sm"
+                    [class.btn-primary]="isSelectedServiceCategory(category.name)"
+                    [class.btn-outline-secondary]="!isSelectedServiceCategory(category.name)" (click)="(category.name)">
+                    {{ category.name }} <span class="fw-bold">
+                      {{category.price}} EGP
+                    </span>
+                  </button>
+                </div>
+                }
+              </div>
+
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- Location Cards -->
+      <div class="row g-3 mb-4">
+        <p class="fw-bold mb-0">
+          Select location
+        </p>
+        @for(location of filteredLocations; track location; let i = $index){
+        <div class="col-12">
+          <div class="card shadow-sm border-0">
+            <div class="card-header border-0">
+              <h5 class="card-title mb-0 d-flex align-items-center">
+                <i class="bi bi-geo-alt text-primary me-2"></i>
+                <span>{{ location.city }}</span>
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row g-2">
+                @for(area of location.areas; track area){
+                <div class="col-6 col-md-4 col-lg-3">
+                  <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isSelected( area)"
+                    [class.btn-outline-secondary]="!isSelected( area)" (click)="handleLocationSelect( area)">
+                    {{ area }}
+                  </button>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+
+      @if(bookingData.location && bookingData.area){
+      <div class="card bg-primary bg-opacity-10 border-primary">
+        <div class="card-body py-3">
+          <div class="d-flex align-items-center text-primary">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            <span class="fw-semibold">
+              Selected: {{ bookingData.area }}, {{ bookingData.location }}
+            </span>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
