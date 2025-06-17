@@ -1,3 +1,184 @@
-<p>
-  confirmation works!
-</p>
+<div class="container-fluid p-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8">
+
+      <!-- Success Header -->
+      <div class="text-center mb-4">
+        <div class="success-icon mx-auto mb-3">
+          <img src="../../../../../../assets/done.PNG" />
+        </div>
+        <h2 class="h3 fw-bold text-dark mb-2">Appointment Booked Successfully!</h2>
+        <p class="text-muted">Your consultation has been scheduled and account created</p>
+      </div>
+
+      <!-- Appointment Details Card -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white">
+          <h5 class="card-title mb-0 d-flex align-items-center">
+            <i class="bi bi-calendar3 text-primary me-2"></i>
+            Appointment Details
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-4">
+            <!-- Left Column -->
+            <div class="col-12 col-md-6">
+              <div class="mb-3 d-flex align-items-start">
+                <i class="bi bi-person text-muted me-3 mt-1"></i>
+                <div>
+                  <p class="text-muted small mb-1">Doctor</p>
+                  <p class="fw-semibold mb-1">{{ bookingData.doctor.name }}</p>
+                  <p class="text-primary small mb-0">{{ bookingData.doctor.specialty }}</p>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start">
+                <i class="bi bi-geo-alt text-muted me-3 mt-1"></i>
+                <div>
+                  <p class="text-muted small mb-1">Location</p>
+                  <p class="fw-semibold mb-0">{{ bookingData.area }}, {{ bookingData.location }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-12 col-md-6">
+              <div class="mb-3 d-flex align-items-start">
+                <i class="bi bi-calendar3 text-muted me-3 mt-1"></i>
+                <div>
+                  <p class="text-muted small mb-1">Date</p>
+                  <p class="fw-semibold mb-0">{{ formatDate(bookingData.appointmentDate) }}</p>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start">
+                <i class="bi bi-clock text-muted me-3 mt-1"></i>
+                <div>
+                  <p class="text-muted small mb-1">Time</p>
+                  <p class="fw-semibold mb-0">{{ bookingData.appointmentTime }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="d-flex align-items-start">
+            <div class="condition-icon me-3 mt-1">
+              <div class="condition-dot"></div>
+            </div>
+            <div>
+              <p class="text-muted small mb-1">Condition</p>
+              <p class="fw-semibold mb-0">{{ bookingData.injuryType }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patient Information Card -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white">
+          <h5 class="card-title mb-0">Patient Information</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-4">
+            <div class="col-12 col-md-6">
+              <p class="text-muted small mb-1">Name</p>
+              <p class="fw-semibold">{{ bookingData.patient.firstName }} {{ bookingData.patient.lastName }}</p>
+            </div>
+            <div class="col-12 col-md-6">
+              <p class="text-muted small mb-1">Date of Birth</p>
+              <p class="fw-semibold">{{ bookingData.patient.dateOfBirth }}</p>
+            </div>
+          </div>
+
+          <div class="row g-4 mt-2">
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-envelope text-muted me-2"></i>
+                <div>
+                  <p class="text-muted small mb-1">Email</p>
+                  <p class="fw-semibold mb-0">{{ bookingData.patient.email }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-telephone text-muted me-2"></i>
+                <div>
+                  <p class="text-muted small mb-1">Phone</p>
+                  <p class="fw-semibold mb-0">{{ bookingData.patient.phone }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps Card -->
+      <div class="card shadow-sm mb-4 next-steps-card">
+        <div class="card-header">
+          <h5 class="card-title mb-0 text-primary">Next Steps</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="d-flex align-items-start">
+                <div class="step-number me-3">1</div>
+                <div>
+                  <p class="fw-semibold text-primary mb-1">Account Created</p>
+                  <p class="text-primary small mb-0">Your account is pending admin validation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="d-flex align-items-start">
+                <div class="step-number me-3">2</div>
+                <div>
+                  <p class="fw-semibold text-primary mb-1">Email Confirmation</p>
+                  <p class="text-primary small mb-0">Check your email for appointment details and app download link
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="d-flex align-items-start">
+                <div class="step-number me-3">3</div>
+                <div>
+                  <p class="fw-semibold text-primary mb-1">Download App</p>
+                  <p class="text-primary small mb-0">Download our mobile app to complete your injury assessment form
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arabic Email Card -->
+      <div class="card shadow-sm mb-4 arabic-card">
+        <div class="card-header bg-light">
+          <h5 class="card-title mb-0 text-end" dir="rtl">رسالة التأكيد</h5>
+        </div>
+        <div class="card-body text-end" dir="rtl">
+          <p class="text-dark">مرحباً {{ bookingData.patient.firstName }}،</p>
+          <p class="text-muted">تم حجز موعدك بنجاح! سيتم إرسال إيميل تأكيد يحتوي على:</p>
+          <ul class="list-unstyled me-4">
+            <li class="text-muted mb-1">• تفاصيل الموعد المحجوز</li>
+            <li class="text-muted mb-1">• رابط تحميل التطبيق</li>
+            <li class="text-muted mb-1">• تعليمات ملء استمارة بيانات الإصابة</li>
+            <li class="text-muted mb-1">• معلومات التواصل مع العيادة</li>
+          </ul>
+          <p class="text-muted">يرجى تحميل التطبيق وملء الاستمارة قبل موعد الزيارة لضمان تقديم أفضل رعاية طبية.</p>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
