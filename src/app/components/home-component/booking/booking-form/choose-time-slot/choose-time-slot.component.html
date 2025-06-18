@@ -42,11 +42,11 @@
         <div class="card-body">
           @if(availableTimesForSelectedDate.length > 0;){
           <div class="row g-2">
-            @for(time of availableTimesForSelectedDate; track time){
-            <div class="col-4 col-md-3 col-lg-2">
-              <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isTimeSelected(time)"
-                [class.btn-outline-secondary]="!isTimeSelected(time)" (click)="onTimeSelect(time)">
-                {{ time }}
+            @for(timeSlot of availableTimesForSelectedDate; track timeSlot.from){
+            <div class="col-4 col-md-3">
+              <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isTimeSelected(timeSlot)"
+                [class.btn-outline-secondary]="!isTimeSelected(timeSlot)" (click)="onTimeSelect(timeSlot)">
+                <strong>From</strong> {{ timeSlot.from }} - <strong>To</strong> {{ timeSlot.to }}
               </button>
             </div>
             }
@@ -61,23 +61,6 @@
       </div>
       }
 
-      <!-- Selected Appointment Summary -->
-      <!-- <div *ngIf="bookingData.doctor && bookingData.appointmentDate && bookingData.appointmentTime"
-        class="card bg-success bg-opacity-10 border-success">
-        <div class="card-body py-3">
-          <div class="d-flex align-items-center">
-            <div class="rounded-circle bg-success me-3" style="width: 8px; height: 8px;"></div>
-            <div>
-              <p class="fw-semibold text-success mb-0">
-                Appointment scheduled with {{ bookingData.doctor.name }}
-              </p>
-              <p class="small text-success mb-0">
-                {{ formatDate(bookingData.appointmentDate) }} at {{ bookingData.appointmentTime }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

@@ -17,6 +17,11 @@ interface BookingData {
   appointmentDate?: string;
   appointmentTime?: string;
 }
+
+interface TimeSlot {
+  from: string;
+  to: string;
+}
 @Component({
   standalone: true,
   imports: [],
@@ -29,15 +34,54 @@ export class ChooseTimeSlotComponent implements OnInit {
   @Output() bookingDataChange = new EventEmitter<BookingData>();
 
   selectedDate: string = '';
-  selectedTime: string = '';
+  selectedTime: any = '';
 
-  availableDatesWithTimes: { [key: string]: string[] } = {
-    '2024-06-15': ['09:00', '10:00', '11:00', '14:00', '15:00'],
-    '2024-06-16': ['08:00', '09:00', '10:00', '13:00', '14:00', '16:00'],
-    '2024-06-17': ['09:00', '11:00', '13:00', '15:00', '17:00'],
-    '2024-06-18': ['08:00', '10:00', '11:00', '14:00', '15:00', '16:00'],
-    '2024-06-19': ['09:00', '10:00', '13:00', '14:00', '17:00'],
-    '2024-06-20': ['08:00', '09:00', '11:00', '15:00', '16:00', '17:00'],
+  availableDatesWithTimes: { [key: string]: TimeSlot[] } = {
+    '2024-06-15': [
+      { from: '09:00', to: '09:30' },
+      { from: '10:00', to: '10:30' },
+      { from: '11:00', to: '11:30' },
+      { from: '14:00', to: '14:30' },
+      { from: '15:00', to: '15:30' },
+    ],
+    '2024-06-16': [
+      { from: '08:00', to: '08:30' },
+      { from: '09:00', to: '09:30' },
+      { from: '10:00', to: '10:30' },
+      { from: '13:00', to: '13:30' },
+      { from: '14:00', to: '14:30' },
+      { from: '16:00', to: '16:30' },
+    ],
+    '2024-06-17': [
+      { from: '09:00', to: '09:30' },
+      { from: '11:00', to: '11:30' },
+      { from: '13:00', to: '13:30' },
+      { from: '15:00', to: '15:30' },
+      { from: '17:00', to: '17:30' },
+    ],
+    '2024-06-18': [
+      { from: '08:00', to: '08:30' },
+      { from: '10:00', to: '10:30' },
+      { from: '11:00', to: '11:30' },
+      { from: '14:00', to: '14:30' },
+      { from: '15:00', to: '15:30' },
+      { from: '16:00', to: '16:30' },
+    ],
+    '2024-06-19': [
+      { from: '09:00', to: '09:30' },
+      { from: '10:00', to: '10:30' },
+      { from: '13:00', to: '13:30' },
+      { from: '14:00', to: '14:30' },
+      { from: '17:00', to: '17:30' },
+    ],
+    '2024-06-20': [
+      { from: '08:00', to: '08:30' },
+      { from: '09:00', to: '09:30' },
+      { from: '11:00', to: '11:30' },
+      { from: '15:00', to: '15:30' },
+      { from: '16:00', to: '16:30' },
+      { from: '17:00', to: '17:30' },
+    ],
   };
 
   constructor() {}
@@ -59,10 +103,6 @@ export class ChooseTimeSlotComponent implements OnInit {
     this.selectedTime = ''; // Reset time when date changes
   }
 
-  onTimeSelect(time: string): void {
-    this.selectedTime = time;
-  }
-
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', {
@@ -76,7 +116,7 @@ export class ChooseTimeSlotComponent implements OnInit {
     return Object.keys(this.availableDatesWithTimes);
   }
 
-  get availableTimesForSelectedDate(): string[] {
+  get availableTimesForSelectedDate(): TimeSlot[] {
     if (!this.selectedDate) {
       return [];
     }
@@ -91,7 +131,15 @@ export class ChooseTimeSlotComponent implements OnInit {
     return this.selectedDate === date;
   }
 
-  isTimeSelected(time: string): boolean {
-    return this.selectedTime === time;
+  // Updated component methods:
+  onTimeSelect(timeSlot: TimeSlot): void {
+    this.selectedTime = timeSlot;
+  }
+
+  isTimeSelected(timeSlot: TimeSlot): boolean {
+    return (
+      this.selectedTime?.from === timeSlot.from &&
+      this.selectedTime?.to === timeSlot.to
+    );
   }
 }
