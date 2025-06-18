@@ -32,6 +32,11 @@
     border-color: #0d6efd;
 }
 
+.btn-primary {
+    background-color: #0b5edb !important;
+
+}
+
 @media (max-width: 576px) {
     .card-body .row {
         --bs-gutter-x: 0.5rem;
