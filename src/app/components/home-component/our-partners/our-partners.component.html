@@ -1,3 +1,12 @@
-<p>
-  our-partners works!
-</p>
+<div class="tech-slideshow">
+  <div class="mover-1">
+    @for(partner of partners; let i = $index; track trackByPartnerId(i, partner)){
+    <p-card>
+      <ng-template pTemplate="header">
+        <img [src]="partner.logo">
+      </ng-template>
+
+    </p-card>
+    }
+  </div>
+</div>

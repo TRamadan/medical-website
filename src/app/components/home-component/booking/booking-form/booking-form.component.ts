@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { LocationServiceFormComponent } from './location-service-form/location-service-form.component';
 import { ChooseTimeSlotComponent } from './choose-time-slot/choose-time-slot.component';
 import { PatientFormComponent } from './patient-form/patient-form.component';
@@ -59,7 +65,7 @@ export class BookingFormComponent implements OnInit {
     patient: null,
   };
 
-  constructor() {}
+  constructor(public elementRef: ElementRef) {}
 
   ngOnInit() {}
 
