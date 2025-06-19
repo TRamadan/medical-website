@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
 
   navItems: NavItem[] = [
-    { name: 'Home', href: '#home', active: true },
+    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'How it works', href: '#howitworks' },
@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
       name: 'Join us',
       href: '#joinus',
     },
-    { name: 'Team', href: '#team' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -63,6 +62,7 @@ export class HeaderComponent implements OnInit {
 
     // You can add routing or modal logic here
     this.router.navigate(['/appointment']);
+    this.navItems.forEach((navItem) => (navItem.active = false));
     // or open a modal, etc.
   }
 
