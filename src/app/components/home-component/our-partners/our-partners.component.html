@@ -1,12 +1,16 @@
-<div class="tech-slideshow">
-  <div class="mover-1">
-    @for(partner of partners; let i = $index; track trackByPartnerId(i, partner)){
-    <p-card>
-      <ng-template pTemplate="header">
-        <img [src]="partner.logo">
-      </ng-template>
-
-    </p-card>
-    }
+<div class="container-fluid">
+  <h2 class="text-center section-title"> Our Partners Work</h2>
+  <div class="marquee-wrapper">
+    <div class="marquee-container">
+      <div class="marquee-content" [style.animation-duration]="animationDuration + 's'">
+        <!-- First set of logos -->
+        @for(partner of duplicatedLogos; let i = $index; track trackByName(i ,
+        partner)){
+        <div class="logo-container">
+          <img [src]="partner.logo" [alt]="partner.name" class="logo-img" />
+        </div>
+        }
+      </div>
+    </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 export interface Partner {
   id: string | number;
@@ -10,41 +10,58 @@ export interface Partner {
   standalone: true,
   imports: [CardModule],
   templateUrl: './our-partners.component.html',
-  styleUrls: ['./our-partners.component.css'],
+  styleUrls: ['./our-partners.component.scss'],
 })
 export class OurPartnersComponent implements OnInit {
-  partners: Partner[] = [
+  @Input() logos: Partner[] = [];
+  @Input() animationDuration: number = 30;
+  @Input() backgroundColor: string =
+    'linear-gradient(to right, rgb(250 245 255), rgb(239 246 255))';
+
+  defaultLogos: Partner[] = [
     {
       id: 1,
-      name: 'مستشفى الملك فيصل',
-      logo: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f',
+      name: 'Partner 1',
+      logo: 'assets/logo_1.png',
     },
     {
       id: 2,
-      name: 'النادي الأهلي',
-      logo: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b',
+      name: 'Partner 2',
+      logo: 'assets/logo_2.png',
     },
     {
       id: 3,
-      name: 'مركز الأمير سلطان',
-      logo: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56',
+      name: 'Partner 3',
+      logo: 'assets/logo_3.png',
     },
     {
       id: 4,
-      name: 'اتحاد كرة القدم',
-      logo: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018',
+      name: 'Partner 4',
+      logo: 'assets/logo_4.png',
     },
     {
       id: 5,
-      name: 'مجمع الملك عبدالله',
-      logo: 'https://images.unsplash.com/photo-1587351021759-3e566b6af7cc',
+      name: 'Partner 5',
+      logo: 'assets/logo_5.png',
+    },
+    {
+      id: 6,
+      name: 'Partner 6',
+      logo: 'assets/logo_6.png',
     },
   ];
+
+  duplicatedLogos: Partner[] = [];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.logos.length === 0) {
+      this.logos = this.defaultLogos;
+    }
+    this.duplicatedLogos = [...this.logos, ...this.logos];
+  }
 
-  trackByPartnerId(index: number, partner: Partner): string | number {
-    return partner.id;
+  trackByName(index: number, logo: any): string {
+    return logo.name;
   }
 }

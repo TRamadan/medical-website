@@ -10,6 +10,11 @@
     padding: 2rem 0px;
 }
 
+.app-store-download {
+    background-color: #1D4ED8;
+    color: #fff;
+}
+
 .hero-wave {
     position: absolute;
     bottom: -100px;

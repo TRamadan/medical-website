@@ -6,10 +6,15 @@
     padding-bottom: 5rem;
 }
 
+i {
+    color: #0099FF;
+}
+
 /* Team Image Hover Effect */
 .team-image {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .team-image:hover {
     transform: scale(1.05);
