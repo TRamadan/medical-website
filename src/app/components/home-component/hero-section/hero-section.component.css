@@ -10,6 +10,25 @@
     padding: 2rem 0px;
 }
 
+.hero-text h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
 .app-store-download {
     background-color: #1D4ED8;
     color: #fff;
@@ -22,4 +41,115 @@
     width: 100%;
     line-height: 0;
     overflow: hidden;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 991.98px) {
+    .hero-section {
+        padding: 4rem 0px 3rem;
+        text-align: center;
+    }
+    
+    .hero-text {
+        padding: 1rem 0px;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-image {
+        margin-top: 2rem;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding: 3rem 0px 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .hero-text .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .hero-image {
+        max-width: 90%;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section {
+        padding: 2rem 0px 1.5rem;
+    }
+    
+    .hero-text {
+        padding: 0.5rem 0px;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-text .d-flex {
+        flex-direction: column;
+        gap: 0.75rem !important;
+    }
+    
+    .hero-text .btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    .hero-image {
+        max-width: 95%;
+        margin-top: 1rem;
+    }
+    
+    .hero-wave {
+        bottom: -50px;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-text .btn {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.7rem;
+    }
 }
