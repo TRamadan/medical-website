@@ -2,8 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10 col-xl-8">
       <div class="text-center mb-4 mb-md-5">
-        <h2 class="display-6 fw-bold text-dark mb-3">Patient Information</h2>
-        <p class="lead text-muted">Please provide your details to complete the booking</p>
+        <h2 class="display-6 fw-bold text-dark mb-3">{{ translationService.translate('booking.patientForm.title') }}
+        </h2>
+        <p class="lead text-muted">{{ translationService.translate('booking.patientForm.subtitle') }}</p>
       </div>
 
       <form [formGroup]="patientForm" novalidate>
@@ -11,27 +12,31 @@
           <div class="card-header bg-primary text-white border-0">
             <h5 class="card-title mb-0">
               <i class="fas fa-user me-2"></i>
-              Personal Information
+              {{ translationService.translate('booking.patientForm.personalInfo.title') }}
             </h5>
           </div>
           <div class="card-body">
             <div class="row mb-3">
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="firstName" class="form-label fw-semibold">
-                  First Name <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.firstName') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <input type="text" id="firstName" class="form-control" [class.is-invalid]="isFieldInvalid('firstName')"
-                  formControlName="firstName" placeholder="Enter your first name">
+                  formControlName="firstName"
+                  [placeholder]="translationService.translate('booking.patientForm.placeholders.firstName')">
                 <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
                   {{ getFieldError('firstName') }}
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <label for="lastName" class="form-label fw-semibold">
-                  Last Name <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.lastName') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <input type="text" id="lastName" class="form-control" [class.is-invalid]="isFieldInvalid('lastName')"
-                  formControlName="lastName" placeholder="Enter your last name">
+                  formControlName="lastName"
+                  [placeholder]="translationService.translate('booking.patientForm.placeholders.lastName')">
                 <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
                   {{ getFieldError('lastName') }}
                 </div>
@@ -42,14 +47,16 @@
             <div class="row mb-3">
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="email" class="form-label fw-semibold">
-                  Email Address <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.email') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <i class="fas fa-envelope text-muted"></i>
                   </span>
                   <input type="email" id="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')"
-                    formControlName="email" placeholder="your.email@example.com">
+                    formControlName="email"
+                    [placeholder]="translationService.translate('booking.patientForm.placeholders.email')">
                   <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
                     {{ getFieldError('email') }}
                   </div>
@@ -57,14 +64,16 @@
               </div>
               <div class="col-12 col-md-6">
                 <label for="phone" class="form-label fw-semibold">
-                  Phone Number <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.phone') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <i class="fas fa-phone text-muted"></i>
                   </span>
                   <input type="tel" id="phone" class="form-control" [class.is-invalid]="isFieldInvalid('phone')"
-                    formControlName="phone" placeholder="+20 XXX XXX XXXX">
+                    formControlName="phone"
+                    [placeholder]="translationService.translate('booking.patientForm.placeholders.phone')">
                   <div class="invalid-feedback" *ngIf="isFieldInvalid('phone')">
                     {{ getFieldError('phone') }}
                   </div>
@@ -76,7 +85,8 @@
             <div class="row mb-3">
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="dateOfBirth" class="form-label fw-semibold">
-                  Date of Birth <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.dateOfBirth') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <div class="input-group">
                   <span class="input-group-text">
@@ -91,13 +101,16 @@
               </div>
               <div class="col-12 col-md-6">
                 <label for="gender" class="form-label fw-semibold">
-                  Gender <span class="text-danger">*</span>
+                  {{ translationService.translate('booking.patientForm.fields.gender') }} <span
+                    class="text-danger">*</span>
                 </label>
                 <select id="gender" class="form-select" [class.is-invalid]="isFieldInvalid('gender')"
                   formControlName="gender">
-                  <option value="">Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="">{{ translationService.translate('booking.patientForm.placeholders.gender') }}
+                  </option>
+                  <option value="male">{{ translationService.translate('booking.patientForm.options.male') }}</option>
+                  <option value="female">{{ translationService.translate('booking.patientForm.options.female') }}
+                  </option>
                 </select>
                 <div class="invalid-feedback" *ngIf="isFieldInvalid('gender')">
                   {{ getFieldError('gender') }}
@@ -109,10 +122,10 @@
             <div class="row">
               <div class="col-12">
                 <label for="emergencyContact" class="form-label fw-semibold">
-                  Emergency Contact
+                  {{ translationService.translate('booking.patientForm.fields.emergencyContact') }}
                 </label>
                 <input type="text" id="emergencyContact" class="form-control" formControlName="emergencyContact"
-                  placeholder="Emergency contact name and phone number">
+                  [placeholder]="translationService.translate('booking.patientForm.placeholders.emergencyContact')">
               </div>
             </div>
 
@@ -124,15 +137,15 @@
           <div class="card-header bg-info text-white border-0">
             <h5 class="card-title mb-0">
               <i class="fas fa-notes-medical me-2"></i>
-              Medical History (Optional)
+              {{ translationService.translate('booking.patientForm.medicalHistory.title') }}
             </h5>
           </div>
           <div class="card-body">
             <label for="medicalHistory" class="form-label fw-semibold">
-              Previous injuries, surgeries, medications, or relevant medical information
+              {{ translationService.translate('booking.patientForm.medicalHistory.description') }}
             </label>
             <textarea id="medicalHistory" class="form-control" formControlName="medicalHistory" rows="4"
-              placeholder="Please provide any relevant medical history that might help your doctor..."></textarea>
+              [placeholder]="translationService.translate('booking.patientForm.placeholders.medicalHistory')"></textarea>
           </div>
         </div>
 
@@ -156,11 +169,12 @@
                  }">
                 <span *ngIf="isFormValid">
                   <i class="fas fa-check-circle me-1 text-white"></i>
-                  <span class="text-white">All required information provided. Ready to proceed!</span>
+                  <span class="text-white">{{ translationService.translate('booking.patientForm.validation.ready')
+                    }}</span>
                 </span>
                 <span *ngIf="!isFormValid">
                   <i class="fas fa-exclamation-triangle me-1"></i>
-                  Please fill in all required fields marked with *
+                  {{ translationService.translate('booking.patientForm.validation.incomplete') }}
                 </span>
               </p>
             </div>

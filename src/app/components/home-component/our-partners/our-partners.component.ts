@@ -10,7 +10,7 @@ export interface Partner {
   standalone: true,
   imports: [CardModule],
   templateUrl: './our-partners.component.html',
-  styleUrls: ['./our-partners.component.scss'],
+  styleUrls: ['./our-partners.component.responsive.scss'],
 })
 export class OurPartnersComponent implements OnInit {
   @Input() logos: Partner[] = [];
@@ -59,9 +59,5 @@ export class OurPartnersComponent implements OnInit {
       this.logos = this.defaultLogos;
     }
     this.duplicatedLogos = [...this.logos, ...this.logos];
-  }
-
-  trackByName(index: number, logo: any): string {
-    return logo.name;
   }
 }

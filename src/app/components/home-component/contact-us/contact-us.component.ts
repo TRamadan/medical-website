@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,6 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 interface ContactInfo {
   icon: string;
   title: string;
@@ -18,6 +22,7 @@ interface SocialLink {
   url: string;
   icon: string;
 }
+
 @Component({
   selector: 'app-contact-us',
   standalone: true,
@@ -25,9 +30,10 @@ interface SocialLink {
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css'],
 })
-export class ContactUsComponent implements OnInit {
+export class ContactUsComponent implements OnInit, OnDestroy {
   contactForm: FormGroup;
   isSubmitting = false;
+  private languageSubscription?: Subscription;
 
   contactInfo: ContactInfo[] = [
     {
@@ -61,7 +67,6 @@ export class ContactUsComponent implements OnInit {
       url: 'https://twitter.com',
       icon: 'fa fa-youtube',
     },
-
     {
       name: 'Instagram',
       url: 'https://instagram.com',
@@ -79,7 +84,11 @@ export class ContactUsComponent implements OnInit {
     { value: 'feedback', label: 'Feedback' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {
     this.contactForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -89,7 +98,56 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.updateContactInfo();
+    this.updateSubjectOptions();
+    
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      this.updateContactInfo();
+      this.updateSubjectOptions();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  private updateContactInfo(): void {
+    this.contactInfo = [
+      {
+        icon: 'fa fa-phone',
+        title: this.translationService.translate('contact.phone.title'),
+        description: this.translationService.translate('contact.phone.description'),
+        details: ['+1 (555) 123-4567', this.translationService.translate('contact.phone.hours')],
+      },
+      {
+        icon: 'fa fa-envelope',
+        title: this.translationService.translate('contact.email.title'),
+        description: this.translationService.translate('contact.email.description'),
+        details: ['info@healthrecovery.com', 'support@healthrecovery.com'],
+      },
+      {
+        icon: 'fa fa-map-location',
+        title: this.translationService.translate('contact.address.title'),
+        description: this.translationService.translate('contact.address.description'),
+        details: ['123 Health Street', 'Recovery City, RC 12345'],
+      },
+    ];
+  }
+
+  private updateSubjectOptions(): void {
+    this.subjectOptions = [
+      { value: 'general', label: this.translationService.translate('contact.subjects.general') },
+      { value: 'appointment', label: this.translationService.translate('contact.subjects.appointment') },
+      { value: 'technical', label: this.translationService.translate('contact.subjects.technical') },
+      { value: 'billing', label: this.translationService.translate('contact.subjects.billing') },
+      { value: 'partnership', label: this.translationService.translate('contact.subjects.partnership') },
+      { value: 'media', label: this.translationService.translate('contact.subjects.media') },
+      { value: 'feedback', label: this.translationService.translate('contact.subjects.feedback') },
+    ];
+  }
 
   onSubmit(): void {
     if (this.contactForm.valid) {
@@ -101,7 +159,7 @@ export class ContactUsComponent implements OnInit {
       // Here you would typically send the data to your backend
       setTimeout(() => {
         this.isSubmitting = false;
-        alert('Thank you for your message! We will get back to you soon.');
+        alert(this.translationService.translate('contact.successMessage'));
         this.contactForm.reset();
       }, 2000);
     } else {
@@ -120,13 +178,13 @@ export class ContactUsComponent implements OnInit {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field.touched) {
       if (field.errors['required']) {
-        return `${this.getFieldLabel(fieldName)} is required`;
+        return this.translationService.translate('form.errors.required', { field: this.getFieldLabel(fieldName) });
       }
       if (field.errors['email']) {
-        return 'Please enter a valid email address';
+        return this.translationService.translate('form.errors.email');
       }
       if (field.errors['minlength']) {
-        return `${this.getFieldLabel(fieldName)} is too short`;
+        return this.translationService.translate('form.errors.minlength', { field: this.getFieldLabel(fieldName) });
       }
     }
     return '';
@@ -134,11 +192,11 @@ export class ContactUsComponent implements OnInit {
 
   private getFieldLabel(fieldName: string): string {
     const labels: { [key: string]: string } = {
-      name: 'Full Name',
-      email: 'Email Address',
-      phone: 'Phone Number',
-      subject: 'Subject',
-      message: 'Message',
+      name: this.translationService.translate('form.name'),
+      email: this.translationService.translate('form.email'),
+      phone: this.translationService.translate('form.phone'),
+      subject: this.translationService.translate('form.subject'),
+      message: this.translationService.translate('form.message'),
     };
     return labels[fieldName] || fieldName;
   }

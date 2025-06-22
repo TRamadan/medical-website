@@ -4,8 +4,7 @@
     <div class="marquee-container">
       <div class="marquee-content" [style.animation-duration]="animationDuration + 's'">
         <!-- First set of logos -->
-        @for(partner of duplicatedLogos; let i = $index; track trackByName(i ,
-        partner)){
+        @for(partner of duplicatedLogos; track partner.id){
         <div class="logo-container">
           <img [src]="partner.logo" [alt]="partner.name" class="logo-img" />
         </div>

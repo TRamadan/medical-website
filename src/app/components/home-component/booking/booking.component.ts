@@ -1,51 +1,50 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { BookingHowItWorksComponent } from './booking-how-it-works/booking-how-it-works.component';
 import { BookingFeaturesComponent } from './booking-features/booking-features.component';
-import { BookingFormComponent } from './booking-form/booking-form.component';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-booking',
   standalone: true,
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css'],
   imports: [
-    BookingFormComponent,
     BookingHowItWorksComponent,
     BookingFeaturesComponent,
   ],
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, OnDestroy {
   showBookingForm = false;
-  @ViewChild(BookingFormComponent) bookingFormComponent?: BookingFormComponent;
+  private languageSubscription?: Subscription;
 
   private shouldScrollToBooking = false;
 
-  constructor() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      // Component will automatically update when language changes
+    });
+  }
 
-  ngAfterViewChecked(): void {
-    if (this.shouldScrollToBooking && this.bookingFormComponent) {
-      const nativeElement = this.bookingFormComponent.elementRef.nativeElement;
-
-      nativeElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-
-      this.shouldScrollToBooking = false;
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
     }
   }
 
-  retryLoadingBookingForm(): void {
-    this.showBookingForm = false;
 
-    setTimeout(() => {
-      this.showBookingForm = true;
-    }, 100);
-  }
+
 
   startBookingProcess(): void {
-    this.showBookingForm = true;
-    this.shouldScrollToBooking = true;
+    this.router.navigate(['/bookappointment']);
   }
 }

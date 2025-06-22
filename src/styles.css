@@ -3,6 +3,7 @@
 @import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/bootstrap-icons";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 
 
 @font-face {
@@ -16,4 +17,95 @@
 
 :root {
     --transition: all 0.3s ease;
+}
+
+/* Global RTL Support */
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .ms-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+[dir="rtl"] .me-3 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+
+[dir="rtl"] .me-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+
+[dir="rtl"] .me-1 {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+/* Arabic font for RTL */
+[dir="rtl"] body {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* RTL specific navbar adjustments */
+[dir="rtl"] .navbar-nav .nav-link {
+    text-align: right;
+}
+
+[dir="rtl"] .navbar-brand {
+    text-align: right;
+}
+
+/* RTL specific button adjustments */
+[dir="rtl"] .btn i {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* RTL specific form adjustments */
+[dir="rtl"] .form-control {
+    text-align: right;
+}
+
+[dir="rtl"] .form-label {
+    text-align: right;
+}
+
+/* RTL specific card adjustments */
+[dir="rtl"] .card {
+    text-align: right;
+}
+
+/* RTL specific list adjustments */
+[dir="rtl"] ul {
+    padding-right: 0;
+    padding-left: 1.5rem;
+}
+
+/* RTL specific icon adjustments */
+[dir="rtl"] .fas,
+[dir="rtl"] .fa {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+/* RTL specific spacing utilities */
+[dir="rtl"] .text-start {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-end {
+    text-align: left !important;
+}
+
+/* RTL specific flex utilities */
+[dir="rtl"] .flex-row-reverse {
+    flex-direction: row !important;
+}
+
+[dir="rtl"] .flex-row {
+    flex-direction: row-reverse !important;
 }

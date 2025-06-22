@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
+import { LanguageService } from '../../../services/language.service';
+import { TranslationService } from '../../../services/translation.service';
+import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 interface NavItem {
   name: string;
   href: string;
@@ -9,31 +15,69 @@ interface NavItem {
 @Component({
   selector: 'app-header',
   standalone: true,
+  imports: [LanguageSwitcherComponent, RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isMenuOpen = false;
+  private languageSubscription?: Subscription;
 
-  navItems: NavItem[] = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'How it works', href: '#howitworks' },
-    {
-      name: 'Education',
-      href: '#education',
-    },
-    {
-      name: 'Join us',
-      href: '#joinus',
-    },
-    { name: 'Contact', href: '#contact' },
-  ];
+  mainNavItems: NavItem[] = [];
+  contactNavItem: NavItem = { name: '', href: '' };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private languageService: LanguageService,
+    public translationService: TranslationService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.updateTranslations();
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        this.updateTranslations();
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  private updateTranslations(): void {
+    this.mainNavItems = [
+      { name: this.translationService.translate('nav.home'), href: '#home' },
+      { name: this.translationService.translate('nav.about'), href: '#about' },
+      {
+        name: this.translationService.translate('nav.services'),
+        href: '#services',
+      },
+      {
+        name: this.translationService.translate('nav.howItWorks'),
+        href: '#howitworks',
+      },
+      {
+        name: this.translationService.translate('nav.education'),
+        href: '#education',
+      },
+      {
+        name: this.translationService.translate('nav.joinUs'),
+        href: '#joinus',
+      },
+      {
+        name: this.translationService.translate('nav.contact'),
+        href: '#contact',
+      },
+      {
+        name: this.translationService.translate('nav.bookAppointment'),
+        href: '#booking',
+      }
+    ];
+
+  }
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -44,26 +88,19 @@ export class HeaderComponent implements OnInit {
   }
 
   onNavItemClick(item: NavItem): void {
-    // Set active item
-    this.navItems.forEach((navItem) => (navItem.active = false));
+    this.mainNavItems.forEach((navItem) => (navItem.active = false));
+    this.contactNavItem.active = false;
     item.active = true;
 
-    // Close mobile menu
     this.closeMenu();
-
-    // Optional: Add smooth scrolling logic here
     this.scrollToSection(item.href);
   }
 
   onBookAppointment(): void {
-    // Handle appointment booking logic
-    console.log('Book appointment clicked');
     this.closeMenu();
-
-    // You can add routing or modal logic here
     this.router.navigate(['/appointment']);
-    this.navItems.forEach((navItem) => (navItem.active = false));
-    // or open a modal, etc.
+    this.mainNavItems.forEach((navItem) => (navItem.active = false));
+    this.contactNavItem.active = false;
   }
 
   private scrollToSection(href: string): void {
@@ -78,7 +115,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  // Optional: Handle window resize to close mobile menu
   onWindowResize(): void {
     if (window.innerWidth >= 768) {
       this.isMenuOpen = false;

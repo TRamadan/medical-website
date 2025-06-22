@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../../../../services/translation.service';
+import { LanguageService } from '../../../../../services/language.service';
+import { Subscription } from 'rxjs';
 
 export interface PatientData {
   firstName: string;
@@ -32,17 +35,33 @@ export interface BookingData {
   templateUrl: './patient-form.component.html',
   styleUrls: ['./patient-form.component.css'],
 })
-export class PatientFormComponent implements OnInit {
+export class PatientFormComponent implements OnInit, OnDestroy {
   @Input() bookingData: BookingData = {};
   @Output() bookingDataChange = new EventEmitter<BookingData>();
+  private languageSubscription?: Subscription;
 
   patientForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      // Component will automatically update when language changes
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
   initializeForm(): void {
@@ -115,28 +134,18 @@ export class PatientFormComponent implements OnInit {
     const field = this.patientForm.get(fieldName);
     if (field && field.errors) {
       if (field.errors['required'])
-        return `${this.getFieldLabel(fieldName)} is required`;
+        return this.translationService.translate('booking.patientForm.errors.required', { field: this.getFieldLabel(fieldName) });
       if (field.errors['minlength'])
-        return `${this.getFieldLabel(fieldName)} must be at least ${
-          field.errors['minlength'].requiredLength
-        } characters`;
-      if (field.errors['email']) return 'Please enter a valid email address';
-      if (field.errors['pattern']) return 'Please enter a valid phone number';
-      if (field.errors['minAge']) return 'You must be at least 16 years old';
+        return this.translationService.translate('booking.patientForm.errors.minlength', { field: this.getFieldLabel(fieldName) });
+      if (field.errors['email']) return this.translationService.translate('booking.patientForm.errors.email');
+      if (field.errors['pattern']) return this.translationService.translate('booking.patientForm.errors.phone');
+      if (field.errors['minAge']) return this.translationService.translate('booking.patientForm.errors.minAge');
     }
     return '';
   }
 
   private getFieldLabel(fieldName: string): string {
-    const labels: { [key: string]: string } = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      email: 'Email',
-      phone: 'Phone Number',
-      dateOfBirth: 'Date of Birth',
-      gender: 'Gender',
-    };
-    return labels[fieldName] || fieldName;
+    return this.translationService.translate(`booking.patientForm.fields.${fieldName}`);
   }
 
   get isFormValid(): boolean {

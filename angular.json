@@ -9,6 +9,14 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "ar": {
+            "translation": "src/locale/messages.ar.xlf"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -51,6 +59,16 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
+            },
+            "ar": {
+              "localize": [
+                "ar"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -63,6 +81,12 @@
             },
             "development": {
               "buildTarget": "medical-website:build:development"
+            },
+            "en": {
+              "buildTarget": "medical-website:build:en"
+            },
+            "ar": {
+              "buildTarget": "medical-website:build:ar"
             }
           },
           "defaultConfiguration": "development"

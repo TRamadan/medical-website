@@ -1,0 +1,35 @@
+.language-switcher {
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border: 1px solid #007bff;
+    background: transparent;
+    color: #007bff;
+}
+
+.language-switcher:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.language-flag {
+    font-size: 1rem;
+}
+
+.language-text {
+    font-weight: 500;
+}
+
+/* RTL specific styles */
+[dir="rtl"] .language-switcher {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+[dir="rtl"] .language-flag {
+    margin-left: 0;
+    margin-right: 0.25rem;
+}

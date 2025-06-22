@@ -6,15 +6,11 @@
         <div class="logo-icon">
           <img src="../../../../assets/nav-bar-logo.png" width="40" height="40" />
         </div>
-        <h2 class="footer-brand">The Sports Doctor</h2>
+        <h2 class="footer-brand">{{ translationService.translate('brand.name') }}</h2>
       </div>
 
       <div class="footer-text">
-        At The Sports Doctor, we believe every
-        <strong>setback is a setup for a powerful comeback</strong>. Our
-        state-of-the-art rehabilitation center is designed to not only heal your
-        injuries but to empower you with the strength and resilience needed to
-        dominate your sport.
+        {{ translationService.translate('footer.description') }}
       </div>
 
       <div class="footer-divider"></div>
@@ -33,17 +29,17 @@
 
       <div class="footer-bottom">
         <div class="footer-links">
-          <a href="#home" class="footer-link">Home</a>
-          <a href="#about" class="footer-link">About Us</a>
-          <a href="#services" class="footer-link">Services</a>
-          <a href="#howitworks" class="footer-link">How it works</a>
-          <a href="#education" class="footer-link">Education</a>
-          <a href="#joinus" class="footer-link">Join us</a>
-          <a href="#contact" class="footer-link">Contact</a>
+          <a href="#home" class="footer-link">{{ translationService.translate('nav.home') }}</a>
+          <a href="#about" class="footer-link">{{ translationService.translate('nav.about') }}</a>
+          <a href="#services" class="footer-link">{{ translationService.translate('nav.services') }}</a>
+          <a href="#howitworks" class="footer-link">{{ translationService.translate('nav.howItWorks') }}</a>
+          <a href="#education" class="footer-link">{{ translationService.translate('nav.education') }}</a>
+          <a href="#joinus" class="footer-link">{{ translationService.translate('nav.joinUs') }}</a>
+          <a href="#contact" class="footer-link">{{ translationService.translate('nav.contact') }}</a>
         </div>
 
         <div class="copyright">
-          <p>&copy; 2025</p>
+          <p>{{ translationService.translate('footer.copyright') }}</p>
         </div>
       </div>
     </div>

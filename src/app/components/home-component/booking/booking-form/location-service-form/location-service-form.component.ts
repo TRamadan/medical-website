@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { MessagesModule } from 'primeng/messages';
+import { TranslationService } from '../../../../../services/translation.service';
+import { LanguageService } from '../../../../../services/language.service';
+import { Subscription } from 'rxjs';
 
 interface Location {
   city: string;
@@ -27,6 +30,7 @@ interface Services {
   price: any;
   locations: Location[];
 }
+
 @Component({
   selector: 'app-location-service-form',
   standalone: true,
@@ -34,9 +38,10 @@ interface Services {
   templateUrl: './location-service-form.component.html',
   styleUrls: ['./location-service-form.component.css'],
 })
-export class LocationServiceFormComponent implements OnInit {
+export class LocationServiceFormComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   servicesSearchTerm: string = '';
+  private languageSubscription?: Subscription;
 
   messages: Message[] | any;
 
@@ -137,9 +142,24 @@ export class LocationServiceFormComponent implements OnInit {
       ],
     },
   ];
-  constructor() {}
 
-  ngOnInit() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
+
+  ngOnInit() {
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      // Component will automatically update when language changes
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
 
   get filteredLocations(): Location[] {
     // if (!this.searchTerm) {
@@ -177,7 +197,10 @@ export class LocationServiceFormComponent implements OnInit {
     this.messages = [
       {
         severity: 'info',
-        detail: `Your service is ${this.bookingData.serviceCategory}, and your location ${this.bookingData.area}`,
+        detail: this.translationService.translate('booking.locationService.selectionMessage', {
+          service: this.bookingData.serviceCategory,
+          location: this.bookingData.area
+        }),
       },
     ];
   }

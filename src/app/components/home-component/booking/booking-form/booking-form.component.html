@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row w-100 align-items-center">
         <div class="col text-center">
-          <h1 class="h4 mb-0 text-dark fw-semibold">Book Appointment</h1>
+          <h1 class="h4 mb-0 text-dark fw-semibold">{{ translationService.translate('booking.form.title') }}</h1>
         </div>
         <div class="col-auto">
           <!-- Spacer for centering -->
@@ -22,10 +22,12 @@
           <div class="card-header bg-white">
             <div class="row align-items-center mb-3">
               <div class="col">
-                <h5 class="card-title mb-0">Step {{ currentStep }} of {{ totalSteps }}</h5>
+                <h5 class="card-title mb-0">{{ translationService.translate('booking.form.progress.step') }} {{
+                  currentStep }} {{ translationService.translate('booking.form.progress.of') }} {{ totalSteps }}</h5>
               </div>
               <div class="col-auto">
-                <small class="text-muted">{{ progressRounded }}% Complete</small>
+                <small class="text-muted">{{ progressRounded }}% {{
+                  translationService.translate('booking.form.progress.complete') }}</small>
               </div>
             </div>
 
@@ -81,14 +83,17 @@
             <button type="button" class="btn btn-outline-secondary d-flex align-items-center" (click)="handlePrevious()"
               [disabled]="currentStep === 1">
               <i class="fas fa-arrow-left me-2"></i>
-              <span class="d-none d-sm-inline">Previous</span>
+              <span class="d-none d-sm-inline">{{ translationService.translate('booking.form.navigation.previous')
+                }}</span>
             </button>
           </div>
           <div class="col-6 d-flex justify-content-end">
 
             <button type="button" class="btn btn-primary d-flex align-items-center"
               (click)="currentStep == 3 ? handleNext() :  handleNext()">
-              <span class="d-none d-sm-inline me-2">{{ currentStep == 3 ? 'Create booking' :'Next'}}</span>
+              <span class="d-none d-sm-inline me-2">{{ currentStep == 3 ?
+                translationService.translate('booking.form.navigation.createBooking') :
+                translationService.translate('booking.form.navigation.next') }}</span>
               <i [class]="currentStep == 3  ? 'fas fa-check-circle'  : 'fas fa-arrow-right'"></i>
             </button>
           </div>

@@ -1,0 +1,135 @@
+/* Rewriting the file to fix any potential syntax issues */
+.container {
+    width: 100%;
+    padding: 3rem 0;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 5rem;
+        height: 100%;
+        z-index: 2;
+    }
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 0 2rem;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+}
+
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+.logo-container {
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    height: 60px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+}
+
+/* Color classes */
+.text-purple-600 {
+    color: rgb(147 51 234);
+}
+
+.text-orange-500 {
+    color: rgb(249 115 22);
+}
+
+.text-gray-800 {
+    color: rgb(31 41 55);
+}
+
+.text-green-600 {
+    color: rgb(22 163 74);
+}
+
+.text-blue-600 {
+    color: rgb(37 99 235);
+}
+
+.text-red-500 {
+    color: rgb(239 68 68);
+}
+
+.text-indigo-600 {
+    color: rgb(79 70 229);
+}
+
+.text-pink-500 {
+    color: rgb(236 72 153);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .marquee-content {
+        animation-duration: 20s;
+        gap: 2rem;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .marquee-content {
+        animation-duration: 15s;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+}

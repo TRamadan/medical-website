@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-10 col-xl-8">
       <!-- Header -->
       <div class="text-center mb-4">
-        <h2 class="h3 fw-bold text-dark mb-2">Choose Your Appointment Time</h2>
+        <h2 class="h3 fw-bold text-dark mb-2">{{ translationService.translate('booking.timeSlot.title') }}</h2>
 
       </div>
 
@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <h5 class="card-title mb-0 d-flex align-items-center">
             <i class="fas fa-calendar-alt text-primary me-2"></i>
-            <span>Select Date</span>
+            <span>{{ translationService.translate('booking.timeSlot.selectDate') }}</span>
           </h5>
         </div>
         <div class="card-body">
@@ -35,8 +35,9 @@
         <div class="card-header border-0">
           <h5 class="card-title mb-0 d-flex align-items-center">
             <i class="fas fa-clock text-primary me-2"></i>
-            <span>Select Time</span>
-            <small class="text-muted ms-2">({{ availableTimesForSelectedDate.length }} slots available)</small>
+            <span>{{ translationService.translate('booking.timeSlot.selectTime') }}</span>
+            <small class="text-muted ms-2">({{ availableTimesForSelectedDate.length }} {{
+              translationService.translate('booking.timeSlot.slotsAvailable') }})</small>
           </h5>
         </div>
         <div class="card-body">
@@ -46,7 +47,8 @@
             <div class="col-4 col-md-3">
               <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isTimeSelected(timeSlot)"
                 [class.btn-outline-secondary]="!isTimeSelected(timeSlot)" (click)="onTimeSelect(timeSlot)">
-                <strong>From</strong> {{ timeSlot.from }} - <strong>To</strong> {{ timeSlot.to }}
+                <strong>{{ translationService.translate('booking.timeSlot.from') }}</strong> {{ timeSlot.from }} -
+                <strong>{{ translationService.translate('booking.timeSlot.to') }}</strong> {{ timeSlot.to }}
               </button>
             </div>
             }
@@ -54,7 +56,7 @@
           }
           <ng-template #noTimesAvailable>
             <div class="text-center py-3">
-              <p class="text-muted mb-0">No time slots available for this date</p>
+              <p class="text-muted mb-0">{{ translationService.translate('booking.timeSlot.noSlotsAvailable') }}</p>
             </div>
           </ng-template>
         </div>

@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { TranslationService } from '../../../../../services/translation.service';
+import { LanguageService } from '../../../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 export interface Doctor {
   name: string;
   specialty: string;
@@ -21,6 +25,7 @@ export interface BookingData {
   injuryType: string;
   patient: Patient;
 }
+
 @Component({
   selector: 'app-confirmation',
   standalone: true,
@@ -28,19 +33,36 @@ export interface BookingData {
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.css'],
 })
-export class ConfirmationComponent {
+export class ConfirmationComponent implements OnInit, OnDestroy {
   @Input() bookingData!: BookingData;
+  private languageSubscription?: Subscription;
 
   bookingReference: string;
 
-  constructor() {
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {
     this.bookingReference = 'BK-' + Date.now().toString().slice(-6);
+  }
+
+  ngOnInit() {
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      // Component will automatically update when language changes
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
   handleSendConfirmation(): void {
     // Simulate sending email confirmation
     alert(
-      'Confirmation Email Sent!\nتم إرسال إيميل التأكيد مع رابط تحميل التطبيق إلى بريدك الإلكتروني'
+      this.translationService.translate('booking.confirmation.emailSent')
     );
   }
 

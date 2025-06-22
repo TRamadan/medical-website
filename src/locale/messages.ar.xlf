@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <!-- Header Translations -->
+      <trans-unit id="header.brand" datatype="html">
+        <source>The sports doctor</source>
+        <target>طبيب الرياضة</target>
+      </trans-unit>
+      
+      <trans-unit id="header.home" datatype="html">
+        <source>Home</source>
+        <target>الرئيسية</target>
+      </trans-unit>
+      
+      <trans-unit id="header.about" datatype="html">
+        <source>About</source>
+        <target>من نحن</target>
+      </trans-unit>
+      
+      <trans-unit id="header.services" datatype="html">
+        <source>Services</source>
+        <target>الخدمات</target>
+      </trans-unit>
+      
+      <trans-unit id="header.howItWorks" datatype="html">
+        <source>How it works</source>
+        <target>طريقة العمل</target>
+      </trans-unit>
+      
+      <trans-unit id="header.education" datatype="html">
+        <source>Education</source>
+        <target>التعليم</target>
+      </trans-unit>
+      
+      <trans-unit id="header.joinUs" datatype="html">
+        <source>Join us</source>
+        <target>انضم إلينا</target>
+      </trans-unit>
+      
+      <trans-unit id="header.contact" datatype="html">
+        <source>Contact</source>
+        <target>اتصل بنا</target>
+      </trans-unit>
+      
+      <trans-unit id="header.bookAppointment" datatype="html">
+        <source>Book Appointment</source>
+        <target>احجز موعد</target>
+      </trans-unit>
+      
+      <!-- Hero Section Translations -->
+      <trans-unit id="hero.title" datatype="html">
+        <source>Expert Sports Medicine Care</source>
+        <target>رعاية طبية رياضية متخصصة</target>
+      </trans-unit>
+      
+      <trans-unit id="hero.subtitle" datatype="html">
+        <source>Professional sports medicine services for athletes and active individuals</source>
+        <target>خدمات طبية رياضية احترافية للرياضيين والأشخاص النشطين</target>
+      </trans-unit>
+      
+      <trans-unit id="hero.cta" datatype="html">
+        <source>Get Started Today</source>
+        <target>ابدأ اليوم</target>
+      </trans-unit>
+      
+      <!-- Services Section Translations -->
+      <trans-unit id="services.title" datatype="html">
+        <source>Our Services</source>
+        <target>خدماتنا</target>
+      </trans-unit>
+      
+      <trans-unit id="services.subtitle" datatype="html">
+        <source>Comprehensive sports medicine solutions</source>
+        <target>حلول شاملة للطب الرياضي</target>
+      </trans-unit>
+      
+      <!-- About Section Translations -->
+      <trans-unit id="about.title" datatype="html">
+        <source>About Us</source>
+        <target>من نحن</target>
+      </trans-unit>
+      
+      <trans-unit id="about.subtitle" datatype="html">
+        <source>Dedicated to your health and performance</source>
+        <target>متخصصون في صحتك وأدائك</target>
+      </trans-unit>
+      
+      <!-- Contact Section Translations -->
+      <trans-unit id="contact.title" datatype="html">
+        <source>Contact Us</source>
+        <target>اتصل بنا</target>
+      </trans-unit>
+      
+      <trans-unit id="contact.subtitle" datatype="html">
+        <source>Get in touch with our team</source>
+        <target>تواصل مع فريقنا</target>
+      </trans-unit>
+      
+      <!-- Footer Translations -->
+      <trans-unit id="footer.copyright" datatype="html">
+        <source>© 2024 The Sports Doctor. All rights reserved.</source>
+        <target>© 2024 طبيب الرياضة. جميع الحقوق محفوظة.</target>
+      </trans-unit>
+      
+      <!-- Form Translations -->
+      <trans-unit id="form.name" datatype="html">
+        <source>Name</source>
+        <target>الاسم</target>
+      </trans-unit>
+      
+      <trans-unit id="form.email" datatype="html">
+        <source>Email</source>
+        <target>البريد الإلكتروني</target>
+      </trans-unit>
+      
+      <trans-unit id="form.phone" datatype="html">
+        <source>Phone</source>
+        <target>الهاتف</target>
+      </trans-unit>
+      
+      <trans-unit id="form.message" datatype="html">
+        <source>Message</source>
+        <target>الرسالة</target>
+      </trans-unit>
+      
+      <trans-unit id="form.submit" datatype="html">
+        <source>Submit</source>
+        <target>إرسال</target>
+      </trans-unit>
+      
+      <!-- Button Translations -->
+      <trans-unit id="button.learnMore" datatype="html">
+        <source>Learn More</source>
+        <target>اعرف المزيد</target>
+      </trans-unit>
+      
+      <trans-unit id="button.bookNow" datatype="html">
+        <source>Book Now</source>
+        <target>احجز الآن</target>
+      </trans-unit>
+      
+      <trans-unit id="button.readMore" datatype="html">
+        <source>Read More</source>
+        <target>اقرأ المزيد</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff> 

@@ -8,9 +8,11 @@ import { EducationalVideosComponent } from './educational-videos/educational-vid
 import { JoinOutTeamComponent } from './join-out-team/join-out-team.component';
 import { OurPartnersComponent } from './our-partners/our-partners.component';
 import { SuperStarsComponent } from './super-stars/super-stars.component';
+import { BookingComponent } from './booking/booking.component';
 @Component({
   standalone: true,
   imports: [
+    BookingComponent,
     SuperStarsComponent,
     OurPartnersComponent,
     HowItWorksComponent,

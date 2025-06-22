@@ -1,4 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
+import { TranslationService } from '../../../../../services/translation.service';
+import { LanguageService } from '../../../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 interface Doctor {
   id: string;
   name: string;
@@ -22,6 +26,7 @@ interface TimeSlot {
   from: string;
   to: string;
 }
+
 @Component({
   standalone: true,
   imports: [],
@@ -29,9 +34,10 @@ interface TimeSlot {
   templateUrl: './choose-time-slot.component.html',
   styleUrls: ['./choose-time-slot.component.css'],
 })
-export class ChooseTimeSlotComponent implements OnInit {
+export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   @Input() bookingData: BookingData = {};
   @Output() bookingDataChange = new EventEmitter<BookingData>();
+  private languageSubscription?: Subscription;
 
   selectedDate: string = '';
   selectedTime: any = '';
@@ -84,9 +90,23 @@ export class ChooseTimeSlotComponent implements OnInit {
     ],
   };
 
-  constructor() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      // Component will automatically update when language changes
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
 
   handleDoctorSelect(doctor: Doctor): void {
     this.bookingData = {

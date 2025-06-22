@@ -4,11 +4,16 @@ import {
   EventEmitter,
   OnInit,
   Output,
+  OnDestroy,
 } from '@angular/core';
 import { LocationServiceFormComponent } from './location-service-form/location-service-form.component';
 import { ChooseTimeSlotComponent } from './choose-time-slot/choose-time-slot.component';
 import { PatientFormComponent } from './patient-form/patient-form.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { TranslationService } from '../../../../services/translation.service';
+import { LanguageService } from '../../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 export interface Doctor {
   id: string;
   name: string;
@@ -38,6 +43,7 @@ export interface BookingData {
   appointmentTime: string;
   patient: Patient | null;
 }
+
 @Component({
   standalone: true,
   imports: [
@@ -50,10 +56,11 @@ export interface BookingData {
   templateUrl: './booking-form.component.html',
   styleUrls: ['./booking-form.component.css'],
 })
-export class BookingFormComponent implements OnInit {
+export class BookingFormComponent implements OnInit, OnDestroy {
   @Output() back = new EventEmitter<void>();
   currentStep: number = 1;
   totalSteps: number = 4;
+  private languageSubscription?: Subscription;
 
   bookingData: BookingData = {
     location: '',
@@ -65,9 +72,35 @@ export class BookingFormComponent implements OnInit {
     patient: null,
   };
 
-  constructor(public elementRef: ElementRef) {}
+  constructor(
+    public elementRef: ElementRef,
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.updateSteps();
+    
+    // Subscribe to language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
+      this.updateSteps();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  private updateSteps(): void {
+    this.steps = [
+      this.translationService.translate('booking.form.steps.location'),
+      this.translationService.translate('booking.form.steps.timeSlot'),
+      this.translationService.translate('booking.form.steps.patientInfo'),
+      this.translationService.translate('booking.form.steps.confirmation'),
+    ];
+  }
 
   steps: string[] = [
     'Choose location and service',

@@ -4,11 +4,10 @@
       <div class="col-12">
         <div class="text-center mb-5">
           <h2 class="display-4 fw-bold text-dark mb-3">
-            Learn About Injury Recovery
+            {{ translationService.translate('educationalVideos.title') }}
           </h2>
           <p class="lead text-muted col-lg-8 col-xl-6 mx-auto">
-            Educational content to help you understand your injury and learn
-            proper recovery techniques
+            {{ translationService.translate('educationalVideos.subtitle') }}
           </p>
         </div>
 
@@ -17,20 +16,13 @@
           <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
             <div class="card h-100 shadow-sm border-0 video-card">
               <div class="position-relative overflow-hidden">
-                <img
-                  [src]="video.thumbnail"
-                  [alt]="video.title"
-                  class="card-img-top video-thumbnail"
-                  style="height: 200px; object-fit: cover"
-                />
+                <img [src]="video.thumbnail"
+                  [alt]="translationService.translate('educationalVideos.videos.' + video.key + '.title')"
+                  class="card-img-top video-thumbnail" style="height: 200px; object-fit: cover" />
                 <div
-                  class="video-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-                >
+                  class="video-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <div class="bg-white bg-opacity-75 rounded-circle p-3">
-                    <i
-                      class="bi bi-play-fill text-primary"
-                      style="font-size: 2rem"
-                    ></i>
+                    <i class="bi bi-play-fill text-primary" style="font-size: 2rem"></i>
                   </div>
                 </div>
               </div>
@@ -39,17 +31,15 @@
                 <div class="d-flex align-items-center mb-3">
                   <i class="bi bi-camera-video text-primary me-2"></i>
                   <span class="text-primary fw-medium small">{{
-                    video.category
-                  }}</span>
+                    translationService.translate('educationalVideos.videos.' + video.key + '.category')
+                    }}</span>
                 </div>
                 <h5 class="card-title fw-bold text-dark mb-3 flex-grow-1">
-                  {{ video.title }}
+                  {{ translationService.translate('educationalVideos.videos.' + video.key + '.title') }}
                 </h5>
-                <button
-                  class="btn btn-link text-primary fw-medium p-0 text-start text-decoration-none"
-                  (click)="watchVideo(video, i)"
-                >
-                  Watch Video →
+                <button class="btn btn-link text-primary fw-medium p-0 text-start text-decoration-none"
+                  (click)="watchVideo(video, i)">
+                  {{ translationService.translate('educationalVideos.watchButton') }} →
                 </button>
               </div>
             </div>
@@ -58,12 +48,9 @@
         </div>
 
         <div class="text-center mt-5">
-          <button
-            class="btn all-content btn-lg px-4 py-3"
-            (click)="viewAllContent()"
-          >
+          <button class="btn all-content btn-lg px-4 py-3" (click)="viewAllContent()">
             <i class="bi bi-book me-2"></i>
-            View All Educational Content
+            {{ translationService.translate('educationalVideos.viewAllButton') }}
           </button>
         </div>
       </div>

@@ -1,0 +1,5 @@
+<button type="button" class="btn btn-outline-primary btn-sm language-switcher" (click)="toggleLanguage()"
+    [attr.aria-label]="'Switch to ' + (currentLanguage === 'en' ? 'Arabic' : 'English')">
+    <span class="language-flag me-1">{{ getLanguageFlag() }}</span>
+    <span class="language-text">{{ getLanguageText() }}</span>
+</button>

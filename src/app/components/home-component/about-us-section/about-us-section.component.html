@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Mission & Vision -->
     <div class="text-center mb-5">
-      <h2 class="display-4 fw-bold text-dark mb-4">About Us</h2>
+      <h2 class="display-4 fw-bold text-dark mb-4">{{ translationService.translate('about.title') }}</h2>
 
       <div class="row g-4 mb-5">
         <div class="col-lg-4 col-md-6">
@@ -11,11 +11,9 @@
               style="width: 64px; height: 64px">
               <i class="fas fa-bullseye text-white" style="font-size: 2rem"></i>
             </div>
-            <h3 class="h4 fw-bold text-dark mb-3">Our Mission</h3>
+            <h3 class="h4 fw-bold text-dark mb-3">{{ translationService.translate('about.mission.title') }}</h3>
             <p class="text-muted">
-              To provide accessible, personalized, and evidence-based
-              rehabilitation services that empower individuals to achieve
-              optimal physical function and return to their active lifestyle.
+              {{ translationService.translate('about.mission.description') }}
             </p>
           </div>
         </div>
@@ -26,11 +24,9 @@
               style="width: 64px; height: 64px">
               <i class="fas fa-heart text-white" style="font-size: 2rem"></i>
             </div>
-            <h3 class="h4 fw-bold text-dark mb-3">Our Vision</h3>
+            <h3 class="h4 fw-bold text-dark mb-3">{{ translationService.translate('about.vision.title') }}</h3>
             <p class="text-muted">
-              To be the leading digital platform for injury rehabilitation,
-              making quality physiotherapy accessible to everyone, anywhere, and
-              revolutionizing the way people recover.
+              {{ translationService.translate('about.vision.description') }}
             </p>
           </div>
         </div>
@@ -41,11 +37,9 @@
               style="width: 64px; height: 64px">
               <i class="fas fa-users text-white" style="font-size: 2rem"></i>
             </div>
-            <h3 class="h4 fw-bold text-dark mb-3">Our Values</h3>
+            <h3 class="h4 fw-bold text-dark mb-3">{{ translationService.translate('about.values.title') }}</h3>
             <p class="text-muted">
-              Compassion, Excellence, Innovation, and Integrity guide everything
-              we do. We believe in treating each patient as a whole person, not
-              just an injury.
+              {{ translationService.translate('about.values.description') }}
             </p>
           </div>
         </div>
@@ -55,7 +49,7 @@
     <!-- Team Introduction -->
     <div class="mb-5">
       <h3 class="display-5 fw-bold text-dark mb-4 text-center">
-        Meet Our Expert Team
+        {{ translationService.translate('about.team.title') }}
       </h3>
       <div class="row g-4">
         @for(member of teamMembers; track member; let i = $index){
@@ -86,11 +80,10 @@
       <div class="text-center mb-4">
         <i class="fas fa-award mb-3" style="font-size: 3rem"></i>
         <h3 class="h3 fw-bold text-dark mb-3">
-          Certifications & Accreditations
+          {{ translationService.translate('about.certifications.title') }}
         </h3>
         <p class="text-muted">
-          Our team holds the highest certifications in the industry, ensuring
-          you receive world-class care.
+          {{ translationService.translate('about.certifications.subtitle') }}
         </p>
       </div>
 

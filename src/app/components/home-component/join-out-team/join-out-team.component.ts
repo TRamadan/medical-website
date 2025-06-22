@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 interface PastIntern {
   name: string;
   currentRole: string;
@@ -24,8 +28,9 @@ interface ApplicationData {
   templateUrl: './join-out-team.component.html',
   styleUrls: ['./join-out-team.component.css'],
 })
-export class JoinOutTeamComponent implements OnInit {
-  ngOnInit(): void {}
+export class JoinOutTeamComponent implements OnInit, OnDestroy {
+  private languageSubscription?: Subscription;
+
   applicationData: ApplicationData = {
     fullName: '',
     email: '',
@@ -35,6 +40,7 @@ export class JoinOutTeamComponent implements OnInit {
     education: '',
     coverLetter: '',
   };
+
   pastInterns: PastIntern[] = [
     {
       name: 'Sarah Johnson',
@@ -59,22 +65,47 @@ export class JoinOutTeamComponent implements OnInit {
     },
   ];
 
-  positions = [
-    { value: 'physiotherapist', label: 'Physiotherapist' },
-    { value: 'sports-medicine', label: 'Sports Medicine Specialist' },
-    { value: 'occupational-therapist', label: 'Occupational Therapist' },
-    { value: 'fitness-coach', label: 'Fitness Coach' },
-    { value: 'intern', label: 'Internship Program' },
-    { value: 'admin', label: 'Administrative Role' },
-  ];
+  positions: any[] = [];
+  experienceLevels: any[] = [];
 
-  experienceLevels = [
-    { value: 'entry', label: 'Entry Level (0-2 years)' },
-    { value: 'mid', label: 'Mid Level (3-5 years)' },
-    { value: 'senior', label: 'Senior Level (6-10 years)' },
-    { value: 'expert', label: 'Expert Level (10+ years)' },
-    { value: 'student', label: 'Student/Recent Graduate' },
-  ];
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
+
+  ngOnInit(): void {
+    this.updateDropdowns();
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        this.updateDropdowns();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
+  private updateDropdowns(): void {
+    this.positions = [
+      { value: 'physiotherapist', label: this.translationService.translate('joinOurTeam.form.positions.physiotherapist') },
+      { value: 'sports-medicine', label: this.translationService.translate('joinOurTeam.form.positions.sportsMedicine') },
+      { value: 'occupational-therapist', label: this.translationService.translate('joinOurTeam.form.positions.occupationalTherapist') },
+      { value: 'fitness-coach', label: this.translationService.translate('joinOurTeam.form.positions.fitnessCoach') },
+      { value: 'intern', label: this.translationService.translate('joinOurTeam.form.positions.intern') },
+      { value: 'admin', label: this.translationService.translate('joinOurTeam.form.positions.admin') },
+    ];
+
+    this.experienceLevels = [
+      { value: 'entry', label: this.translationService.translate('joinOurTeam.form.experienceLevels.entry') },
+      { value: 'mid', label: this.translationService.translate('joinOurTeam.form.experienceLevels.mid') },
+      { value: 'senior', label: this.translationService.translate('joinOurTeam.form.experienceLevels.senior') },
+      { value: 'expert', label: this.translationService.translate('joinOurTeam.form.experienceLevels.expert') },
+      { value: 'student', label: this.translationService.translate('joinOurTeam.form.experienceLevels.student') },
+    ];
+  }
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
@@ -86,10 +117,10 @@ export class JoinOutTeamComponent implements OnInit {
   onSubmit(): void {
     if (this.isFormValid()) {
       console.log('Application submitted:', this.applicationData);
-      alert('Application submitted successfully! We will contact you soon.');
+      alert(this.translationService.translate('joinOurTeam.form.alerts.success'));
       this.resetForm();
     } else {
-      alert('Please fill in all required fields.');
+      alert(this.translationService.translate('joinOurTeam.form.alerts.error'));
     }
   }
 

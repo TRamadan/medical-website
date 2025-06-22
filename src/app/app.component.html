@@ -1,3 +1,7 @@
-<app-header />
-<router-outlet />
-<app-footer />
+<app-landing-page *ngIf="isLoading"></app-landing-page>
+
+<div [hidden]="isLoading">
+    <app-header *ngIf="!isAuthPage" />
+    <router-outlet />
+    <app-footer *ngIf="!isAuthPage" />
+</div>

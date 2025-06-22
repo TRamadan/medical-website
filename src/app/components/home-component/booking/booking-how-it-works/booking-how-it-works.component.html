@@ -3,15 +3,15 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="how-it-works-card">
-          <h3 class="section-title text-center">How It Works</h3>
+          <h3 class="section-title text-center">{{ translationService.translate('booking.howItWorks.title') }}</h3>
           <div class="row g-3">
             <!-- Step 1: Choose Location -->
             <div class="col-12 col-sm-6 col-md-3">
               <div class="step-item text-center step-connector">
                 <div class="step-number">1</div>
-                <h4 class="step-title">Choose service and location</h4>
+                <h4 class="step-title">{{ translationService.translate('booking.howItWorks.step1.title') }}</h4>
                 <p class="step-description">
-                  Select your preferred service and location area
+                  {{ translationService.translate('booking.howItWorks.step1.description') }}
                 </p>
               </div>
             </div>
@@ -20,9 +20,9 @@
             <div class="col-12 col-sm-6 col-md-3">
               <div class="step-item text-center step-connector">
                 <div class="step-number">2</div>
-                <h4 class="step-title">Select your desired slot</h4>
+                <h4 class="step-title">{{ translationService.translate('booking.howItWorks.step2.title') }}</h4>
                 <p class="step-description">
-                  Choose your desired date and time slot
+                  {{ translationService.translate('booking.howItWorks.step2.description') }}
                 </p>
               </div>
             </div>
@@ -31,8 +31,9 @@
             <div class="col-12 col-sm-6 col-md-3">
               <div class="step-item text-center step-connector">
                 <div class="step-number">3</div>
-                <h4 class="step-title">Book Appointment</h4>
-                <p class="step-description">Fill in your details and confirm</p>
+                <h4 class="step-title">{{ translationService.translate('booking.howItWorks.step3.title') }}</h4>
+                <p class="step-description">{{ translationService.translate('booking.howItWorks.step3.description') }}
+                </p>
               </div>
             </div>
 
@@ -40,9 +41,9 @@
             <div class="col-12 col-sm-6 col-md-3">
               <div class="step-item text-center">
                 <div class="step-number">4</div>
-                <h4 class="step-title">Get Confirmation</h4>
+                <h4 class="step-title">{{ translationService.translate('booking.howItWorks.step4.title') }}</h4>
                 <p class="step-description">
-                  Receive email with app download link
+                  {{ translationService.translate('booking.howItWorks.step4.description') }}
                 </p>
               </div>
             </div>

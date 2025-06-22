@@ -1,10 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
+
 export interface Superstar {
   id: number;
-  name: string;
-  sport: string;
-  achievement: string;
-  testimonial: string;
+  key: string;
   image: string;
 }
 
@@ -15,53 +16,34 @@ export interface Superstar {
   templateUrl: './super-stars.component.html',
   styleUrls: ['./super-stars.component.css'],
 })
-export class SuperStarsComponent implements OnInit {
+export class SuperStarsComponent implements OnInit, OnDestroy {
+  private languageSubscription?: Subscription;
+
   superstars: Superstar[] = [
     {
       id: 1,
-      name: 'Lionel Messi',
-      sport: 'Football',
-      achievement: "8x Ballon d'Or Winner",
-      testimonial: 'Dreams come true with hard work and dedication.',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      key: 'messi',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 2,
-      name: 'Serena Williams',
-      sport: 'Tennis',
-      achievement: '23x Grand Slam Champion',
-      testimonial: 'You have to believe in yourself when no one else does.',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      key: 'serena',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 3,
-      name: 'LeBron James',
-      sport: 'Basketball',
-      achievement: '4x NBA Champion',
-      testimonial: 'Success is not given, it is earned.',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      key: 'lebron',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 4,
-      name: 'Usain Bolt',
-      sport: 'Athletics',
-      achievement: '8x Olympic Gold Medalist',
-      testimonial: 'Limits are meant to be broken.',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      key: 'usain',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 5,
-      name: 'Simone Biles',
-      sport: 'Gymnastics',
-      achievement: '7x Olympic Medalist',
-      testimonial:
-        'Push yourself because no one else is going to do it for you.',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      key: 'simone',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
   ];
 
@@ -70,13 +52,26 @@ export class SuperStarsComponent implements OnInit {
   private intervalId?: number;
   itemsPerSlide = 3;
 
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
+
   ngOnInit(): void {
     this.updateItemsPerSlide();
     this.startAutoSlide();
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        // Component will re-render automatically
+      }
+    );
   }
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
   @HostListener('window:resize', ['$event'])

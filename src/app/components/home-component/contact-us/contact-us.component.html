@@ -3,10 +3,9 @@
     <!-- Header -->
     <div class="row">
       <div class="col-12 text-center mb-5">
-        <h4 class="display-5 fw-bold text-dark mb-4">Contact Us</h4>
+        <h4 class="display-5 fw-bold text-dark mb-4">{{ translationService.translate('contact.title') }}</h4>
         <p class="lead text-muted mx-auto" style="max-width: 600px">
-          Have questions about our services? Need help with your recovery
-          journey? We're here to help and would love to hear from you.
+          {{ translationService.translate('contact.description') }}
         </p>
       </div>
     </div>
@@ -14,21 +13,16 @@
     <div class="row g-4">
       <!-- Contact Information -->
       <div class="col-lg-4 col-md-12">
-        <h3 class="h4 fw-bold text-dark mb-4">Get in Touch</h3>
+        <h3 class="h4 fw-bold text-dark mb-4">{{ translationService.translate('contact.getInTouch') }}</h3>
 
         <div class="d-flex flex-column gap-3">
           @for(info of contactInfo; track info){
           <div class="card shadow-sm border-0 h-100">
             <div class="card-body">
               <div class="d-flex align-items-start mb-3">
-                <div
-                  class="d-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 me-3"
-                  style="width: 48px; height: 48px; min-width: 48px"
-                >
-                  <i
-                    [class]="info.icon + ' text-primary'"
-                    style="font-size: 1.5rem"
-                  ></i>
+                <div class="d-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 me-3"
+                  style="width: 48px; height: 48px; min-width: 48px">
+                  <i [class]="info.icon + ' text-primary'" style="font-size: 1.5rem"></i>
                 </div>
                 <div class="flex-grow-1">
                   <h5 class="fw-bold text-dark mb-1">{{ info.title }}</h5>
@@ -48,17 +42,12 @@
         </div>
 
         <div class="mt-4">
-          <h5 class="fw-bold text-dark mb-3">Follow Us</h5>
+          <h5 class="fw-bold text-dark mb-3">{{ translationService.translate('contact.followUs') }}</h5>
           <div class="d-flex gap-2 flex-wrap">
             @for(social of socialLinks; track social){
-            <a
-              [href]="social.url"
-              [title]="social.name"
-              target="_blank"
-              rel="noopener noreferrer"
+            <a [href]="social.url" [title]="social.name" target="_blank" rel="noopener noreferrer"
               class="btn-sm rounded-circle d-flex align-items-center justify-content-center"
-              style="width: 40px; height: 40px"
-            >
+              style="width: 40px; height: 40px">
               <i [class]="social.icon"></i>
             </a>
             }
@@ -71,45 +60,30 @@
         <div class="card shadow border-0">
           <div class="card-body p-4 p-md-5">
             <div class="d-flex align-items-center mb-4">
-              <i
-                class="bi-chat-dots text-primary me-3"
-                style="font-size: 2rem"
-              ></i>
-              <h3 class="h4 fw-bold text-dark mb-0">Send us a Message</h3>
+              <i class="bi-chat-dots text-primary me-3" style="font-size: 2rem"></i>
+              <h3 class="h4 fw-bold text-dark mb-0">{{ translationService.translate('contact.sendMessage') }}</h3>
             </div>
 
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
               <div class="row g-3">
                 <!-- Name and Email -->
                 <div class="col-md-6">
-                  <label for="name" class="form-label fw-semibold"
-                    >Full Name *</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    formControlName="name"
-                    class="form-control"
+                  <label for="name" class="form-label fw-semibold">{{
+                    translationService.translate('contact.form.fullName') }}</label>
+                  <input type="text" id="name" formControlName="name" class="form-control"
                     [class.is-invalid]="isFieldInvalid('name')"
-                    placeholder="Enter your full name"
-                  />
+                    [placeholder]="translationService.translate('contact.form.namePlaceholder')" />
                   <div class="invalid-feedback">
                     {{ getFieldError("name") }}
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="email" class="form-label fw-semibold"
-                    >Email Address *</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    formControlName="email"
-                    class="form-control"
+                  <label for="email" class="form-label fw-semibold">{{
+                    translationService.translate('contact.form.email') }}</label>
+                  <input type="email" id="email" formControlName="email" class="form-control"
                     [class.is-invalid]="isFieldInvalid('email')"
-                    placeholder="your.email@example.com"
-                  />
+                    [placeholder]="translationService.translate('contact.form.emailPlaceholder')" />
                   <div class="invalid-feedback">
                     {{ getFieldError("email") }}
                   </div>
@@ -117,29 +91,18 @@
 
                 <!-- Phone and Subject -->
                 <div class="col-md-6">
-                  <label for="phone" class="form-label fw-semibold"
-                    >Phone Number</label
-                  >
-                  <input
-                    type="tel"
-                    id="phone"
-                    formControlName="phone"
-                    class="form-control"
-                    placeholder="+1 (555) 123-4567"
-                  />
+                  <label for="phone" class="form-label fw-semibold">{{
+                    translationService.translate('contact.form.phone') }}</label>
+                  <input type="tel" id="phone" formControlName="phone" class="form-control"
+                    [placeholder]="translationService.translate('contact.form.phonePlaceholder')" />
                 </div>
 
                 <div class="col-md-6">
-                  <label for="subject" class="form-label fw-semibold"
-                    >Subject *</label
-                  >
-                  <select
-                    id="subject"
-                    formControlName="subject"
-                    class="form-select"
-                    [class.is-invalid]="isFieldInvalid('subject')"
-                  >
-                    <option value="">Select subject</option>
+                  <label for="subject" class="form-label fw-semibold">{{
+                    translationService.translate('contact.form.subject') }}</label>
+                  <select id="subject" formControlName="subject" class="form-select"
+                    [class.is-invalid]="isFieldInvalid('subject')">
+                    <option value="">{{ translationService.translate('contact.form.selectSubject') }}</option>
                     @for(option of subjectOptions; track option){
 
                     <option [value]="option.value">
@@ -154,17 +117,11 @@
 
                 <!-- Message -->
                 <div class="col-12">
-                  <label for="message" class="form-label fw-semibold"
-                    >Message *</label
-                  >
-                  <textarea
-                    id="message"
-                    formControlName="message"
-                    class="form-control"
-                    [class.is-invalid]="isFieldInvalid('message')"
-                    rows="6"
-                    placeholder="Please describe your inquiry in detail..."
-                  ></textarea>
+                  <label for="message" class="form-label fw-semibold">{{
+                    translationService.translate('contact.form.message') }}</label>
+                  <textarea id="message" formControlName="message" class="form-control"
+                    [class.is-invalid]="isFieldInvalid('message')" rows="6"
+                    [placeholder]="translationService.translate('contact.form.messagePlaceholder')"></textarea>
                   <div class="invalid-feedback">
                     {{ getFieldError("message") }}
                   </div>
@@ -172,29 +129,21 @@
 
                 <!-- Response Time Info -->
                 <div class="col-12">
-                  <div
-                    class="alert alert-info d-flex align-items-start"
-                    role="alert"
-                  >
+                  <div class="alert alert-info d-flex align-items-start" role="alert">
                     <i class="bi-info-circle me-2 mt-1"></i>
                     <div>
-                      <strong>Response Time:</strong> We typically respond to
-                      inquiries within 24 hours during business days. For urgent
-                      matters, please call us directly at 01144877526.
+                      <strong>{{ translationService.translate('contact.responseTime.title') }}</strong> {{
+                      translationService.translate('contact.responseTime.description') }}
                     </div>
                   </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="col-12">
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-lg w-100"
-                    [disabled]="isSubmitting"
-                  >
+                  <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="isSubmitting">
                     <i class="fa fa-paper-plane"></i>
 
-                    Send Message
+                    {{ translationService.translate('contact.form.sendMessage') }}
                   </button>
                 </div>
               </div>
