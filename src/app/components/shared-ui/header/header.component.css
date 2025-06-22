@@ -140,6 +140,20 @@
     }
 }
 
+/* Adjustments for medium desktops (like iPad Pro landscape) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar-nav .nav-link {
+        font-size: 0.8rem;
+        padding-left: 0.4rem !important;
+        padding-right: 0.4rem !important;
+        margin: 0 0.1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem !important;
+    }
+}
+
 /* Large desktop optimizations */
 @media (min-width: 1200px) {
     .container-fluid {
@@ -260,9 +274,8 @@ html {
 }
 
 @media (min-width: 992px) {
-    .navbar-expand-lg .navbar-nav.centered-nav {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+    .navbar-expand-lg .navbar-collapse {
+        display: flex;
+        justify-content: space-between;
     }
 }
