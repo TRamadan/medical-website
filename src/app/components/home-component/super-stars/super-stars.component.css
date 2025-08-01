@@ -84,6 +84,31 @@
     transform: scale(1.05);
 }
 
+.main-subtitle {
+    font-size: 1.25rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.super-star-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(252, 107, 68, 0.1);
+    border-radius: 50px;
+    margin-bottom: 24px;
+}
+
+.super-star-badge h4 {
+    color: rgb(252, 107, 68);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 767.98px) {
     .carousel-container {

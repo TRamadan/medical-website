@@ -9,9 +9,15 @@ import { JoinOutTeamComponent } from './join-out-team/join-out-team.component';
 import { OurPartnersComponent } from './our-partners/our-partners.component';
 import { SuperStarsComponent } from './super-stars/super-stars.component';
 import { BookingComponent } from './booking/booking.component';
+import { MethodologySectionComponent } from './methodology-section/methodology-section.component';
+import { OurBenefitsComponent } from './our-benefits/our-benefits.component';
+import { CuttingEdgeTechnologyComponent } from './cutting-edge-technology/cutting-edge-technology.component';
 @Component({
   standalone: true,
   imports: [
+    OurBenefitsComponent,
+    CuttingEdgeTechnologyComponent,
+    MethodologySectionComponent,
     BookingComponent,
     SuperStarsComponent,
     OurPartnersComponent,

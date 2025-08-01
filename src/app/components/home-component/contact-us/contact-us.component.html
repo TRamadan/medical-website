@@ -1,14 +1,27 @@
 <section id="contact" class="py-5 contact-bg">
   <div class="container">
     <!-- Header -->
-    <div class="row">
+    <div class="text-center mb-5 fade-in">
+      <div class="methodology-badge">
+        <span>Contact us</span>
+      </div>
+      <h2 class="main-title">
+        Our Path to
+        <span class="gradient-text">Get the Answers You Need</span>
+      </h2>
+      <p class="main-subtitle">
+        Have questions about our services? Need help with your recovery journey? We're here to help and would love to
+        hear from you.
+      </p>
+    </div>
+    <!-- <div class="row">
       <div class="col-12 text-center mb-5">
         <h4 class="display-5 fw-bold text-dark mb-4">{{ translationService.translate('contact.title') }}</h4>
         <p class="lead text-muted mx-auto" style="max-width: 600px">
           {{ translationService.translate('contact.description') }}
         </p>
       </div>
-    </div>
+    </div> -->
 
     <div class="row g-4">
       <!-- Contact Information -->
@@ -22,7 +35,7 @@
               <div class="d-flex align-items-start mb-3">
                 <div class="d-flex align-items-center justify-content-center rounded-3 bg-primary bg-opacity-10 me-3"
                   style="width: 48px; height: 48px; min-width: 48px">
-                  <i [class]="info.icon + ' text-primary'" style="font-size: 1.5rem"></i>
+                  <i [class]="info.icon " style="font-size: 1.5rem"></i>
                 </div>
                 <div class="flex-grow-1">
                   <h5 class="fw-bold text-dark mb-1">{{ info.title }}</h5>
@@ -61,7 +74,7 @@
           <div class="card-body p-4 p-md-5">
             <div class="d-flex align-items-center mb-4">
               <i class="bi-chat-dots text-primary me-3" style="font-size: 2rem"></i>
-              <h3 class="h4 fw-bold text-dark mb-0">{{ translationService.translate('contact.sendMessage') }}</h3>
+              <h3 class="h4 fw-bold mb-0">{{ translationService.translate('contact.sendMessage') }}</h3>
             </div>
 
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
@@ -127,20 +140,9 @@
                   </div>
                 </div>
 
-                <!-- Response Time Info -->
-                <div class="col-12">
-                  <div class="alert alert-info d-flex align-items-start" role="alert">
-                    <i class="bi-info-circle me-2 mt-1"></i>
-                    <div>
-                      <strong>{{ translationService.translate('contact.responseTime.title') }}</strong> {{
-                      translationService.translate('contact.responseTime.description') }}
-                    </div>
-                  </div>
-                </div>
-
                 <!-- Submit Button -->
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="isSubmitting">
+                  <button type="submit" class="btn btn-primary btn-lg w-100 border-0" [disabled]="isSubmitting">
                     <i class="fa fa-paper-plane"></i>
 
                     {{ translationService.translate('contact.form.sendMessage') }}

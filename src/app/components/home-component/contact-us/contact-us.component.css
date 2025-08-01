@@ -5,11 +5,11 @@
 }
 
 .btn-primary {
-    background-color: #0f299c;
+    background-color: rgb(252, 107, 52);
 }
 
 .contact-bg {
-    background: linear-gradient(to bottom, #dbeafe, #ffffff);
+    background-color: #d3d3d33b;
 }
 
 .card {
@@ -18,4 +18,55 @@
 
 a {
     text-decoration: none;
+}
+
+.methodology-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(255, 107, 68, 0.1);
+    border-radius: 50px;
+    margin-bottom: 24px;
+}
+
+.methodology-badge span {
+    color: #fc6c44;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.main-subtitle {
+    font-size: 1.11rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.send-message-text, label {
+    color: #6b7280;
+}
+
+i {
+    color: #fc6c44;
+}
+
+.bg-primary {
+    background-color: #fc6c4433 !important;
 }
