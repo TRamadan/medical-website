@@ -1,9 +1,20 @@
-<div class="container-fluid">
-  <h2 class="text-center section-title"> Our Partners Work</h2>
+<div class="container-fluid our-partners-bg py-5">
+  <div class="text-center mb-5 fade-in">
+    <div class="our-benefits-badge">
+      <span>Our Partners</span>
+    </div>
+    <h2 class="main-title">
+      Trusted by
+      <span class="gradient-text">Industry Leaders</span>
+    </h2>
+    <p class="main-subtitle">
+      We partner with top organizations to deliver exceptional results and drive innovation across every project
+    </p>
+  </div>
+  <!-- <h2 class="text-center section-title"> Our Partners Work</h2> -->
   <div class="marquee-wrapper">
     <div class="marquee-container">
       <div class="marquee-content" [style.animation-duration]="animationDuration + 's'">
-        <!-- First set of logos -->
         @for(partner of duplicatedLogos; track partner.id){
         <div class="logo-container">
           <img [src]="partner.logo" [alt]="partner.name" class="logo-img" />

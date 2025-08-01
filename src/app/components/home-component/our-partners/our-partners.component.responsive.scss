@@ -1,4 +1,46 @@
-/* Rewriting the file to fix any potential syntax issues */
+.our-benefits-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(255, 107, 68, 0.1);
+    border-radius: 50px;
+    margin-bottom: 24px;
+}
+
+.our-benefits-badge span {
+    color: #fc6c44;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #131337;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.main-subtitle {
+    font-size: 1.11rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+} 
+
+.our-partners-bg{
+    background-color: #f5f5f5;
+}
+
 .container {
     width: 100%;
     padding: 3rem 0;
