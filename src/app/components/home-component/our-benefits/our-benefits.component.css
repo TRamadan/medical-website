@@ -37,12 +37,7 @@
     background-clip: text;
 }
 
-:root {
-    /* #1e40af: #1e40af;
-    #1e40af-foreground: #ffffff;
-    --human: #f59e0b;
-    --human-foreground: #ffffff; */
-}
+
 
 .recovery-section {
     background: linear-gradient(135deg, #1e40af 0%, rgba(30, 64, 175, 0.9) 100%);
