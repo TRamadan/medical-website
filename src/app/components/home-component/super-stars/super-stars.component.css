@@ -3,6 +3,10 @@
     min-height: 400px;
 }
 
+.super-star-title {
+    color: #131337;
+}
+
 /* Card animations and transforms */
 .slide-card {
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,7 +1,8 @@
 <section class="overflow-hidden bg-gradient">
   <div class="row">
     <div class="col-12 text-center mb-5">
-      <h4 class="display-5 fw-bold text-dark p-3">{{ translationService.translate('superstars.title') }}</h4>
+      <h4 class="display-5 fw-bold text-dark p-3 super-star-title">{{ translationService.translate('superstars.title')
+        }}</h4>
     </div>
   </div>
   <div class="carousel-container position-relative overflow-hidden p-4 p-md-5 rounded-4" (mouseenter)="onMouseEnter()"
@@ -31,13 +32,6 @@
             </h3>
             <p class="text-primary fw-semibold mb-2">{{ translationService.translate('superstars.athletes.' +
               superstar.key + '.sport') }}</p>
-            <p class="text-success small fw-medium mb-3">
-              {{ translationService.translate('superstars.athletes.' + superstar.key + '.achievement') }}
-            </p>
-            <blockquote
-              class="blockquote-footer small text-muted fst-italic border-start border-primary border-4 ps-3 mb-0">
-              "{{ translationService.translate('superstars.athletes.' + superstar.key + '.testimonial') }}"
-            </blockquote>
           </div>
         </div>
       </div>

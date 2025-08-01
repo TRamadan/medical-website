@@ -1,45 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-lg sticky-top">
+<nav class="navbar navbar-expand-lg navbar-custom navbar-transparent" id="navbar">
   <div class="container-fluid">
-    <div class="d-flex align-items-center">
-      <a class="navbar-brand fw-bold text-primary fs-3" href="#home">
-        {{ translationService.translate('brand.name') }}
-      </a>
-    </div>
+    <!-- Logo/Brand -->
+    <a class="navbar-brand navbar-brand-custom" href="#">RehabApp</a>
 
-    <button class="navbar-toggler border-0 p-0" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen"
-      aria-controls="navbarNav" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon-custom">
-        @if(!isMenuOpen){
-        <i class="fas fa-bars text-muted"></i>
-        } @else {
-        <i class="fas fa-times text-muted"></i>
-        }
-      </span>
+    <!-- Mobile menu toggle -->
+    <button class="navbar-toggler navbar-toggler-custom" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-toggler-icon-custom"></span>
     </button>
 
-    <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarNav">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        @for(item of mainNavItems; track item){
+    <!-- Navigation items -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto navbar-nav-desktop">
         <li class="nav-item">
-          <a class="nav-link py-2 rounded transition-colors" [href]="item.href" [class.active]="item.active"
-            (click)="onNavItemClick(item)">
-            {{ item.name }}
-          </a>
+          <a class="nav-link nav-link-custom" href="#home">Home</a>
         </li>
-        }
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom" href="#benefits">Benefits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom" href="#methodology">Methodology</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom" href="#technology">Technology</a>
+        </li>
       </ul>
 
-      <div class="d-flex align-items-center">
-        <ul class="navbar-nav flex-row">
-          <li class="nav-item me-2 me-lg-3">
-            <app-language-switcher></app-language-switcher>
-          </li>
-        </ul>
+      <!-- Language Switcher Placeholder -->
+      <div class="d-flex">
+        <button class="btn btn-outline-light btn-sm" id="languageBtn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="me-2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+            </path>
+          </svg>
+          EN
+        </button>
       </div>
     </div>
   </div>
 </nav>
-
-@if(isMenuOpen){
-<div class="navbar-backdrop d-lg-none" (click)="closeMenu()"></div>
-}

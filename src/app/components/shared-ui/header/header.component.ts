@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 import { LanguageService } from '../../../services/language.service';
@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMenuOpen = false;
   private languageSubscription?: Subscription;
 
+  isScrolled = false;
+  language = 'EN';
+  isMobileMenuOpen = false;
+
   mainNavItems: NavItem[] = [];
   contactNavItem: NavItem = { name: '', href: '' };
 
@@ -30,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private languageService: LanguageService,
     public translationService: TranslationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.updateTranslations();
@@ -74,9 +78,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       {
         name: this.translationService.translate('nav.bookAppointment'),
         href: '#booking',
-      }
+      },
     ];
-
   }
 
   toggleMenu(): void {
@@ -119,5 +122,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (window.innerWidth >= 768) {
       this.isMenuOpen = false;
     }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    this.checkScroll();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    // Close mobile menu on window resize (when switching to desktop view)
+    if (window.innerWidth >= 992) {
+      this.isMobileMenuOpen = false;
+    }
+  }
+
+  private checkScroll(): void {
+    this.isScrolled = window.scrollY > 50;
   }
 }
