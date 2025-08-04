@@ -1,64 +1,52 @@
-<section class="overflow-hidden">
-  <!-- <div class="row">
-    <div class="col-12 text-center mb-5">
-      <h4 class="display-5 fw-bold  my-3 p-3 super-star-title super-star-badge">{{
-        translationService.translate('superstars.title')
-        }}</h4>
-    </div>
-    <p class="main-subtitle w-100 text-center">{{translationService.translate('superstars.subtitle')}}</p>
-  </div> -->
-  <div class="carousel-container position-relative overflow-hidden p-4 p-md-5 rounded-4" (mouseenter)="onMouseEnter()"
-    (mouseleave)="onMouseLeave()">
-    <!-- Main carousel content -->
-    <div class="row g-3 g-md-4 justify-content-center">
-      @for(superstar of getVisibleSlides(); track superstar.id; let i = $index){
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-lg border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
-          [class.side-slide]="i !== 1 && itemsPerSlide === 3">
-          <!-- Card Image -->
-          <div class="position-relative">
-            <img [src]="superstar.image"
-              [alt]="translationService.translate('superstars.athletes.' + superstar.key + '.name')"
-              class="card-img-top object-fit-cover" style="height: 250px" />
-            <div class="position-absolute top-0 end-0 m-3">
-              <div class="bg-warning rounded-circle p-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-star text-white" style="font-size: 0.875rem"></i>
-              </div>
-            </div>
-          </div>
+<section class="super-stars-section">
+  <!-- Background Image -->
+  <div class="super-stars-background">
+    <img src="../../../../assets/superstars-athletes.jpg" alt="Rehabilitation and recovery" loading="lazy">
+    <div class="super-stars-overlay"></div>
+  </div>
 
-          <!-- Card Body -->
-          <div class="card-body p-4">
-            <h3 class="card-title h4 fw-bold text-dark mb-2">
-              {{ translationService.translate('superstars.athletes.' + superstar.key + '.name') }}
-            </h3>
-            <p class="text-primary fw-semibold mb-2">{{ translationService.translate('superstars.athletes.' +
-              superstar.key + '.sport') }}</p>
+  <div class="container content-wrapper">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <!-- header-->
+        <div class="text-center mb-5 fade-in">
+          <div class="super-stars-badge">
+            <span>Our super stars</span>
+          </div>
+          <h2 class="main-title">
+            Excellence in
+            <span class="gradient-text">Sports Medicine</span>
+          </h2>
+          <p class="main-subtitle">
+            Evidence-based methodologies and cutting-edge technology delivering superior recovery outcomes for athletes
+            at every level
+          </p>
+        </div>
+
+        <!-- vip super stars-->
+        <div class="row g-4 mb-5">
+          <!-- header for vip super stars-->
+          <div class="text-center mb-5 fade-in">
+            <div class="super-stars-badge">
+              <span>Our VIP (Elite) Champions</span>
+            </div>
+            <app-vip-super-stars></app-vip-super-stars>
+          </div>
+        </div>
+
+
+        <!-- vip super stars-->
+        <div class="row g-4 mb-5">
+          <!-- header for vip super stars-->
+          <div class="text-center mb-5 fade-in">
+            <div class="super-stars-badge">
+              <span>Our Celebrated Talents</span>
+            </div>
+            <app-normal-super-star></app-normal-super-star>
           </div>
         </div>
       </div>
-      }
-    </div>
-
-    <!-- Navigation Buttons -->
-    <button type="button"
-      class="btn btn-primary rounded-circle position-absolute start-0 top-50 translate-middle-y ms-2 nav-btn"
-      (click)="prevSlide()" aria-label="Previous slide">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-
-    <button type="button"
-      class="btn btn-primary rounded-circle position-absolute end-0 top-50 translate-middle-y me-2 nav-btn"
-      (click)="nextSlide()" aria-label="Next slide">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-
-    <!-- Progress Indicators -->
-    <div class="d-flex justify-content-center mt-5 gap-2">
-      @for(superstar of superstars; track superstar.id; let i = $index){
-      <button type="button" class="btn p-0 indicator-btn" [class.active]="i === currentSlide" (click)="goToSlide(i)"
-        [attr.aria-label]="'Go to slide ' + (i + 1)"></button>
-      }
     </div>
   </div>
+
 </section>

@@ -2,6 +2,8 @@ import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
+import { VipSuperStarsComponent } from './vip-super-stars/vip-super-stars.component';
+import { NormalSuperStarComponent } from './normal-super-star/normal-super-star.component';
 
 export interface Superstar {
   id: number;
@@ -11,7 +13,7 @@ export interface Superstar {
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [VipSuperStarsComponent, NormalSuperStarComponent],
   selector: 'app-super-stars',
   templateUrl: './super-stars.component.html',
   styleUrls: ['./super-stars.component.css'],
@@ -23,27 +25,32 @@ export class SuperStarsComponent implements OnInit, OnDestroy {
     {
       id: 1,
       key: 'messi',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 2,
       key: 'serena',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 3,
       key: 'lebron',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 4,
       key: 'usain',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
     {
       id: 5,
       key: 'simone',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
+      image:
+        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
     },
   ];
 

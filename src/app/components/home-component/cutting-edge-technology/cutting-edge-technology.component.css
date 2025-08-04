@@ -1,13 +1,44 @@
-:root {
-    --trust: #1e40af;
-    --trust-foreground: #ffffff;
-    --human: #f59e0b;
-    --human-foreground: #ffffff;
-    --background: #ffffff;
+.our-benefits-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(255, 107, 68, 0.1);
+    border-radius: 50px;
+    margin-bottom: 24px;
 }
 
+.our-benefits-badge span {
+    color: #fc6c44;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #131337;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.main-subtitle {
+    font-size: 1.11rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
 .technology-section {
-    background: rgba(30, 64, 175, 0.05);
     position: relative;
     overflow: hidden;
     padding: 5rem 0;
@@ -20,7 +51,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, transparent 50%, rgba(245, 158, 11, 0.05) 100%);
     z-index: 1;
 }
 
@@ -56,13 +86,13 @@
 .section-title {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--trust);
+    color: #1e40af;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .section-highlight {
-    color: var(--human);
+    color: #f59e0b;
     display: block;
 }
 
@@ -76,7 +106,7 @@
     position: relative;
     padding: 2rem;
     border-radius: 1.5rem;
-    background: var(--background);
+    background: #ffffff;
     border: 1px solid rgba(30, 64, 175, 0.2);
     transition: all 0.5s ease;
     height: 100%;
@@ -85,7 +115,6 @@
 
 .tech-card:hover {
     border-color: rgba(245, 158, 11, 0.4);
-    background: rgba(30, 64, 175, 0.05);
     box-shadow: 0 25px 50px rgba(30, 64, 175, 0.1);
     transform: translateY(-5px);
 }
@@ -112,7 +141,7 @@
 .tech-icon-container {
     position: relative;
     padding: 1rem;
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.2) 100%);
+    background-color: #fc6c4433 !important;
     border-radius: 1rem;
     transition: all 0.3s ease;
 }
@@ -122,7 +151,7 @@
 }
 
 .tech-icon {
-    color: var(--human);
+    color: #fc6c44;
     font-size: 2.5rem;
     transition: transform 0.3s ease;
 }
@@ -134,17 +163,17 @@
 .tech-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--trust);
+    color: #000000;
     margin-bottom: 0.75rem;
     transition: color 0.3s ease;
 }
 
 .tech-card:hover .tech-title {
-    color: var(--human);
+    color: rgb(19, 19, 55);
 }
 
 .tech-description {
-    color: rgba(30, 64, 175, 0.7);
+    color: #6b7280;
     line-height: 1.6;
     margin: 0;
 }
@@ -155,7 +184,7 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background: linear-gradient(90deg, transparent 0%, var(--human) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgb(252, 107, 68) 50%, transparent 100%);
     transform: scaleX(0);
     transition: transform 0.5s ease;
     border-radius: 0 0 1.5rem 1.5rem;
@@ -188,14 +217,14 @@
 }
 
 .experience-icon {
-    color: var(--human);
+    color: #f59e0b;
     font-size: 1.5rem;
 }
 
 .experience-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--trust);
+    color: #1e40af;
     margin: 0;
 }
 
@@ -206,8 +235,8 @@
 }
 
 .cta-button {
-    background: var(--human);
-    color: var(--human-foreground);
+    background: #f59e0b;
+    color: #ffffff;
     font-weight: 600;
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -221,7 +250,7 @@
 
 .cta-button:hover {
     background: rgba(245, 158, 11, 0.9);
-    color: var(--human-foreground);
+    color: #ffffff;
     transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(245, 158, 11, 0.25);
 }

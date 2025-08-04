@@ -96,3 +96,29 @@
      font-size: 2rem;
      font-weight: bold;
  }
+
+ /* Transparent navbar (initial state) */
+ .navbar-transparent {
+     background-color: transparent !important;
+     transition: all 0.3s ease;
+ }
+
+ /* Scrolled navbar (solid background) */
+ .navbar-scrolled {
+     background-color: #131337 !important;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease;
+     border-bottom: 4px solid #fc6b44;
+ }
+
+ /* Optional: Change text color when scrolled */
+ .navbar-scrolled .navbar-brand,
+ .navbar-scrolled .nav-link {
+     color: #ffffff !important;
+ }
+
+ .navbar-transparent .navbar-brand,
+ .navbar-transparent .nav-link {
+     color: #ffffff !important;
+     /* Light text on transparent background */
+ }

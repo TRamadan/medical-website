@@ -1,0 +1,41 @@
+<div class="slider-container">
+  <div class="slider-wrapper" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()"
+    (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+
+    <div class="slider-track" [style.transform]="getSliderTransform()">
+      @for(slide of slides; track slide; let i = $index;){
+      <div class="slider-item">
+
+        <div class=" profile-image">
+          <img [src]="slide.imageUrl" (error)="onImageError($event, slide)">
+        </div>
+
+        <div class="profile-content">
+          <h2 class="profile-name">{{ slide.name }}</h2>
+          <h3 class="profile-title">{{ slide.title }}</h3>
+          <h3 class="profile-achievement">
+            {{slide.achievement }}
+          </h3>
+          <p class="profile-description">{{ slide.description }}</p>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-btn prev-btn" (click)="prevSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="nav-btn next-btn" (click)="nextSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <!-- Indicators -->
+    <div class="indicators">
+      @for(slide of slides; let i = $index; track slide;){
+      <div class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)">
+      </div>
+      }
+    </div>
+  </div>
+</div>
