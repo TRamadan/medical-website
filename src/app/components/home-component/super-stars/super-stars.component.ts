@@ -5,12 +5,6 @@ import { Subscription } from 'rxjs';
 import { VipSuperStarsComponent } from './vip-super-stars/vip-super-stars.component';
 import { NormalSuperStarComponent } from './normal-super-star/normal-super-star.component';
 
-export interface Superstar {
-  id: number;
-  key: string;
-  image: string;
-}
-
 @Component({
   standalone: true,
   imports: [VipSuperStarsComponent, NormalSuperStarComponent],
@@ -18,133 +12,8 @@ export interface Superstar {
   templateUrl: './super-stars.component.html',
   styleUrls: ['./super-stars.component.css'],
 })
-export class SuperStarsComponent implements OnInit, OnDestroy {
-  private languageSubscription?: Subscription;
+export class SuperStarsComponent implements OnInit {
+  constructor() {}
 
-  superstars: Superstar[] = [
-    {
-      id: 1,
-      key: 'messi',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 2,
-      key: 'serena',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 3,
-      key: 'lebron',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 4,
-      key: 'usain',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 5,
-      key: 'simone',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-  ];
-
-  currentSlide = 0;
-  isHovered = false;
-  private intervalId?: number;
-  itemsPerSlide = 3;
-
-  constructor(
-    public translationService: TranslationService,
-    private languageService: LanguageService
-  ) {}
-
-  ngOnInit(): void {
-    this.updateItemsPerSlide();
-    this.startAutoSlide();
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
-      () => {
-        // Component will re-render automatically
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.stopAutoSlide();
-    if (this.languageSubscription) {
-      this.languageSubscription.unsubscribe();
-    }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.updateItemsPerSlide();
-  }
-
-  private updateItemsPerSlide(): void {
-    const width = window.innerWidth;
-    if (width < 768) {
-      this.itemsPerSlide = 1;
-    } else if (width < 992) {
-      this.itemsPerSlide = 2;
-    } else {
-      this.itemsPerSlide = 3;
-    }
-  }
-
-  private startAutoSlide(): void {
-    if (!this.isHovered) {
-      this.intervalId = window.setInterval(() => {
-        this.nextSlide();
-      }, 3000);
-    }
-  }
-
-  private stopAutoSlide(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = undefined;
-    }
-  }
-
-  onMouseEnter(): void {
-    this.isHovered = true;
-    this.stopAutoSlide();
-  }
-
-  onMouseLeave(): void {
-    this.isHovered = false;
-    this.startAutoSlide();
-  }
-
-  nextSlide(): void {
-    this.currentSlide = (this.currentSlide + 1) % this.superstars.length;
-  }
-
-  prevSlide(): void {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.superstars.length) % this.superstars.length;
-  }
-
-  goToSlide(index: number): void {
-    this.currentSlide = index;
-  }
-
-  getVisibleSlides(): Superstar[] {
-    const slides: Superstar[] = [];
-    for (let i = 0; i < this.itemsPerSlide; i++) {
-      const index = (this.currentSlide + i) % this.superstars.length;
-      slides.push(this.superstars[index]);
-    }
-    return slides;
-  }
-
-  getSlideIndex(slide: Superstar, position: number): number {
-    return (this.currentSlide + position) % this.superstars.length;
-  }
+  ngOnInit(): void {}
 }

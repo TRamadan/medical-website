@@ -19,11 +19,21 @@ export class VipSuperStarsComponent implements OnInit {
   totalSlides: number = 4;
   isAutoPlaying: boolean = true;
   autoPlayInterval: any = null;
-  autoPlayDelay: number = 50000;
+  autoPlayDelay: number = 3000;
 
   slides: SlideData[] = [
     {
       id: 1,
+      name: 'Sara Samir',
+      title: 'Weightlifting',
+      achievement: 'Olympic Medalist',
+      description:
+        'To provide accessible, personalized, and evidence-based rehabilitation services that empower individuals to achieve optimal physical function and return to their active lifestyle.',
+
+      imageUrl: '../../../../../assets/athelete3.jpeg',
+    },
+    {
+      id: 2,
       name: 'Nada Magdy ',
       title: 'Fin swimmer',
       achievement: 'World Medalist',
@@ -32,30 +42,32 @@ export class VipSuperStarsComponent implements OnInit {
       imageUrl: '../../../../../assets/athelete1.jpeg',
     },
     {
-      id: 2,
+      id: 3,
       name: 'Mohamed Samir',
       title: 'Handball',
-      achievement: '',
+      achievement: 'World Medalist',
       description:
         'Dedicated to helping patients recover from injuries and improve their quality of life through innovative treatment approaches and compassionate care.',
       imageUrl: '../../../../../assets/superstars-athelets2.jpeg',
     },
-    {
-      id: 3,
-      name: 'Mike Chen',
-      title: 'Fitness Coach',
-      achievement: '',
-      description: 'World Medalist.',
-      imageUrl: 'https://via.placeholder.com/200x200/4facfe/ffffff?text=Mike',
-    },
+
     {
       id: 4,
-      name: 'Lisa Martinez',
-      title: 'Wellness Specialist',
-      achievement: '',
+      name: 'Janna Khattab',
+      title: 'Tekwandoo',
+      achievement: 'World Medalist',
       description:
         'Committed to promoting holistic wellness through mindfulness, stress management, and lifestyle coaching to help individuals achieve balance and vitality.',
-      imageUrl: 'https://via.placeholder.com/200x200/43e97b/ffffff?text=Lisa',
+      imageUrl: '../../../../../assets/athelete4.jpeg',
+    },
+    {
+      id: 5,
+      name: 'Sandy Elkhateb',
+      title: 'Aerogymnast',
+      achievement: 'World Medalist',
+      description:
+        'Committed to promoting holistic wellness through mindfulness, stress management, and lifestyle coaching to help individuals achieve balance and vitality.',
+      imageUrl: '../../../../../assets/athelete5.jpeg',
     },
   ];
 
