@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
-export interface Partner {
-  id: string | number;
-  name?: string;
-  logo?: string;
-}
+import { Partners } from './models/partners';
 @Component({
   selector: 'app-our-partners',
   standalone: true,
@@ -13,12 +9,12 @@ export interface Partner {
   styleUrls: ['./our-partners.component.responsive.scss'],
 })
 export class OurPartnersComponent implements OnInit {
-  @Input() logos: Partner[] = [];
+  @Input() logos: Partners[] = [];
   @Input() animationDuration: number = 30;
   @Input() backgroundColor: string =
     'linear-gradient(to right, rgb(250 245 255), rgb(239 246 255))';
 
-  defaultLogos: Partner[] = [
+  defaultLogos: Partners[] = [
     {
       id: 1,
       name: 'Partner 1',
@@ -51,7 +47,7 @@ export class OurPartnersComponent implements OnInit {
     },
   ];
 
-  duplicatedLogos: Partner[] = [];
+  duplicatedLogos: Partners[] = [];
   constructor() {}
 
   ngOnInit() {
