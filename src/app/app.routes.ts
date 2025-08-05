@@ -12,9 +12,17 @@ export const routes: Routes = [
   {
     path: 'bookappointment',
     loadComponent: () =>
-      import('./components/home-component/booking/booking-form/booking-form.component').then(
-        (c) => c.BookingFormComponent
-      ),
+      import(
+        './components/home-component/booking/booking-form/booking-form.component'
+      ).then((c) => c.BookingFormComponent),
+  },
+
+  {
+    path: 'aboutus',
+    loadComponent: () =>
+      import(
+        './components/home-component/about-us-section/about-us-section.component'
+      ).then((c) => c.AboutUsSectionComponent),
   },
 
   {
