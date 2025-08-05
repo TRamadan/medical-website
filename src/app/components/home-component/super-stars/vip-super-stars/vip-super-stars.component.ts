@@ -19,7 +19,7 @@ export class VipSuperStarsComponent implements OnInit {
   totalSlides: number = 4;
   isAutoPlaying: boolean = true;
   autoPlayInterval: any = null;
-  autoPlayDelay: number = 3000;
+  autoPlayDelay: number = 50000;
 
   slides: SlideData[] = [
     {

@@ -1,10 +1,9 @@
 .bg-gradient-to-br {
-    background: linear-gradient(to bottom right, #eff6ff, #ffffff);
+    background-color: #f5f5f5;
 }
 
 .booking-btn {
-    background-color: #2563eb;
-    border-color: #2563eb;
+    background-color: rgb(252, 107, 68);
     font-weight: 600;
     font-size: 1.125rem;
     padding: 0.75rem 2rem;
@@ -13,15 +12,41 @@
     transition: all 0.2s ease-in-out;
 }
 
-.booking-btn:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    transform: translateY(-1px);
+.booking-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(255, 107, 68, 0.1);
+    border-radius: 50px;
+    margin-bottom: 24px;
 }
 
-.booking-btn:focus {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+.booking-badge span {
+    color: #fc6c44;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.main-subtitle {
+    font-size: 1.11rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

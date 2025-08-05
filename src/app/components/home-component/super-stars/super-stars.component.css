@@ -23,6 +23,7 @@
     position: relative;
     overflow: hidden;
     height: auto;
+    padding: 80px;
 }
 
 .super-stars-section::before {

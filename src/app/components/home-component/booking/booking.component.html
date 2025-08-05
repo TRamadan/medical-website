@@ -1,9 +1,21 @@
 <section class="py-5 bg-gradient-to-br" id="booking">
   <div>
     <div class="container">
+      <div class="text-center mb-5 fade-in">
+        <div class="booking-badge">
+          <span>Book Your Appointment</span>
+        </div>
+        <h2 class="main-title">
+          Book your
+          <span class="gradient-text">medical consualtation</span>
+        </h2>
+        <p class="main-subtitle">
+          Connect with qualified doctors and specialists. Simple booking, no login required for first-time appointments.
+        </p>
+      </div>
       <div class="row justify-content-center">
         <div class="col-12 text-center mb-5">
-          <h2 class="display-5 fw-bold text-dark mb-4">
+          <!-- <h2 class="display-5 fw-bold text-dark mb-4">
             {{ translationService.translate('booking.title') }}
           </h2>
           <div class="row justify-content-center">
@@ -12,16 +24,16 @@
                 {{ translationService.translate('booking.subtitle') }}
               </p>
             </div>
-          </div>
-          <button type="button" class="btn btn-primary btn-lg booking-btn" (click)="startBookingProcess()">
+          </div> -->
+          <button type="button" class="btn btn-primary btn-lg booking-btn border-0" (click)="startBookingProcess()">
             {{ translationService.translate('booking.cta') }}
           </button>
         </div>
       </div>
     </div>
   </div>
-  <app-booking-features></app-booking-features>
-  <app-booking-how-it-works></app-booking-how-it-works>
+  <!-- <app-booking-features></app-booking-features>
+  <app-booking-how-it-works></app-booking-how-it-works> -->
 
 
 </section>

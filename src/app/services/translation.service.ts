@@ -459,7 +459,7 @@ export class TranslationService {
       en: 'Connect with qualified doctors and specialists. Simple booking, no login required for first-time appointments.',
       ar: 'تواصل مع الأطباء والمتخصصين المؤهلين. حجز بسيط، لا يتطلب تسجيل دخول للمواعيد الأولى.',
     },
-    'booking.cta': { en: 'Book Appointment Now', ar: 'احجز موعد الآن' },
+    'booking.cta': { en: 'Book Now', ar: 'احجز الآن' },
 
     // Booking Features
     'booking.features.location.title': {
