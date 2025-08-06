@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private updateTranslations(): void {
     this.mainNavItems = [
-      { name: this.translationService.translate('nav.home'), href: '#home' },
+      { name: this.translationService.translate('nav.home'), href: '' },
       { name: this.translationService.translate('nav.about'), href: '#about' },
       {
         name: this.translationService.translate('nav.services'),

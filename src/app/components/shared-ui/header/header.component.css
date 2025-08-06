@@ -122,3 +122,105 @@
      color: #ffffff !important;
      /* Light text on transparent background */
  }
+
+
+
+ .nav-link-custom {
+     color: rgba(255, 255, 255, 0.8) !important;
+     transition: all 0.3s ease-in-out;
+     text-decoration: none;
+     padding: 0.5rem 1rem;
+     position: relative;
+     border-radius: 0.25rem;
+ }
+
+ /* Hover state - enhanced */
+ .nav-link-custom:hover {
+     color: #fc6b44 !important;
+     /* Matches your border color */
+     background-color: rgba(252, 107, 68, 0.1);
+     transform: translateY(-1px);
+ }
+
+ /* Active state for current page */
+ .nav-link-custom.active {
+     color: #fc6b44 !important;
+     background-color: rgba(252, 107, 68, 0.15);
+     font-weight: 600;
+ }
+
+
+ /* Underline effect for active/hover states */
+ .nav-link-custom::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 50%;
+     width: 0;
+     height: 2px;
+     background-color: #fc6b44;
+     transition: all 0.3s ease;
+     transform: translateX(-50%);
+     border-radius: 1px;
+ }
+
+ .nav-link-custom:hover::after,
+ .nav-link-custom.active::after {
+     width: 80%;
+ }
+
+ /* Transparent navbar states */
+ .navbar-transparent .nav-link-custom:hover {
+     color: #fc6b44 !important;
+     background-color: rgba(255, 255, 255, 0.1);
+ }
+
+ .navbar-transparent .nav-link-custom.active {
+     color: #fc6b44 !important;
+     background-color: rgba(255, 255, 255, 0.15);
+ }
+
+ /* Scrolled navbar states */
+ .navbar-scrolled .nav-link-custom:hover {
+     color: #fc6b44 !important;
+     background-color: rgba(252, 107, 68, 0.1);
+ }
+
+ .navbar-scrolled .nav-link-custom.active {
+     color: #fc6b44 !important;
+     background-color: rgba(252, 107, 68, 0.15);
+ }
+
+ /* Alternative: Glow effect option */
+ .nav-link-custom.glow-effect:hover {
+     color: #fc6b44 !important;
+     text-shadow: 0 0 8px rgba(252, 107, 68, 0.4);
+     background-color: transparent;
+ }
+
+ .nav-link-custom.glow-effect.active {
+     color: #fc6b44 !important;
+     text-shadow: 0 0 12px rgba(252, 107, 68, 0.6);
+ }
+
+ /* Mobile responsive adjustments */
+ @media (max-width: 991.98px) {
+
+     .nav-link-custom:hover,
+     .nav-link-custom.active {
+         background-color: rgba(252, 107, 68, 0.2);
+         margin: 0.25rem 0;
+     }
+
+     .nav-link-custom::after {
+         display: none;
+         /* Hide underline on mobile for better UX */
+     }
+ }
+
+ /* Focus states for accessibility */
+ .nav-link-custom:focus {
+     outline: 2px solid #fc6b44;
+     outline-offset: 2px;
+     color: #fc6b44 !important;
+ }
