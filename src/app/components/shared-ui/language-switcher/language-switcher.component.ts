@@ -28,7 +28,5 @@ export class LanguageSwitcherComponent implements OnInit {
     return this.currentLanguage === 'en' ? 'العربية' : 'English';
   }
 
-  getLanguageFlag(): string {
-    return this.currentLanguage === 'en' ? '' : '🇺🇸';
-  }
+
 } 
