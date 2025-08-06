@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 import { LanguageService } from '../../../services/language.service';
 import { TranslationService } from '../../../services/translation.service';
@@ -15,7 +15,7 @@ interface NavItem {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [LanguageSwitcherComponent, RouterLink, CommonModule],
+  imports: [LanguageSwitcherComponent, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
@@ -54,30 +54,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private updateTranslations(): void {
     this.mainNavItems = [
       { name: this.translationService.translate('nav.home'), href: '' },
-      { name: this.translationService.translate('nav.about'), href: '#about' },
+      { name: this.translationService.translate('nav.about'), href: '/about' },
       {
-        name: this.translationService.translate('nav.services'),
-        href: '#services',
+        name: this.translationService.translate('nav.superstars'),
+        href: '#superstars',
       },
       {
-        name: this.translationService.translate('nav.howItWorks'),
-        href: '#howitworks',
-      },
-      {
-        name: this.translationService.translate('nav.education'),
-        href: '#education',
-      },
-      {
-        name: this.translationService.translate('nav.joinUs'),
-        href: '#joinus',
+        name: this.translationService.translate('nav.science'),
+        href: '#methodology',
       },
       {
         name: this.translationService.translate('nav.contact'),
         href: '#contact',
-      },
-      {
-        name: this.translationService.translate('nav.bookAppointment'),
-        href: '#booking',
       },
     ];
   }

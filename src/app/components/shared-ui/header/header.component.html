@@ -13,40 +13,17 @@
     <!-- Navigation items -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto navbar-nav-desktop">
+        @for(item of mainNavItems; track item;){
         <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="">Home</a>
+          <a class="nav-link py-2 nav-link-custom" [href]="item.href" [class.active]="item.active"
+            (click)="onNavItemClick(item)">
+            {{ item.name }}
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="aboutus">About us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="#home">Our super stars</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="#benefits">The Science</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="#benefits">Explore solutions</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom" href="#benefits">Contact us</a>
-        </li>
-
+        }
       </ul>
-
-      <!-- Language Switcher Placeholder -->
       <div class="d-flex">
-        <app-language-switcher></app-language-switcher>
-
-        <!-- <button class="btn btn-outline-light btn-sm" id="languageBtn">
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="me-2">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
-            </path>
-          </svg>
-          EN
-        </button> -->
+        <app-language-switcher />
       </div>
     </div>
   </div>

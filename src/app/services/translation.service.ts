@@ -15,26 +15,39 @@ export class TranslationService {
   private translations: TranslationMap = {
     // Navigation items
     'nav.home': { en: 'Home', ar: 'الرئيسية' },
-    'nav.about': { en: 'About', ar: 'من نحن' },
-    'nav.services': { en: 'Services', ar: 'الخدمات' },
-    'nav.howItWorks': { en: 'How it works', ar: 'طريقة العمل' },
-    'nav.education': { en: 'Education', ar: 'التعليم' },
-    'nav.joinUs': { en: 'Join us', ar: 'انضم إلينا' },
+    'nav.about': { en: 'About Us', ar: 'من نحن' },
+    'nav.superstars': { en: 'Our super stars', ar: 'نجومنا' },
+    'nav.science': { en: 'The science', ar: 'العلوم' },
+    'nav.exploreSolution': { en: 'Explore solution', ar: 'حلولنا' },
     'nav.contact': { en: 'Contact', ar: 'اتصل بنا' },
-    'nav.bookAppointment': { en: 'Book Appointment', ar: 'احجز موعد' },
 
     // Brand
     'brand.name': { en: 'The sports doctor', ar: 'طبيب الرياضة' },
 
     // Hero section
     'hero.title': {
-      en: 'Your Journey to Recovery Starts Here',
-      ar: 'رحلة شفائك تبدأ من هنا',
+      en: 'Elite Performance',
+      ar: 'الاداء المتميز',
+    },
+    'hero.subtitle1': {
+      en: 'Through Science',
+      ar: 'من خلال العلم',
     },
     'hero.subtitle': {
-      en: 'RehabConnect provides personalized rehabilitation programs for all types of injuries. Our team of expert doctors and coaches guide you through every step of your recovery journey.',
-      ar: 'يوفر رهاب كونكت برامج إعادة تأهيل مخصصة لجميع أنواع الإصابات. فريقنا من الأطباء والمدربين المتخصصين يرشدك في كل خطوة من رحلة شفائك.',
+      en: 'Unlock your athletic potential with cutting-edge sports science, proven methodologies, and personalized training programs trusted by world champions',
+      ar: 'اكتشف إمكاناتك الرياضية الكاملة من خلال علوم الرياضة المتطورة والمنهجيات المثبتة علمياً وبرامج التدريب المخصصة التي يثق بها أبطال العالم',
     },
+
+    'hero.downloadandroid': {
+      en: 'Donwload for android',
+      ar: 'تحميل تطبيق الاندرويد',
+    },
+
+    'hero.downloadios': {
+      en: 'Download for iOS',
+      ar: 'تحميل تطبيق الـ iOS ',
+    },
+
     'hero.cta': { en: 'Get Started Today', ar: 'ابدأ اليوم' },
 
     // Services
