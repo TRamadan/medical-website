@@ -30,6 +30,10 @@
     line-height: 1.6;
 }
 
+.our-benefits-section {
+    background-color: #f5f5f5;
+}
+
 .gradient-text {
     background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
     -webkit-background-clip: text;
