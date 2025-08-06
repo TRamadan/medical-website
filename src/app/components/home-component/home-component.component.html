@@ -5,8 +5,26 @@
 <app-our-partners></app-our-partners>
 <app-cutting-edge-technology></app-cutting-edge-technology>
 <app-success-stories></app-success-stories>
+@if(!isSmallScreen){
 <app-booking></app-booking>
+}
 <app-contact-us></app-contact-us>
+
+<!-- FAB button for small screens -->
+@if(isSmallScreen){
+<div class="fab-container">
+    <button class="fab-button" (click)="navigateToBooking()" (mouseenter)="showTooltipHandler()"
+        (mouseleave)="hideTooltipHandler()" (focus)="showTooltipHandler()" (blur)="hideTooltipHandler()"
+        aria-label="Book an appointment">
+        <i class="fas fa-calendar-plus"></i>
+    </button>
+
+    <!-- Tooltip -->
+    <div class="tooltip" [class.show]="showTooltip">
+        Book Appointment
+    </div>
+</div>
+}
 
 <!-- 
     <app-how-it-works></app-how-it-works>
