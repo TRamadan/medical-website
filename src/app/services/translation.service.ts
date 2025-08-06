@@ -48,8 +48,6 @@ export class TranslationService {
       ar: 'تحميل تطبيق الـ iOS ',
     },
 
-    'hero.cta': { en: 'Get Started Today', ar: 'ابدأ اليوم' },
-
     // Services
     'services.title': { en: 'Our Services', ar: 'خدماتنا' },
     'services.subtitle': {
