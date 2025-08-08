@@ -15,27 +15,38 @@ export class TranslationService {
   private translations: TranslationMap = {
     // Navigation items
     'nav.home': { en: 'Home', ar: 'الرئيسية' },
-    'nav.about': { en: 'About', ar: 'من نحن' },
-    'nav.services': { en: 'Services', ar: 'الخدمات' },
-    'nav.howItWorks': { en: 'How it works', ar: 'طريقة العمل' },
-    'nav.education': { en: 'Education', ar: 'التعليم' },
-    'nav.joinUs': { en: 'Join us', ar: 'انضم إلينا' },
+    'nav.about': { en: 'About Us', ar: 'من نحن' },
+    'nav.superstars': { en: 'Our super stars', ar: 'نجومنا' },
+    'nav.science': { en: 'The science', ar: 'العلوم' },
+    'nav.exploreSolution': { en: 'Explore solution', ar: 'حلولنا' },
     'nav.contact': { en: 'Contact', ar: 'اتصل بنا' },
-    'nav.bookAppointment': { en: 'Book Appointment', ar: 'احجز موعد' },
 
     // Brand
     'brand.name': { en: 'The sports doctor', ar: 'طبيب الرياضة' },
 
     // Hero section
     'hero.title': {
-      en: 'Your Journey to Recovery Starts Here',
-      ar: 'رحلة شفائك تبدأ من هنا',
+      en: 'Elite Performance',
+      ar: 'الاداء المتميز',
+    },
+    'hero.subtitle1': {
+      en: 'Through Science',
+      ar: 'من خلال العلم',
     },
     'hero.subtitle': {
-      en: 'RehabConnect provides personalized rehabilitation programs for all types of injuries. Our team of expert doctors and coaches guide you through every step of your recovery journey.',
-      ar: 'يوفر رهاب كونكت برامج إعادة تأهيل مخصصة لجميع أنواع الإصابات. فريقنا من الأطباء والمدربين المتخصصين يرشدك في كل خطوة من رحلة شفائك.',
+      en: 'Unlock your athletic potential with cutting-edge sports science, proven methodologies, and personalized training programs trusted by world champions',
+      ar: 'اكتشف إمكاناتك الرياضية الكاملة من خلال علوم الرياضة المتطورة والمنهجيات المثبتة علمياً وبرامج التدريب المخصصة التي يثق بها أبطال العالم',
     },
-    'hero.cta': { en: 'Get Started Today', ar: 'ابدأ اليوم' },
+
+    'hero.downloadandroid': {
+      en: 'Donwload for android',
+      ar: 'تحميل تطبيق الاندرويد',
+    },
+
+    'hero.downloadios': {
+      en: 'Download for iOS',
+      ar: 'تحميل تطبيق الـ iOS ',
+    },
 
     // Services
     'services.title': { en: 'Our Services', ar: 'خدماتنا' },
@@ -1065,70 +1076,86 @@ export class TranslationService {
     },
 
     // Superstars
+    'superstars.sectionTitle.part1': {
+      en: 'Excellence in',
+      ar: 'التميّز في',
+    },
+    'superstars.sectionTitle.part2': {
+      en: 'Sports Medicine',
+      ar: 'الطب الرياضي',
+    },
+    'superstars.sectionSubtitle': {
+      en: 'Evidence-based methodologies and cutting-edge technology delivering superior recovery outcomes for athletes at every level',
+      ar: 'منهجيات قائمة على الأدلة وتقنيات متطورة تحقق نتائج تعافي متفوقة للرياضيين على جميع المستويات',
+    },
     'superstars.title': { en: 'Our Super Stars', ar: 'نجومنا' },
-    'superstars.subtitle': {
-      en: 'Olympians and World Record Holders .',
-      ar: 'الأولمبيون وحاملو الأرقام القياسية العالمية .',
+    'superstars.titleElite': {
+      en: 'Our Elite Super Stars',
+      ar: 'نجومنا النخبة',
     },
-    'superstars.athletes.messi.name': { en: 'Lionel Messi', ar: 'ليونيل ميسي' },
-    'superstars.athletes.messi.sport': { en: 'Football', ar: 'كرة القدم' },
-    'superstars.athletes.messi.achievement': {
-      en: "8x Ballon d'Or Winner",
-      ar: 'الفائز بالكرة الذهبية 8 مرات',
-    },
-    'superstars.athletes.messi.testimonial': {
-      en: 'Dreams come true with hard work and dedication.',
-      ar: 'الأحلام تتحقق بالعمل الجاد والتفاني.',
-    },
-    'superstars.athletes.serena.name': {
-      en: 'Serena Williams',
-      ar: 'سيرينا ويليامز',
-    },
-    'superstars.athletes.serena.sport': { en: 'Tennis', ar: 'تنس' },
-    'superstars.athletes.serena.achievement': {
-      en: '23x Grand Slam Champion',
-      ar: 'بطلة جراند سلام 23 مرة',
-    },
-    'superstars.athletes.serena.testimonial': {
-      en: 'You have to believe in yourself when no one else does.',
-      ar: 'يجب أن تؤمن بنفسك عندما لا يفعل ذلك أي شخص آخر.',
-    },
-    'superstars.athletes.lebron.name': {
-      en: 'LeBron James',
-      ar: 'ليبرون جيمس',
-    },
-    'superstars.athletes.lebron.sport': { en: 'Basketball', ar: 'كرة سلة' },
-    'superstars.athletes.lebron.achievement': {
-      en: '4x NBA Champion',
-      ar: 'بطل الدوري الاميركي للمحترفين 4 مرات',
-    },
-    'superstars.athletes.lebron.testimonial': {
-      en: 'Success is not given, it is earned.',
-      ar: 'النجاح لا يُعطى، بل يُكتسب.',
-    },
-    'superstars.athletes.usain.name': { en: 'Usain Bolt', ar: 'يوسين بولت' },
-    'superstars.athletes.usain.sport': { en: 'Athletics', ar: 'ألعاب القوى' },
-    'superstars.athletes.usain.achievement': {
-      en: '8x Olympic Gold Medalist',
-      ar: 'حائز على 8 ميداليات ذهبية أولمبية',
-    },
-    'superstars.athletes.usain.testimonial': {
-      en: 'Limits are meant to be broken.',
-      ar: 'الحدود وُجدت لتُكسر.',
-    },
-    'superstars.athletes.simone.name': {
-      en: 'Simone Biles',
-      ar: 'سيمون بايلز',
-    },
-    'superstars.athletes.simone.sport': { en: 'Gymnastics', ar: 'جمباز' },
-    'superstars.athletes.simone.achievement': {
-      en: '7x Olympic Medalist',
-      ar: 'حائزة على 7 ميداليات أولمبية',
-    },
-    'superstars.athletes.simone.testimonial': {
-      en: 'Push yourself because no one else is going to do it for you.',
-      ar: 'ادفع نفسك لأنه لا يوجد شخص آخر سيفعل ذلك من أجلك.',
-    },
+    // 'superstars.subtitle': {
+    //   en: 'Olympians and World Record Holders .',
+    //   ar: 'الأولمبيون وحاملو الأرقام القياسية العالمية .',
+    // },
+    // 'superstars.athletes.messi.name': { en: 'Lionel Messi', ar: 'ليونيل ميسي' },
+    // 'superstars.athletes.messi.sport': { en: 'Football', ar: 'كرة القدم' },
+    // 'superstars.athletes.messi.achievement': {
+    //   en: "8x Ballon d'Or Winner",
+    //   ar: 'الفائز بالكرة الذهبية 8 مرات',
+    // },
+    // 'superstars.athletes.messi.testimonial': {
+    //   en: 'Dreams come true with hard work and dedication.',
+    //   ar: 'الأحلام تتحقق بالعمل الجاد والتفاني.',
+    // },
+    // 'superstars.athletes.serena.name': {
+    //   en: 'Serena Williams',
+    //   ar: 'سيرينا ويليامز',
+    // },
+    // 'superstars.athletes.serena.sport': { en: 'Tennis', ar: 'تنس' },
+    // 'superstars.athletes.serena.achievement': {
+    //   en: '23x Grand Slam Champion',
+    //   ar: 'بطلة جراند سلام 23 مرة',
+    // },
+    // 'superstars.athletes.serena.testimonial': {
+    //   en: 'You have to believe in yourself when no one else does.',
+    //   ar: 'يجب أن تؤمن بنفسك عندما لا يفعل ذلك أي شخص آخر.',
+    // },
+    // 'superstars.athletes.lebron.name': {
+    //   en: 'LeBron James',
+    //   ar: 'ليبرون جيمس',
+    // },
+    // 'superstars.athletes.lebron.sport': { en: 'Basketball', ar: 'كرة سلة' },
+    // 'superstars.athletes.lebron.achievement': {
+    //   en: '4x NBA Champion',
+    //   ar: 'بطل الدوري الاميركي للمحترفين 4 مرات',
+    // },
+    // 'superstars.athletes.lebron.testimonial': {
+    //   en: 'Success is not given, it is earned.',
+    //   ar: 'النجاح لا يُعطى، بل يُكتسب.',
+    // },
+    // 'superstars.athletes.usain.name': { en: 'Usain Bolt', ar: 'يوسين بولت' },
+    // 'superstars.athletes.usain.sport': { en: 'Athletics', ar: 'ألعاب القوى' },
+    // 'superstars.athletes.usain.achievement': {
+    //   en: '8x Olympic Gold Medalist',
+    //   ar: 'حائز على 8 ميداليات ذهبية أولمبية',
+    // },
+    // 'superstars.athletes.usain.testimonial': {
+    //   en: 'Limits are meant to be broken.',
+    //   ar: 'الحدود وُجدت لتُكسر.',
+    // },
+    // 'superstars.athletes.simone.name': {
+    //   en: 'Simone Biles',
+    //   ar: 'سيمون بايلز',
+    // },
+    // 'superstars.athletes.simone.sport': { en: 'Gymnastics', ar: 'جمباز' },
+    // 'superstars.athletes.simone.achievement': {
+    //   en: '7x Olympic Medalist',
+    //   ar: 'حائزة على 7 ميداليات أولمبية',
+    // },
+    // 'superstars.athletes.simone.testimonial': {
+    //   en: 'Push yourself because no one else is going to do it for you.',
+    //   ar: 'ادفع نفسك لأنه لا يوجد شخص آخر سيفعل ذلك من أجلك.',
+    // },
   };
 
   constructor(private languageService: LanguageService) {}

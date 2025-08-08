@@ -1,19 +1,14 @@
 <!-- <app-location-service-form></app-location-service-form> -->
 
-<div class="min-vh-100" style="background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);">
-  <nav class="navbar navbar-light bg-white border-bottom shadow-sm">
-    <div class="container-fluid">
-      <div class="row w-100 align-items-center">
-        <div class="col text-center">
-          <h1 class="h4 mb-0 text-dark fw-semibold">{{ translationService.translate('booking.form.title') }}</h1>
-        </div>
-        <div class="col-auto">
-          <!-- Spacer for centering -->
-        </div>
-      </div>
-    </div>
-  </nav>
+@if(!showBookingFormFlag){
+<div class="my-5">
+  <app-booking-features></app-booking-features>
+  <app-booking-how-it-works (showBookingForm)="onShowBookingForm($event)"></app-booking-how-it-works>
+</div>
+}
 
+@if(showBookingFormFlag){
+<div class="min-vh-100" style="background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);">
   <div class="container-fluid px-3 px-md-4 py-4">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8">
@@ -33,7 +28,7 @@
 
             <!-- Progress Bar -->
             <div class="progress mb-4" style="height: 8px;">
-              <div class="progress-bar bg-primary" role="progressbar" [style.width.%]="progress"
+              <div class="progress-bar bg-progress-bar" role="progressbar" [style.width.%]="progress"
                 [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
               </div>
             </div>
@@ -103,3 +98,4 @@
   </div>
 </div>
 </div>
+}

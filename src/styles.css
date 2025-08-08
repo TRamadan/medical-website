@@ -10,12 +10,19 @@
     src: url(assets/fonts/DINNextW1G-Medium.otf) format("opentype");
 }
 
-* {
-    font-family: 'Din';
+@font-face {
+    font-family: DinArabic;
+    src: url(assets/fonts/DINNextLTArabic-Regular-3.ttf) format("opentype")
 }
+
+/* * {
+    font-family: 'Din';
+} */
 
 :root {
     --transition: all 0.3s ease;
+    --font-arabic: 'DinArabic';
+    --font-english: 'Din'
 }
 
 /* Global RTL Support */
@@ -46,7 +53,12 @@
 
 /* Arabic font for RTL */
 [dir="rtl"] body {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'DinArabic'
+}
+
+/* Arabic font for RTL */
+[dir="ltr"] body {
+    font-family: 'Din'
 }
 
 /* RTL specific navbar adjustments */

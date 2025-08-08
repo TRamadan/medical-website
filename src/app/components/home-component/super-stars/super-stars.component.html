@@ -1,27 +1,22 @@
-<section class="super-stars-section">
-  <!-- <div class="super-stars-background">
-    <img src="../../../../assets/superstars-athletes.jpg" alt="Rehabilitation and recovery" loading="lazy">
-    <div class="super-stars-overlay"></div>
-  </div> -->
+<section class="super-stars-section" id="superstars">
   <div class="container content-wrapper">
     <div class="row justify-content-center">
       <div class="col-12">
         <div class="text-center mb-5 fade-in">
           <div class="super-stars-badge">
-            <span>Our super stars</span>
+            <span>{{translationService.translate('superstars.title')}}</span>
           </div>
           <h2 class="main-title">
-            Excellence in
-            <span class="gradient-text">Sports Medicine</span>
+            {{translationService.translate('superstars.sectionTitle.part1')}}
+            <span class="gradient-text">{{translationService.translate('superstars.sectionTitle.part2')}}</span>
           </h2>
           <p class="main-subtitle">
-            Evidence-based methodologies and cutting-edge technology delivering superior recovery outcomes for athletes
-            at every level
+            {{translationService.translate('superstars.sectionSubtitle')}}
+
           </p>
         </div>
 
         <app-vip-super-stars></app-vip-super-stars>
-
         <app-normal-super-star></app-normal-super-star>
       </div>
     </div>

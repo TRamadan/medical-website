@@ -1,6 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { BookingHowItWorksComponent } from './booking-how-it-works/booking-how-it-works.component';
-import { BookingFeaturesComponent } from './booking-features/booking-features.component';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
@@ -11,10 +9,7 @@ import { Router } from '@angular/router';
   standalone: true,
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css'],
-  imports: [
-    BookingHowItWorksComponent,
-    BookingFeaturesComponent,
-  ],
+
 })
 export class BookingComponent implements OnInit, OnDestroy {
   showBookingForm = false;

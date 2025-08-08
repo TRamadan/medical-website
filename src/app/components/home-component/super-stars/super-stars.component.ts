@@ -1,9 +1,7 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
-import { TranslationService } from '../../../services/translation.service';
-import { LanguageService } from '../../../services/language.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { VipSuperStarsComponent } from './vip-super-stars/vip-super-stars.component';
 import { NormalSuperStarComponent } from './normal-super-star/normal-super-star.component';
+import { TranslationService } from '../../../services/translation.service';
 
 @Component({
   standalone: true,
@@ -13,7 +11,7 @@ import { NormalSuperStarComponent } from './normal-super-star/normal-super-star.
   styleUrls: ['./super-stars.component.css'],
 })
 export class SuperStarsComponent implements OnInit {
-  constructor() {}
+  constructor(public translationService: TranslationService) {}
 
   ngOnInit(): void {}
 }
