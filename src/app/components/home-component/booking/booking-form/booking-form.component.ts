@@ -13,6 +13,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { TranslationService } from '../../../../services/translation.service';
 import { LanguageService } from '../../../../services/language.service';
 import { Subscription } from 'rxjs';
+import { BookingHowItWorksComponent } from '../booking-how-it-works/booking-how-it-works.component';
+import { BookingFeaturesComponent } from '../booking-features/booking-features.component';
 
 export interface Doctor {
   id: string;
@@ -50,6 +52,8 @@ export interface BookingData {
     LocationServiceFormComponent,
     ChooseTimeSlotComponent,
     PatientFormComponent,
+    BookingHowItWorksComponent,
+    BookingFeaturesComponent,
     ConfirmationComponent,
   ],
   selector: 'app-booking-form',
@@ -61,6 +65,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   currentStep: number = 1;
   totalSteps: number = 4;
   private languageSubscription?: Subscription;
+  showBookingFormFlag: boolean = false;
 
   bookingData: BookingData = {
     location: '',
@@ -80,11 +85,13 @@ export class BookingFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateSteps();
-    
+
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      this.updateSteps();
-    });
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        this.updateSteps();
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -159,4 +166,8 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   }
 
   confirmBooking(): void {}
+
+  onShowBookingForm(show: boolean) {
+    this.showBookingFormFlag = show;
+  }
 }

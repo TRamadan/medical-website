@@ -12,6 +12,10 @@
     }
 }
 
+.bg-progress-bar {
+    background-color: #fc6b44;
+}
+
 .progress {
     background-color: #e9ecef;
     border-radius: 10px;
@@ -44,6 +48,11 @@
             color: #6c757d;
         }
     }
+}
+
+.card-title {
+    color: #fc6b44;
+
 }
 
 .card {

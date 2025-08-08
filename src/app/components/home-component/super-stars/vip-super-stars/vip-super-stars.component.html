@@ -1,7 +1,7 @@
 <div class="slider-container">
   <div class="text-center mb-5 fade-in">
     <div class="super-stars-badge">
-      <span>Our Elite super stars</span>
+      <span>{{translationService.translate('superstars.titleElite')}}</span>
     </div>
   </div>
   <div class="slider-wrapper" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()"
@@ -12,7 +12,7 @@
       <div class="slider-item">
 
         <div class=" profile-image">
-          <img [src]="slide.imageUrl" (error)="onImageError($event, slide)">
+          <img [src]="slide.imageUrl">
         </div>
 
         <div class="profile-content">

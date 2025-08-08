@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { TranslationService } from '../../../../services/translation.service';
 
 interface SlideData {
   id: number;
@@ -71,7 +72,7 @@ export class VipSuperStarsComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.totalSlides = this.slides.length;

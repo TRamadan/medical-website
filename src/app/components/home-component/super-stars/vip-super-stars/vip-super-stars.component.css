@@ -44,17 +44,17 @@
     color: white;
     position: relative;
     overflow: hidden;
+}
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="30" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="70" cy="60" r="1" fill="rgba(255,255,255,0.04)"/><circle cx="20" cy="80" r="1" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        opacity: 0.3;
-    }
+.slider-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="30" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="70" cy="60" r="1" fill="rgba(255,255,255,0.04)"/><circle cx="20" cy="80" r="1" fill="rgba(255,255,255,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
 }
 
 .profile-image {
@@ -72,18 +72,18 @@
     z-index: 2;
     flex-shrink: 0;
     overflow: hidden;
+}
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-    }
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
 
-    i {
-        font-size: 80px;
-        color: rgba(255, 255, 255, 0.8);
-    }
+.profile-image i {
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .profile-content {
@@ -139,24 +139,24 @@
     transition: all 0.3s ease;
     z-index: 10;
     backdrop-filter: blur(10px);
+}
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
 
-    i {
-        font-size: 20px;
-    }
+.nav-btn i {
+    font-size: 20px;
+}
 
-    &.prev-btn {
-        left: 30px;
-    }
+.nav-btn.prev-btn {
+    left: 30px;
+}
 
-    &.next-btn {
-        right: 30px;
-    }
+.nav-btn.next-btn {
+    right: 30px;
 }
 
 .indicators {
@@ -178,29 +178,29 @@
     transition: all 0.4s ease;
     position: relative;
     border: 2px solid rgba(255, 255, 255, 0.6);
+}
 
-    &.active {
-        background: #fc6b44;
-        transform: scale(1.3);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+.indicator.active {
+    background: #fc6b44;
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
 
-        &::before {
-            border-color: rgba(255, 255, 255, 0.5);
-            animation: pulse 2s infinite;
-        }
-    }
+.indicator.active::before {
+    border-color: rgba(255, 255, 255, 0.5);
+    animation: pulse 2s infinite;
+}
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-    }
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 @keyframes pulse {
@@ -220,6 +220,108 @@
     }
 }
 
+/* RTL Support for Arabic - Image on Right, Text on Left */
+[dir="rtl"] .slider-item {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+}
+
+[dir="rtl"] .profile-content {
+    text-align: right;
+    order: 1;
+}
+
+[dir="rtl"] .profile-image {
+    order: 2;
+}
+
+[dir="rtl"] .profile-name,
+[dir="rtl"] .profile-title,
+[dir="rtl"] .profile-achievement,
+[dir="rtl"] .profile-description {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .nav-btn.prev-btn {
+    right: 30px;
+    left: auto;
+}
+
+[dir="rtl"] .nav-btn.next-btn {
+    left: 30px;
+    right: auto;
+}
+
+/* Alternative approach using language attribute */
+:lang(ar) .slider-item {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+}
+
+:lang(ar) .profile-content {
+    text-align: right;
+    order: 1;
+}
+
+:lang(ar) .profile-image {
+    order: 2;
+}
+
+:lang(ar) .profile-name,
+:lang(ar) .profile-title,
+:lang(ar) .profile-achievement,
+:lang(ar) .profile-description {
+    direction: rtl;
+    text-align: right;
+}
+
+:lang(ar) .nav-btn.prev-btn {
+    right: 30px;
+    left: auto;
+}
+
+:lang(ar) .nav-btn.next-btn {
+    left: 30px;
+    right: auto;
+}
+
+/* Class-based approach for more control */
+.rtl-layout .slider-item {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    text-align: right;
+}
+
+.rtl-layout .profile-content {
+    text-align: right;
+    order: 1;
+}
+
+.rtl-layout .profile-image {
+    order: 2;
+}
+
+.rtl-layout .profile-name,
+.rtl-layout .profile-title,
+.rtl-layout .profile-achievement,
+.rtl-layout .profile-description {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl-layout .nav-btn.prev-btn {
+    right: 30px;
+    left: auto;
+}
+
+.rtl-layout .nav-btn.next-btn {
+    left: 30px;
+    right: auto;
+}
+
 @media (max-width: 768px) {
     .slider-item {
         flex-direction: column;
@@ -228,13 +330,27 @@
         gap: 30px;
     }
 
+    /* RTL adjustments for mobile remain centered */
+    [dir="rtl"] .slider-item,
+    :lang(ar) .slider-item,
+    .rtl-layout .slider-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    [dir="rtl"] .profile-content,
+    :lang(ar) .profile-content,
+    .rtl-layout .profile-content {
+        text-align: center;
+    }
+
     .profile-image {
         width: 150px;
         height: 150px;
+    }
 
-        i {
-            font-size: 60px;
-        }
+    .profile-image i {
+        font-size: 60px;
     }
 
     .profile-name {
@@ -252,18 +368,33 @@
     .nav-btn {
         width: 50px;
         height: 50px;
+    }
 
-        i {
-            font-size: 16px;
-        }
+    .nav-btn i {
+        font-size: 16px;
+    }
 
-        &.prev-btn {
-            left: 15px;
-        }
+    .nav-btn.prev-btn {
+        left: 15px;
+    }
 
-        &.next-btn {
-            right: 15px;
-        }
+    .nav-btn.next-btn {
+        right: 15px;
+    }
+
+    /* RTL navigation buttons for mobile */
+    [dir="rtl"] .nav-btn.prev-btn,
+    :lang(ar) .nav-btn.prev-btn,
+    .rtl-layout .nav-btn.prev-btn {
+        right: 15px;
+        left: auto;
+    }
+
+    [dir="rtl"] .nav-btn.next-btn,
+    :lang(ar) .nav-btn.next-btn,
+    .rtl-layout .nav-btn.next-btn {
+        left: 15px;
+        right: auto;
     }
 }
 
@@ -280,10 +411,10 @@
     .profile-image {
         width: 120px;
         height: 120px;
+    }
 
-        i {
-            font-size: 50px;
-        }
+    .profile-image i {
+        font-size: 50px;
     }
 
     .profile-name {
