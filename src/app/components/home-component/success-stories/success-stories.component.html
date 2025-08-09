@@ -3,16 +3,15 @@
     <!-- Header -->
     <div class="text-center mb-5 fade-in">
       <div class="methodology-badge">
-        <span>Success Stories</span>
+        <span>{{ translationService.translate('success.badge') }}</span>
       </div>
       <h2 class="main-title">
-        From Setback
-
-        <span class="gradient-text">to Comeback</span>
+        {{ translationService.translate('success.title.part1') }}
+        <span class="gradient-text">{{ translationService.translate('success.title.part2') }}</span>
       </h2>
       <p class="main-subtitle">
-        Explore how our evidence-based tools support patients, therapists, and clinics in achieving measurable recovery
-        milestones </p>
+        {{ translationService.translate('success.subtitle') }}
+      </p>
     </div>
     <app-success-videos></app-success-videos>
   </div>

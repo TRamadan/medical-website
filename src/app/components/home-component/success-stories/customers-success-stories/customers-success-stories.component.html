@@ -1,5 +1,5 @@
 <div class="container py-5">
-  <h2 class="text-center mb-5">What Our Customers Say</h2>
+  <h2 class="text-center mb-5">{{ translationService.translate('success.customers.title') }}</h2>
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -9,12 +9,11 @@
               <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
               <div class="text-center mb-4">
                 <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Avatar" class="avatar mb-3">
-                <h5 class="mb-1">Emma Thompson</h5>
-                <p class="text-muted mb-0">Marketing Manager</p>
+                <h5 class="mb-1">{{ translationService.translate('success.customers.testimonial1.name') }}</h5>
+                <p class="text-muted mb-0">{{ translationService.translate('success.customers.testimonial1.role') }}</p>
               </div>
-              <p class="lead text-center mb-0">"This product has completely transformed our workflow.
-                It's intuitive, powerful, and a joy to use every day. I can't imagine running our
-                business without it now."</p>
+              <p class="lead text-center mb-0">{{ translationService.translate('success.customers.testimonial1.text') }}
+              </p>
             </div>
           </div>
           <div class="carousel-item">
@@ -22,12 +21,11 @@
               <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
               <div class="text-center mb-4">
                 <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="Avatar" class="avatar mb-3">
-                <h5 class="mb-1">Michael Chen</h5>
-                <p class="text-muted mb-0">Software Engineer</p>
+                <h5 class="mb-1">{{ translationService.translate('success.customers.testimonial2.name') }}</h5>
+                <p class="text-muted mb-0">{{ translationService.translate('success.customers.testimonial2.role') }}</p>
               </div>
-              <p class="lead text-center mb-0">"The level of customer support is outstanding. Whenever
-                I've had a question or issue, the team has been quick to respond and always goes
-                above and beyond to help."</p>
+              <p class="lead text-center mb-0">{{ translationService.translate('success.customers.testimonial2.text') }}
+              </p>
             </div>
           </div>
           <div class="carousel-item">
@@ -35,12 +33,11 @@
               <i class="bi bi-quote quote-icon position-absolute top-0 start-0 mt-3 ms-3"></i>
               <div class="text-center mb-4">
                 <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Avatar" class="avatar mb-3">
-                <h5 class="mb-1">Sophia Rodriguez</h5>
-                <p class="text-muted mb-0">Small Business Owner</p>
+                <h5 class="mb-1">{{ translationService.translate('success.customers.testimonial3.name') }}</h5>
+                <p class="text-muted mb-0">{{ translationService.translate('success.customers.testimonial3.role') }}</p>
               </div>
-              <p class="lead text-center mb-0">"As a small business owner, I was hesitant to invest in
-                new software, but this has paid for itself many times over. It's been a game-changer
-                for my company's efficiency."</p>
+              <p class="lead text-center mb-0">{{ translationService.translate('success.customers.testimonial3.text') }}
+              </p>
             </div>
           </div>
         </div>

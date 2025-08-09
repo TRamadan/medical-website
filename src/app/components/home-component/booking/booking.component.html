@@ -1,16 +1,16 @@
-<section class="py-5 bg-gradient-to-br" id="booking">
+<section class="py-5" id="booking">
   <div>
     <div class="container">
       <div class="text-center mb-5 fade-in">
         <div class="booking-badge">
-          <span>Book Your Appointment</span>
+          <span>{{ translationService.translate('booking.badge') }}</span>
         </div>
         <h2 class="main-title">
-          Book your
-          <span class="gradient-text">medical consualtation</span>
+          {{ translationService.translate('booking.title.part1') }}
+          <span class="gradient-text">{{ translationService.translate('booking.title.part2') }}</span>
         </h2>
         <p class="main-subtitle">
-          Connect with qualified doctors and specialists. Simple booking, no login required for first-time appointments.
+          {{ translationService.translate('booking.subtitle') }}
         </p>
       </div>
       <div class="row justify-content-center">

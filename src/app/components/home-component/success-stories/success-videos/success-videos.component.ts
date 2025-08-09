@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TranslationService } from '../../../../services/translation.service';
+import { LanguageService } from '../../../../services/language.service';
 
 @Component({
   selector: 'app-success-videos',
@@ -7,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./success-videos.component.css'],
 })
 export class SuccessVideosComponent implements OnInit {
-  constructor() {}
+  private languageSubscription?: Subscription;
 
-  ngOnInit() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) { }
+
+  ngOnInit() {
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe();
+  }
 }

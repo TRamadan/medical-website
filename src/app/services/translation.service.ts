@@ -195,9 +195,24 @@ export class TranslationService {
 
     // About
     'about.title': { en: 'About Us', ar: 'من نحن' },
+    // 'about.subtitle': {
+    //   en: 'Dedicated to your health and performance',
+    //   ar: 'متخصصون في صحتك وأدائك',
+    // },
+
+    'about.subtitle1': {
+      en: 'Passion meets precision,',
+      ar: ',الشغف يلتقي بالدقة',
+    },
+
+    'about.subtitle2': {
+      en: 'Setbacks become comebacks',
+      ar: 'العثرات تتحول إلى انطلاقات',
+    },
+
     'about.subtitle': {
-      en: 'Dedicated to your health and performance',
-      ar: 'متخصصون في صحتك وأدائك',
+      en: 'What we believe, why we exist, and how we make it happen',
+      ar: 'مبادئنا، رسالتنا، ونهجنا في تحقيق النجاح',
     },
 
     // About - Mission, Vision, Values
@@ -219,40 +234,23 @@ export class TranslationService {
 
     // About - Team
     'about.team.title': {
-      en: 'Meet Our Expert Team',
-      ar: 'تعرف على فريقنا المتخصص',
+      en: 'Our Team',
+      ar: 'تعرف على فريقنا ',
     },
-    'about.team.sarah.role': {
-      en: 'Lead Physiotherapist',
-      ar: 'أخصائي علاج طبيعي رئيسي',
+
+    'about.team.subTitle1': {
+      en: 'Driven by Passion',
+      ar: 'مدفوعون بالشغف',
     },
-    'about.team.sarah.specialization': {
-      en: 'Sports Injury & Orthopedic Rehabilitation',
-      ar: 'إصابات الرياضة وإعادة تأهيل العظام',
+
+    'about.team.subTitle2': {
+      en: 'United by Purpose',
+      ar: 'متحدون من أجل الهدف',
     },
-    'about.team.michael.role': {
-      en: 'Rehabilitation Specialist',
-      ar: 'أخصائي إعادة التأهيل',
-    },
-    'about.team.michael.specialization': {
-      en: 'Neurological & Spinal Rehabilitation',
-      ar: 'إعادة التأهيل العصبي والعمود الفقري',
-    },
-    'about.team.emma.role': {
-      en: 'Exercise Physiologist',
-      ar: 'أخصائي فسيولوجيا التمارين',
-    },
-    'about.team.emma.specialization': {
-      en: 'Movement Analysis & Corrective Exercise',
-      ar: 'تحليل الحركة والتمارين التصحيحية',
-    },
-    'about.team.james.role': {
-      en: 'Pain Management Specialist',
-      ar: 'أخصائي إدارة الألم',
-    },
-    'about.team.james.specialization': {
-      en: 'Chronic Pain & Manual Therapy',
-      ar: 'الألم المزمن والعلاج اليدوي',
+
+    'about.team.subTitle': {
+      en: 'Meet the people turning challenges into victories, together',
+      ar: 'تعرف على الأشخاص الذين يحولون التحديات إلى انتصارات، معًا',
     },
 
     // About - Certifications
@@ -306,6 +304,16 @@ export class TranslationService {
     'contact.description': {
       en: "Have questions about our services? Need help with your recovery journey? We're here to help and would love to hear from you.",
       ar: 'هل لديك أسئلة حول خدماتنا؟ تحتاج مساعدة في رحلة شفائك؟ نحن هنا للمساعدة ونود أن نسمع منك.',
+    },
+    'contact.badge': { en: 'Contact us', ar: 'اتصل بنا' },
+    'contact.heading.part1': { en: 'Our Path to', ar: 'طريقنا نحو' },
+    'contact.heading.part2': {
+      en: 'Get the Answers You Need',
+      ar: 'الحصول على الإجابات التي تحتاجها',
+    },
+    'contact.heading.subtitle': {
+      en: "Have questions about our services? Need help with your recovery journey? We're here to help and would love to hear from you.",
+      ar: 'هل لديك أسئلة حول خدماتنا؟ هل تحتاج إلى مساعدة في رحلة شفائك؟ نحن هنا للمساعدة ويسعدنا التواصل معك.',
     },
 
     // Contact - Information
@@ -461,6 +469,19 @@ export class TranslationService {
       ar: 'ابق على تواصل مع مقدم الرعاية الصحية الخاص بك من خلال المواعيد الافتراضية أو الشخصية المنتظمة.',
     },
 
+    // Process (How it works intro block)
+    'process.badge': {
+      en: 'STOCKIE OPERATION ACROSS THE WORLD',
+      ar: 'العمليات عبر العالم',
+    },
+    'process.title.part1': { en: 'We have best team', ar: 'لدينا أفضل فريق' },
+    'process.title.part2': { en: 'and best process', ar: 'وأفضل عملية' },
+    'process.lead': {
+      en: 'Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy.',
+      ar: 'نقدم أفضل الممارسات لمساعدتك طوال رحلتك العلاجية بنهج واضح وفعّال.',
+    },
+    'process.cta': { en: 'Get Started', ar: 'ابدأ الآن' },
+
     // Booking
     'booking.title': {
       en: 'Book Your Medical Consultation',
@@ -471,6 +492,12 @@ export class TranslationService {
       ar: 'تواصل مع الأطباء والمتخصصين المؤهلين. حجز بسيط، لا يتطلب تسجيل دخول للمواعيد الأولى.',
     },
     'booking.cta': { en: 'Book Now', ar: 'احجز الآن' },
+    'booking.badge': { en: 'Book Your Appointment', ar: 'احجز موعدك' },
+    'booking.title.part1': { en: 'Book your', ar: 'احجز' },
+    'booking.title.part2': {
+      en: 'medical consultation',
+      ar: 'استشارتك الطبية',
+    },
 
     // Booking Features
     'booking.features.location.title': {
@@ -1156,6 +1183,218 @@ export class TranslationService {
     //   en: 'Push yourself because no one else is going to do it for you.',
     //   ar: 'ادفع نفسك لأنه لا يوجد شخص آخر سيفعل ذلك من أجلك.',
     // },
+
+    // Methodology Section
+    'methodology.badge': { en: 'Methodology', ar: 'المنهجية' },
+    'methodology.title.part1': { en: 'Our Path to', ar: 'طريقنا نحو' },
+    'methodology.title.part2': { en: 'Recovery', ar: 'التعافي' },
+    'methodology.subtitle': {
+      en: 'A proven methodology that transforms setbacks into comebacks, designed specifically for elite athletes who refuse to settle.',
+      ar: 'منهجية مثبتة تحول الانتكاسات إلى عودات قوية، مصممة خصيصًا للرياضيين الذين يرفضون التسوية.',
+    },
+    'methodology.steps.assessment.title': {
+      en: 'Assessment & Analysis',
+      ar: 'التقييم والتحليل',
+    },
+    'methodology.steps.assessment.description': {
+      en: 'Comprehensive evaluation of your current physical condition, mental state, and performance barriers to create a personalized recovery roadmap.',
+      ar: 'تقييم شامل لحالتك البدنية الحالية، والحالة النفسية، ومعوقات الأداء لإنشاء خريطة تعافٍ مخصصة.',
+    },
+    'methodology.steps.strategy.title': {
+      en: 'Strategic Planning',
+      ar: 'التخطيط الاستراتيجي',
+    },
+    'methodology.steps.strategy.description': {
+      en: 'Development of a custom recovery strategy that addresses your specific needs, goals, and timeline for optimal performance restoration.',
+      ar: 'تطوير استراتيجية تعافٍ مخصصة تلبي احتياجاتك المحددة وأهدافك وإطارك الزمني لاستعادة الأداء الأمثل.',
+    },
+    'methodology.steps.implementation.title': {
+      en: 'Implementation & Training',
+      ar: 'التنفيذ والتدريب',
+    },
+    'methodology.steps.implementation.description': {
+      en: 'Execution of evidence-based recovery protocols, progressive training regimens, and mental conditioning techniques tailored to your sport.',
+      ar: 'تنفيذ بروتوكولات تعافٍ قائمة على الأدلة، وبرامج تدريب تدريجية، وتقنيات إعداد ذهني مخصصة لرياضتك.',
+    },
+    'methodology.steps.monitoring.title': {
+      en: 'Monitoring & Optimization',
+      ar: 'المراقبة والتحسين',
+    },
+    'methodology.steps.monitoring.description': {
+      en: 'Continuous tracking of progress, real-time adjustments to your program, and ongoing support to ensure sustained peak performance.',
+      ar: 'متابعة مستمرة للتقدم، وتعديلات فورية على برنامجك، ودعم متواصل لضمان الحفاظ على الأداء العالي.',
+    },
+
+    // Cutting Edge Technology Section
+    'technology.badge': { en: 'Inovation Hub', ar: 'مركز الابتكار' },
+    'technology.title.part1': {
+      en: 'Cutting edge science,',
+      ar: 'علوم متقدمة،',
+    },
+    'technology.title.part2': {
+      en: 'technology and innovation',
+      ar: 'التكنولوجيا والابتكار',
+    },
+    'technology.subtitle': {
+      en: 'State-of-the-art tools and methodologies that power your recovery journey with precision and innovation.',
+      ar: 'أدوات ومنهجيات متطورة تدعم رحلة تعافيك بدقة وابتكار.',
+    },
+    'technology.cards.ai.title': {
+      en: 'AI-Powered Analytics',
+      ar: 'تحليلات مدعومة بالذكاء الاصطناعي',
+    },
+    'technology.cards.ai.description': {
+      en: 'Advanced machine learning algorithms analyze your performance data to provide personalized recovery recommendations and predict optimal training loads.',
+      ar: 'تحلل خوارزميات التعلم الآلي المتقدمة بيانات أدائك لتقديم توصيات تعافٍ مخصصة والتنبؤ بأحمال التدريب المثلى.',
+    },
+    'technology.cards.biometric.title': {
+      en: 'Biometric Monitoring',
+      ar: 'المراقبة البيومترية',
+    },
+    'technology.cards.biometric.description': {
+      en: 'Real-time tracking of heart rate variability, sleep quality, and stress levels to optimize your recovery protocols and training intensity.',
+      ar: 'تتبع فوري لتقلبات معدل ضربات القلب، وجودة النوم، ومستويات الإجهاد لتحسين بروتوكولات التعافي وشدة التدريب.',
+    },
+    'technology.cards.cryotherapy.title': {
+      en: 'Cryotherapy Systems',
+      ar: 'أنظمة العلاج بالتبريد',
+    },
+    'technology.cards.cryotherapy.description': {
+      en: 'Precision-controlled cold therapy chambers that accelerate muscle recovery and reduce inflammation through targeted temperature protocols.',
+      ar: 'غرف علاج بالتبريد مضبوطة بدقة تُسرّع تعافي العضلات وتقلل الالتهاب من خلال بروتوكولات حرارة موجهة.',
+    },
+    'technology.cards.electrical.title': {
+      en: 'Electrical Stimulation',
+      ar: 'التحفيز الكهربائي',
+    },
+    'technology.cards.electrical.description': {
+      en: 'Advanced EMS and TENS technology for muscle activation, pain relief, and accelerated healing through targeted electrical impulses.',
+      ar: 'تقنيات EMS وTENS المتقدمة لتنشيط العضلات وتخفيف الألم وتسريع الشفاء من خلال نبضات كهربائية موجهة.',
+    },
+    'technology.cards.compression.title': {
+      en: 'Compression Therapy',
+      ar: 'العلاج بالضغط',
+    },
+    'technology.cards.compression.description': {
+      en: 'Pneumatic compression devices that enhance circulation, reduce swelling, and accelerate the removal of metabolic waste products.',
+      ar: 'أجهزة ضغط هوائي تعزز الدورة الدموية وتقلل التورم وتسرع التخلص من نواتج الأيض.',
+    },
+    'technology.cards.mobile.title': {
+      en: 'Mobile Integration',
+      ar: 'تكامل مع الأجهزة المحمولة',
+    },
+    'technology.cards.mobile.description': {
+      en: 'Seamless connectivity with fitness trackers and mobile apps to provide comprehensive recovery insights and progress tracking.',
+      ar: 'اتصال سلس مع متتبعات اللياقة وتطبيقات الهاتف لتقديم رؤى شاملة حول التعافي وتتبع التقدم.',
+    },
+
+    // Our Benefits Section
+    'benefits.badge': { en: 'Our benefits', ar: 'فوائدنا' },
+    'benefits.title.part1': { en: 'Why Choose', ar: 'لماذا تختار' },
+    'benefits.title.part2': {
+      en: 'Our Athletic Recovery',
+      ar: 'برنامج التعافي الرياضي لدينا',
+    },
+    'benefits.subtitle': {
+      en: 'Experience the difference with our comprehensive approach to athletic recovery and performance enhancement.',
+      ar: 'اختبر الفرق مع نهجنا الشامل للتعافي الرياضي وتعزيز الأداء.',
+    },
+    'benefits.items.personalized': {
+      en: 'Personalized recovery plans tailored to your specific athletic needs',
+      ar: 'خطط تعافٍ مخصصة وفقًا لاحتياجاتك الرياضية المحددة',
+    },
+    'benefits.items.stateOfArt': {
+      en: 'State-of-the-art recovery technology and equipment',
+      ar: 'تقنيات ومعدات تعافٍ متطورة',
+    },
+    'benefits.items.expertGuidance': {
+      en: 'Expert guidance from certified sports medicine professionals',
+      ar: 'إرشاد خبراء من مختصين معتمدين في الطب الرياضي',
+    },
+    'benefits.items.provenResults': {
+      en: 'Proven results with faster recovery times and improved performance',
+      ar: 'نتائج مثبتة مع أوقات تعافٍ أسرع وأداء محسّن',
+    },
+    'benefits.items.comprehensivePrograms': {
+      en: 'Comprehensive injury prevention and rehabilitation programs',
+      ar: 'برامج شاملة للوقاية من الإصابات وإعادة التأهيل',
+    },
+    'benefits.items.flexibleScheduling': {
+      en: 'Flexible scheduling to fit your training and competition calendar',
+      ar: 'جداول مرنة لتناسب تدريبك ومواعيد المنافسات',
+    },
+
+    // Our Partners Section
+    'partners.badge': { en: 'Our Partners', ar: 'شركاؤنا' },
+    'partners.title.part1': { en: 'Trusted by', ar: 'موثوق من قِبل' },
+    'partners.title.part2': { en: 'Industry Leaders', ar: 'رواد الصناعة' },
+    'partners.subtitle': {
+      en: 'We partner with top organizations to deliver exceptional results and drive innovation across every project',
+      ar: 'نتعاون مع أفضل المؤسسات لتقديم نتائج استثنائية ودفع الابتكار عبر كل مشروع',
+    },
+
+    // Success Stories Section
+    'success.badge': { en: 'Success Stories', ar: 'قصص النجاح' },
+    'success.title.part1': { en: 'From Setback', ar: 'من الانتكاسة' },
+    'success.title.part2': { en: 'to Comeback', ar: 'إلى العودة' },
+    'success.subtitle': {
+      en: 'Explore how our evidence-based tools support patients, therapists, and clinics in achieving measurable recovery milestones',
+      ar: 'استكشف كيف تدعم أدواتنا المبنية على الأدلة المرضى والمعالجين والعيادات لتحقيق معالم تعافٍ قابلة للقياس',
+    },
+    'success.videos.title': { en: 'Success Title', ar: 'عنوان النجاح' },
+    'success.videos.company': { en: 'Company Name', ar: 'اسم الشركة' },
+    'success.videos.testimonial': {
+      en: 'This solution transformed the way we work. Incredible results!',
+      ar: 'هذا الحل غيّر طريقة عملنا. نتائج مذهلة!',
+    },
+    'success.customers.title': {
+      en: 'What Our Customers Say',
+      ar: 'ماذا يقول عملاؤنا',
+    },
+    'success.customers.testimonial1.name': {
+      en: 'Emma Thompson',
+      ar: 'إيما تومسون',
+    },
+    'success.customers.testimonial1.role': {
+      en: 'Marketing Manager',
+      ar: 'مديرة تسويق',
+    },
+    'success.customers.testimonial1.text': {
+      en: "This product has completely transformed our workflow. It's intuitive, powerful, and a joy to use every day. I can't imagine running our business without it now.",
+      ar: 'لقد غيّر هذا المنتج سير عملنا بالكامل. إنه بديهي وقوي وممتع في الاستخدام يوميًا. لا أستطيع تخيل إدارة أعمالنا بدونه الآن.',
+    },
+    'success.customers.testimonial2.name': {
+      en: 'Michael Chen',
+      ar: 'مايكل تشين',
+    },
+    'success.customers.testimonial2.role': {
+      en: 'Software Engineer',
+      ar: 'مهندس برمجيات',
+    },
+    'success.customers.testimonial2.text': {
+      en: 'The level of customer support is outstanding. The team is quick to respond and always goes above and beyond to help.',
+      ar: 'مستوى دعم العملاء ممتاز. الفريق سريع الاستجابة ودائمًا ما يبذل جهدًا إضافيًا للمساعدة.',
+    },
+    'success.customers.testimonial3.name': {
+      en: 'Sophia Rodriguez',
+      ar: 'صوفيا رودريغيز',
+    },
+    'success.customers.testimonial3.role': {
+      en: 'Small Business Owner',
+      ar: 'صاحبة عمل صغير',
+    },
+    'success.customers.testimonial3.text': {
+      en: 'As a small business owner, investing in this software paid off many times over. It has been a game-changer for our efficiency.',
+      ar: 'بصفتي صاحبة عمل صغير، كان الاستثمار في هذا البرنامج مجديًا عدة مرات. لقد كان نقطة تحول في كفاءتنا.',
+    },
+
+    // Brands Section
+    'brands.title': { en: 'Branding', ar: 'العلامة التجارية' },
+    'brands.subtitle': { en: 'Our Mission', ar: 'مهمتنا' },
+    'brands.description': {
+      en: 'We are dedicated to help our stars of all levels to defeat injuries, return to training & competition effectively with a minimal risk of recurrence. We use the latest scientific protocols according to the educational & physiological code. We also take our share of responsibility to spread awareness about prevention & peak performance.',
+      ar: 'نحن ملتزمون بمساعدة نجومنا على مختلف المستويات في التغلب على الإصابات والعودة إلى التدريب والمنافسة بفعالية مع تقليل مخاطر الانتكاس. نستخدم أحدث البروتوكولات العلمية وفقًا للمعايير التعليمية والفسيولوجية. كما نضطلع بدورنا في نشر الوعي حول الوقاية وذروة الأداء.',
+    },
   };
 
   constructor(private languageService: LanguageService) {}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
 
 @Component({
   standalone: true,
@@ -7,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./methodology-section.component.css'],
 })
 export class MethodologySectionComponent implements OnInit {
-  constructor() {}
+  private languageSubscription?: Subscription;
 
-  ngOnInit() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) { }
+
+  ngOnInit() {
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe();
+  }
 }

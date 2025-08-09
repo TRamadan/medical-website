@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SuccessVideosComponent } from './success-videos/success-videos.component';
 import { CustomersSuccessStoriesComponent } from './customers-success-stories/customers-success-stories.component';
+import { Subscription } from 'rxjs';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
 @Component({
   standalone: true,
   imports: [SuccessVideosComponent, CustomersSuccessStoriesComponent],
@@ -9,7 +12,14 @@ import { CustomersSuccessStoriesComponent } from './customers-success-stories/cu
   styleUrls: ['./success-stories.component.css'],
 })
 export class SuccessStoriesComponent implements OnInit {
-  constructor() {}
+  private languageSubscription?: Subscription;
 
-  ngOnInit() {}
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) { }
+
+  ngOnInit() {
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe();
+  }
 }

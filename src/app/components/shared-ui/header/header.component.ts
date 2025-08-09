@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 import { LanguageService } from '../../../services/language.service';
 import { TranslationService } from '../../../services/translation.service';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 interface NavItem {
@@ -22,8 +22,10 @@ interface NavItem {
 export class HeaderComponent implements OnInit, OnDestroy {
   isMenuOpen = false;
   private languageSubscription?: Subscription;
+  private routeSubscription?: Subscription;
 
   isScrolled = false;
+  private forceSolidNavbar = false;
   language = 'EN';
   isMobileMenuOpen = false;
 
@@ -34,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private languageService: LanguageService,
     public translationService: TranslationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.updateTranslations();
@@ -43,11 +45,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.updateTranslations();
       }
     );
+
+    // Initialize header style based on current route
+    if (this.router.url.startsWith('/aboutus')) {
+      this.forceSolidNavbar = true;
+      this.isScrolled = true;
+    } else {
+      this.forceSolidNavbar = false;
+      this.checkScroll();
+    }
+
+    // Update header style on route changes
+    this.routeSubscription = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        if (e.urlAfterRedirects.startsWith('/aboutus')) {
+          this.forceSolidNavbar = true;
+          this.isScrolled = true;
+        } else {
+          this.forceSolidNavbar = false;
+          this.checkScroll();
+        }
+      });
   }
 
   ngOnDestroy() {
     if (this.languageSubscription) {
       this.languageSubscription.unsubscribe();
+    }
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
     }
   }
 
@@ -117,6 +144,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(): void {
+    if (this.forceSolidNavbar) {
+      this.isScrolled = true;
+      return;
+    }
     this.checkScroll();
   }
 

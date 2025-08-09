@@ -1,26 +1,24 @@
-.chat-icon {
-    position: relative;
-    right: 20px;
-    font-size: 25px;
+/* Team Image Hover Effect */
+.team-image {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-bg {
-    background-color: #f5f5f5;
-}
 
-.btn-primary {
-    background-color: rgb(252, 107, 52);
+.team-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card {
-    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-a {
-    text-decoration: none;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
-.methodology-badge {
+.our-team-badge {
     display: inline-block;
     padding: 8px 16px;
     background-color: rgba(255, 107, 68, 0.1);
@@ -28,7 +26,7 @@ a {
     margin-bottom: 24px;
 }
 
-.methodology-badge span {
+.our-team-badge span {
     color: #fc6c44;
     font-weight: 600;
     font-size: 0.875rem;
@@ -57,16 +55,4 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.send-message-text, label {
-    color: #6b7280;
-}
-
-i {
-    color: #fc6c44;
-}
-
-.bg-primary {
-    background-color: #fc6c4433 !important;
 }

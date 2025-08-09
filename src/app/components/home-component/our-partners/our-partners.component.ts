@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { Partners } from './models/partners';
+import { Subscription } from 'rxjs';
+import { TranslationService } from '../../../services/translation.service';
+import { LanguageService } from '../../../services/language.service';
 @Component({
   selector: 'app-our-partners',
   standalone: true,
@@ -48,12 +51,18 @@ export class OurPartnersComponent implements OnInit {
   ];
 
   duplicatedLogos: Partners[] = [];
-  constructor() {}
+  private languageSubscription?: Subscription;
+
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) { }
 
   ngOnInit() {
     if (this.logos.length === 0) {
       this.logos = this.defaultLogos;
     }
     this.duplicatedLogos = [...this.logos, ...this.logos];
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe();
   }
 }
