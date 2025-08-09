@@ -3,10 +3,12 @@ import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
 import { OurTeamComponent } from './our-team/our-team.component';
+import { AdvisorBoardComponent } from './advisor-board/advisor-board.component';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [OurTeamComponent],
+  imports: [OurTeamComponent, AdvisorBoardComponent],
   selector: 'app-about-us-section',
   templateUrl: './about-us-section.component.html',
   styleUrls: ['./about-us-section.component.css'],
@@ -45,7 +47,8 @@ export class AboutUsSectionComponent implements OnInit, OnDestroy {
 
   constructor(
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -64,65 +67,11 @@ export class AboutUsSectionComponent implements OnInit, OnDestroy {
     }
   }
 
-  // private updateTeamMembers(): void {
-  //   this.teamMembers = [
-  //     {
-  //       name: 'Dr. Sarah Johnson',
-  //       role: this.translationService.translate('about.team.sarah.role'),
-  //       specialization: this.translationService.translate(
-  //         'about.team.sarah.specialization'
-  //       ),
-  //       image:
-  //         'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //       certifications: ['DPT', 'OCS', 'CSCS'],
-  //     },
-  //     {
-  //       name: 'Dr. Michael Chen',
-  //       role: this.translationService.translate('about.team.michael.role'),
-  //       specialization: this.translationService.translate(
-  //         'about.team.michael.specialization'
-  //       ),
-  //       image:
-  //         'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //       certifications: ['DPT', 'NCS', 'CBIS'],
-  //     },
-  //     {
-  //       name: 'Dr. Emma Rodriguez',
-  //       role: this.translationService.translate('about.team.emma.role'),
-  //       specialization: this.translationService.translate(
-  //         'about.team.emma.specialization'
-  //       ),
-  //       image:
-  //         'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-  //       certifications: ['MS', 'ACSM', 'FMS'],
-  //     },
-  //     {
-  //       name: 'Dr. James Wilson',
-  //       role: this.translationService.translate('about.team.james.role'),
-  //       specialization: this.translationService.translate(
-  //         'about.team.james.specialization'
-  //       ),
-  //       image:
-  //         'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-  //       certifications: ['DPT', 'COMT', 'Cert.MDT'],
-  //     },
-  //   ];
-  // }
-
-  // private updateCertifications(): void {
-  //   this.certifications = [
-  //     this.translationService.translate('about.certifications.licensed'),
-  //     this.translationService.translate('about.certifications.apta'),
-  //     this.translationService.translate('about.certifications.ceu'),
-  //     this.translationService.translate('about.certifications.hipaa'),
-  //     this.translationService.translate('about.certifications.cpr'),
-  //     this.translationService.translate('about.certifications.telehealth'),
-  //     this.translationService.translate('about.certifications.evidence'),
-  //     this.translationService.translate('about.certifications.safety'),
-  //   ];
-  // }
-
   viewAllContent(): void {
     console.log('sflksjf');
+  }
+
+  startBookingProcess(): void {
+    this.router.navigate(['/bookappointment']);
   }
 }

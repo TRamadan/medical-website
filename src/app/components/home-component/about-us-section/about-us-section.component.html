@@ -12,6 +12,8 @@
         {{ translationService.translate('about.subtitle') }}
       </p>
     </div>
+
+    <!-- Option 1 for about us content section-->
     <div class="row g-4 mb-5">
       @for(aboutUsCard of aboutUsContentCards; track aboutUsCard){
       <div class="col-lg-4 col-md-6">
@@ -41,32 +43,229 @@
       }
     </div>
 
-    <app-our-team></app-our-team>
-  </div>
+    <!-- Option 2 for about us content section-->
+    <div class="container-fluid">
+      <div class="container">
+        <div class="section-spacing">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card card-shadow rounded-4 p-4 p-md-5">
+                <!-- Three Philosophy Pillars -->
+                <div class="row g-4 mb-5">
+                  <div class="col-md-4 text-center">
+                    <div class="icon-circle icon-circle-blue">
+                      <i class="fas fa-heart fa-2x tech-icon"></i>
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-2">Passion & Purpose</h3>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <div class="icon-circle icon-circle-blue">
+                      <i class="fas fa-brain fa-2x tech-icon"></i>
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-2">Science & Precision</h3>
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <div class="icon-circle icon-circle-blue">
+                      <i class="fas fa-chart-line fa-2x tech-icon"></i>
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-2">Growth & Excellence</h3>
+                  </div>
+                </div>
+                <!-- Our Belief -->
+                <div class="mb-4">
+                  <h3 class="h4 title fw-bold text-dark mb-3 d-flex align-items-center">
+                    <div class="section-divider" style="background: linear-gradient(to bottom, #000000, #131337);">
+                    </div>
+                    Our Belief
+                  </h3>
+                  <blockquote class="p-3 rounded-end mb-3 blockstyle">
+                    Success in sports isn't just about numbers and medals; it's fueled by deep passion and a strong
+                    desire for self-realization.
+                    Over the years, we've partnered with countless athletes, from young beginners to Olympians, and
+                    we've noticed a common challenge: a feeling of being lost and lacking clarity after an injury.
+                    Their constant question is, "How can I achieve my full potential after this setback ?"This is
+                    precisely why we exist.
+                  </blockquote>
+                </div>
+
+                <!-- Our Mission -->
+                <div class="mb-4">
+                  <h3 class="h4 title fw-bold text-dark mb-3 d-flex align-items-center">
+                    <div class="section-divider" style="background: linear-gradient(to bottom, #000000, #131337);">
+                    </div>
+                    Our Mission
+                  </h3>
+                  <blockquote class="p-3 rounded-end mb-3 blockstyle">
+                    We are not just a sports rehabilitation and performance center.
+                    We strive to be your partner on a unique journey built on wisdom and heart, guided by the
+                    precision of science. Our mission and our goal together, will make us able to turn moments of
+                    weakness into centers
+                    of strength, transforming injury into an opportunity for growth and excellence.
+                  </blockquote>
+
+                  <div class="row justify-content-center mb-5">
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="tech-icon-wrapper">
+                              <div class="tech-icon-bg"></div>
+                              <div class="tech-icon-container">
+                                <i class="fas fa-bullseye tech-icon me-2"></i>
+                              </div>
+                            </div>
+
+                            <h3 class="h4 fw-bold text-dark mb-3">Primary Goal</h3>
+                            <p class="text-muted">
+                              Help you draw a clear and tangible roadmap
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="tech-icon-wrapper">
+                              <div class="tech-icon-bg"></div>
+                              <div class="tech-icon-container">
+                                <i class="fas fa-chart-line tech-icon me-2"></i>
+                              </div>
+                            </div>
+
+                            <h3 class="h4 fw-bold text-dark mb-3">Our Promise</h3>
+                            <p class="text-muted">
+                              Transform anxiety into confidence and certainty
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Our Approach -->
+                <div class="mb-4">
+                  <h3 class="h4 title fw-bold text-dark mb-3 d-flex align-items-center">
+                    <div class="section-divider" style="background: linear-gradient(to bottom, #000000, #131337);">
+                    </div>
+                    Our Approach
+                  </h3>
+                  <blockquote class="p-3 rounded-end mb-3 blockstyle">
+                    In every step you take with us, you are at the center of your journey. That's why we place great
+                    importance on listening to your story, understanding your passion, and sharing your dreams. We
+                    recognize that your journey isn't just about data and numbers; it's a story of perseverance and a
+                    challenge to discover a new, hidden strength </blockquote>
+                  <div class="row justify-content-center mb-5">
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="tech-icon-wrapper">
+                              <div class="tech-icon-bg"></div>
+                              <div class="tech-icon-container">
+                                <i class="fas fa-heart tech-icon me-2"></i>
+                              </div>
+                            </div>
+
+                            <h3 class="h4 fw-bold text-dark mb-3">Personal Connection</h3>
+                            <p class="text-muted">
+                              We listen to your story, understand your passion, and share your
+                              dreams.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="tech-icon-wrapper">
+                              <div class="tech-icon-bg"></div>
+                              <div class="tech-icon-container">
+                                <i class="fas fa-brain tech-icon me-2"></i>
+                              </div>
+                            </div>
+
+                            <h3 class="h4 fw-bold text-dark mb-3">Scientific Process</h3>
+                            <p class="text-muted">
+                              We use systematic processes with futuristic technologies.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                      <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="tech-icon-wrapper">
+                              <div class="tech-icon-bg"></div>
+                              <div class="tech-icon-container">
+                                <i class="fas fa-heartbeat tech-icon me-2"></i>
+                              </div>
+                            </div>
+
+                            <h3 class="h4 fw-bold text-dark mb-3">Comprehensive Analysis</h3>
+                            <p class="text-muted">
+                              We measure every detail of your performance meticulously
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 
+                  </div>
+                </div>
+
+                <!-- Technology & Innovation -->
+                <div class="mb-5">
+                  <h3 class="h4 title fw-bold text-dark mb-3 d-flex align-items-center">
+                    <div class="section-divider" style="background: linear-gradient(to bottom, #000000, #131337);">
+                    </div>
+                    Technology & Innovation
+                  </h3>
+                  <blockquote class="p-3 rounded-end mb-3 blockstyle">
+                    We meticulously measure every detail of your performance, from the major aspects to the minute
+                    ones, to give you a complete picture of your current state. With the help of our software,
+                    developed using machine learning algorithms, we help you foresee the future and predict potential
+                    injuries before they happen. This also reveals your latent potential, giving you a profound sense
+                    of control and security.
+                  </blockquote>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-  <!-- <div class="bg-light rounded-3 p-4 p-md-5">
-    <div class="text-center mb-4">
-      <i class="fas fa-award mb-3" style="font-size: 3rem"></i>
-      <h3 class="h3 fw-bold text-dark mb-3">
-        {{ translationService.translate('about.certifications.title') }}
-      </h3>
-      <p class="text-muted">
-        {{ translationService.translate('about.certifications.subtitle') }}
-      </p>
-    </div>
-
-    <div class="row g-3">
-      @for(cert of certifications; track cert; let i = $index){
-      <div class="col-md-6">
-        <div class="d-flex align-items-center bg-white p-3 rounded-2 shadow-sm">
-          <div class="rounded-circle bg-success me-3" style="width: 12px; height: 12px"></div>
-          <span class="text-dark">{{ cert }}</span>
         </div>
       </div>
-      }
     </div>
-  </div> -->
+    <div class="card mt-4 text-center border-0 p-3">
+      <h4 class="main-title">
+        Transform Your Passion <span class="gradient-text">Into Success
+        </span>
+      </h4>
+      <p>
+        Because we believe true success isn't just a medal, but a feeling of satisfaction, continuous progress, and
+        stable growth, we invite you to join us. Let us place your passion in the vessel of logic and science to write a
+        new, unforgettable chapter in your success story.
+      </p>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-lg booking-btn border-0" (click)="startBookingProcess()">
+          Start your journy
+        </button>
+      </div>
+    </div>
+
+    <app-advisor-board></app-advisor-board>
+    <app-our-team></app-our-team>
+  </div>
 </section>
