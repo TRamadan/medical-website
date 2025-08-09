@@ -3,5 +3,4 @@ interface TeamMember {
   role: string;
   specialization: string;
   image: string;
-  certifications: string[];
 }
