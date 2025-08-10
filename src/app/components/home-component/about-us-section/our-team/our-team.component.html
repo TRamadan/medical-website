@@ -1,18 +1,10 @@
 <section class="our-team">
-  <div class="mb-5">
-    <div class="text-center mb-5 fade-in">
-      <div class="our-team-badge mt-5">
-        <span>{{ translationService.translate('about.team.title') }}</span>
-      </div>
-      <h2 class="main-title">
-        {{ translationService.translate('about.team.subTitle1') }}
-        <span class="gradient-text">{{ translationService.translate('about.team.subTitle2') }}</span>
-      </h2>
-      <p class="main-subtitle">
-        {{ translationService.translate('about.team.subTitle') }}
-      </p>
+  <div class="text-center">
+    <div class="our-team-badge mt-5">
+      <span>{{ translationService.translate('about.team.ordinaryTeam') }}</span>
     </div>
-
+  </div>
+  <div class="mb-5">
     <div class="row g-4">
       @for(member of teamMembers; track member; let i = $index){
       <div class="col-xl-3 col-lg-4 col-md-6">
@@ -23,11 +15,15 @@
             <h4 class="h5 fw-bold text-dark mb-1">{{ member.name }}</h4>
             <p class="text-primary fw-semibold text-muted mb-2">{{ member.role }}</p>
             <p class="text-muted small mb-3">{{ member.specialization }}</p>
-
           </div>
         </div>
       </div>
       }
     </div>
+  </div>
+  <div class="col-md-12 text-center my-3">
+    <button type="button" class="btn btn-primary btn-lg explore-more-btn border-0">
+      Explore more
+    </button>
   </div>
 </section>

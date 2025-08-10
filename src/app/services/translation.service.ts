@@ -234,13 +234,23 @@ export class TranslationService {
 
     // About - Team
     'about.team.title': {
-      en: 'Our Team',
-      ar: 'تعرف على فريقنا ',
+      en: 'Leadership & Talent',
+      ar: 'القيادة والكفاءات ',
     },
 
     'about.team.subTitle1': {
       en: 'Driven by Passion',
       ar: 'مدفوعون بالشغف',
+    },
+
+    'about.team.advisoryboard': {
+      en: 'Our advisory board',
+      ar: 'المجلس الاستشاري',
+    },
+
+    'about.team.ordinaryTeam': {
+      en: 'Our talents',
+      ar: 'الكفاءات',
     },
 
     'about.team.subTitle2': {

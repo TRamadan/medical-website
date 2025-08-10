@@ -1,6 +1,8 @@
 interface TeamMember {
   name: string;
-  role: string;
-  specialization: string;
+  roleAr: string;
+  roleEn: string;
+  specializationAr: string;
+  specializationEn: string;
   image: string;
 }
