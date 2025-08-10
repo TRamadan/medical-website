@@ -440,8 +440,8 @@ export class TranslationService {
 
     // Footer
     'footer.copyright': {
-      en: '© 2024 The Sports Doctor. All rights reserved.',
-      ar: '© 2024 طبيب الرياضة. جميع الحقوق محفوظة.',
+      en: '© 2025 The sports doctor. All rights reserved.',
+      ar: '© 2025 طبيب الرياضة. جميع الحقوق محفوظة.',
     },
     'footer.description': {
       en: 'At The Sports Doctor, we believe every setback is a setup for a powerful comeback. Our state-of-the-art rehabilitation center is designed to not only heal your injuries but to empower you with the strength and resilience needed to dominate your sport.',
