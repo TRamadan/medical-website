@@ -1,120 +1,35 @@
 <div class="gradient-bg py-5">
   <div class="container">
-    <div class="text-center mb-5">
-      <h1 class="display-4 fw-bold text-dark mb-3">How It Works</h1>
-      <p class="lead text-muted">Simple steps to get you on the road</p>
-    </div>
-
     <div class="position-relative stepper-container">
-      <div class="stepper-line d-none d-md-block"></div>
+      <div class="step-connector connector-1-2 d-none d-md-block"></div>
+      <div class="step-connector connector-2-3 d-none d-md-block"></div>
+      <div class="step-connector connector-3-4 d-none d-md-block"></div>
 
-      <div class="mobile-stepper-line d-block d-md-none"></div>
+      <div class="mobile-connector mobile-connector-1 d-block d-md-none"></div>
+      <div class="mobile-connector mobile-connector-2 d-block d-md-none"></div>
+      <div class="mobile-connector mobile-connector-3 d-block d-md-none"></div>
 
-      <div class="row step-container g-4">
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="text-center h-100">
+      <div class="row step-container row step-container g-5 justify-content-center g-5">
+
+        @for(step of steps; track step; let i =$index){
+        <div class="col-12 col-sm-6 col-lg-2">
+          <div class="text-center h-100 step-wrapper" [class.zoom-active]="currentStep === i">
             <div class="step-circle">
               <div class="inner-circle">
-                <i class="fas fa-search step-icon"></i>
+                <i [class]="step.icon"></i>
               </div>
-              <div class="step-number">1</div>
+              <div class="step-number">{{ i + 1}}</div>
             </div>
             <div>
-              <h3 class="step-title h5">Search & Compare</h3>
-              <p class="step-description">Browse through our extensive collection of vehicles and compare prices,
-                features, and availability.</p>
+              <h3 class="step-title h5">{{ translationService.translate(step.title) }}</h3>
+              <p class="step-description">
+                {{ translationService.translate(step.description) }}
+              </p>
             </div>
           </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="text-center h-100">
-            <div class="step-circle">
-              <div class="inner-circle">
-                <i class="fas fa-car step-icon"></i>
-              </div>
-              <div class="step-number">2</div>
-            </div>
-            <div>
-              <h3 class="step-title h5">Select Your Car</h3>
-              <p class="step-description">Choose the perfect vehicle that matches your needs, budget, and travel
-                preferences.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="text-center h-100">
-            <div class="step-circle">
-              <div class="inner-circle">
-                <i class="fas fa-calendar-check step-icon"></i>
-              </div>
-              <div class="step-number">3</div>
-            </div>
-            <div>
-              <h3 class="step-title h5">Book & Pay</h3>
-              <p class="step-description">Complete your reservation with our secure payment system and receive instant
-                confirmation.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="text-center h-100">
-            <div class="step-circle">
-              <div class="inner-circle">
-                <i class="fas fa-key step-icon"></i>
-              </div>
-              <div class="step-number">4</div>
-            </div>
-            <div>
-              <h3 class="step-title h5">Pick Up & Drive</h3>
-              <p class="step-description">Collect your keys and hit the road! Enjoy your journey with our reliable and
-                well-maintained vehicles.</p>
-            </div>
-          </div>
-        </div>
+        }
       </div>
-    </div>
-
-    <div class="text-center mt-5">
-      <button class="btn btn-primary cta-button">
-        Start Booking Now
-      </button>
     </div>
   </div>
 </div>
-
-<footer class="footer py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mb-4">
-        <h5 class="mb-3">CarBook</h5>
-        <p class="mb-0">Your trusted partner for seamless car booking experiences. We connect you with the perfect
-          vehicle for every journey, ensuring comfort, reliability, and exceptional service every step of the way.</p>
-      </div>
-      <div class="col-lg-6 mb-4">
-        <h5 class="mb-3">Quick Links</h5>
-        <div class="row">
-          <div class="col-6">
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-decoration-none text-light">About Us</a></li>
-              <li><a href="#" class="text-decoration-none text-light">Fleet</a></li>
-              <li><a href="#" class="text-decoration-none text-light">Locations</a></li>
-            </ul>
-          </div>
-          <div class="col-6">
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-decoration-none text-light">Contact</a></li>
-              <li><a href="#" class="text-decoration-none text-light">Support</a></li>
-              <li><a href="#" class="text-decoration-none text-light">FAQ</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <p class="mb-0">© 2024 CarBook. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
