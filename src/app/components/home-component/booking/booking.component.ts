@@ -1,15 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+} from '@angular/core';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
 @Component({
   selector: 'app-booking',
   standalone: true,
+  imports: [TitleComponentComponent],
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css'],
-
 })
 export class BookingComponent implements OnInit, OnDestroy {
   showBookingForm = false;
@@ -21,13 +27,15 @@ export class BookingComponent implements OnInit, OnDestroy {
     public translationService: TranslationService,
     private languageService: LanguageService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
-    });
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        // Component will automatically update when language changes
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -35,9 +43,6 @@ export class BookingComponent implements OnInit, OnDestroy {
       this.languageSubscription.unsubscribe();
     }
   }
-
-
-
 
   startBookingProcess(): void {
     this.router.navigate(['/bookappointment']);

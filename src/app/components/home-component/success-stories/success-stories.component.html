@@ -1,18 +1,8 @@
 <section class="success-story-section">
   <div class="container">
     <!-- Header -->
-    <div class="text-center mb-5 fade-in">
-      <div class="methodology-badge">
-        <span>{{ translationService.translate('success.badge') }}</span>
-      </div>
-      <h2 class="main-title">
-        {{ translationService.translate('success.title.part1') }}
-        <span class="gradient-text">{{ translationService.translate('success.title.part2') }}</span>
-      </h2>
-      <p class="main-subtitle">
-        {{ translationService.translate('success.subtitle') }}
-      </p>
-    </div>
+    <app-title-component subtitle1Key="success.badge" titleKey="success.title.part1" subtitle2Key="success.title.part2"
+      subtitleKey="success.subtitle"></app-title-component>
     <app-success-videos></app-success-videos>
   </div>
   <app-customers-success-stories></app-customers-success-stories>

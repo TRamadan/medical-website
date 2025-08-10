@@ -9,6 +9,7 @@ import {
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
+import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
 
 interface ContactInfo {
   icon: string;
@@ -26,7 +27,8 @@ interface SocialLink {
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+
+  imports: [FormsModule, ReactiveFormsModule, TitleComponentComponent],
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css'],
 })
@@ -101,11 +103,13 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.updateContactInfo();
     this.updateSubjectOptions();
-    
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      this.updateContactInfo();
-      this.updateSubjectOptions();
-    });
+
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        this.updateContactInfo();
+        this.updateSubjectOptions();
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -119,19 +123,28 @@ export class ContactUsComponent implements OnInit, OnDestroy {
       {
         icon: 'fa fa-phone',
         title: this.translationService.translate('contact.phone.title'),
-        description: this.translationService.translate('contact.phone.description'),
-        details: ['+1 (555) 123-4567', this.translationService.translate('contact.phone.hours')],
+        description: this.translationService.translate(
+          'contact.phone.description'
+        ),
+        details: [
+          '+1 (555) 123-4567',
+          this.translationService.translate('contact.phone.hours'),
+        ],
       },
       {
         icon: 'fa fa-envelope',
         title: this.translationService.translate('contact.email.title'),
-        description: this.translationService.translate('contact.email.description'),
+        description: this.translationService.translate(
+          'contact.email.description'
+        ),
         details: ['info@healthrecovery.com', 'support@healthrecovery.com'],
       },
       {
         icon: 'fa fa-map-location',
         title: this.translationService.translate('contact.address.title'),
-        description: this.translationService.translate('contact.address.description'),
+        description: this.translationService.translate(
+          'contact.address.description'
+        ),
         details: ['123 Health Street', 'Recovery City, RC 12345'],
       },
     ];
@@ -139,13 +152,38 @@ export class ContactUsComponent implements OnInit, OnDestroy {
 
   private updateSubjectOptions(): void {
     this.subjectOptions = [
-      { value: 'general', label: this.translationService.translate('contact.subjects.general') },
-      { value: 'appointment', label: this.translationService.translate('contact.subjects.appointment') },
-      { value: 'technical', label: this.translationService.translate('contact.subjects.technical') },
-      { value: 'billing', label: this.translationService.translate('contact.subjects.billing') },
-      { value: 'partnership', label: this.translationService.translate('contact.subjects.partnership') },
-      { value: 'media', label: this.translationService.translate('contact.subjects.media') },
-      { value: 'feedback', label: this.translationService.translate('contact.subjects.feedback') },
+      {
+        value: 'general',
+        label: this.translationService.translate('contact.subjects.general'),
+      },
+      {
+        value: 'appointment',
+        label: this.translationService.translate(
+          'contact.subjects.appointment'
+        ),
+      },
+      {
+        value: 'technical',
+        label: this.translationService.translate('contact.subjects.technical'),
+      },
+      {
+        value: 'billing',
+        label: this.translationService.translate('contact.subjects.billing'),
+      },
+      {
+        value: 'partnership',
+        label: this.translationService.translate(
+          'contact.subjects.partnership'
+        ),
+      },
+      {
+        value: 'media',
+        label: this.translationService.translate('contact.subjects.media'),
+      },
+      {
+        value: 'feedback',
+        label: this.translationService.translate('contact.subjects.feedback'),
+      },
     ];
   }
 
@@ -178,13 +216,17 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     const field = this.contactForm.get(fieldName);
     if (field?.errors && field.touched) {
       if (field.errors['required']) {
-        return this.translationService.translate('form.errors.required', { field: this.getFieldLabel(fieldName) });
+        return this.translationService.translate('form.errors.required', {
+          field: this.getFieldLabel(fieldName),
+        });
       }
       if (field.errors['email']) {
         return this.translationService.translate('form.errors.email');
       }
       if (field.errors['minlength']) {
-        return this.translationService.translate('form.errors.minlength', { field: this.getFieldLabel(fieldName) });
+        return this.translationService.translate('form.errors.minlength', {
+          field: this.getFieldLabel(fieldName),
+        });
       }
     }
     return '';

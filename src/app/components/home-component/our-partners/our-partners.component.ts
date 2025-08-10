@@ -4,10 +4,11 @@ import { Partners } from './models/partners';
 import { Subscription } from 'rxjs';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
+import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
 @Component({
   selector: 'app-our-partners',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, TitleComponentComponent],
   templateUrl: './our-partners.component.html',
   styleUrls: ['./our-partners.component.responsive.scss'],
 })
@@ -56,13 +57,14 @@ export class OurPartnersComponent implements OnInit {
   constructor(
     public translationService: TranslationService,
     private languageService: LanguageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (this.logos.length === 0) {
       this.logos = this.defaultLogos;
     }
     this.duplicatedLogos = [...this.logos, ...this.logos];
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe();
+    this.languageSubscription =
+      this.languageService.currentLanguage$.subscribe();
   }
 }

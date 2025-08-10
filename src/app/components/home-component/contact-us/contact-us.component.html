@@ -1,26 +1,9 @@
 <section id="contact" class="py-5 contact-bg">
   <div class="container">
     <!-- Header -->
-    <div class="text-center mb-5 fade-in">
-      <div class="methodology-badge">
-        <span>{{ translationService.translate('contact.badge') }}</span>
-      </div>
-      <h2 class="main-title">
-        {{ translationService.translate('contact.heading.part1') }}
-        <span class="gradient-text">{{ translationService.translate('contact.heading.part2') }}</span>
-      </h2>
-      <p class="main-subtitle">
-        {{ translationService.translate('contact.heading.subtitle') }}
-      </p>
-    </div>
-    <!-- <div class="row">
-      <div class="col-12 text-center mb-5">
-        <h4 class="display-5 fw-bold text-dark mb-4">{{ translationService.translate('contact.title') }}</h4>
-        <p class="lead text-muted mx-auto" style="max-width: 600px">
-          {{ translationService.translate('contact.description') }}
-        </p>
-      </div>
-    </div> -->
+    <app-title-component subtitle1Key="contact.badge" titleKey="contact.heading.part1"
+      subtitle2Key="contact.heading.part2" subtitleKey="contact.heading.subtitle">
+    </app-title-component>
 
     <div class="row g-4">
       <!-- Contact Information -->

@@ -1,18 +1,10 @@
 <div class="methodology-section" id="methodology">
   <div class="container">
     <!-- Header -->
-    <div class="text-center mb-5 fade-in">
-      <div class="methodology-badge">
-        <span>{{ translationService.translate('methodology.badge') }}</span>
-      </div>
-      <h2 class="main-title">
-        {{ translationService.translate('methodology.title.part1') }}
-        <span class="gradient-text">{{ translationService.translate('methodology.title.part2') }}</span>
-      </h2>
-      <p class="main-subtitle">
-        {{ translationService.translate('methodology.subtitle') }}
-      </p>
-    </div>
+    <app-title-component subtitle1Key="methodology.badge" titleKey="methodology.title.part1"
+      subtitle2Key="methodology.title.part2" subtitleKey="methodology.subtitle">
+    </app-title-component>
+
 
     <!-- Steps Grid -->
     <div class="row g-4">

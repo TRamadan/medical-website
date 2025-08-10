@@ -3,18 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <!-- Header -->
-        <div class="text-center mb-5 fade-in">
-          <div class="our-benefits-badge">
-            <span>{{ translationService.translate('technology.badge') }}</span>
-          </div>
-          <h2 class="main-title">
-            {{ translationService.translate('technology.title.part1') }}
-            <span class="gradient-text">{{ translationService.translate('technology.title.part2') }}</span>
-          </h2>
-          <p class="main-subtitle">
-            {{ translationService.translate('technology.subtitle') }}
-          </p>
-        </div>
+        <app-title-component subtitle1Key="technology.badge" titleKey="technology.title.part1"
+          subtitle2Key="technology.title.part2" subtitleKey="technology.subtitle"></app-title-component>
+
 
         <!-- Technology Grid -->
         <div class="row g-4 mb-5">
