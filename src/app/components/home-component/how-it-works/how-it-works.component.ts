@@ -77,7 +77,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
   startAutoAnimation() {
     this.stepInterval = setInterval(() => {
       this.currentStep = (this.currentStep + 1) % this.steps.length;
-    }, 5000); // 2 seconds per step
+    }, 3000); // 2 seconds per step
   }
 
   ngOnDestroy() {
