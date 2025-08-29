@@ -1,28 +1,67 @@
-<div class="gradient-bg py-5">
+<section class="how-it-works-section">
   <div class="container">
-    <div class="position-relative stepper-container">
+    <!-- Section Header -->
+    <div class="section-header text-center">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Follow these simple steps to start your wellness journey</p>
+    </div>
 
-      <div class="row step-container row step-container g-5 justify-content-center g-5">
-
-        @for(step of steps; track step; let i =$index){
-        <div class="col-12 col-sm-6 col-lg-2">
-          <div class="text-center h-100 step-wrapper" [class.zoom-active]="currentStep === i">
-            <div class="step-circle">
-              <div class="inner-circle">
-                <i [class]="step.icon"></i>
+    <!-- Desktop View - Steps in Row -->
+    <div class="steps-container desktop-view">
+      <div class="steps-wrapper">
+        @for(step of steps; track step; let i = $index; let isLast = $last) {
+          <div class="step-item" [class.active]="currentStep === i">
+            <div class="step-content">
+              <div class="step-icon-wrapper">
+                <div class="step-icon-bg">
+                  <i [class]="step.icon"></i>
+                </div>
+                <div class="step-number">{{ i + 1 }}</div>
               </div>
-              <div class="step-number">{{ i + 1}}</div>
+              <div class="step-text">
+                <h3 class="step-title">{{ translationService.translate(step.title) }}</h3>
+                <p class="step-description">{{ translationService.translate(step.description) }}</p>
+              </div>
             </div>
-            <div>
-              <h3 class="step-title h5">{{ translationService.translate(step.title) }}</h3>
-              <p class="step-description">
-                {{ translationService.translate(step.description) }}
-              </p>
-            </div>
+            @if (!isLast) {
+              <div class="connecting-arrow">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            }
           </div>
-        </div>
         }
       </div>
     </div>
+
+    <!-- Mobile/Tablet View - Vertical Steps -->
+    <div class="steps-container mobile-view">
+      @for(step of steps; track step; let i = $index; let isLast = $last) {
+        <div class="step-item-mobile" [class.active]="currentStep === i">
+          <div class="step-timeline">
+            <div class="step-icon-wrapper">
+              <div class="step-icon-bg">
+                <i [class]="step.icon"></i>
+              </div>
+              <div class="step-number">{{ i + 1 }}</div>
+            </div>
+            @if (!isLast) {
+              <div class="timeline-line"></div>
+            }
+          </div>
+          <div class="step-content-mobile">
+            <h3 class="step-title">{{ translationService.translate(step.title) }}</h3>
+            <p class="step-description">{{ translationService.translate(step.description) }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section text-center">
+      <button class="cta-button">Get Started Today</button>
+      <p class="cta-text">Join thousands who have transformed their health with our program</p>
+    </div>
   </div>
-</div>
+</section>
