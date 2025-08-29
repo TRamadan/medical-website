@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Main Section Styling */
+        .how-it-works-section {
+          padding: 80px 0;
+          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .how-it-works-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+          opacity: 0.3;
+          z-index: 1;
+        }
+
+        .container {
+          position: relative;
+          z-index: 2;
+        }
+
+        /* Section Header */
+        .section-header {
+          margin-bottom: 60px;
+        }
+
+        .section-title {
+          font-size: 3rem;
+          font-weight: 700;
+          background: linear-gradient(135deg, #fc6b44 0%, #ff7853 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 16px;
+          line-height: 1.2;
+        }
+
+        .section-subtitle {
+          font-size: 1.25rem;
+          color: #64748b;
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        /* Desktop View Styles */
+        .desktop-view {
+          display: none;
+        }
+
+        .steps-wrapper {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 20px;
+          margin-bottom: 60px;
+        }
+
+        .step-item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-item.active {
+          transform: scale(1.05);
+        }
+
+        .step-item.active .step-icon-bg {
+          background: linear-gradient(135deg, #fc6b44 0%, #ff7853 100%);
+          box-shadow: 0 20px 40px rgba(252, 107, 68, 0.4);
+          transform: scale(1.1);
+        }
+
+        .step-item.active .step-number {
+          background: #ffffff;
+          color: #fc6b44;
+        }
+
+        .step-content {
+          text-align: center;
+          width: 100%;
+        }
+
+        .step-icon-wrapper {
+          position: relative;
+          margin-bottom: 24px;
+        }
+
+        .step-icon-bg {
+          width: 120px;
+          height: 120px;
+          background: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border: 3px solid #e2e8f0;
+          margin: 0 auto;
+        }
+
+        .step-icon-bg:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-icon-bg i {
+          font-size: 2.5rem;
+          color: #fc6b44;
+          transition: color 0.3s ease;
+        }
+
+        .step-item.active .step-icon-bg i {
+          color: #ffffff;
+        }
+
+        .step-number {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          width: 36px;
+          height: 36px;
+          background: linear-gradient(135deg, #fc6b44 0%, #ff7853 100%);
+          color: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 1rem;
+          box-shadow: 0 4px 12px rgba(252, 107, 68, 0.4);
+          transition: all 0.3s ease;
+        }
+
+        .step-text {
+          max-width: 280px;
+        }
+
+        .step-title {
+          font-size: 1.375rem;
+          font-weight: 600;
+          color: #1e293b;
+          margin-bottom: 12px;
+          line-height: 1.3;
+        }
+
+        .step-description {
+          color: #64748b;
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+
+        /* Connecting Arrows */
+        .connecting-arrow {
+          position: absolute;
+          top: 60px;
+          right: -30px;
+          width: 60px;
+          height: 24px;
+          color: #cbd5e1;
+          z-index: 5;
+        }
+
+        .connecting-arrow svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        /* Mobile View Styles */
+        .mobile-view {
+          display: block;
+        }
+
+        .step-item-mobile {
+          display: flex;
+          align-items: flex-start;
+          gap: 24px;
+          margin-bottom: 40px;
+          padding: 24px;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(10px);
+        }
+
+        .step-item-mobile:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-item-mobile.active {
+          background: rgba(252, 107, 68, 0.05);
+          border: 2px solid rgba(252, 107, 68, 0.2);
+        }
+
+        .step-item-mobile.active .step-icon-bg {
+          background: linear-gradient(135deg, #fc6b44 0%, #ff7853 100%);
+          transform: scale(1.1);
+        }
+
+        .step-item-mobile.active .step-icon-bg i {
+          color: #ffffff;
+        }
+
+        .step-item-mobile.active .step-number {
+          background: #ffffff;
+          color: #fc6b44;
+        }
+
+        .step-timeline {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+        }
+
+        .step-content-mobile {
+          flex: 1;
+          padding-top: 8px;
+        }
+
+        .timeline-line {
+          width: 3px;
+          height: 60px;
+          background: linear-gradient(180deg, #cbd5e1 0%, #e2e8f0 100%);
+          border-radius: 2px;
+          margin-top: 20px;
+          position: relative;
+        }
+
+        .timeline-line::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 6px;
+          height: 6px;
+          background: #fc6b44;
+          border-radius: 50%;
+          animation: pulse 2s infinite;
+        }
+
+        /* CTA Section */
+        .cta-section {
+          margin-top: 60px;
+          padding: 40px;
+          background: rgba(255, 255, 255, 0.9);
+          border-radius: 20px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+          background: linear-gradient(135deg, #fc6b44 0%, #ff7853 100%);
+          color: #ffffff;
+          border: none;
+          padding: 18px 36px;
+          border-radius: 50px;
+          font-weight: 600;
+          font-size: 1.125rem;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 8px 25px rgba(252, 107, 68, 0.3);
+          margin-bottom: 16px;
+          cursor: pointer;
+        }
+
+        .cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 35px rgba(252, 107, 68, 0.4);
+        }
+
+        .cta-text {
+          color: #64748b;
+          font-size: 1rem;
+          margin: 0;
+          line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+          }
+          50% {
+            opacity: 0.5;
+            transform: translateX(-50%) scale(1.2);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .step-item, .step-item-mobile {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .step-item:nth-child(1) { animation-delay: 0.1s; }
+        .step-item:nth-child(2) { animation-delay: 0.2s; }
+        .step-item:nth-child(3) { animation-delay: 0.3s; }
+        .step-item:nth-child(4) { animation-delay: 0.4s; }
+        .step-item:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+          .mobile-view {
+            display: none;
+          }
+          
+          .desktop-view {
+            display: block;
+          }
+          
+          .section-title {
+            font-size: 3.5rem;
+          }
+          
+          .step-item-mobile {
+            padding: 32px;
+          }
+          
+          .step-icon-bg {
+            width: 140px;
+            height: 140px;
+          }
+          
+          .step-icon-bg i {
+            font-size: 3rem;
+          }
+          
+          .step-number {
+            width: 40px;
+            height: 40px;
+            font-size: 1.125rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .how-it-works-section {
+            padding: 100px 0;
+          }
+          
+          .section-header {
+            margin-bottom: 80px;
+          }
+          
+          .steps-wrapper {
+            gap: 40px;
+          }
+          
+          .connecting-arrow {
+            right: -40px;
+            width: 80px;
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .section-title {
+            font-size: 4rem;
+          }
+          
+          .steps-wrapper {
+            gap: 60px;
+          }
+          
+          .step-text {
+            max-width: 320px;
+          }
+        }
+    </style>
+</head>
+<body>
+    <section class="how-it-works-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header text-center">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Follow these simple steps to start your wellness journey</p>
+            </div>
+
+            <!-- Desktop View - Steps in Row -->
+            <div class="steps-container desktop-view">
+                <div class="steps-wrapper">
+                    <div class="step-item active">
+                        <div class="step-content">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg">
+                                    <i class="bi-calendar-check"></i>
+                                </div>
+                                <div class="step-number">1</div>
+                            </div>
+                            <div class="step-text">
+                                <h3 class="step-title">Book an Appointment</h3>
+                                <p class="step-description">Schedule your first consultation through our website or mobile app.</p>
+                            </div>
+                        </div>
+                        <div class="connecting-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg">
+                                    <i class="bi-clipboard-check"></i>
+                                </div>
+                                <div class="step-number">2</div>
+                            </div>
+                            <div class="step-text">
+                                <h3 class="step-title">Initial Assessment</h3>
+                                <p class="step-description">Our specialists will evaluate your condition and create a professional treatment plan.</p>
+                            </div>
+                        </div>
+                        <div class="connecting-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg">
+                                    <i class="bi bi-phone"></i>
+                                </div>
+                                <div class="step-number">3</div>
+                            </div>
+                            <div class="step-text">
+                                <h3 class="step-title">Download the App</h3>
+                                <p class="step-description">Get our mobile app to access your treatment plan, exercises and track your progress.</p>
+                            </div>
+                        </div>
+                        <div class="connecting-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg">
+                                    <i class="bi-graph-up-arrow"></i>
+                                </div>
+                                <div class="step-number">4</div>
+                            </div>
+                            <div class="step-text">
+                                <h3 class="step-title">Follow Your Plan</h3>
+                                <p class="step-description">Complete your prescribed exercises and track your recovery journey.</p>
+                            </div>
+                        </div>
+                        <div class="connecting-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg">
+                                    <i class="bi-chat-dots"></i>
+                                </div>
+                                <div class="step-number">5</div>
+                            </div>
+                            <div class="step-text">
+                                <h3 class="step-title">Get Feedback</h3>
+                                <p class="step-description">Receive real-time feedback from our experts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile/Tablet View - Vertical Steps -->
+            <div class="steps-container mobile-view">
+                <div class="step-item-mobile active">
+                    <div class="step-timeline">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon-bg">
+                                <i class="bi-calendar-check"></i>
+                            </div>
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="step-content-mobile">
+                        <h3 class="step-title">Book an Appointment</h3>
+                        <p class="step-description">Schedule your first consultation through our website or mobile app.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item-mobile">
+                    <div class="step-timeline">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon-bg">
+                                <i class="bi-clipboard-check"></i>
+                            </div>
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="step-content-mobile">
+                        <h3 class="step-title">Initial Assessment</h3>
+                        <p class="step-description">Our specialists will evaluate your condition and create a professional treatment plan.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item-mobile">
+                    <div class="step-timeline">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon-bg">
+                                <i class="bi bi-phone"></i>
+                            </div>
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="step-content-mobile">
+                        <h3 class="step-title">Download the App</h3>
+                        <p class="step-description">Get our mobile app to access your treatment plan, exercises and track your progress.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item-mobile">
+                    <div class="step-timeline">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon-bg">
+                                <i class="bi-graph-up-arrow"></i>
+                            </div>
+                            <div class="step-number">4</div>
+                        </div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="step-content-mobile">
+                        <h3 class="step-title">Follow Your Plan</h3>
+                        <p class="step-description">Complete your prescribed exercises and track your recovery journey.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item-mobile">
+                    <div class="step-timeline">
+                        <div class="step-icon-wrapper">
+                            <div class="step-icon-bg">
+                                <i class="bi-chat-dots"></i>
+                            </div>
+                            <div class="step-number">5</div>
+                        </div>
+                    </div>
+                    <div class="step-content-mobile">
+                        <h3 class="step-title">Get Feedback</h3>
+                        <p class="step-description">Receive real-time feedback from our experts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section text-center">
+                <button class="cta-button">Get Started Today</button>
+                <p class="cta-text">Join thousands who have transformed their health with our program</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Auto-animate the active step for demonstration
+        const steps = document.querySelectorAll('.step-item, .step-item-mobile');
+        let currentStep = 0;
+        
+        function animateSteps() {
+            // Remove active class from all steps
+            steps.forEach(step => step.classList.remove('active'));
+            
+            // Add active class to current steps (desktop and mobile)
+            if (steps[currentStep]) steps[currentStep].classList.add('active');
+            if (steps[currentStep + 5]) steps[currentStep + 5].classList.add('active');
+            
+            // Move to next step
+            currentStep = (currentStep + 1) % 5;
+        }
+        
+        // Start animation
+        setInterval(animateSteps, 3000);
+    </script>
+</body>
+</html>

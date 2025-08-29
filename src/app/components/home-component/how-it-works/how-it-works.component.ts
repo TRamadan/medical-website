@@ -30,7 +30,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       titleAr: '',
       descriptionAr: '',
       description:
-        'Scheduale your first consultation through our website or mobie app.',
+        'Schedule your first consultation through our website or mobile app.',
     },
     {
       icon: 'bi-clipboard-check step-icon',
@@ -38,7 +38,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       titleAr: '',
       descriptionAr: '',
       description:
-        'Our Specialities will evaluate your condition and cease a professional treatment plan.',
+        'Our specialists will evaluate your condition and create a professional treatment plan.',
     },
     {
       icon: 'bi bi-phone step-icon',
@@ -46,7 +46,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       titleAr: '',
       descriptionAr: '',
       description:
-        'Get our mobile app to access your treatment plan, excercies and track your progress',
+        'Get our mobile app to access your treatment plan, exercises and track your progress.',
     },
     {
       icon: 'bi-graph-up-arrow step-icon',
@@ -54,7 +54,7 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       titleAr: '',
       descriptionAr: '',
       description:
-        'Complete your prescribed excercies and track your recovery journey.',
+        'Complete your prescribed exercises and track your recovery journey.',
     },
     {
       icon: 'bi-chat-dots step-icon',
