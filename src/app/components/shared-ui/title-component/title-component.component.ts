@@ -20,7 +20,6 @@ export class TitleComponentComponent implements OnInit {
   constructor(private translationService: TranslationService) {}
 
   ngOnInit() {
-    debugger;
     this.title = this.translationService.translate(this.titleKey);
     this.subtitle1 = this.translationService.translate(this.subtitle1Key);
     this.subtitle2 = this.translationService.translate(this.subtitle2Key);

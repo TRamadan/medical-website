@@ -3,13 +3,14 @@ import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
+import { NgStyle } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-how-it-works',
   templateUrl: './how-it-works.component.html',
   styleUrls: ['./how-it-works.component.css'],
-  imports: [TitleComponentComponent],
+  imports: [TitleComponentComponent, NgStyle],
 })
 export class HowItWorksComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
@@ -31,6 +32,8 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       descriptionAr: '',
       description:
         'Scheduale your first consultation through our website or mobie app.',
+      top: '68.3%',
+      left: '3%'
     },
     {
       icon: 'bi-clipboard-check step-icon',
@@ -39,6 +42,8 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       descriptionAr: '',
       description:
         'Our Specialities will evaluate your condition and cease a professional treatment plan.',
+      top: '77%',
+      left: '25%'
     },
     {
       icon: 'bi bi-phone step-icon',
@@ -47,6 +52,8 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       descriptionAr: '',
       description:
         'Get our mobile app to access your treatment plan, excercies and track your progress',
+      top: '49.4%',
+      left: '44%'
     },
     {
       icon: 'bi-graph-up-arrow step-icon',
@@ -55,6 +62,8 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       descriptionAr: '',
       description:
         'Complete your prescribed excercies and track your recovery journey.',
+      top: '40%',
+      left: '68.5%'
     },
     {
       icon: 'bi-chat-dots step-icon',
@@ -62,6 +71,8 @@ export class HowItWorksComponent implements OnInit, OnDestroy {
       titleAr: '',
       descriptionAr: '',
       description: 'Receive real-time feedback from our experts.',
+      top: '8%',
+      left: '79.8%'
     },
   ];
 
