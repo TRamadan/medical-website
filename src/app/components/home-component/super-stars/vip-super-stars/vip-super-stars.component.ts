@@ -1,174 +1,132 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { TranslationService } from '../../../../services/translation.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { SuperstarsService } from '../services/superstars.service';
+import { SuperstarAthelete } from '../models/superstars';
+import { environment } from '../../../../../environments/environment.development';
 
-interface SlideData {
-  id: number;
-  name: string;
-  title: string;
-  description: string;
-  achievement?: string;
-  imageUrl: string;
-}
 @Component({
   selector: 'app-vip-super-stars',
   standalone: true,
+  imports: [CarouselModule],
   templateUrl: './vip-super-stars.component.html',
   styleUrls: ['./vip-super-stars.component.css'],
 })
 export class VipSuperStarsComponent implements OnInit {
-  currentSlide: number = 0;
-  totalSlides: number = 4;
-  isAutoPlaying: boolean = true;
-  autoPlayInterval: any = null;
-  autoPlayDelay: number = 50000;
+  currentIndex = 0;
+  translateX = 0;
+  public readonly urlForImg = environment.imgUrl;
+  autoSlideInterval: any;
+  itemWidth = 350;
+  visibleItems = 3;
+  eliteSuperStarsSignal: WritableSignal<SuperstarAthelete[]> = signal<
+    SuperstarAthelete[]
+  >([]);
 
-  slides: SlideData[] = [
-    {
-      id: 1,
-      name: 'Sara Samir',
-      title: 'Weightlifting',
-      achievement: 'Olympic Medalist',
-      description:
-        'To provide accessible, personalized, and evidence-based rehabilitation services that empower individuals to achieve optimal physical function and return to their active lifestyle.',
-
-      imageUrl: '../../../../../assets/athelete3.jpeg',
-    },
-    {
-      id: 2,
-      name: 'Nada Magdy ',
-      title: 'Fin swimmer',
-      achievement: 'World Medalist',
-      description:
-        'To provide accessible, personalized, and evidence-based rehabilitation services that empower individuals to achieve optimal physical function and return to their active lifestyle.',
-      imageUrl: '../../../../../assets/athelete1.jpeg',
-    },
-    {
-      id: 3,
-      name: 'Mohamed Samir',
-      title: 'Handball',
-      achievement: 'World Medalist',
-      description:
-        'Dedicated to helping patients recover from injuries and improve their quality of life through innovative treatment approaches and compassionate care.',
-      imageUrl: '../../../../../assets/superstars-athelets2.jpeg',
-    },
-
-    {
-      id: 4,
-      name: 'Janna Khattab',
-      title: 'Tekwandoo',
-      achievement: 'World Medalist',
-      description:
-        'Committed to promoting holistic wellness through mindfulness, stress management, and lifestyle coaching to help individuals achieve balance and vitality.',
-      imageUrl: '../../../../../assets/athelete4.jpeg',
-    },
-    {
-      id: 5,
-      name: 'Sandy Elkhateb',
-      title: 'Aerogymnast',
-      achievement: 'World Medalist',
-      description:
-        'Committed to promoting holistic wellness through mindfulness, stress management, and lifestyle coaching to help individuals achieve balance and vitality.',
-      imageUrl: '../../../../../assets/athelete5.jpeg',
-    },
-  ];
-
-  constructor(public translationService: TranslationService) {}
+  constructor(
+    public translationService: TranslationService,
+    private _ourSuperStars: SuperstarsService
+  ) {}
 
   ngOnInit(): void {
-    this.totalSlides = this.slides.length;
-    this.startAutoPlay();
+    this.startAutoSlide();
+    this.updateTranslateX();
+    this.getSuperStarAthlete();
   }
 
   ngOnDestroy(): void {
-    this.pauseAutoPlay();
+    this.stopAutoSlide();
   }
 
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowLeft') {
-      this.prevSlide();
-    } else if (event.key === 'ArrowRight') {
-      this.nextSlide();
+  selectSuperStar(vipSuperStarId: any): void {
+    this.eliteSuperStarsSignal.update((eliteSuperStars) =>
+      eliteSuperStars.map((vipSuperStar) => ({
+        ...vipSuperStar,
+        active: vipSuperStar.id === vipSuperStarId,
+      }))
+    );
+
+    const gameIndex = this.eliteSuperStarsSignal().findIndex(
+      (vipSuperStar) => vipSuperStar.id === vipSuperStarId
+    );
+
+    if (gameIndex !== -1) {
+      this.currentIndex = gameIndex;
+      this.updateTranslateX();
+      this.restartAutoSlide();
     }
-  }
-
-  getSliderTransform(): string {
-    const translateX = -this.currentSlide * 100;
-    return `translateX(${translateX}%)`;
-  }
-
-  nextSlide(): void {
-    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-  }
-
-  prevSlide(): void {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
   }
 
   goToSlide(index: number): void {
-    this.currentSlide = index;
+    const eliteSuperStars = this.eliteSuperStarsSignal();
+    if (!eliteSuperStars || !eliteSuperStars[index]) return;
+
+    this.currentIndex = index;
+    this.updateTranslateX();
+    this.selectSuperStar(eliteSuperStars[index].id);
+    this.restartAutoSlide();
   }
 
-  startAutoPlay(): void {
-    if (this.isAutoPlaying) {
-      this.autoPlayInterval = setInterval(() => {
-        this.nextSlide();
-      }, this.autoPlayDelay);
+  private updateTranslateX(): void {
+    const eliteSuperStars = this.eliteSuperStarsSignal();
+    if (!eliteSuperStars || eliteSuperStars.length === 0) return;
+
+    const maxTranslate =
+      (eliteSuperStars.length - this.visibleItems) * this.itemWidth;
+    this.translateX =
+      Math.min(this.currentIndex * this.itemWidth, maxTranslate) * -1;
+  }
+
+  private nextSlide(): void {
+    const vipSuperStars = this.eliteSuperStarsSignal();
+    if (!vipSuperStars || vipSuperStars.length === 0) return;
+
+    this.currentIndex = (this.currentIndex + 1) % vipSuperStars.length;
+    this.updateTranslateX();
+    this.selectSuperStar(vipSuperStars[this.currentIndex].id);
+  }
+
+  private startAutoSlide(): void {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 4000);
+  }
+
+  private stopAutoSlide(): void {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
     }
   }
 
-  pauseAutoPlay(): void {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
+  private restartAutoSlide(): void {
+    this.stopAutoSlide();
+    this.startAutoSlide();
   }
 
-  resumeAutoPlay(): void {
-    if (this.isAutoPlaying && !this.autoPlayInterval) {
-      this.startAutoPlay();
-    }
-  }
+  getSuperStarAthlete(): void {
+    this._ourSuperStars.getAllSuperStars().subscribe({
+      next: (res: SuperstarAthelete[]) => {
+        const mapped = res.map(
+          (eliteSuperStar: SuperstarAthelete, index: number) => ({
+            ...eliteSuperStar,
+            backgroundImage: this.urlForImg + eliteSuperStar.image,
+            active: index === 0,
+          })
+        );
 
-  onImageError(event: any, slide: SlideData): void {
-    event.target.style.display = 'none';
-    const iconElement = event.target.nextElementSibling;
-    if (iconElement) {
-      iconElement.style.display = 'flex';
-    }
-  }
-
-  getSlideGradient(index: number): string {
-    const gradients = [
-      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    ];
-    return gradients[index % gradients.length];
-  }
-
-  // Touch events
-  private startX: number = 0;
-  private endX: number = 0;
-
-  onTouchStart(event: TouchEvent): void {
-    this.startX = event.touches[0].clientX;
-    this.pauseAutoPlay();
-  }
-
-  onTouchEnd(event: TouchEvent): void {
-    this.endX = event.changedTouches[0].clientX;
-    const diff = this.startX - this.endX;
-
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        this.nextSlide();
-      } else {
-        this.prevSlide();
-      }
-    }
-    this.resumeAutoPlay();
+        this.eliteSuperStarsSignal.set(mapped);
+      },
+      error: (error: any) => {
+        // handle error here
+      },
+    });
   }
 }

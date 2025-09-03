@@ -1,72 +1,64 @@
-<!-- Success Stories Grid -->
-<div class="row g-4">
-  <!-- Repeat this block for each success story -->
-  <div class="col-md-4 col-xl-4">
-    <div class="card shadow h-100 border-0">
-      <div class="position-relative">
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/example" title="Success Story" allowfullscreen class="rounded-top">
-          </iframe>
-        </div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title fw-bold">{{ translationService.translate('success.videos.title') }}</h5>
-        <p class="sub-title-card mb-3">{{ translationService.translate('success.videos.company') }}</p>
+<section class="upcoming-section">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Main Featured Movie -->
+            <div class="col-lg-8">
+                <div class="main-card animate-on-scroll">
+                    <div class="video-container">
+                        <!-- YouTube Video Player -->
+                        <iframe *ngIf="isPlaying && safeVideoUrl" [src]="safeVideoUrl" class="youtube-player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
 
-        <!-- Testimonial -->
-        <div class="border-top pt-3">
-          <p class="fst-italic text-muted small">
-            {{ translationService.translate('success.videos.testimonial') }}
-          </p>
+                        <!-- Video Overlay -->
+                        <div class="video-overlay" *ngIf="!isPlaying">
+                            <div class="play-btn" (click)="playVideo()">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
 
+                        <!-- Close button when playing -->
+                        <div class="close-btn" *ngIf="isPlaying" (click)="stopVideo()">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="movie-title">{{ selectedMovie.titleEn }}</h2>
+                        <p class="release-date">{{ selectedMovie.date }}</p>
+                        <p class="movie-description" *ngIf="selectedMovie.descriptionEn">{{ selectedMovie.descriptionEn
+                            }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Content -->
+            <div class="col-lg-4 side-videos-content overflow-y-scroll">
+                <div class="row g-3">
+                    <!-- Featured Side Movies -->
+                    <div class="col-6 col-md-6 col-lg-12" *ngFor="let video of videoSuccessStories; let i = index">
+                        <div class="side-card animate-on-scroll" (click)="selectContent(video.id)"
+                            [class.selected]="selectedMovie.id === video.id">
+                            <div class="side-card-img" [ngStyle]="getThumbnailStyle(video)">
+                                <div class="side-card-overlay">
+                                    <div class="side-card-content">
+                                        <div class="side-card-title">{{ video.titleEn }}</div>
+                                        <div class="side-card-meta"> {{ video?.date?.split('Release Date: ')?.[1] ||
+                                            'N/A' }}</div>
+                                    </div>
+                                </div>
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+
     </div>
-  </div>
-
-  <div class="col-md-4 col-xl-4">
-    <div class="card shadow h-100 border-0">
-      <div class="position-relative">
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/example" title="Success Story" allowfullscreen class="rounded-top">
-          </iframe>
-        </div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title fw-bold">{{ translationService.translate('success.videos.title') }}</h5>
-        <p class="text-muted mb-3">{{ translationService.translate('success.videos.company') }}</p>
-
-        <!-- Testimonial -->
-        <div class="border-top pt-3">
-          <p class="fst-italic text-muted small">
-            {{ translationService.translate('success.videos.testimonial') }}
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-xl-4">
-    <div class="card shadow h-100 border-0">
-      <div class="position-relative">
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/example" title="Success Story" allowfullscreen class="rounded-top">
-          </iframe>
-        </div>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title fw-bold">{{ translationService.translate('success.videos.title') }}</h5>
-        <p class="text-muted mb-3">{{ translationService.translate('success.videos.company') }}</p>
-
-        <!-- Testimonial -->
-        <div class="border-top pt-3">
-          <p class="fst-italic text-muted small">
-            {{ translationService.translate('success.videos.testimonial') }}
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

@@ -108,18 +108,20 @@
      background-color: #131337 !important;
      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
      transition: all 0.3s ease;
-     border-bottom: 4px solid #fc6b44;
+     border-bottom: 4px solid #70F4C3;
  }
 
  /* Optional: Change text color when scrolled */
  .navbar-scrolled .navbar-brand,
  .navbar-scrolled .nav-link {
      color: #ffffff !important;
+     font-size: 20px;
  }
 
  .navbar-transparent .navbar-brand,
  .navbar-transparent .nav-link {
      color: #ffffff !important;
+     font-size: 20px;
      /* Light text on transparent background */
  }
 
@@ -152,13 +154,13 @@
 
  /* Underline effect for active/hover states */
  .nav-link-custom::after {
-     content: '';
+     content: "";
      position: absolute;
      bottom: 0;
      left: 50%;
      width: 0;
      height: 2px;
-     background-color: #fc6b44;
+     background-color: #131337;
      transition: all 0.3s ease;
      transform: translateX(-50%);
      border-radius: 1px;
@@ -171,8 +173,8 @@
 
  /* Transparent navbar states */
  .navbar-transparent .nav-link-custom:hover {
-     color: #fc6b44 !important;
-     background-color: rgba(255, 255, 255, 0.1);
+     color: #131337 !important;
+     background-color: rgb(112 244 195)
  }
 
  .navbar-transparent .nav-link-custom.active {
@@ -182,8 +184,8 @@
 
  /* Scrolled navbar states */
  .navbar-scrolled .nav-link-custom:hover {
-     color: #fc6b44 !important;
-     background-color: rgba(252, 107, 68, 0.1);
+     color: #131337 !important;
+     background-color: rgb(112 244 195);
  }
 
  .navbar-scrolled .nav-link-custom.active {

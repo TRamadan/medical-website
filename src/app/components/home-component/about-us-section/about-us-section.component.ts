@@ -5,10 +5,10 @@ import { Subscription } from 'rxjs';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { AdvisorBoardComponent } from './advisor-board/advisor-board.component';
 import { Router } from '@angular/router';
-
+import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
 @Component({
   standalone: true,
-  imports: [OurTeamComponent, AdvisorBoardComponent],
+  imports: [OurTeamComponent, AdvisorBoardComponent, TitleComponentComponent],
   selector: 'app-about-us-section',
   templateUrl: './about-us-section.component.html',
   styleUrls: ['./about-us-section.component.css'],

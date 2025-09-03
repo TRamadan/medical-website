@@ -4,6 +4,9 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "../node_modules/bootstrap-icons";
 
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "swiper/swiper-bundle.css";
 
 @font-face {
     font-family: Din;
@@ -15,9 +18,7 @@
     src: url(assets/fonts/DINNextLTArabic-Regular-3.ttf) format("opentype")
 }
 
-/* * {
-    font-family: 'Din';
-} */
+
 
 :root {
     --transition: all 0.3s ease;

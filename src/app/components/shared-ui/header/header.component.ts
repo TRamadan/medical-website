@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private languageService: LanguageService,
     public translationService: TranslationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.updateTranslations();
@@ -87,6 +87,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         name: this.translationService.translate('nav.superstars'),
+        href: '#superstars',
+      },
+      {
+        name: 'Education',
         href: '#superstars',
       },
       {

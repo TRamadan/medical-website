@@ -4,9 +4,9 @@
   <div class="marquee-wrapper">
     <div class="marquee-container">
       <div class="marquee-content" [style.animation-duration]="animationDuration + 's'">
-        @for(partner of duplicatedLogos; track partner.id){
+        @for(partner of defaultLogos; track partner.id; let i = $index){
         <div class="logo-container">
-          <img [src]="partner.logo" [alt]="partner.name" class="logo-img" />
+          <img [src]="partner.logo" class="logo-img" />
         </div>
         }
       </div>

@@ -1,103 +1,28 @@
-<div class="methodology-section" id="methodology">
-  <div class="container">
-    <!-- Header -->
-    <app-title-component subtitle1Key="methodology.badge" titleKey="methodology.title.part1"
-      subtitle2Key="methodology.title.part2" subtitleKey="methodology.subtitle">
-    </app-title-component>
+<section class="container py-5">
+  <app-title-component subtitle1Key="methodology.badge" titleKey="methodology.title.part1"
+    subtitle2Key="methodology.title.part2" subtitleKey="methodology.subtitle"></app-title-component>
 
-
-    <!-- Steps Grid -->
-    <div class="row g-4">
-      <!-- Step 1 -->
-      <div class="col-lg-6">
-        <div class="step-card slide-up slide-up-1">
-          <div class="step-number">
-            <span>1</span>
-          </div>
-          <div class="step-icon">
-            <i class="fas fa-search"></i>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">{{ translationService.translate('methodology.steps.assessment.title') }}</h3>
-            <p class="step-description">
-              {{ translationService.translate('methodology.steps.assessment.description') }}
-            </p>
-          </div>
-
-          <div class="w-100 text-center">
-            <button class="button"><span>{{ translationService.translate('button.learnMore') }}</span></button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="col-lg-6">
-        <div class="step-card slide-up slide-up-2">
-          <div class="step-number">
-            <span>2</span>
-          </div>
-          <div class="step-icon">
-            <i class="fas fa-bullseye"></i>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">{{ translationService.translate('methodology.steps.strategy.title') }}</h3>
-            <p class="step-description">
-              {{ translationService.translate('methodology.steps.strategy.description') }}
-            </p>
-          </div>
-          <div class="w-100 text-center">
-            <button class="button"><span>{{ translationService.translate('button.learnMore') }}</span></button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="col-lg-6">
-        <div class="step-card slide-up slide-up-3">
-          <div class="step-number">
-            <span>3</span>
-          </div>
-          <div class="step-icon">
-            <i class="fas fa-dumbbell"></i>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">{{ translationService.translate('methodology.steps.implementation.title') }}</h3>
-            <p class="step-description">
-              {{ translationService.translate('methodology.steps.implementation.description') }}
-            </p>
-          </div>
-          <div class="w-100 text-center">
-            <button class="button"><span>{{ translationService.translate('button.learnMore') }}</span></button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="col-lg-6">
-        <div class="step-card slide-up slide-up-4">
-          <div class="step-number">
-            <span>4</span>
-          </div>
-          <div class="step-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">{{ translationService.translate('methodology.steps.monitoring.title') }}</h3>
-            <p class="step-description">
-              {{ translationService.translate('methodology.steps.monitoring.description') }}
-            </p>
-          </div>
-          <div class="w-100 text-center">
-            <button class="button"><span>{{ translationService.translate('button.learnMore') }}</span></button>
-          </div>
-
-        </div>
+  @for(item of MethodologySignal(); track item; let i = $index){
+  <div class="row g-5 mt-3 align-items-center" [ngClass]="{ 'flex-md-row-reverse': i % 2 === 1 }">
+    <div class="col-12 col-md-3">
+      <div class="rounded-4 overflow-hidden">
+        <img [src]="imgurl + item.icon" [alt]="'methodology-img'+i" class="img-fluid w-100 h-100 object-fit-cover">
       </div>
     </div>
 
+    <div class="col-12 col-md-9">
+      <div class="bg-danger-subtle rounded-4 p-4 p-lg-5">
+        <h3 class="text-capitalize fw-semibold text-primary">{{currentLanguage == 'ar' ? item.title : item.titleEn}}
+        </h3>
+        <p class="text-primary-75 description text-muted"> {{currentLanguage == 'ar' ? item.description :
+          item.descriptionEn}}
+        </p>
+      </div>
+    </div>
 
   </div>
-</div>
+  }
+
+
+
+</section>

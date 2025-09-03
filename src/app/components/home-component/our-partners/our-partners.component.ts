@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { PartnersService } from './services/partners.service';
 @Component({
   selector: 'app-our-partners',
   standalone: true,
@@ -18,52 +20,51 @@ export class OurPartnersComponent implements OnInit {
   @Input() backgroundColor: string =
     'linear-gradient(to right, rgb(250 245 255), rgb(239 246 255))';
 
+  partnersSignal = toSignal(this._ourPartners.getAllPartners(), {
+    initialValue: [],
+  });
+
   defaultLogos: Partners[] = [
     {
       id: 1,
-      name: 'Partner 1',
       logo: 'assets/logo_1.png',
     },
     {
       id: 2,
-      name: 'Partner 2',
       logo: 'assets/logo_2.png',
     },
     {
       id: 3,
-      name: 'Partner 3',
       logo: 'assets/logo_3.png',
     },
     {
       id: 4,
-      name: 'Partner 4',
       logo: 'assets/logo_4.png',
     },
     {
       id: 5,
-      name: 'Partner 5',
       logo: 'assets/logo_5.png',
     },
     {
       id: 6,
-      name: 'Partner 6',
       logo: 'assets/logo_6.png',
     },
   ];
 
-  duplicatedLogos: Partners[] = [];
+  // duplicatedLogos: Partners[] = [];
   private languageSubscription?: Subscription;
 
   constructor(
     public translationService: TranslationService,
-    private languageService: LanguageService
+    public languageService: LanguageService,
+    private _ourPartners: PartnersService
   ) {}
 
   ngOnInit() {
-    if (this.logos.length === 0) {
-      this.logos = this.defaultLogos;
-    }
-    this.duplicatedLogos = [...this.logos, ...this.logos];
+    // if (this.logos.length === 0) {
+    //   this.logos = this.partnersSignal();
+    // }
+    // this.duplicatedLogos = [...this.logos, ...this.logos];
     this.languageSubscription =
       this.languageService.currentLanguage$.subscribe();
   }

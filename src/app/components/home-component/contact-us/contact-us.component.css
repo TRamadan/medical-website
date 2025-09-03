@@ -9,7 +9,8 @@
 }
 
 .btn-primary {
-    background-color: rgb(252, 107, 52);
+    background-color: rgb(112 244 195);
+    color: #131337;
 }
 
 .card {
@@ -27,9 +28,9 @@ a {
 }
 
 i {
-    color: #fc6c44;
+    color: #131337;
 }
 
 .bg-primary {
-    background-color: #fc6c4433 !important;
+    background-color: #70f4c3 !important;
 }

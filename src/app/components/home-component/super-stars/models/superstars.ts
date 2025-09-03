@@ -1,13 +1,14 @@
-export interface Superstars {
-  title?: string;
-  subTitle?: string;
-}
-
 export interface SuperstarAthelete {
+  id?: number;
   name?: string;
   image?: string;
   description?: string;
+  descriptionEn?: string;
   sport?: string;
+  sportEn?: string;
   achievement?: string;
+  achievementEn?: string;
   isElite?: boolean;
+  active?: boolean;
+  backgroundImage?: string;
 }

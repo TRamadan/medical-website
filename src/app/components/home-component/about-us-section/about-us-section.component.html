@@ -1,17 +1,8 @@
 <section id="about" class="py-5 about-us-bg">
-  <div class="container">
-    <div class="text-center mb-5 fade-in">
-      <div class="about-us-badge mt-5">
-        <span>{{ translationService.translate('about.title') }}</span>
-      </div>
-      <h2 class="main-title">
-        {{ translationService.translate('about.subtitle1') }}
-        <span class="gradient-text">{{ translationService.translate('about.subtitle2') }}</span>
-      </h2>
-      <p class="main-subtitle">
-        {{ translationService.translate('about.subtitle') }}
-      </p>
-    </div>
+  <div class="container space-top-contact">
+    <app-title-component subtitle1Key="about.title" titleKey="about.subtitle1" subtitle2Key="about.subtitle2"
+      subtitleKey="about.subtitle">
+    </app-title-component>
 
     <!-- Option 1 for about us content section-->
     <div class="row g-4 mb-5">

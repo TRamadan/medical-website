@@ -21,9 +21,6 @@ export class TranslationService {
     'nav.exploreSolution': { en: 'Explore solution', ar: 'حلولنا' },
     'nav.contact': { en: 'Contact', ar: 'اتصل بنا' },
 
-    // Brand
-    'brand.name': { en: 'The sports doctor', ar: 'طبيب الرياضة' },
-
     // Hero section
     'hero.title': {
       en: 'Elite Performance',
@@ -48,151 +45,6 @@ export class TranslationService {
       ar: 'تحميل تطبيق الـ iOS ',
     },
 
-    // Services
-    'services.title': { en: 'Our Services', ar: 'خدماتنا' },
-    'services.subtitle': {
-      en: 'Comprehensive rehabilitation services tailored to your specific needs and recovery goals',
-      ar: 'خدمات إعادة تأهيل شاملة مصممة خصيصاً لاحتياجاتك وأهداف شفائك',
-    },
-
-    // Services - Injury Treatment
-    'services.injuryTreatment.title': {
-      en: 'Injury Treatment',
-      ar: 'علاج الإصابات',
-    },
-    'services.injuryTreatment.description': {
-      en: 'Restore movement and function through evidence-based therapeutic techniques and personalized treatment plans.',
-      ar: 'استعادة الحركة والوظيفة من خلال تقنيات علاجية قائمة على الأدلة وخطط علاج مخصصة.',
-    },
-    'services.injuryTreatment.orthopedic': {
-      en: 'Orthopedic Rehabilitation',
-      ar: 'إعادة تأهيل العظام',
-    },
-    'services.injuryTreatment.sports': {
-      en: 'Sports Injury Recovery',
-      ar: 'شفاء إصابات الرياضة',
-    },
-    'services.injuryTreatment.postSurgical': {
-      en: 'Post-Surgical Recovery',
-      ar: 'الشفاء بعد الجراحة',
-    },
-    'services.injuryTreatment.balance': {
-      en: 'Balance & Mobility Training',
-      ar: 'تدريب التوازن والحركة',
-    },
-    'services.injuryTreatment.painManagement': {
-      en: 'Pain Management',
-      ar: 'إدارة الألم',
-    },
-
-    // Services - Injury Prevention
-    'services.injuryPrevention.title': {
-      en: 'Injury Prevention',
-      ar: 'منع الإصابات',
-    },
-    'services.injuryPrevention.description': {
-      en: 'Help you regain independence in daily activities and return to meaningful occupations and life roles.',
-      ar: 'مساعدتك في استعادة الاستقلالية في الأنشطة اليومية والعودة إلى المهن والأدوار الحياتية الهادفة.',
-    },
-    'services.injuryPrevention.dailyLiving': {
-      en: 'Activities of Daily Living',
-      ar: 'أنشطة الحياة اليومية',
-    },
-    'services.injuryPrevention.workHardening': {
-      en: 'Work Hardening Programs',
-      ar: 'برامج تقوية العمل',
-    },
-    'services.injuryPrevention.handUpper': {
-      en: 'Hand & Upper Extremity',
-      ar: 'اليد والطرف العلوي',
-    },
-    'services.injuryPrevention.cognitive': {
-      en: 'Cognitive Rehabilitation',
-      ar: 'إعادة التأهيل المعرفي',
-    },
-    'services.injuryPrevention.adaptiveEquipment': {
-      en: 'Adaptive Equipment Training',
-      ar: 'تدريب المعدات التكيفية',
-    },
-
-    // Services - Rehabilitation
-    'services.rehabilitation.title': {
-      en: 'Rehabilitation Programs',
-      ar: 'برامج إعادة التأهيل',
-    },
-    'services.rehabilitation.description': {
-      en: 'Improve communication skills, swallowing function, and cognitive abilities through specialized interventions.',
-      ar: 'تحسين مهارات التواصل ووظيفة البلع والقدرات المعرفية من خلال التدخلات المتخصصة.',
-    },
-    'services.rehabilitation.speechLanguage': {
-      en: 'Speech & Language Disorders',
-      ar: 'اضطرابات النطق واللغة',
-    },
-    'services.rehabilitation.swallowing': {
-      en: 'Swallowing Difficulties',
-      ar: 'صعوبات البلع',
-    },
-    'services.rehabilitation.voiceArticulation': {
-      en: 'Voice & Articulation',
-      ar: 'الصوت والنطق',
-    },
-    'services.rehabilitation.cognitiveCommunication': {
-      en: 'Cognitive Communication',
-      ar: 'التواصل المعرفي',
-    },
-    'services.rehabilitation.accentModification': {
-      en: 'Accent Modification',
-      ar: 'تعديل اللكنة',
-    },
-
-    // Services - Conditions
-    'services.conditions.title': {
-      en: 'Supported Injuries & Conditions',
-      ar: 'الإصابات والحالات المدعومة',
-    },
-    'services.conditions.backNeckPain': {
-      en: 'Back & Neck Pain',
-      ar: 'آلام الظهر والرقبة',
-    },
-    'services.conditions.jointReplacement': {
-      en: 'Joint Replacement',
-      ar: 'استبدال المفاصل',
-    },
-    'services.conditions.sportsInjuries': {
-      en: 'Sports Injuries',
-      ar: 'إصابات الرياضة',
-    },
-    'services.conditions.strokeRecovery': {
-      en: 'Stroke Recovery',
-      ar: 'شفاء السكتة الدماغية',
-    },
-    'services.conditions.arthritis': { en: 'Arthritis', ar: 'التهاب المفاصل' },
-    'services.conditions.fractures': { en: 'Fractures', ar: 'الكسور' },
-    'services.conditions.neurological': {
-      en: 'Neurological Disorders',
-      ar: 'الاضطرابات العصبية',
-    },
-    'services.conditions.cardiac': {
-      en: 'Cardiac Rehabilitation',
-      ar: 'إعادة تأهيل القلب',
-    },
-    'services.conditions.workInjuries': {
-      en: 'Work Injuries',
-      ar: 'إصابات العمل',
-    },
-    'services.conditions.motorVehicle': {
-      en: 'Motor Vehicle Accidents',
-      ar: 'حوادث المركبات',
-    },
-    'services.conditions.chronicPain': {
-      en: 'Chronic Pain',
-      ar: 'الألم المزمن',
-    },
-    'services.conditions.balanceDisorders': {
-      en: 'Balance Disorders',
-      ar: 'اضطرابات التوازن',
-    },
-
     // About
     'about.title': { en: 'About Us', ar: 'من نحن' },
     // 'about.subtitle': {
@@ -213,23 +65,6 @@ export class TranslationService {
     'about.subtitle': {
       en: 'What we believe, why we exist, and how we make it happen',
       ar: 'مبادئنا، رسالتنا، ونهجنا في تحقيق النجاح',
-    },
-
-    // About - Mission, Vision, Values
-    'about.mission.title': { en: 'Our Mission', ar: 'مهمتنا' },
-    'about.mission.description': {
-      en: 'To provide accessible, personalized, and evidence-based rehabilitation services that empower individuals to achieve optimal physical function and return to their active lifestyle.',
-      ar: 'تقديم خدمات إعادة تأهيل سهلة الوصول ومخصصة وقائمة على الأدلة تمكن الأفراد من تحقيق الوظيفة البدنية المثلى والعودة إلى نمط حياتهم النشط.',
-    },
-    'about.vision.title': { en: 'Our Vision', ar: 'رؤيتنا' },
-    'about.vision.description': {
-      en: 'To be the leading digital platform for injury rehabilitation, making quality physiotherapy accessible to everyone, anywhere, and revolutionizing the way people recover.',
-      ar: 'أن نكون المنصة الرقمية الرائدة في إعادة تأهيل الإصابات، مما يجعل العلاج الطبيعي عالي الجودة متاحاً للجميع في كل مكان، ويحدث ثورة في طريقة شفاء الناس.',
-    },
-    'about.values.title': { en: 'Our Values', ar: 'قيمنا' },
-    'about.values.description': {
-      en: 'Compassion, Excellence, Innovation, and Integrity guide everything we do. We believe in treating each patient as a whole person, not just an injury.',
-      ar: 'الرحمة والتميز والابتكار والنزاهة توجه كل ما نقوم به. نؤمن بمعاملة كل مريض كشخص كامل، وليس مجرد إصابة.',
     },
 
     // About - Team
@@ -261,48 +96,6 @@ export class TranslationService {
     'about.team.subTitle': {
       en: 'Meet the people turning challenges into victories, together',
       ar: 'تعرف على الأشخاص الذين يحولون التحديات إلى انتصارات، معًا',
-    },
-
-    // About - Certifications
-    'about.certifications.title': {
-      en: 'Certifications & Accreditations',
-      ar: 'الشهادات والاعتمادات',
-    },
-    'about.certifications.subtitle': {
-      en: 'Our team holds the highest certifications in the industry, ensuring you receive world-class care.',
-      ar: 'يحمل فريقنا أعلى الشهادات في الصناعة، مما يضمن لك رعاية عالمية المستوى.',
-    },
-    'about.certifications.licensed': {
-      en: 'Licensed Physical Therapists (State Board Certified)',
-      ar: 'أخصائيون علاج طبيعي مرخصون (معتمدون من مجلس الولاية)',
-    },
-    'about.certifications.apta': {
-      en: 'American Physical Therapy Association (APTA) Members',
-      ar: 'أعضاء الجمعية الأمريكية للعلاج الطبيعي (APTA)',
-    },
-    'about.certifications.ceu': {
-      en: 'Continuing Education Units (CEU) Compliant',
-      ar: 'متوافق مع وحدات التعليم المستمر (CEU)',
-    },
-    'about.certifications.hipaa': {
-      en: 'HIPAA Compliance Certification',
-      ar: 'شهادة الامتثال لـ HIPAA',
-    },
-    'about.certifications.cpr': {
-      en: 'CPR/AED Certified',
-      ar: 'معتمد في الإنعاش القلبي الرئوي/مزيل الرجفان',
-    },
-    'about.certifications.telehealth': {
-      en: 'Telehealth Practice Certification',
-      ar: 'شهادة ممارسة الصحة عن بُعد',
-    },
-    'about.certifications.evidence': {
-      en: 'Evidence-Based Practice Certification',
-      ar: 'شهادة الممارسة القائمة على الأدلة',
-    },
-    'about.certifications.safety': {
-      en: 'Patient Safety & Quality Improvement Certified',
-      ar: 'معتمد في سلامة المرضى وتحسين الجودة',
     },
 
     // Contact
@@ -478,19 +271,6 @@ export class TranslationService {
       en: 'Stay connected with your healthcare provider through regular virtual or in-person appointments.',
       ar: 'ابق على تواصل مع مقدم الرعاية الصحية الخاص بك من خلال المواعيد الافتراضية أو الشخصية المنتظمة.',
     },
-
-    // Process (How it works intro block)
-    'process.badge': {
-      en: 'STOCKIE OPERATION ACROSS THE WORLD',
-      ar: 'العمليات عبر العالم',
-    },
-    'process.title.part1': { en: 'We have best team', ar: 'لدينا أفضل فريق' },
-    'process.title.part2': { en: 'and best process', ar: 'وأفضل عملية' },
-    'process.lead': {
-      en: 'Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy.',
-      ar: 'نقدم أفضل الممارسات لمساعدتك طوال رحلتك العلاجية بنهج واضح وفعّال.',
-    },
-    'process.cta': { en: 'Get Started', ar: 'ابدأ الآن' },
 
     // Booking
     'booking.title': {
@@ -1203,36 +983,39 @@ export class TranslationService {
       ar: 'منهجية مثبتة تحول الانتكاسات إلى عودات قوية، مصممة خصيصًا للرياضيين الذين يرفضون التسوية.',
     },
     'methodology.steps.assessment.title': {
-      en: 'Assessment & Analysis',
-      ar: 'التقييم والتحليل',
+      en: 'Pinpointing Your Pain',
+      ar: 'واجه ألمك.. واكسب التحدي',
     },
     'methodology.steps.assessment.description': {
-      en: 'Comprehensive evaluation of your current physical condition, mental state, and performance barriers to create a personalized recovery roadmap.',
-      ar: 'تقييم شامل لحالتك البدنية الحالية، والحالة النفسية، ومعوقات الأداء لإنشاء خريطة تعافٍ مخصصة.',
+      en: "You know that ache, that limitation. We'll dive deep into your unique data to uncover the exact root cause of what's holding your performance back.",
+      ar: 'الألم مش هيوقفك. هنكشف الجذر الحقيقي اللي بيقيّدك ونحوّله لأول خطوة في طريق إنجازك الجديد.',
     },
+
     'methodology.steps.strategy.title': {
-      en: 'Strategic Planning',
-      ar: 'التخطيط الاستراتيجي',
+      en: 'Smarter Solution',
+      ar: 'خطة ذكية.. طريقك للانتصار',
     },
     'methodology.steps.strategy.description': {
-      en: 'Development of a custom recovery strategy that addresses your specific needs, goals, and timeline for optimal performance restoration.',
-      ar: 'تطوير استراتيجية تعافٍ مخصصة تلبي احتياجاتك المحددة وأهدافك وإطارك الزمني لاستعادة الأداء الأمثل.',
+      en: 'Imagine a plan crafted just for you. Your data fuels our advanced system, building a custom blueprint of the exact exercises and training that will get you back.',
+      ar: 'بياناتك هي سر قوتك. هنحوّلها لخطة تدريب دقيقة ترجعك للساحة أقوى، أسرع، وجاهز تحقق انتصارك.',
     },
+
     'methodology.steps.implementation.title': {
-      en: 'Implementation & Training',
-      ar: 'التنفيذ والتدريب',
+      en: 'Guided Comeback',
+      ar: 'عودة قوية.. خطوة بخطوة',
     },
     'methodology.steps.implementation.description': {
-      en: 'Execution of evidence-based recovery protocols, progressive training regimens, and mental conditioning techniques tailored to your sport.',
-      ar: 'تنفيذ بروتوكولات تعافٍ قائمة على الأدلة، وبرامج تدريب تدريجية، وتقنيات إعداد ذهني مخصصة لرياضتك.',
+      en: "Feel every step of your return to sport. We'll guide you precisely, phase by phase, building your strength and confidence so your body and mind perform at their peak.",
+      ar: 'كل مرحلة من رجوعك محسوبة بعناية. هنرشدك لحد ما تستعيد قوتك، ثقتك، وتثبت إنك قادر تكسب أي تحدي.',
     },
+
     'methodology.steps.monitoring.title': {
-      en: 'Monitoring & Optimization',
-      ar: 'المراقبة والتحسين',
+      en: 'Lasting Power',
+      ar: 'قوة تدوم.. إنجاز مستمر',
     },
     'methodology.steps.monitoring.description': {
-      en: 'Continuous tracking of progress, real-time adjustments to your program, and ongoing support to ensure sustained peak performance.',
-      ar: 'متابعة مستمرة للتقدم، وتعديلات فورية على برنامجك، ودعم متواصل لضمان الحفاظ على الأداء العالي.',
+      en: "Beyond just healing, you'll gain the wisdom and tools to not only conquer this challenge but also prevent future setbacks, ensuring a longer, stronger athletic journey.",
+      ar: 'مش مجرد تعافي، دي بداية رحلة أطول وأقوى. هتتعلم إزاي تمنع الانتكاسات وتبني قوة تديك أفضلية دائمة في كل إنجاز رياضي.',
     },
 
     // Cutting Edge Technology Section

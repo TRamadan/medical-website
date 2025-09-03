@@ -1,36 +1,29 @@
 <section class="overflow-hidden">
   <div class="text-center mb-5 fade-in">
     <div class="our-benefits-badge">
-      <span>Our Elite super stars</span>
+      <span>Our Champions</span>
     </div>
   </div>
   <div class="carousel-container position-relative overflow-hidden p-4 p-md-5 rounded-4" (mouseenter)="onMouseEnter()"
     (mouseleave)="onMouseLeave()">
-    <!-- Main carousel content -->
     <div class="row g-3 g-md-4 justify-content-center">
       @for(superstar of getVisibleSlides(); track superstar.id; let i = $index){
       <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-lg border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
+        <div class="card  border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
           [class.side-slide]="i !== 1 && itemsPerSlide === 3">
-          <!-- Card Image -->
           <div class="position-relative">
             <img [src]="superstar.image"
               [alt]="translationService.translate('superstars.athletes.' + superstar.key + '.name')"
               class="card-img-top object-fit-cover" style="height: 250px" />
-            <div class="position-absolute top-0 end-0 m-3">
-              <div class="bg-warning rounded-circle p-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-star text-white" style="font-size: 0.875rem"></i>
-              </div>
-            </div>
+
           </div>
 
           <!-- Card Body -->
           <div class="card-body p-4">
             <h3 class="card-title h4 fw-bold text-dark mb-2">
-              {{ translationService.translate('superstars.athletes.' + superstar.key + '.name') }}
+              {{ superstar.key }}
             </h3>
-            <p class="text-primary fw-semibold mb-2">{{ translationService.translate('superstars.athletes.' +
-              superstar.key + '.sport') }}</p>
+            <p class="text-primary fw-semibold mb-2">{{superstar.id}}</p>
           </div>
         </div>
       </div>

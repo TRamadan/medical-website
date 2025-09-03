@@ -7,6 +7,8 @@ import { TranslationService } from '../../../../services/translation.service';
   styleUrls: ['./our-team.component.css'],
 })
 export class OurTeamComponent implements OnInit {
+  teamMembersChunk: any[][] = [];
+
   teamMembers: any[] = [
     {
       name: 'Dr. Sarah Johnson',
@@ -54,5 +56,15 @@ export class OurTeamComponent implements OnInit {
   ];
   constructor(public translationService: TranslationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.teamMembersChunk = this.chunkArray(this.teamMembers, 3);
+  }
+
+  chunkArray(arr: any[], size: number): any[][] {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size));
+    }
+    return result;
+  }
 }

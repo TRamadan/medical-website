@@ -11,13 +11,13 @@
 
 .quote-icon {
     font-size: 4rem;
-    color: #fc6b44;
+    color: #131337;
     opacity: 0.2;
 }
 
 .avatar {
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #ffffff;
@@ -28,7 +28,7 @@
 .carousel-control-next {
     width: 40px;
     height: 40px;
-    background-color: #fc6b44;
+    background-color: #131337;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -50,7 +50,7 @@
     width: 12px;
     height: 15px;
     border-radius: 50%;
-    background-color: #fc6b44;
+    background-color: #131337;
     opacity: 0.5;
 }
 

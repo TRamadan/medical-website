@@ -23,14 +23,12 @@
 .tech-icon-bg {
     position: absolute;
     inset: 0;
-    background: rgba(245, 158, 11, 0.2);
     border-radius: 1rem;
-    filter: blur(0.75rem);
     transition: all 0.3s ease;
 }
 
 .tech-icon {
-    color: #fc6c44;
+    color: rgb(19, 19, 55);
     font-size: 2.5rem;
     transition: transform 0.3s ease;
 }
@@ -79,16 +77,16 @@ blockquote.style2 p {
 }
 
 blockquote.blockstyle {
-    border-left: 3px solid #fc6c44;
+    border-left: 3px solid #131337;
     position: relative;
-    background-color: #fc6c4421;
+    background-color: #70f4c340;
     border-radius: 10px;
 }
 
 
 blockquote.blockstyle:before,
 blockquote.blockstyle:after {
-    color: #f0715f;
+    color: #131337;
 }
 
 
@@ -156,7 +154,7 @@ blockquote.blockstyle:after {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, #fc6c44 0%, #fc6c44 100%);
+    background-color: #70f4c3;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -233,6 +231,10 @@ blockquote.blockstyle:after {
     color: #16a34a;
 }
 
+.space-top-contact {
+    margin-top: 90px;
+}
+
 
 
 .card-shadow {
@@ -241,13 +243,14 @@ blockquote.blockstyle:after {
 }
 
 .booking-btn {
-    background-color: rgb(252, 107, 68);
+    background-color: rgb(112 244 195);
     font-weight: 600;
     font-size: 1.125rem;
     padding: 0.75rem 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: all 0.2s ease-in-out;
+    color: #131337;
 }
 
 .text-large {

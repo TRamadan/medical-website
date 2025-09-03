@@ -1,58 +1,53 @@
-<section class="our-team-section">
-    <div class="text-center mb-5 fade-in">
-        <div class="our-team-badge mt-5">
-            <span>{{ translationService.translate('about.team.title') }}</span>
-        </div>
-        <h2 class="main-title">
-            {{ translationService.translate('about.team.subTitle1') }}
-            <span class="gradient-text">{{ translationService.translate('about.team.subTitle2') }}</span>
-        </h2>
-        <p class="main-subtitle">
-            {{ translationService.translate('about.team.subTitle') }}
-        </p>
+<div class="mt-4">
+    <app-title-component subtitle1Key="about.team.title">
+    </app-title-component>
+</div>
+<div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        @for (chunk of advisorDashBoardMembersChunk; track chunk; let idx = $index) {
+        <button type="button" data-bs-target="#teamCarousel" data-bs-interval="50000" [attr.data-bs-slide-to]="idx"
+            [class.active]="idx === 0">
+        </button>
+        }
     </div>
-    <div class="container text-center">
-        <div class="our-team-badge mt-5">
-            <span>{{ translationService.translate('about.team.advisoryboard') }}</span>
-        </div>
-        <div class="row justify-content-center">
-            @for(advisorDashboard of advisorDashBoardMembers; track advisorDashboard;){
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="our-team">
-                    <div class="pic">
-                        <img [src]="advisorDashboard.image">
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        @for (chunk of advisorDashBoardMembersChunk; track chunk; let idx = $index) {
+        <div class="carousel-item" [class.active]="idx === 0">
+            <div class="row justify-content-center">
+                @for (member of chunk; track member) {
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img [src]="member.image" alt="{{ member.name }}">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title">{{ member.name }}</h3>
+                            <span class="post mb-2">{{ member.job }}</span>
+                            <span class="post">{{ member.jobDescription }}</span>
+                            <span class="post">{{ member.description }}</span>
+                        </div>
+                        <ul class="social">
+                            <li><a href="#" target="_blank" class="fa fa-facebook"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-google-plus"></a></li>
+                            <li><a href="#" class="fa fa-linkedin"></a></li>
+                        </ul>
                     </div>
-                    <div class="team-content">
-                        <h3 class="title">{{advisorDashboard.name}}</h3>
-                        <span class="post mb-3">{{advisorDashboard.job}}</span>
-                        <span class="post">{{advisorDashboard.jobDescription}}</span>
-                        <span class="post">{{advisorDashboard.description}}</span>
-                    </div>
-                    <ul class="social">
-                        <li>
-                            <a href="#" target="_blank" class="fa fa-facebook"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="fa fa-twitter"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="fa fa-google-plus"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="fa fa-linkedin"></a>
-                        </li>
-                    </ul>
                 </div>
+                }
             </div>
-            }
         </div>
-
-        <div class="col-md-12 my-3">
-            <button type="button" class="btn btn-primary btn-lg booking-btn border-0">
-                Explore more
-            </button>
-        </div>
+        }
     </div>
 
-
-</section>
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>

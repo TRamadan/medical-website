@@ -1,46 +1,31 @@
-<div class="slider-container">
-  <div class="text-center mb-5 fade-in">
-    <div class="super-stars-badge">
-      <span>{{translationService.translate('superstars.titleElite')}}</span>
-    </div>
-  </div>
-  <div class="slider-wrapper" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()"
-    (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+<section>
+    <div class="custom-carousel">
+        <div class="owl-stage" [style.transform]="'translateX(' + translateX + 'px)'">
+            @for (elit of eliteSuperStarsSignal(); track elit.id) {
+            <div class="item" [class.active]="elit.active"
+                [style.background-image]="'url(' + elit.backgroundImage + ')'" (click)="selectSuperStar(elit.id)">
+                <div class="item-desc">
+                    <h3>{{ elit.name }}</h3>
+                    <p class="fw-bold mb-2">
+                        {{elit.sportEn}}
+                    </p>
+                    <p class="fw-bold mb-2">
+                        {{elit.achievementEn}}
+                    </p>
+                    <p>
+                        {{elit.descriptionEn}}
+                    </p>
 
-    <div class="slider-track" [style.transform]="getSliderTransform()">
-      @for(slide of slides; track slide; let i = $index;){
-      <div class="slider-item">
-
-        <div class=" profile-image">
-          <img [src]="slide.imageUrl">
+                </div>
+            </div>
+            }
         </div>
 
-        <div class="profile-content">
-          <h2 class="profile-name">{{ slide.name }}</h2>
-          <h3 class="profile-title">{{ slide.title }}</h3>
-          <h3 class="profile-achievement">
-            {{slide.achievement }}
-          </h3>
-          <p class="profile-description">{{ slide.description }}</p>
+        <div class="owl-dots">
+            @for (elite of eliteSuperStarsSignal(); track elite.id; let i = $index) {
+            <span class="owl-dot" [class.active]="currentIndex === i" (click)="goToSlide(i)">
+            </span>
+            }
         </div>
-      </div>
-      }
     </div>
-
-    <!-- Navigation Buttons -->
-    <div class="nav-btn prev-btn" (click)="prevSlide()">
-      <i class="fas fa-chevron-left"></i>
-    </div>
-    <div class="nav-btn next-btn" (click)="nextSlide()">
-      <i class="fas fa-chevron-right"></i>
-    </div>
-
-    <!-- Indicators -->
-    <div class="indicators">
-      @for(slide of slides; let i = $index; track slide;){
-      <div class="indicator" [class.active]="i === currentSlide" (click)="goToSlide(i)">
-      </div>
-      }
-    </div>
-  </div>
-</div>
+</section>
