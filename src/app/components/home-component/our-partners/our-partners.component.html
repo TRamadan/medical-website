@@ -1,12 +1,12 @@
-<div class="container-fluid py-5">
+<div class="container-fluid py-3">
   <app-title-component subtitle1Key="partners.badge" titleKey="partners.title.part1" subtitle2Key="partners.title.part2"
     subtitleKey="partners.subtitle"></app-title-component>
   <div class="marquee-wrapper">
     <div class="marquee-container">
       <div class="marquee-content" [style.animation-duration]="animationDuration + 's'">
-        @for(partner of defaultLogos; track partner.id; let i = $index){
+        @for(partner of partnersSignal(); track partner.id; let i = $index){
         <div class="logo-container">
-          <img [src]="partner.logo" class="logo-img" />
+          <img [src]="imgUrl + partner.logo" class="logo-img" alt="partners-image" />
         </div>
         }
       </div>

@@ -3,7 +3,8 @@
         <div class="owl-stage" [style.transform]="'translateX(' + translateX + 'px)'">
             @for (elit of eliteSuperStarsSignal(); track elit.id) {
             <div class="item" [class.active]="elit.active"
-                [style.background-image]="'url(' + elit.backgroundImage + ')'" (click)="selectSuperStar(elit.id)">
+                [style.background-image]="'url(' + (elit.backgroundImage ? elit.backgroundImage : 'https://placehold.co/600x400') + ')'"
+                (click)="selectSuperStar(elit.id)">
                 <div class="item-desc">
                     <h3>{{ elit.name }}</h3>
                     <p class="fw-bold mb-2">

@@ -1,9 +1,11 @@
-<section class="success-story-section">
+<section class="py-3">
   <div class="container">
     <!-- Header -->
     <app-title-component subtitle1Key="success.badge" titleKey="success.title.part1" subtitle2Key="success.title.part2"
       subtitleKey="success.subtitle"></app-title-component>
-    <app-success-videos></app-success-videos>
+    @defer (when videos.length > 0) {
+    <app-success-videos [videos]="videos"></app-success-videos>
+    }
   </div>
-  <app-customers-success-stories></app-customers-success-stories>
+  <app-customers-success-stories [successStories]="successStories"></app-customers-success-stories>
 </section>

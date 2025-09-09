@@ -25,9 +25,9 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2 class="movie-title">{{ selectedMovie.titleEn }}</h2>
-                        <p class="release-date">{{ selectedMovie.date }}</p>
-                        <p class="movie-description" *ngIf="selectedMovie.descriptionEn">{{ selectedMovie.descriptionEn
+                        <h2 class="movie-title">{{ selectedVideo.titleEn }}</h2>
+                        <!-- <p class="release-date">{{ selectedMovie.date }}</p> -->
+                        <p class="movie-description" *ngIf="selectedVideo.descriptionEn">{{ selectedVideo.descriptionEn
                             }}
                         </p>
                     </div>
@@ -38,15 +38,14 @@
             <div class="col-lg-4 side-videos-content overflow-y-scroll">
                 <div class="row g-3">
                     <!-- Featured Side Movies -->
-                    <div class="col-6 col-md-6 col-lg-12" *ngFor="let video of videoSuccessStories; let i = index">
-                        <div class="side-card animate-on-scroll" (click)="selectContent(video.id)"
-                            [class.selected]="selectedMovie.id === video.id">
+                    @for(video of videos; track video){
+                    <div class="col-6 col-md-6 col-lg-12">
+                        <div class="side-card animate-on-scroll" (click)="selectContent(video.id)">
                             <div class="side-card-img" [ngStyle]="getThumbnailStyle(video)">
                                 <div class="side-card-overlay">
                                     <div class="side-card-content">
                                         <div class="side-card-title">{{ video.titleEn }}</div>
-                                        <div class="side-card-meta"> {{ video?.date?.split('Release Date: ')?.[1] ||
-                                            'N/A' }}</div>
+
                                     </div>
                                 </div>
                                 <div class="play-overlay">
@@ -55,6 +54,7 @@
                             </div>
                         </div>
                     </div>
+                    }
                 </div>
             </div>
         </div>

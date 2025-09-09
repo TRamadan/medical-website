@@ -47,6 +47,7 @@ export class HomeComponentComponent implements OnInit {
   isSmallScreen: boolean = false;
   showTooltip: boolean = false;
   isInitialized = false;
+
   constructor(
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object

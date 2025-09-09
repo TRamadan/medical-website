@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { map, Subscription } from 'rxjs';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { CuttingEdgeTechnologyService } from './services/cuttingEdgeTechnology.service';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { MethodologyService } from '../methodology-section/services/methodology.service';
 
 @Component({
   selector: 'app-cutting-edge-technology',
@@ -14,23 +14,31 @@ import { CuttingEdgeTechnologyService } from './services/cuttingEdgeTechnology.s
   imports: [TitleComponentComponent],
 })
 export class CuttingEdgeTechnologyComponent implements OnInit {
-  private languageSubscription?: Subscription;
-
+  currentLang: string = '';
   CuttingEdgeTechnologySectionSignal = toSignal(
-    this._ourCuttingEdgeTechnology.getAllCuttingEdgeTechnology(),
-    {
-      initialValue: [],
-    }
+    this._ourMethodology
+      .getAllMethodologies()
+      .pipe(
+        map((res: any[]) =>
+          res.filter((item) => item.isCuttingEdgeTechnology == true)
+        )
+      ),
+    { initialValue: [] }
   );
 
   constructor(
     public translationService: TranslationService,
     public languageService: LanguageService,
-    private _ourCuttingEdgeTechnology: CuttingEdgeTechnologyService
+    private _ourMethodology: MethodologyService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit() {
-    this.languageSubscription =
-      this.languageService.currentLanguage$.subscribe();
+    this.languageService.currentLanguage$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((lang) => {
+        debugger;
+        this.currentLang = lang;
+      });
   }
 }

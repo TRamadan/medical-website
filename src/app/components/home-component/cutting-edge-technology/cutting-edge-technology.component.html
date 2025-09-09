@@ -1,14 +1,14 @@
-<section class="technology-section">
+<section class="technology-section py-3">
   <div class="container content-wrapper">
     <div class="row justify-content-center">
       <div class="col-12">
         <!-- Header -->
-        <app-title-component subtitle1Key="benefits.badge" titleKey="benefits.title.part1"
-          subtitle2Key="benefits.title.part2" subtitleKey="benefits.subtitle"></app-title-component>
-
+        <app-title-component subtitle1Key="technology.badge" titleKey="technology.title.part1"
+          subtitle2Key="technology.title.part2" subtitleKey="technology.subtitle"></app-title-component>
 
         <!-- Technology Grid -->
         <div class="row g-4 mb-5">
+          @for(cuttingEdgeTechnology of CuttingEdgeTechnologySectionSignal(); track cuttingEdgeTechnology){
           <div class="col-lg-4 col-md-6">
             <div class="tech-card">
               <div class="tech-icon-wrapper">
@@ -17,93 +17,16 @@
                   <i class="fas fa-brain tech-icon"></i>
                 </div>
               </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.ai.title') }}</h3>
+              <h3 class="tech-title">{{ currentLang == 'en' ? cuttingEdgeTechnology.titleEn :
+                cuttingEdgeTechnology.title }}</h3>
               <p class="tech-description">
-                {{ translationService.translate('technology.cards.ai.description') }}
+                {{currentLang == 'en' ? cuttingEdgeTechnology.descriptionEn : cuttingEdgeTechnology.description }}
               </p>
               <div class="tech-accent"></div>
             </div>
           </div>
+          }
 
-          <div class="col-lg-4 col-md-6">
-            <div class="tech-card">
-              <div class="tech-icon-wrapper">
-                <div class="tech-icon-bg"></div>
-                <div class="tech-icon-container">
-                  <i class="fas fa-heartbeat tech-icon"></i>
-                </div>
-              </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.biometric.title') }}</h3>
-              <p class="tech-description">
-                {{ translationService.translate('technology.cards.biometric.description') }}
-              </p>
-              <div class="tech-accent"></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="tech-card">
-              <div class="tech-icon-wrapper">
-                <div class="tech-icon-bg"></div>
-                <div class="tech-icon-container">
-                  <i class="fas fa-wave-square tech-icon"></i>
-                </div>
-              </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.cryotherapy.title') }}</h3>
-              <p class="tech-description">
-                {{ translationService.translate('technology.cards.cryotherapy.description') }}
-              </p>
-              <div class="tech-accent"></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="tech-card">
-              <div class="tech-icon-wrapper">
-                <div class="tech-icon-bg"></div>
-                <div class="tech-icon-container">
-                  <i class="fas fa-bolt tech-icon"></i>
-                </div>
-              </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.electrical.title') }}</h3>
-              <p class="tech-description">
-                {{ translationService.translate('technology.cards.electrical.description') }}
-              </p>
-              <div class="tech-accent"></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="tech-card">
-              <div class="tech-icon-wrapper">
-                <div class="tech-icon-bg"></div>
-                <div class="tech-icon-container">
-                  <i class="fas fa-compress-arrows-alt tech-icon"></i>
-                </div>
-              </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.compression.title') }}</h3>
-              <p class="tech-description">
-                {{ translationService.translate('technology.cards.compression.description') }}
-              </p>
-              <div class="tech-accent"></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="tech-card">
-              <div class="tech-icon-wrapper">
-                <div class="tech-icon-bg"></div>
-                <div class="tech-icon-container">
-                  <i class="fas fa-mobile-alt tech-icon"></i>
-                </div>
-              </div>
-              <h3 class="tech-title">{{ translationService.translate('technology.cards.mobile.title') }}</h3>
-              <p class="tech-description">
-                {{ translationService.translate('technology.cards.mobile.description') }}
-              </p>
-              <div class="tech-accent"></div>
-            </div>
-          </div>
         </div>
 
       </div>

@@ -124,9 +124,7 @@ export class VipSuperStarsComponent implements OnInit {
 
         this.eliteSuperStarsSignal.set(mapped);
       },
-      error: (error: any) => {
-        // handle error here
-      },
+      error: (error: any) => {},
     });
   }
 }

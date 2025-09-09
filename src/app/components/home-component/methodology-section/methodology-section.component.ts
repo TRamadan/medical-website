@@ -1,6 +1,6 @@
 import { Methodology } from './models/methodology';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
@@ -21,9 +21,16 @@ export class MethodologySectionComponent implements OnInit {
 
   public readonly imgurl = environment.imgUrl;
   public currentLanguage: string = this.languageService.getCurrentLanguage();
-  MethodologySignal = toSignal(this._ourMethodology.getAllMethodologies(), {
-    initialValue: [],
-  });
+  MethodologySignal = toSignal(
+    this._ourMethodology
+      .getAllMethodologies()
+      .pipe(
+        map((res: any[]) =>
+          res.filter((item) => item.isCuttingEdgeTechnology == false)
+        )
+      ),
+    { initialValue: [] }
+  );
 
   constructor(
     public translationService: TranslationService,
