@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 export type Language = 'en' | 'ar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
   private currentLanguageSubject = new BehaviorSubject<Language>('en');
@@ -27,7 +27,7 @@ export class LanguageService {
   setLanguage(language: Language): void {
     this.currentLanguageSubject.next(language);
     localStorage.setItem('preferredLanguage', language);
-    
+
     // Update document direction for RTL support
     if (language === 'ar') {
       document.documentElement.dir = 'rtl';
@@ -47,4 +47,4 @@ export class LanguageService {
   isRTL(): boolean {
     return this.getCurrentLanguage() === 'ar';
   }
-} 
+}

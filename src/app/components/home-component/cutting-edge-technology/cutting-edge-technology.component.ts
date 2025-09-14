@@ -14,7 +14,10 @@ import { MethodologyService } from '../methodology-section/services/methodology.
   imports: [TitleComponentComponent],
 })
 export class CuttingEdgeTechnologyComponent implements OnInit {
-  currentLang: string = '';
+  currentLang: 'en' | 'ar' = 'en';
+
+  languageSubscription?: Subscription;
+
   CuttingEdgeTechnologySectionSignal = toSignal(
     this._ourMethodology
       .getAllMethodologies()
@@ -29,16 +32,14 @@ export class CuttingEdgeTechnologyComponent implements OnInit {
   constructor(
     public translationService: TranslationService,
     public languageService: LanguageService,
-    private _ourMethodology: MethodologyService,
-    private destroyRef: DestroyRef
+    private _ourMethodology: MethodologyService
   ) {}
 
   ngOnInit() {
-    this.languageService.currentLanguage$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((lang) => {
-        debugger;
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang: 'en' | 'ar') => {
         this.currentLang = lang;
-      });
+      }
+    );
   }
 }

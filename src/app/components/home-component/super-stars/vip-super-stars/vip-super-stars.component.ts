@@ -1,22 +1,17 @@
-import {
-  Component,
-  HostListener,
-  OnInit,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { TranslationService } from '../../../../services/translation.service';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { SuperstarsService } from '../services/superstars.service';
 import { SuperstarAthelete } from '../models/superstars';
 import { environment } from '../../../../../environments/environment.development';
+import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
+import { LanguageService } from '../../../../services/language.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vip-super-stars',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [CarouselModule, TitleComponentComponent],
   templateUrl: './vip-super-stars.component.html',
   styleUrls: ['./vip-super-stars.component.css'],
 })
@@ -31,8 +26,12 @@ export class VipSuperStarsComponent implements OnInit {
     SuperstarAthelete[]
   >([]);
 
+  currentLang: 'en' | 'ar' = 'en';
+  private languageSubscription?: Subscription;
+
   constructor(
     public translationService: TranslationService,
+    private _languageService: LanguageService,
     private _ourSuperStars: SuperstarsService
   ) {}
 
@@ -40,6 +39,11 @@ export class VipSuperStarsComponent implements OnInit {
     this.startAutoSlide();
     this.updateTranslateX();
     this.getSuperStarAthlete();
+
+    this.languageSubscription =
+      this._languageService.currentLanguage$.subscribe((lang: 'en' | 'ar') => {
+        this.currentLang = lang;
+      });
   }
 
   ngOnDestroy(): void {
@@ -114,13 +118,13 @@ export class VipSuperStarsComponent implements OnInit {
   getSuperStarAthlete(): void {
     this._ourSuperStars.getAllSuperStars().subscribe({
       next: (res: SuperstarAthelete[]) => {
-        const mapped = res.map(
-          (eliteSuperStar: SuperstarAthelete, index: number) => ({
+        const mapped = res
+          .map((eliteSuperStar: SuperstarAthelete, index: number) => ({
             ...eliteSuperStar,
             backgroundImage: this.urlForImg + eliteSuperStar.image,
             active: index === 0,
-          })
-        );
+          }))
+          .filter((athelete: any) => athelete.isElite === true);
 
         this.eliteSuperStarsSignal.set(mapped);
       },

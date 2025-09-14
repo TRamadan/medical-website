@@ -4,6 +4,33 @@
     background-color: #f5f5f5;
 }
 
+.tech-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-description {
+    flex-grow: 1;
+}
+
+.tech-card-footer {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.bg-primary, .btn-primary {
+    background-color: rgb(112 244 195) !important;
+    border: none;
+    color: #131337;
+}
+
+.bg-primary, .btn-primary {
+    background-color: rgb(112 244 195) !important;
+    border: none;
+    color: #131337;
+}
+
 .technology-section::before {
     content: '';
     position: absolute;

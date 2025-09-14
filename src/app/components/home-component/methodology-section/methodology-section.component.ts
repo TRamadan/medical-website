@@ -17,10 +17,11 @@ import { environment } from '../../../../environments/environment.development';
   imports: [CommonModule, TitleComponentComponent],
 })
 export class MethodologySectionComponent implements OnInit {
-  private languageSubscription?: Subscription;
+  currentLang: 'en' | 'ar' = 'en';
+
+  languageSubscription?: Subscription;
 
   public readonly imgurl = environment.imgUrl;
-  public currentLanguage: string = this.languageService.getCurrentLanguage();
   MethodologySignal = toSignal(
     this._ourMethodology
       .getAllMethodologies()
@@ -39,8 +40,10 @@ export class MethodologySectionComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.languageSubscription =
-      this.languageService.currentLanguage$.subscribe();
-    // console.log(this.currentLanguage);
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
+      }
+    );
   }
 }

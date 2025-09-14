@@ -4,7 +4,7 @@
             <!-- Main Featured Movie -->
             <div class="col-lg-8">
                 <div class="main-card animate-on-scroll">
-                    <div class="video-container">
+                    <div class="video-container video-section-overlay">
                         <!-- YouTube Video Player -->
                         <iframe *ngIf="isPlaying && safeVideoUrl" [src]="safeVideoUrl" class="youtube-player"
                             frameborder="0"
@@ -25,10 +25,12 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <h2 class="movie-title">{{ selectedVideo.titleEn }}</h2>
+                        <h2 class="movie-title">{{ currentLang == 'en' ? selectedVideo.titleEn : selectedVideo.titleAr}}
+                        </h2>
                         <!-- <p class="release-date">{{ selectedMovie.date }}</p> -->
-                        <p class="movie-description" *ngIf="selectedVideo.descriptionEn">{{ selectedVideo.descriptionEn
-                            }}
+                        <p class="movie-description" *ngIf="selectedVideo.descriptionEn">{{ currentLang == 'en' ?
+                            selectedVideo.descriptionEn
+                            : selectedVideo.descriptionAr }}
                         </p>
                     </div>
                 </div>
@@ -41,11 +43,11 @@
                     @for(video of videos; track video){
                     <div class="col-6 col-md-6 col-lg-12">
                         <div class="side-card animate-on-scroll" (click)="selectContent(video.id)">
-                            <div class="side-card-img" [ngStyle]="getThumbnailStyle(video)">
+                            <div class="side-card-img video-section-overlay video-container">
                                 <div class="side-card-overlay">
                                     <div class="side-card-content">
-                                        <div class="side-card-title">{{ video.titleEn }}</div>
-
+                                        <div class="side-card-title">{{ currentLang == 'en' ? video.titleEn :
+                                            video.titleAr }}</div>
                                     </div>
                                 </div>
                                 <div class="play-overlay">

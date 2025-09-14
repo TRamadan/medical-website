@@ -1,5 +1,7 @@
 <section>
-    <div class="custom-carousel">
+    <app-title-component subtitle1Key="superstars.titleElite"></app-title-component>
+
+    <div class="custom-carousel mb-5">
         <div class="owl-stage" [style.transform]="'translateX(' + translateX + 'px)'">
             @for (elit of eliteSuperStarsSignal(); track elit.id) {
             <div class="item" [class.active]="elit.active"
@@ -8,13 +10,13 @@
                 <div class="item-desc">
                     <h3>{{ elit.name }}</h3>
                     <p class="fw-bold mb-2">
-                        {{elit.sportEn}}
+                        {{currentLang == 'en' ? elit.sportEn : elit.sport}}
                     </p>
                     <p class="fw-bold mb-2">
-                        {{elit.achievementEn}}
+                        {{currentLang == 'en'? elit.achievementEn : elit.achievement}}
                     </p>
                     <p>
-                        {{elit.descriptionEn}}
+                        {{currentLang == 'en' ? elit.descriptionEn : elit.description}}
                     </p>
 
                 </div>

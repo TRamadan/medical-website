@@ -24,7 +24,11 @@ import { SuccessStoriesService } from '../services/successStories.service';
 export class SuccessVideosComponent implements OnInit, OnChanges {
   @Input() videos: any[] = [];
 
+  currentLang: 'en' | 'ar' = 'en';
+
   selectedVideo: SuccessStories = {};
+
+  languageSubscription?: Subscription;
 
   isPlaying = false;
   safeVideoUrl: SafeResourceUrl | null = null;
@@ -35,10 +39,17 @@ export class SuccessVideosComponent implements OnInit, OnChanges {
     }, 100);
   }
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    public languageService: LanguageService
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['videos'] && this.videos.length > 0) {
       this.selectedVideo = this.videos[0];
+      this.languageSubscription =
+        this.languageService.currentLanguage$.subscribe((lang: 'en' | 'ar') => {
+          this.currentLang = lang;
+        });
     }
   }
 

@@ -1,7 +1,17 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { LanguageService } from '../../../../services/language.service';
 import { TranslationService } from '../../../../services/translation.service';
 import { Subscription } from 'rxjs';
+import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
+import { SuperstarAthelete } from '../models/superstars';
+import { SuperstarsService } from '../services/superstars.service';
+import { environment } from '../../../../../environments/environment.development';
 export interface Superstar {
   id: number;
   key: string;
@@ -12,42 +22,17 @@ export interface Superstar {
   standalone: true,
   templateUrl: './normal-super-star.component.html',
   styleUrls: ['./normal-super-star.component.css'],
+  imports: [TitleComponentComponent],
 })
 export class NormalSuperStarComponent implements OnInit {
   private languageSubscription?: Subscription;
+  currentLang: 'en' | 'ar' = 'en';
 
-  superstars: Superstar[] = [
-    {
-      id: 1,
-      key: 'messi',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 2,
-      key: 'serena',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 3,
-      key: 'lebron',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 4,
-      key: 'usain',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-    {
-      id: 5,
-      key: 'simone',
-      image:
-        'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop',
-    },
-  ];
+  public readonly imgUrl = environment.imgUrl;
+
+  normalSuperStarsSignal: WritableSignal<SuperstarAthelete[]> = signal<
+    SuperstarAthelete[]
+  >([]);
 
   currentSlide = 0;
   isHovered = false;
@@ -55,17 +40,32 @@ export class NormalSuperStarComponent implements OnInit {
   itemsPerSlide = 3;
   constructor(
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private _ourSuperStars: SuperstarsService
   ) {}
 
   ngOnInit() {
     this.updateItemsPerSlide();
     this.startAutoSlide();
+    this.getSuperStarAthlete();
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
-      () => {
-        // Component will re-render automatically
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
       }
     );
+  }
+
+  getSuperStarAthlete(): void {
+    this._ourSuperStars.getAllSuperStars().subscribe({
+      next: (res: SuperstarAthelete[]) => {
+        const mapped = res.filter(
+          (athelete: any) => athelete.isElite === false
+        );
+        console.log(mapped);
+        this.normalSuperStarsSignal.set(mapped);
+      },
+      error: (error: any) => {},
+    });
   }
 
   ngOnDestroy(): void {
@@ -95,7 +95,7 @@ export class NormalSuperStarComponent implements OnInit {
     if (!this.isHovered) {
       this.intervalId = window.setInterval(() => {
         this.nextSlide();
-      }, 3000);
+      }, 4000);
     }
   }
 
@@ -117,28 +117,34 @@ export class NormalSuperStarComponent implements OnInit {
   }
 
   nextSlide(): void {
-    this.currentSlide = (this.currentSlide + 1) % this.superstars.length;
+    let normalSuperStars = this.normalSuperStarsSignal();
+    this.currentSlide = (this.currentSlide + 1) % normalSuperStars.length;
   }
 
   prevSlide(): void {
+    let normalSuperStars = this.normalSuperStarsSignal();
+
     this.currentSlide =
-      (this.currentSlide - 1 + this.superstars.length) % this.superstars.length;
+      (this.currentSlide - 1 + normalSuperStars.length) %
+      normalSuperStars.length;
   }
 
   goToSlide(index: number): void {
     this.currentSlide = index;
   }
 
-  getVisibleSlides(): Superstar[] {
-    const slides: Superstar[] = [];
+  getVisibleSlides(): SuperstarAthelete[] {
+    const slides: SuperstarAthelete[] = [];
+    const superstars = this.normalSuperStarsSignal();
     for (let i = 0; i < this.itemsPerSlide; i++) {
-      const index = (this.currentSlide + i) % this.superstars.length;
-      slides.push(this.superstars[index]);
+      const index = (this.currentSlide + i) % superstars.length;
+      slides.push(superstars[index]);
     }
     return slides;
   }
 
-  getSlideIndex(slide: Superstar, position: number): number {
-    return (this.currentSlide + position) % this.superstars.length;
+  getSlideIndex(slide: SuperstarAthelete, position: number): number {
+    const superstars = this.normalSuperStarsSignal();
+    return (this.currentSlide + position) % superstars.length;
   }
 }

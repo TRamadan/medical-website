@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { Partners } from './models/partners';
@@ -11,11 +12,18 @@ import { environment } from '../../../../environments/environment.development';
 @Component({
   selector: 'app-our-partners',
   standalone: true,
-  imports: [CardModule, TitleComponentComponent],
+  imports: [CommonModule, CardModule, TitleComponentComponent],
   templateUrl: './our-partners.component.html',
   styleUrls: ['./our-partners.component.responsive.scss'],
 })
 export class OurPartnersComponent implements OnInit {
+  isVertical = false;
+  isReverse = false;
+
+  toggleDirection() {
+    this.isVertical = !this.isVertical;
+    this.isReverse = !this.isReverse;
+  }
   @Input() logos: Partners[] = [];
   public readonly imgUrl = environment.imgUrl;
   @Input() animationDuration: number = 30;

@@ -6,19 +6,24 @@
   <div class="row g-5 mt-3 align-items-center" [ngClass]="{ 'flex-md-row-reverse': i % 2 === 1 }">
     <div class="col-12 col-md-3">
       <div class="rounded-4 overflow-hidden">
-        <img [src]="imgurl + item.icon" [alt]="'methodology-img'+i" class="img-fluid w-100 h-100 object-fit-cover">
+        <img [src]="imgurl + item.icon" [alt]="'methodology-img'+i" class="img-fluid w-100 h-100 object-fit-cover"
+          loading="lazy">
       </div>
     </div>
 
     <div class="col-12 col-md-9">
       <div class="bg-danger-subtle rounded-4 p-4 p-lg-5">
-        <h3 class="text-capitalize fw-semibold text-primary">{{currentLanguage == 'ar' ? item.title : item.titleEn}}
+        <h3 class="text-capitalize fw-semibold text-primary">{{currentLang == 'en' ? item.titleEn : item.title}}
         </h3>
-        <p class="text-primary-75 description text-muted"> {{currentLanguage == 'ar' ? item.description :
-          item.descriptionEn}}
+        <p class="text-primary-75 description text-muted"> {{currentLang == 'en' ? item.descriptionEn :
+          item.description}}
         </p>
+        <div class="w-100 text-end">
+          <a href="#" class="btn btn-primary">{{translationService.translate('explore.btn')}}</a>
+        </div>
       </div>
     </div>
+
 
   </div>
   }

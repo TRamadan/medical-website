@@ -1,29 +1,30 @@
 <section class="overflow-hidden">
-  <div class="text-center mb-5 fade-in">
-    <div class="our-benefits-badge">
-      <span>Our Champions</span>
-    </div>
-  </div>
-  <div class="carousel-container position-relative overflow-hidden p-4 p-md-5 rounded-4" (mouseenter)="onMouseEnter()"
+  <app-title-component subtitle1Key="superstars.champions"></app-title-component>
+
+  <div class="carousel-container position-relative overflow-hidden rounded-4" (mouseenter)="onMouseEnter()"
     (mouseleave)="onMouseLeave()">
     <div class="row g-3 g-md-4 justify-content-center">
-      @for(superstar of getVisibleSlides(); track superstar.id; let i = $index){
+      @for(superstar of getVisibleSlides(); track superstar?.id; let i = $index){
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card  border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
           [class.side-slide]="i !== 1 && itemsPerSlide === 3">
           <div class="position-relative">
-            <img [src]="superstar.image"
-              [alt]="translationService.translate('superstars.athletes.' + superstar.key + '.name')"
-              class="card-img-top object-fit-cover" style="height: 250px" />
-
+            <img [src]="imgUrl + superstar?.image" alt="champions-imgs" class="card-img-top object-fit-cover"
+              style="height: 250px" />
           </div>
 
           <!-- Card Body -->
           <div class="card-body p-4">
-            <h3 class="card-title h4 fw-bold text-dark mb-2">
-              {{ superstar.key }}
+            <h3 class="card-title h4 fw-bold mb-2">
+              {{ superstar?.name}}
             </h3>
-            <p class="text-primary fw-semibold mb-2">{{superstar.id}}</p>
+            <p class="m-0 athelete-sport">
+              {{currentLang == 'en' ? superstar?.sportEn : superstar?.sport}}
+            </p>
+            <p class="athelete-achievement">
+              {{currentLang == 'en' ? superstar?.achievementEn : superstar?.achievement}}
+            </p>
+            <p class="fw-semibold mb-2">{{currentLang == 'en' ?superstar?.descriptionEn : superstar?.description}}</p>
           </div>
         </div>
       </div>
@@ -44,8 +45,8 @@
     </button>
 
     <!-- Progress Indicators -->
-    <div class="d-flex justify-content-center mt-5 gap-2">
-      @for(superstar of superstars; track superstar.id; let i = $index){
+    <div class="d-flex justify-content-center m-3 gap-2">
+      @for(superstar of normalSuperStarsSignal(); track superstar.id; let i = $index){
       <button type="button" class="btn p-0 indicator-btn" [class.active]="i === currentSlide" (click)="goToSlide(i)"
         [attr.aria-label]="'Go to slide ' + (i + 1)"></button>
       }

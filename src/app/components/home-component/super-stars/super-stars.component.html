@@ -1,20 +1,9 @@
-<section class="super-stars-section" id="superstars">
-  <div class="container content-wrapper">
+<section class="super-stars-section py-3" id="superstars">
+  <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
-        <div class="text-center mb-5 fade-in">
-          <div class="super-stars-badge">
-            <span>{{translationService.translate('superstars.title')}}</span>
-          </div>
-          <h2 class="main-title">
-            {{translationService.translate('superstars.sectionTitle.part1')}}
-            <span class="gradient-text">{{translationService.translate('superstars.sectionTitle.part2')}}</span>
-          </h2>
-          <p class="main-subtitle">
-            {{translationService.translate('superstars.sectionSubtitle')}}
-
-          </p>
-        </div>
+        <app-title-component subtitle1Key="superstars.title" titleKey="superstars.sectionTitle.part1"
+          subtitle2Key="superstars.sectionTitle.part2" subtitleKey="superstars.sectionSubtitle"></app-title-component>
 
         <app-vip-super-stars></app-vip-super-stars>
         <app-normal-super-star></app-normal-super-star>

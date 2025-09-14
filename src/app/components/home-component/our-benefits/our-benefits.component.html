@@ -19,13 +19,13 @@
               <div class="p-3 rounded bg-primary text-white me-3 d-flex align-items-center justify-content-center">
                 <i class="fas fa-bolt fa-lg"></i>
               </div>
-              <h3 class="h5 fw-semibold mb-0">{{benefit.titleEn}}</h3>
+              <h3 class="h5 fw-semibold mb-0">{{currentLang == 'en' ? benefit.titleEn : benefit.title}}</h3>
             </div>
             <p class="mb-4">
-              {{benefit.descriptionEn}}
+              {{currentLang == 'en' ? benefit.descriptionEn : benefit.description}}
             </p>
             <div class="w-50 m-auto">
-              <a href="#" class="btn btn-primary w-100 mt-auto">Explore Now</a>
+              <a href="#" class="btn btn-primary w-100 mt-auto">{{translationService.translate('explore.btn')}}</a>
             </div>
           </div>
         </div>

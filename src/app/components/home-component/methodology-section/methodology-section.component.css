@@ -10,5 +10,10 @@
 
 .description {
     line-height: 30px;
+}
 
+.bg-primary, .btn-primary {
+    background-color: rgb(112 244 195) !important;
+    border: none;
+    color: #131337;
 }

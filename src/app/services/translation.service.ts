@@ -13,6 +13,7 @@ export interface TranslationMap {
 })
 export class TranslationService {
   private translations: TranslationMap = {
+    'explore.btn': { en: 'Explore Now', ar: 'استكشف المزيد' },
     // Navigation items
     'nav.home': { en: 'Home', ar: 'الرئيسية' },
     'nav.about': { en: 'About Us', ar: 'من نحن' },
@@ -180,10 +181,7 @@ export class TranslationService {
       en: 'your.email@example.com',
       ar: 'بريدك.الإلكتروني@مثال.com',
     },
-    'contact.form.phonePlaceholder': {
-      en: '+1 (555) 123-4567',
-      ar: '+1 (555) 123-4567',
-    },
+
     'contact.form.messagePlaceholder': {
       en: 'Please describe your inquiry in detail...',
       ar: 'يرجى وصف استفسارك بالتفصيل...',
@@ -651,6 +649,10 @@ export class TranslationService {
       en: 'Our Elite Super Stars',
       ar: 'نجومنا النخبة',
     },
+    'superstars.champions': {
+      en: 'Our Champions super stars',
+      ar: 'ابطالنا من النجوم',
+    },
 
     // Methodology Section
     'methodology.badge': { en: 'Methodology', ar: 'المنهجية' },
@@ -687,30 +689,6 @@ export class TranslationService {
       en: 'Experience the difference with our comprehensive approach to athletic recovery and performance enhancement.',
       ar: 'اختبر الفرق مع نهجنا الشامل للتعافي الرياضي وتعزيز الأداء.',
     },
-    'benefits.items.personalized': {
-      en: 'Personalized recovery plans tailored to your specific athletic needs',
-      ar: 'خطط تعافٍ مخصصة وفقًا لاحتياجاتك الرياضية المحددة',
-    },
-    'benefits.items.stateOfArt': {
-      en: 'State-of-the-art recovery technology and equipment',
-      ar: 'تقنيات ومعدات تعافٍ متطورة',
-    },
-    'benefits.items.expertGuidance': {
-      en: 'Expert guidance from certified sports medicine professionals',
-      ar: 'إرشاد خبراء من مختصين معتمدين في الطب الرياضي',
-    },
-    'benefits.items.provenResults': {
-      en: 'Proven results with faster recovery times and improved performance',
-      ar: 'نتائج مثبتة مع أوقات تعافٍ أسرع وأداء محسّن',
-    },
-    'benefits.items.comprehensivePrograms': {
-      en: 'Comprehensive injury prevention and rehabilitation programs',
-      ar: 'برامج شاملة للوقاية من الإصابات وإعادة التأهيل',
-    },
-    'benefits.items.flexibleScheduling': {
-      en: 'Flexible scheduling to fit your training and competition calendar',
-      ar: 'جداول مرنة لتناسب تدريبك ومواعيد المنافسات',
-    },
 
     // Our Partners Section
     'partners.badge': { en: 'Our Partners', ar: 'شركاؤنا' },
@@ -728,52 +706,6 @@ export class TranslationService {
     'success.subtitle': {
       en: 'Explore how our evidence-based tools support patients, therapists, and clinics in achieving measurable recovery milestones',
       ar: 'استكشف كيف تدعم أدواتنا المبنية على الأدلة المرضى والمعالجين والعيادات لتحقيق معالم تعافٍ قابلة للقياس',
-    },
-    'success.videos.title': { en: 'Success Title', ar: 'عنوان النجاح' },
-    'success.videos.company': { en: 'Company Name', ar: 'اسم الشركة' },
-    'success.videos.testimonial': {
-      en: 'This solution transformed the way we work. Incredible results!',
-      ar: 'هذا الحل غيّر طريقة عملنا. نتائج مذهلة!',
-    },
-    'success.customers.title': {
-      en: 'What Our Customers Say',
-      ar: 'ماذا يقول عملاؤنا',
-    },
-    'success.customers.testimonial1.name': {
-      en: 'Emma Thompson',
-      ar: 'إيما تومسون',
-    },
-    'success.customers.testimonial1.role': {
-      en: 'Marketing Manager',
-      ar: 'مديرة تسويق',
-    },
-    'success.customers.testimonial1.text': {
-      en: "This product has completely transformed our workflow. It's intuitive, powerful, and a joy to use every day. I can't imagine running our business without it now.",
-      ar: 'لقد غيّر هذا المنتج سير عملنا بالكامل. إنه بديهي وقوي وممتع في الاستخدام يوميًا. لا أستطيع تخيل إدارة أعمالنا بدونه الآن.',
-    },
-    'success.customers.testimonial2.name': {
-      en: 'Michael Chen',
-      ar: 'مايكل تشين',
-    },
-    'success.customers.testimonial2.role': {
-      en: 'Software Engineer',
-      ar: 'مهندس برمجيات',
-    },
-    'success.customers.testimonial2.text': {
-      en: 'The level of customer support is outstanding. The team is quick to respond and always goes above and beyond to help.',
-      ar: 'مستوى دعم العملاء ممتاز. الفريق سريع الاستجابة ودائمًا ما يبذل جهدًا إضافيًا للمساعدة.',
-    },
-    'success.customers.testimonial3.name': {
-      en: 'Sophia Rodriguez',
-      ar: 'صوفيا رودريغيز',
-    },
-    'success.customers.testimonial3.role': {
-      en: 'Small Business Owner',
-      ar: 'صاحبة عمل صغير',
-    },
-    'success.customers.testimonial3.text': {
-      en: 'As a small business owner, investing in this software paid off many times over. It has been a game-changer for our efficiency.',
-      ar: 'بصفتي صاحبة عمل صغير، كان الاستثمار في هذا البرنامج مجديًا عدة مرات. لقد كان نقطة تحول في كفاءتنا.',
     },
 
     // Brands Section
