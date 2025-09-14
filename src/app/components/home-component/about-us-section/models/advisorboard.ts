@@ -7,4 +7,5 @@ export interface Advisorboard {
   jobEn?: string;
   shortParagraphAr?: string;
   shortParagraphEn?: string;
+  image: string;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, effect } from '@angular/core';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
@@ -6,6 +6,10 @@ import { OurTeamComponent } from './our-team/our-team.component';
 import { AdvisorBoardComponent } from './advisor-board/advisor-board.component';
 import { Router } from '@angular/router';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
+import { Advisorboard } from './models/advisorboard';
+import { Teammembers } from './models/teammembers';
+import { OurteamService } from './services/ourteam.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   standalone: true,
   imports: [OurTeamComponent, AdvisorBoardComponent, TitleComponentComponent],
@@ -45,11 +49,28 @@ export class AboutUsSectionComponent implements OnInit, OnDestroy {
     },
   ];
 
+  advisorBoardData: Advisorboard[] = [];
+  teamMembers: Teammembers[] = [];
+
+  advisorBoardSignal = toSignal(this.advisorTeamService.getAllAdvisorBoard(), {
+    initialValue: [],
+  });
+
+  teamMemberSignal = toSignal(this.advisorTeamService.getAllTeamMembers(), {
+    initialValue: [],
+  });
+
   constructor(
     public translationService: TranslationService,
     private languageService: LanguageService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private advisorTeamService: OurteamService
+  ) {
+    effect(() => {
+      this.advisorBoardData = this.advisorBoardSignal();
+      this.teamMembers = this.teamMemberSignal();
+    });
+  }
 
   ngOnInit() {
     // Subscribe to language changes

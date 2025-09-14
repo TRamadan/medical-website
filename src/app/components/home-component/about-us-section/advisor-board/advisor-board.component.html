@@ -30,13 +30,18 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
                         <div class="our-team">
                             <div class="pic">
-                                <img class="img-fluid" [src]="member.image" [alt]="member.name" />
+                                <img class="img-fluid"
+                                    [src]="member.image ? imgUrl + member.image : 'https://i.ibb.co/8x9xK4H/team.jpg'"
+                                    [alt]="member.name" />
                             </div>
                             <div class="team-content">
                                 <h3 class="title">{{ member.name }}</h3>
-                                <span class="post mb-2">{{ member.job }}</span>
-                                <span class="post">{{ member.jobDescription }}</span>
-                                <span class="post">{{ member.description }}</span>
+                                <span class="post mb-2 fw-bold">{{currentLang == 'en' ? member.jobEn : member.jobAr
+                                    }}</span>
+                                <span class="post">{{ currentLang == 'en' ? member.jobDescriptionEn :
+                                    member.jobDescriptionAr }}</span>
+                                <span class="post">{{ currentLang == 'en' ? member.shortParagraphEn :
+                                    member.shortParagraphAr}}</span>
                             </div>
 
                             <div class="col-md-12">

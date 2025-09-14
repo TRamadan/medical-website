@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslationService } from '../../../../services/translation.service';
+import { Teammembers } from '../models/teammembers';
 @Component({
   selector: 'app-our-team',
   standalone: true,
@@ -7,6 +8,7 @@ import { TranslationService } from '../../../../services/translation.service';
   styleUrls: ['./our-team.component.css'],
 })
 export class OurTeamComponent implements OnInit {
+  @Input() data: Teammembers[] = [];
   teamMembersChunk: any[][] = [];
 
   teamMembers: any[] = [

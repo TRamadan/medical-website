@@ -1,7 +1,18 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { TranslationService } from '../../../../services/translation.service';
 import { CommonModule } from '@angular/common';
 import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
+import { Advisorboard } from '../models/advisorboard';
+import { environment } from '../../../../../environments/environment.development';
+import { LanguageService } from '../../../../services/language.service';
+import { Subscription } from 'rxjs';
 @Component({
   standalone: true,
   imports: [CommonModule, TitleComponentComponent],
@@ -10,49 +21,30 @@ import { TitleComponentComponent } from '../../../shared-ui/title-component/titl
   styleUrls: ['./advisor-board.component.css'],
 })
 export class AdvisorBoardComponent implements OnInit {
-  currentIndex = 0; // first visible slide index
-  visibleItems = 3; // number of items per slide
+  @Input() data: Advisorboard[] = [];
+  currentIndex = 0;
+  visibleItems = 3;
 
-  advisorDashBoardMembers: any[] = [
-    {
-      name: 'Sara Samir',
-      image: 'https://i.ibb.co/8x9xK4H/team.jpg',
-      job: 'Doctor',
-      jobDescription: 'Sports Medicine Specialist',
-      description:
-        'Passionate about building scalable, user-friendly applications with modern web technologies.',
-    },
-    {
-      name: 'Ahmed Ali',
-      image: 'https://i.ibb.co/8x9xK4H/team.jpg',
-      job: 'Doctor',
-      jobDescription: 'Sports Medicine Specialist',
-      description:
-        'Passionate about building scalable, user-friendly applications with modern web technologies.',
-    },
-    {
-      name: 'Mona Khaled',
-      image: 'https://i.ibb.co/8x9xK4H/team.jpg',
-      job: 'Doctor',
-      jobDescription: 'Sports Medicine Specialist',
-      description:
-        'Passionate about building scalable, user-friendly applications with modern web technologies.',
-    },
-    {
-      name: 'Ahmed Ali',
-      image: 'https://i.ibb.co/8x9xK4H/team.jpg',
-      job: 'Doctor',
-      jobDescription: 'Sports Medicine Specialist',
-      description:
-        'Passionate about building scalable, user-friendly applications with modern web technologies.',
-    },
-  ];
   advisorDashBoardMembersChunk: any[][] = [];
 
-  constructor(public translationService: TranslationService) {}
+  currentLang: 'en' | 'ar' = 'en';
+
+  languageSubscription?: Subscription;
+
+  public readonly imgUrl = environment.imgUrl;
+
+  constructor(
+    public translationService: TranslationService,
+    public languageService: LanguageService
+  ) {}
 
   ngOnInit() {
     this.updateChunks(window.innerWidth);
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
+      }
+    );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -67,14 +59,10 @@ export class AdvisorBoardComponent implements OnInit {
     } else if (width < 992) {
       chunkSize = 2; // tablet
     }
-    this.advisorDashBoardMembersChunk = this.chunkArray(
-      this.advisorDashBoardMembers,
-      chunkSize
-    );
+    this.advisorDashBoardMembersChunk = this.chunkArray(this.data, chunkSize);
   }
 
   private chunkArray(arr: any[], size: number): any[][] {
-    debugger;
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
       result.push(arr.slice(i, i + size));
