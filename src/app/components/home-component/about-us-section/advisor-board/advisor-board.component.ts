@@ -74,6 +74,7 @@ export class AdvisorBoardComponent implements OnInit {
   }
 
   private chunkArray(arr: any[], size: number): any[][] {
+    debugger;
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
       result.push(arr.slice(i, i + size));

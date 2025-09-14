@@ -2,52 +2,60 @@
     <app-title-component subtitle1Key="about.team.title">
     </app-title-component>
 </div>
-<div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
-    <!-- Indicators -->
-    <div class="carousel-indicators">
-        @for (chunk of advisorDashBoardMembersChunk; track chunk; let idx = $index) {
-        <button type="button" data-bs-target="#teamCarousel" data-bs-interval="50000" [attr.data-bs-slide-to]="idx"
-            [class.active]="idx === 0">
-        </button>
-        }
-    </div>
 
-    <!-- Slides -->
-    <div class="carousel-inner">
-        @for (chunk of advisorDashBoardMembersChunk; track chunk; let idx = $index) {
-        <div class="carousel-item" [class.active]="idx === 0">
-            <div class="row justify-content-center">
-                @for (member of chunk; track member) {
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="our-team">
-                        <div class="pic">
-                            <img [src]="member.image" alt="{{ member.name }}">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">{{ member.name }}</h3>
-                            <span class="post mb-2">{{ member.job }}</span>
-                            <span class="post">{{ member.jobDescription }}</span>
-                            <span class="post">{{ member.description }}</span>
-                        </div>
-                        <ul class="social">
-                            <li><a href="#" target="_blank" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                }
-            </div>
+<div class="col-12 text-end mt-4">
+    <a class="btn next mb-3 me-2" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="btn previous mb-3" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+        <i class="fa fa-arrow-right"></i>
+    </a>
+</div>
+
+<div class="col-12">
+    <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-indicators">
+            <button *ngFor="let chunk of advisorDashBoardMembersChunk; let i = index" type="button"
+                data-bs-target="#carouselExampleIndicators2" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)">
+            </button>
         </div>
-        }
-    </div>
 
-    <!-- Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
+        <div class="carousel-inner">
+            @for(chunk of advisorDashBoardMembersChunk; track chunk; let i = $index){
+            <div class="carousel-item" [class.active]="i === 0">
+                <div class="row  d-flex justify-content-center align-items-stretch">
+                    @for(member of chunk; track member){
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
+                        <div class="our-team">
+                            <div class="pic">
+                                <img class="img-fluid" [src]="member.image" [alt]="member.name" />
+                            </div>
+                            <div class="team-content">
+                                <h3 class="title">{{ member.name }}</h3>
+                                <span class="post mb-2">{{ member.job }}</span>
+                                <span class="post">{{ member.jobDescription }}</span>
+                                <span class="post">{{ member.description }}</span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button
+                                    class="btn explore-more">{{translationService.translate('explore.btn')}}</button>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" target="_blank" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
 </div>
