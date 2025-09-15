@@ -1,17 +1,17 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { TranslationService } from '../../../../services/translation.service';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SuperstarsService } from '../services/superstars.service';
 import { SuperstarAthelete } from '../models/superstars';
 import { environment } from '../../../../../environments/environment.development';
 import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
 import { LanguageService } from '../../../../services/language.service';
 import { Subscription } from 'rxjs';
+import AOS from 'aos';
 
 @Component({
   selector: 'app-vip-super-stars',
   standalone: true,
-  imports: [CarouselModule, TitleComponentComponent],
+  imports: [TitleComponentComponent],
   templateUrl: './vip-super-stars.component.html',
   styleUrls: ['./vip-super-stars.component.css'],
 })
@@ -27,7 +27,7 @@ export class VipSuperStarsComponent implements OnInit {
   >([]);
 
   currentLang: 'en' | 'ar' = 'en';
-  private languageSubscription?: Subscription;
+  languageSubscription?: Subscription;
 
   constructor(
     public translationService: TranslationService,

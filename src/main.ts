@@ -3,8 +3,6 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { registerLocaleData } from '@angular/common';
 import localeAr from '@angular/common/locales/ar';
-import 'swiper/element/bundle';
-// Register Arabic locale
 registerLocaleData(localeAr);
 
 bootstrapApplication(AppComponent, appConfig).catch((err) =>

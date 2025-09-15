@@ -15,17 +15,10 @@
 <div class="col-12">
     <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
 
-        <div class="carousel-indicators">
-            <button *ngFor="let chunk of advisorDashBoardMembersChunk; let i = index" type="button"
-                data-bs-target="#carouselExampleIndicators2" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
-                [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)">
-            </button>
-        </div>
-
         <div class="carousel-inner">
             @for(chunk of advisorDashBoardMembersChunk; track chunk; let i = $index){
             <div class="carousel-item" [class.active]="i === 0">
-                <div class="row  d-flex justify-content-center align-items-stretch">
+                <div class="row d-flex justify-content-center align-items-stretch">
                     @for(member of chunk; track member){
                     <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex">
                         <div class="our-team">
@@ -60,6 +53,12 @@
                 </div>
             </div>
             }
+        </div>
+        <div class="carousel-indicators custom-indicators">
+            <button *ngFor="let chunk of advisorDashBoardMembersChunk; let i = index" type="button"
+                data-bs-target="#carouselExampleIndicators2" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)">
+            </button>
         </div>
 
     </div>

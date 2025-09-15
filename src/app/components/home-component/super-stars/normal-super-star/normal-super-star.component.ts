@@ -61,7 +61,6 @@ export class NormalSuperStarComponent implements OnInit {
         const mapped = res.filter(
           (athelete: any) => athelete.isElite === false
         );
-        console.log(mapped);
         this.normalSuperStarsSignal.set(mapped);
       },
       error: (error: any) => {},
