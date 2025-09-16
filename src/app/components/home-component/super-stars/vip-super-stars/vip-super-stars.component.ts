@@ -101,7 +101,7 @@ export class VipSuperStarsComponent implements OnInit {
   private startAutoSlide(): void {
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
-    }, 4000);
+    }, 50000);
   }
 
   private stopAutoSlide(): void {

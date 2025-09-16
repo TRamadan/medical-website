@@ -178,8 +178,8 @@
  }
 
  .navbar-transparent .nav-link-custom.active {
-     color: #fc6b44 !important;
-     background-color: rgba(255, 255, 255, 0.15);
+     color: #131337 !important;
+     background-color: rgb(112 244 195);
  }
 
  /* Scrolled navbar states */
@@ -189,20 +189,20 @@
  }
 
  .navbar-scrolled .nav-link-custom.active {
-     color: #fc6b44 !important;
-     background-color: rgba(252, 107, 68, 0.15);
+     color: #131337 !important;
+     background-color: rgb(112 244 195);
  }
 
  /* Alternative: Glow effect option */
  .nav-link-custom.glow-effect:hover {
-     color: #fc6b44 !important;
-     text-shadow: 0 0 8px rgba(252, 107, 68, 0.4);
+     color: #131337 !important;
+     background-color: rgb(112 244 195);
      background-color: transparent;
  }
 
  .nav-link-custom.glow-effect.active {
-     color: #fc6b44 !important;
-     text-shadow: 0 0 12px rgba(252, 107, 68, 0.6);
+
+     color: #131337 !important;
  }
 
  /* Mobile responsive adjustments */

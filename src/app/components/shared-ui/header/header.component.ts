@@ -83,7 +83,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       { name: this.translationService.translate('nav.home'), href: '' },
       {
         name: this.translationService.translate('nav.about'),
-        href: '/aboutus',
+        href: 'aboutus',
       },
       {
         name: this.translationService.translate('nav.superstars'),
@@ -91,7 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         name: 'Education',
-        href: '#superstars',
+        href: '',
       },
       {
         name: this.translationService.translate('nav.science'),
@@ -113,12 +113,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onNavItemClick(item: NavItem): void {
+    debugger;
     this.mainNavItems.forEach((navItem) => (navItem.active = false));
     this.contactNavItem.active = false;
     item.active = true;
 
     this.closeMenu();
-    this.scrollToSection(item.href);
+
+    if (item.href.startsWith('#')) {
+      this.scrollToSection(item.href);
+    } else if (item.href.startsWith('/')) {
+      this.router.navigate([item.href]);
+    }
   }
 
   onBookAppointment(): void {
