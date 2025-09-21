@@ -715,6 +715,24 @@ export class TranslationService {
       en: 'We are dedicated to help our stars of all levels to defeat injuries, return to training & competition effectively with a minimal risk of recurrence. We use the latest scientific protocols according to the educational & physiological code. We also take our share of responsibility to spread awareness about prevention & peak performance.',
       ar: 'نحن ملتزمون بمساعدة نجومنا على مختلف المستويات في التغلب على الإصابات والعودة إلى التدريب والمنافسة بفعالية مع تقليل مخاطر الانتكاس. نستخدم أحدث البروتوكولات العلمية وفقًا للمعايير التعليمية والفسيولوجية. كما نضطلع بدورنا في نشر الوعي حول الوقاية وذروة الأداء.',
     },
+
+    // how it works section
+    'howitworks.badge': {
+      en: 'How It Works',
+      ar: 'كيف تعمل',
+    },
+    'howitworks.title.part1': {
+      en: 'Your journey to recovery,',
+      ar: 'رحلتك نحو التعافي،',
+    },
+    'howitworks.title.part2': {
+      en: 'step by step',
+      ar: 'خطوة بخطوة',
+    },
+    'howitworks.subtitle': {
+      en: 'From first consultation to complete transformation, here’s how our process empowers you.',
+      ar: 'من أول استشارة حتى التحول الكامل، إليك كيف تدعمك عمليتنا خطوة بخطوة.',
+    },
   };
 
   constructor(private languageService: LanguageService) {}

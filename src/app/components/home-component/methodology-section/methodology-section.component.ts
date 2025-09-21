@@ -1,6 +1,6 @@
 import { Methodology } from './models/methodology';
 import { Component, OnInit } from '@angular/core';
-import { map, Subscription } from 'rxjs';
+import { finalize, map, Subscription } from 'rxjs';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
@@ -8,28 +8,29 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MethodologyService } from './services/methodology.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../../environments/environment.development';
+import { LoadingSkeletonComponent } from '../../shared-ui/loading-skeleton/loading-skeleton.component';
 
 @Component({
   standalone: true,
   selector: 'app-methodology-section',
   templateUrl: './methodology-section.component.html',
   styleUrls: ['./methodology-section.component.css'],
-  imports: [CommonModule, TitleComponentComponent],
+  imports: [CommonModule, TitleComponentComponent, LoadingSkeletonComponent],
 })
 export class MethodologySectionComponent implements OnInit {
   currentLang: 'en' | 'ar' = 'en';
 
   languageSubscription?: Subscription;
+  loading: boolean = false;
 
   public readonly imgurl = environment.imgUrl;
   MethodologySignal = toSignal(
-    this._ourMethodology
-      .getAllMethodologies()
-      .pipe(
-        map((res: any[]) =>
-          res.filter((item) => item.isCuttingEdgeTechnology == false)
-        )
+    this._ourMethodology.getAllMethodologies().pipe(
+      map((res: any[]) =>
+        res.filter((item) => item.isCuttingEdgeTechnology === false)
       ),
+      finalize(() => (this.loading = false))
+    ),
     { initialValue: [] }
   );
 

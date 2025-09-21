@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { LanguageService } from '../../../../services/language.service';
 import { TranslationService } from '../../../../services/translation.service';
-import { Subscription } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
 import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
 import { SuperstarAthelete } from '../models/superstars';
 import { SuperstarsService } from '../services/superstars.service';
 import { environment } from '../../../../../environments/environment.development';
+import { LoadingSkeletonComponent } from '../../../shared-ui/loading-skeleton/loading-skeleton.component';
 export interface Superstar {
   id: number;
   key: string;
@@ -22,11 +23,12 @@ export interface Superstar {
   standalone: true,
   templateUrl: './normal-super-star.component.html',
   styleUrls: ['./normal-super-star.component.css'],
-  imports: [TitleComponentComponent],
+  imports: [TitleComponentComponent, LoadingSkeletonComponent],
 })
 export class NormalSuperStarComponent implements OnInit {
   private languageSubscription?: Subscription;
   currentLang: 'en' | 'ar' = 'en';
+  loading: boolean = true;
 
   public readonly imgUrl = environment.imgUrl;
 
@@ -56,15 +58,20 @@ export class NormalSuperStarComponent implements OnInit {
   }
 
   getSuperStarAthlete(): void {
-    this._ourSuperStars.getAllSuperStars().subscribe({
-      next: (res: SuperstarAthelete[]) => {
-        const mapped = res.filter(
-          (athelete: any) => athelete.isElite === false
-        );
-        this.normalSuperStarsSignal.set(mapped);
-      },
-      error: (error: any) => {},
-    });
+    this._ourSuperStars
+      .getAllSuperStars()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (res: SuperstarAthelete[]) => {
+          const mapped = res.filter(
+            (athelete: any) => athelete.isElite === false
+          );
+          this.normalSuperStarsSignal.set(mapped);
+        },
+        error: (error: any) => {
+          console.error('Error fetching super stars', error);
+        },
+      });
   }
 
   ngOnDestroy(): void {
@@ -133,6 +140,10 @@ export class NormalSuperStarComponent implements OnInit {
   }
 
   getVisibleSlides(): SuperstarAthelete[] {
+    if (this.loading) {
+      const skeletons = Array(this.itemsPerSlide).fill(null);
+      return skeletons;
+    }
     const slides: SuperstarAthelete[] = [];
     const superstars = this.normalSuperStarsSignal();
     for (let i = 0; i < this.itemsPerSlide; i++) {

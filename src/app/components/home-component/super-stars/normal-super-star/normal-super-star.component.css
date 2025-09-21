@@ -208,3 +208,8 @@ i {
 .bg-gradient {
     background: linear-gradient(to bottom, #dbeafe, #ffffff) !important;
 }
+
+.slide-card.is-loading {
+    border: 1px solid transparent;
+    box-shadow: none;
+}

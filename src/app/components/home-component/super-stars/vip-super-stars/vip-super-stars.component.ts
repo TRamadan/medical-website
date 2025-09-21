@@ -5,13 +5,14 @@ import { SuperstarAthelete } from '../models/superstars';
 import { environment } from '../../../../../environments/environment.development';
 import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
 import { LanguageService } from '../../../../services/language.service';
-import { Subscription } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
 import AOS from 'aos';
+import { LoadingSkeletonComponent } from '../../../shared-ui/loading-skeleton/loading-skeleton.component';
 
 @Component({
   selector: 'app-vip-super-stars',
   standalone: true,
-  imports: [TitleComponentComponent],
+  imports: [TitleComponentComponent, LoadingSkeletonComponent],
   templateUrl: './vip-super-stars.component.html',
   styleUrls: ['./vip-super-stars.component.css'],
 })
@@ -25,6 +26,7 @@ export class VipSuperStarsComponent implements OnInit {
   eliteSuperStarsSignal: WritableSignal<SuperstarAthelete[]> = signal<
     SuperstarAthelete[]
   >([]);
+  loading = true;
 
   currentLang: 'en' | 'ar' = 'en';
   languageSubscription?: Subscription;
@@ -116,19 +118,24 @@ export class VipSuperStarsComponent implements OnInit {
   }
 
   getSuperStarAthlete(): void {
-    this._ourSuperStars.getAllSuperStars().subscribe({
-      next: (res: SuperstarAthelete[]) => {
-        const mapped = res
-          .map((eliteSuperStar: SuperstarAthelete, index: number) => ({
-            ...eliteSuperStar,
-            backgroundImage: this.urlForImg + eliteSuperStar.image,
-            active: index === 0,
-          }))
-          .filter((athelete: any) => athelete.isElite === true);
+    this._ourSuperStars
+      .getAllSuperStars()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (res: SuperstarAthelete[]) => {
+          const mapped = res
+            .map((eliteSuperStar: SuperstarAthelete, index: number) => ({
+              ...eliteSuperStar,
+              backgroundImage: this.urlForImg + eliteSuperStar.image,
+              active: index === 0,
+            }))
+            .filter((athelete: any) => athelete.isElite === true);
 
-        this.eliteSuperStarsSignal.set(mapped);
-      },
-      error: (error: any) => {},
-    });
+          this.eliteSuperStarsSignal.set(mapped);
+        },
+        error: (error: any) => {
+          console.error('Error fetching super stars', error);
+        },
+      });
   }
 }

@@ -316,3 +316,9 @@
         font-size: 1.25rem;
     }
 }
+
+.tech-card.is-loading {
+    border: 1px solid transparent;
+    box-shadow: none;
+
+}

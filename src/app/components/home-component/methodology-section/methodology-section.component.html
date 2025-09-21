@@ -3,6 +3,26 @@
     subtitle2Key="methodology.title.part2" subtitleKey="methodology.subtitle"></app-title-component>
 
   @for(item of MethodologySignal(); track item; let i = $index){
+  @if (loading) {
+  <!-- Skeleton Loader -->
+  <div class="row g-5 mt-3 align-items-center" [class.flex-md-row-reverse]="i % 2 === 1">
+    <div class="col-12 col-md-3">
+      <div class="rounded-4 overflow-hidden" style="height: 200px;">
+        <app-loading-skeleton height="100%"></app-loading-skeleton>
+      </div>
+    </div>
+    <div class="col-12 col-md-9">
+      <div class="bg-danger-subtle rounded-4 p-4 p-lg-5">
+        <app-loading-skeleton height="2rem" width="60%" style="margin-bottom: 1rem;"></app-loading-skeleton>
+        <app-loading-skeleton [count]="3"></app-loading-skeleton>
+        <div class="w-100 text-end">
+          <app-loading-skeleton height="40px" width="120px" borderRadius="8px"></app-loading-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <!-- Actual Content -->
   <div class="row g-5 mt-3 align-items-center" [ngClass]="{ 'flex-md-row-reverse': i % 2 === 1 }">
     <div class="col-12 col-md-3">
       <div class="rounded-4 overflow-hidden">
@@ -10,24 +30,17 @@
           loading="lazy">
       </div>
     </div>
-
     <div class="col-12 col-md-9">
       <div class="bg-danger-subtle rounded-4 p-4 p-lg-5">
-        <h3 class="text-capitalize fw-semibold text-primary">{{currentLang == 'en' ? item.titleEn : item.title}}
-        </h3>
-        <p class="text-primary-75 description text-muted"> {{currentLang == 'en' ? item.descriptionEn :
-          item.description}}
-        </p>
+        <h3 class="text-capitalize fw-semibold text-primary">{{currentLang == 'en' ? item.titleEn : item.title}}</h3>
+        <p class="text-primary-75 description text-muted">{{currentLang == 'en' ? item.descriptionEn :
+          item.description}}</p>
         <div class="w-100 text-end">
           <a href="#" class="btn btn-primary">{{translationService.translate('explore.btn')}}</a>
         </div>
       </div>
     </div>
-
-
   </div>
   }
-
-
-
+  }
 </section>

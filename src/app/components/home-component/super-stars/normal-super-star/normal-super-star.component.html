@@ -3,6 +3,23 @@
 
   <div class="carousel-container position-relative overflow-hidden rounded-4" (mouseenter)="onMouseEnter()"
     (mouseleave)="onMouseLeave()">
+    @if (loading) {
+    <div class="row g-3 g-md-4 justify-content-center">
+      @for(item of getVisibleSlides(); track $index){
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0 h-100 slide-card is-loading">
+          <div class="position-relative" style="height: 250px;">
+            <app-loading-skeleton height="100%"></app-loading-skeleton>
+          </div>
+          <div class="card-body p-4">
+            <app-loading-skeleton height="1.5rem" width="70%" style="margin-bottom: 1rem;"></app-loading-skeleton>
+            <app-loading-skeleton [count]="3"></app-loading-skeleton>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
     <div class="row g-3 g-md-4 justify-content-center">
       @for(superstar of getVisibleSlides(); track superstar?.id; let i = $index){
       <div class="col-12 col-md-6 col-lg-4">
@@ -12,8 +29,6 @@
             <img [src]="imgUrl + superstar?.image" alt="champions-imgs" class="card-img-top object-fit-cover"
               style="height: 250px" />
           </div>
-
-          <!-- Card Body -->
           <div class="card-body p-4">
             <h3 class="card-title h4 fw-bold mb-2">
               {{ superstar?.name}}
@@ -30,7 +45,7 @@
       </div>
       }
     </div>
-
+    }
     <!-- Navigation Buttons -->
     <button type="button"
       class="btn next-button rounded-circle position-absolute start-0 top-50 translate-middle-y ms-2 nav-btn"

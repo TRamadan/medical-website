@@ -113,7 +113,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onNavItemClick(item: NavItem): void {
-    debugger;
     this.mainNavItems.forEach((navItem) => (navItem.active = false));
     this.contactNavItem.active = false;
     item.active = true;

@@ -1,0 +1,44 @@
+.service-card {
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    /* نفس شكل الـ hover */
+}
+
+/* هنا لو حابب تزود تأثير عند الـ hover */
+.service-card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+
+.service-title {
+    color: #131337;
+}
+
+.service-description {
+    color: #6b7280;
+}
+
+
+
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: #70f4c3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+i {
+    color: #131337;
+}
+
+.how-it-works {
+    background-color: #f5f5f5;
+}
