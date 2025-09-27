@@ -1,7 +1,7 @@
 <section>
     <app-title-component subtitle1Key="superstars.titleElite"></app-title-component>
 
-    <div class="custom-carousel mb-5">
+    <div class="custom-carousel mb-5" [attr.dir]="currentLang === 'ar' ? 'rtl' : 'ltr'">
         <div class="owl-stage" [style.transform]="'translateX(' + translateX + 'px)'">
             @for (elit of eliteSuperStarsSignal(); track elit.id) {
             <div class="item" [class.active]="elit.active"

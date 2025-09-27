@@ -7,5 +7,9 @@
     <app-success-videos [videos]="videos"></app-success-videos>
     }
   </div>
+  @defer (when successStories.length > 0) {
   <app-customers-success-stories [successStories]="successStories"></app-customers-success-stories>
+  }
+
+
 </section>

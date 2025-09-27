@@ -1,13 +1,6 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
-import { Subscription } from 'rxjs';
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
 import { CommonModule } from '@angular/common';
 
@@ -19,36 +12,39 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TitleComponentComponent],
 })
 export class HowItWorksComponent implements OnInit {
+  constructor(
+    public translationService: TranslationService,
+    private languageService: LanguageService
+  ) {}
+
   services = [
     {
-      icon: 'fas fa-leaf',
-      title: 'Strategize',
-      description:
-        'Craft a roadmap to amplify your agility, resilience, and competitive edge.',
+      icon: 'fas fa-calendar-check',
+      titleKey: 'howItWorks.step1.title',
+      descriptionKey: 'howItWorks.step1.description',
     },
     {
-      icon: 'fas fa-drafting-compass',
-      title: 'Architect',
-      description:
-        'Our expert architects design the foundation for your digital transformation.',
+      icon: 'fas fa-clipboard-list',
+      titleKey: 'howItWorks.step2.title',
+      descriptionKey: 'howItWorks.step2.description',
     },
     {
-      icon: 'fas fa-code-branch',
-      title: 'Develop',
-      description: 'Fuel innovation with our agile software development team.',
+      icon: 'fas fa-mobile-alt',
+      titleKey: 'howItWorks.step3.title',
+      descriptionKey: 'howItWorks.step3.description',
     },
     {
-      icon: 'fas fa-tools',
-      title: 'Implement',
-      description:
-        'Experience flawless execution as we meticulously bring your vision to life.',
+      icon: 'fas fa-tasks',
+      titleKey: 'howItWorks.step4.title',
+      descriptionKey: 'howItWorks.step4.description',
     },
     {
-      icon: 'fas fa-rocket',
-      title: 'Launch',
-      description:
-        'Take your product to market with confidence and sustained growth.',
+      icon: 'fas fa-headset',
+      titleKey: 'howItWorks.step5.title',
+      descriptionKey: 'howItWorks.step5.description',
     },
   ];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // It's better to initialize AOS after the view is rendered to ensure all elements are in the DOM.
+  }
 }

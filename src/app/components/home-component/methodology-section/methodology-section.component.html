@@ -1,4 +1,4 @@
-<section class="container py-3" id="methodology">
+<section class="container py-3 overflow-x-hidden" id="methodology">
   <app-title-component subtitle1Key="methodology.badge" titleKey="methodology.title.part1"
     subtitle2Key="methodology.title.part2" subtitleKey="methodology.subtitle"></app-title-component>
 
@@ -24,13 +24,13 @@
   } @else {
   <!-- Actual Content -->
   <div class="row g-5 mt-3 align-items-center" [ngClass]="{ 'flex-md-row-reverse': i % 2 === 1 }">
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3" [attr.data-aos]="i % 2 === 1 ? 'fade-left' : 'fade-right'">
       <div class="rounded-4 overflow-hidden">
         <img [src]="imgurl + item.icon" [alt]="'methodology-img'+i" class="img-fluid w-100 h-100 object-fit-cover"
           loading="lazy">
       </div>
     </div>
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-9" [attr.data-aos]="i % 2 === 1 ? 'fade-right' : 'fade-left'">
       <div class="bg-danger-subtle rounded-4 p-4 p-lg-5">
         <h3 class="text-capitalize fw-semibold text-primary">{{currentLang == 'en' ? item.titleEn : item.title}}</h3>
         <p class="text-primary-75 description text-muted">{{currentLang == 'en' ? item.descriptionEn :

@@ -733,6 +733,35 @@ export class TranslationService {
       en: 'From first consultation to complete transformation, here’s how our process empowers you.',
       ar: 'من أول استشارة حتى التحول الكامل، إليك كيف تدعمك عمليتنا خطوة بخطوة.',
     },
+
+    'howitworks.step1.title': { en: 'Book an Appointment', ar: 'احجز موعدك' },
+    'howitworks.step1.description': {
+      en: 'Schedule your first consultation through our website or mobile app.',
+      ar: 'جدولة الاستشارة الأولى عبر الموقع أو التطبيق.',
+    },
+    'howitworks.step2.title': {
+      en: 'Initial Assessment',
+      ar: 'التقييم الأولي',
+    },
+    'howitworks.step2.description': {
+      en: 'Get a personalized treatment plan.',
+      ar: 'الحصول على خطة علاج شخصية.',
+    },
+    'howitworks.step3.title': { en: 'Download the App', ar: 'نزّل التطبيق' },
+    'howitworks.step3.description': {
+      en: 'Access your plan and exercises anytime.',
+      ar: 'الوصول إلى خطتك والتمارين في أي وقت.',
+    },
+    'howitworks.step4.title': { en: 'Follow Your Plan', ar: 'اتبع خطتك' },
+    'howitworks.step4.description': {
+      en: 'Complete exercises and track your recovery.',
+      ar: 'إتمام التمارين ومتابعة التعافي.',
+    },
+    'howitworks.step5.title': { en: 'Regular Check-ins', ar: 'متابعة دورية' },
+    'howitworks.step5.description': {
+      en: 'Regular communication with your care provider.',
+      ar: 'تواصل منتظم مع مقدم الرعاية.',
+    },
   };
 
   constructor(private languageService: LanguageService) {}

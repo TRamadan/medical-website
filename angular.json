@@ -35,14 +35,21 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/aos/dist/aos.css"
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/aos/dist/aos.js"
             ]
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "aot": true,
+              "sourceMap": false,
+              "extractLicenses": true,
+              "outputHashing": "all",
               "budgets": [
                 {
                   "type": "initial",
@@ -54,13 +61,13 @@
                   "maximumWarning": "5mb",
                   "maximumError": "5mb"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
-              "extractLicenses": false,
+              "aot": false,
               "sourceMap": true,
+              "extractLicenses": false,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

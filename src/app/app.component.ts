@@ -11,6 +11,7 @@ import { FooterComponent } from './components/shared-ui/footer/footer.component'
 import { filter } from 'rxjs';
 import { LandingPageComponent } from './components/shared-ui/landing-page/landing-page.component';
 import { CommonModule } from '@angular/common';
+import * as AOS from 'aos';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -36,6 +37,21 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    // Initialize AOS once globally when the app starts.
+    AOS.init({
+      // Optional: Configure global settings for AOS
+      disable: false, // Accepts 'phone', 'tablet', 'mobile', boolean, expression, or function
+      startEvent: 'DOMContentLoaded', // Event to initialize AOS on
+      initClassName: 'aos-init', // Class applied after initialization
+      animatedClassName: 'aos-animate', // Class applied on animation
+      once: false, // Whether animation should happen only once - default
+      mirror: true, // Whether elements should animate out while scrolling past them
+      anchorPlacement: 'top-bottom', // Defines which position of the element should trigger the animation
+      duration: 1000, // Values from 0 to 3000, with step 50ms
+      easing: 'ease-in-out', // Easing options
+      delay: 0, // Values from 0 to 3000, with step 50ms
+    });
+
     this.checkScreenSize();
     this.checkCurrentRoute();
 
@@ -55,7 +71,15 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
       this.handleFabDisplay();
+      // This is the crucial part. After the loading screen is gone,
+      // we force AOS to re-calculate all element positions.
+      // A small extra delay ensures the browser has painted everything.
+      setTimeout(() => AOS.refreshHard(), 50);
     }, 2000);
+  }
+
+  ngAfterViewInit(): void {
+    AOS.refresh();
   }
 
   @HostListener('window:resize', ['$event'])

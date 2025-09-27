@@ -1,9 +1,9 @@
-<section class="upcoming-section">
+<section class="upcoming-section overflow-x-hidden">
     <div class="container">
         <div class="row g-4">
             <!-- Main Featured Movie -->
-            <div class="col-lg-8">
-                <div class="main-card animate-on-scroll">
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="main-card">
                     <div class="video-container video-section-overlay">
                         <!-- YouTube Video Player -->
                         <iframe *ngIf="isPlaying && safeVideoUrl" [src]="safeVideoUrl" class="youtube-player"
@@ -37,12 +37,12 @@
             </div>
 
             <!-- Side Content -->
-            <div class="col-lg-4 side-videos-content overflow-y-scroll">
+            <div class="col-lg-4 side-videos-content overflow-y-scroll" data-aos="fade-left" data-aos-delay="200">
                 <div class="row g-3">
                     <!-- Featured Side Movies -->
                     @for(video of videos; track video){
                     <div class="col-6 col-md-6 col-lg-12">
-                        <div class="side-card animate-on-scroll" (click)="selectContent(video.id)">
+                        <div class="side-card" (click)="selectContent(video.id)">
                             <div class="side-card-img video-section-overlay video-container">
                                 <div class="side-card-overlay">
                                     <div class="side-card-content">

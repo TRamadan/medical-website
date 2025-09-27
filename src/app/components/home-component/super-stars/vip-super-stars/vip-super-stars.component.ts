@@ -1,35 +1,39 @@
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { TranslationService } from '../../../../services/translation.service';
-import { SuperstarsService } from '../services/superstars.service';
-import { SuperstarAthelete } from '../models/superstars';
-import { environment } from '../../../../../environments/environment.development';
-import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
+import { environment } from './../../../../../environments/environment.development';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  signal,
+  ChangeDetectorRef,
+  inject,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { LanguageService } from '../../../../services/language.service';
-import { Subscription, finalize } from 'rxjs';
-import AOS from 'aos';
-import { LoadingSkeletonComponent } from '../../../shared-ui/loading-skeleton/loading-skeleton.component';
+import { TranslationService } from '../../../../services/translation.service';
+import { TitleComponentComponent } from '../../../shared-ui/title-component/title-component.component';
+import { SuperstarsService } from '../services/superstars.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-vip-super-stars',
   standalone: true,
-  imports: [TitleComponentComponent, LoadingSkeletonComponent],
+  imports: [CommonModule, TitleComponentComponent],
   templateUrl: './vip-super-stars.component.html',
   styleUrls: ['./vip-super-stars.component.css'],
 })
-export class VipSuperStarsComponent implements OnInit {
-  currentIndex = 0;
-  translateX = 0;
+export class VipSuperStarsComponent implements OnInit, OnDestroy {
+  public currentIndex = 0;
+  public translateX = 0;
   public readonly urlForImg = environment.imgUrl;
-  autoSlideInterval: any;
-  itemWidth = 350;
-  visibleItems = 3;
-  eliteSuperStarsSignal: WritableSignal<SuperstarAthelete[]> = signal<
-    SuperstarAthelete[]
-  >([]);
-  loading = true;
+  private itemWidth = 350;
+  private visibleItems = 3;
+  private autoSlideInterval: any;
+  private languageSubscription!: Subscription;
 
-  currentLang: 'en' | 'ar' = 'en';
-  languageSubscription?: Subscription;
+  eliteSuperStarsSignal = signal<any[]>([]);
+  loading = true;
+  currentLang = 'en';
 
   constructor(
     public translationService: TranslationService,
@@ -39,80 +43,89 @@ export class VipSuperStarsComponent implements OnInit {
 
   ngOnInit(): void {
     this.startAutoSlide();
-    this.updateTranslateX();
     this.getSuperStarAthlete();
-
     this.languageSubscription =
-      this._languageService.currentLanguage$.subscribe((lang: 'en' | 'ar') => {
+      this._languageService.currentLanguage$.subscribe((lang) => {
         this.currentLang = lang;
+        this.updateTranslateX(); // Recalculate on language change
       });
   }
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
   }
 
-  selectSuperStar(vipSuperStarId: any): void {
-    this.eliteSuperStarsSignal.update((eliteSuperStars) =>
-      eliteSuperStars.map((vipSuperStar) => ({
-        ...vipSuperStar,
-        active: vipSuperStar.id === vipSuperStarId,
+  selectSuperStar(id: number): void {
+    this.eliteSuperStarsSignal.update((superstars) =>
+      superstars.map((superstar) => ({
+        ...superstar,
+        active: superstar.id === id,
       }))
     );
-
-    const gameIndex = this.eliteSuperStarsSignal().findIndex(
-      (vipSuperStar) => vipSuperStar.id === vipSuperStarId
+    const newIndex = this.eliteSuperStarsSignal().findIndex(
+      (superstar) => superstar.id === id
     );
-
-    if (gameIndex !== -1) {
-      this.currentIndex = gameIndex;
+    if (newIndex !== -1) {
+      this.currentIndex = newIndex;
       this.updateTranslateX();
       this.restartAutoSlide();
     }
   }
 
   goToSlide(index: number): void {
-    const eliteSuperStars = this.eliteSuperStarsSignal();
-    if (!eliteSuperStars || !eliteSuperStars[index]) return;
+    const superstars = this.eliteSuperStarsSignal();
+    if (!superstars || !superstars[index]) return;
 
     this.currentIndex = index;
     this.updateTranslateX();
-    this.selectSuperStar(eliteSuperStars[index].id);
+    this.selectSuperStar(superstars[index].id);
     this.restartAutoSlide();
   }
 
-  private updateTranslateX(): void {
-    const eliteSuperStars = this.eliteSuperStarsSignal();
-    if (!eliteSuperStars || eliteSuperStars.length === 0) return;
+  updateTranslateX(): void {
+    const superstars = this.eliteSuperStarsSignal();
+    if (!superstars || superstars.length === 0) return;
 
-    const maxTranslate =
-      (eliteSuperStars.length - this.visibleItems) * this.itemWidth;
-    this.translateX =
-      Math.min(this.currentIndex * this.itemWidth, maxTranslate) * -1;
+    const maxTranslateX =
+      (superstars.length - this.visibleItems) * this.itemWidth;
+    let translation = Math.min(
+      this.currentIndex * this.itemWidth,
+      maxTranslateX
+    );
+
+    // Adjust for RTL
+    if (this._languageService.isRTL()) {
+      this.translateX = translation;
+    } else {
+      this.translateX = -translation;
+    }
   }
 
-  private nextSlide(): void {
-    const vipSuperStars = this.eliteSuperStarsSignal();
-    if (!vipSuperStars || vipSuperStars.length === 0) return;
+  nextSlide(): void {
+    const superstars = this.eliteSuperStarsSignal();
+    if (!superstars || superstars.length === 0) return;
 
-    this.currentIndex = (this.currentIndex + 1) % vipSuperStars.length;
+    this.currentIndex = (this.currentIndex + 1) % superstars.length;
     this.updateTranslateX();
-    this.selectSuperStar(vipSuperStars[this.currentIndex].id);
+    this.selectSuperStar(superstars[this.currentIndex].id);
   }
 
-  private startAutoSlide(): void {
+  startAutoSlide(): void {
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
-    }, 50000);
+    }, 50000); // Increased interval for better UX
   }
 
-  private stopAutoSlide(): void {
+  stopAutoSlide(): void {
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
     }
   }
 
-  private restartAutoSlide(): void {
+  restartAutoSlide(): void {
     this.stopAutoSlide();
     this.startAutoSlide();
   }
@@ -122,19 +135,19 @@ export class VipSuperStarsComponent implements OnInit {
       .getAllSuperStars()
       .pipe(finalize(() => (this.loading = false)))
       .subscribe({
-        next: (res: SuperstarAthelete[]) => {
-          const mapped = res
-            .map((eliteSuperStar: SuperstarAthelete, index: number) => ({
-              ...eliteSuperStar,
-              backgroundImage: this.urlForImg + eliteSuperStar.image,
+        next: (res: any) => {
+          const eliteSuperstars = res
+            .map((superstar: any, index: number) => ({
+              ...superstar,
+              backgroundImage: this.urlForImg + superstar.image,
               active: index === 0,
             }))
-            .filter((athelete: any) => athelete.isElite === true);
-
-          this.eliteSuperStarsSignal.set(mapped);
+            .filter((superstar: any) => superstar.isElite === true);
+          this.eliteSuperStarsSignal.set(eliteSuperstars);
+          this.updateTranslateX(); // Initial calculation
         },
-        error: (error: any) => {
-          console.error('Error fetching super stars', error);
+        error: (err: any) => {
+          console.error('Error fetching super stars', err);
         },
       });
   }
