@@ -1,4 +1,4 @@
-<div class="container-fluid py-3">
+<!-- <div class="container-fluid py-3">
   <app-title-component subtitle1Key="partners.badge" titleKey="partners.title.part1" subtitle2Key="partners.title.part2"
     subtitleKey="partners.subtitle"></app-title-component>
   <div class="marquee-wrapper">
@@ -12,4 +12,34 @@
       </div>
     </div>
   </div>
+</div> -->
+
+@if (loading()) {
+<div class="banner-container skeleton-banner" dir="ltr" aria-label="Loading companies logos">
+  <h3 class="skeleton-title" aria-label="Loading title"></h3>
+  <div class="logos-container">
+    <div class="logos-track">
+      <div class="logo-item skeleton-logo"></div>
+      <div class="logo-item skeleton-logo"></div>
+      <div class="logo-item skeleton-logo"></div>
+      <div class="logo-item skeleton-logo"></div>
+    </div>
+  </div>
 </div>
+} @else {
+
+<div class="banner-container py-3">
+  <app-title-component subtitle1Key="partners.badge" titleKey="partners.title.part1" subtitle2Key="partners.title.part2"
+    subtitleKey="partners.subtitle"></app-title-component>
+  <div class="logos-container" #logosContainer>
+    <div class="logos-track" [style.transform]="'translateX(' + translateX() + 'px)'">
+      @for (logo of allLogos(); let i = $index; track i) {
+      <div class="logo-item">
+        <img [src]="logo.src" [alt]="logo.alt || (currentLang() === 'ar' ? 'شعار الشريك' : 'Partner logo')"
+          class="logo-image" loading="eager" />
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}
