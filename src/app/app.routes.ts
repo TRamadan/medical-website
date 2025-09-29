@@ -26,6 +26,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'education',
+    loadComponent: () =>
+      import(
+        './components/home-component/educational-videos/educational-videos.component'
+      ).then((c) => c.EducationalVideosComponent),
+  },
+
+  {
     path: 'auth',
     loadComponent: () =>
       import('./components/auth/auth.component').then((c) => c.AuthComponent),

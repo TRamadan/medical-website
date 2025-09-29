@@ -59,7 +59,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe((e) => {
-        if (e.urlAfterRedirects.startsWith('/aboutus')) {
+        if (
+          e.urlAfterRedirects.startsWith('/aboutus') ||
+          e.urlAfterRedirects.startsWith('/education')
+        ) {
           this.forceSolidNavbar = true;
           this.isScrolled = true;
         } else {
@@ -91,7 +94,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         name: 'Education',
-        href: '',
+        href: 'education',
       },
       {
         name: this.translationService.translate('nav.science'),
