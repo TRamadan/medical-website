@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
   standalone: true,
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
+  imports: [],
 })
 export class FooterComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
@@ -19,9 +20,11 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
-    });
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        // Component will automatically update when language changes
+      }
+    );
   }
 
   ngOnDestroy() {

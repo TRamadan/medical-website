@@ -1,9 +1,13 @@
-<button class="btn btn-outline-light btn-sm" id="languageBtn" (click)="toggleLanguage()"
+<button class="btn btn-outline-light btn-sm d-flex align-items-center gap-2" id="languageBtn" (click)="toggleLanguage()"
     [attr.aria-label]="'Switch to ' + (currentLanguage === 'en' ? 'Arabic' : 'English')">
-    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="me-2">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
-        </path>
-    </svg>
+
+    @if(currentLanguage === 'ar'){
+    <img src="../../../../assets/uk-flag.svg" alt="UK Flag" style="width: 20px; height: 20px;" />
+    }
+    @else {
+    <img src="../../../../assets/egypt-flag.svg" alt="Egypt Flag" style="width: 20px; height: 20px;" />
+    }
+
+
     <span class="language-text">{{ getLanguageText() }}</span>
 </button>

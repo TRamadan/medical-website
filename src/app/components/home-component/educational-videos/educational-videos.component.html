@@ -1,14 +1,14 @@
 <div class="education-page py-3 margin-spacing">
-  <app-title-component subtitle1Key="howitworks.badge" titleKey="howitworks.title.part1"
-    subtitle2Key="howitworks.title.part2" subtitleKey="howitworks.subtitle">
+  <app-title-component subtitle1Key="education.badge" titleKey="education.title.part1"
+    subtitle2Key="education.title.part2" subtitleKey="education.subtitle">
   </app-title-component>
   <!-- Search Bar -->
   <section class="py-4">
     <div class="container d-flex justify-content-center">
       <div class="input-group fancy-search">
         <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control border-start-0" placeholder="Search articles or videos..."
-          [(ngModel)]="searchQuery">
+        <input type="text" class="form-control border-start-0"
+          placeholder="{{translateService.translate('education.searchplaceholder')}}" [(ngModel)]="searchQuery">
       </div>
     </div>
   </section>
@@ -19,7 +19,7 @@
       <button *ngFor="let cat of categories" class="btn categories-btn"
         [ngClass]="{'btn-primary': activeCategory === cat.id, 'btn-outline-primary': activeCategory !== cat.id}"
         (click)="changeCategory(cat.id)">
-        {{ cat.name }} <p-badge [value]="cat.count" />
+        {{ currentLanguage === 'en' ? cat.name_en : cat.name_ar }} <p-badge [value]="cat.count" />
       </button>
     </div>
   </div>
@@ -32,14 +32,15 @@
           <button class="departure-tab nav-link active rounded-pill px-4 fw-bold w-100" id="departure-tab"
             data-bs-toggle="pill" data-bs-target="#departure" type="button" role="tab" aria-controls="departure"
             aria-selected="true" [class.active]="activeTab === 'articles'" (click)="changeTab('articles')">
-            Articles
+            {{translateService.translate('education.tabs1')}}
           </button>
         </li>
         <li class="nav-item w-50" role="presentation">
           <button class="arrival-tab nav-link rounded-pill px-4 fw-bold w-100 " id="arrival-tab" data-bs-toggle="pill"
             data-bs-target="#arrival" type="button" role="tab" aria-controls="arrival" aria-selected="false"
             [class.active]="activeTab === 'videos'" (click)="changeTab('videos')">
-            Videos
+
+            {{translateService.translate('education.tabs2')}}
           </button>
         </li>
       </ul>
@@ -53,20 +54,22 @@
             data-aos="fade-up" [attr.data-aos-delay]="i * 100">
             <div class="card h-100 shadow-sm border-0 position-relative">
               <img [src]="article.image ? article.image : '../../../../assets/logo-svg.svg'" class="card-img-top"
-                alt="{{ article.title }}">
+                [alt]="currentLanguage === 'en' ? article.title : article.titleAr">
               <div class="card-body">
                 <div class="doc-section-description">
-                  <p><i>{{article.category}}</i></p>
+                  <p><i>{{currentLanguage === 'en' ? article.category.nameEn : article.category.nameAr}}</i></p>
                 </div>
-                <h5 class="card-title title">{{ article.title }}</h5>
+                <h5 class="card-title title">{{ currentLanguage === 'en' ? article.title : article.titleAr }}</h5>
                 <div>
-                  <p class="card-text small text-muted">
-                    {{ article.isExpanded ? article.description : (article.description | slice:0:100) }}
+                  <p class="card-text small text-muted text-justify">
+                    {{ article.isExpanded ? (currentLanguage === 'en' ? article.description : article.descriptionAr) :
+                    ((currentLanguage === 'en' ? article.description : article.descriptionAr) | slice:0:100) }}
                   </p>
                 </div>
 
                 <button class="btn p-0 mt-3" (click)="article.isExpanded = !article.isExpanded">
-                  {{ article.isExpanded ? 'Read less' : 'Read more' }}
+                  {{ article.isExpanded ? translateService.translate('education.readLess') :
+                  translateService.translate('education.readMore') }}
                 </button>
               </div>
               <div class="card-footer border-0 text-muted small d-flex justify-content-between align-items-center">
@@ -117,20 +120,22 @@
             [attr.data-aos-delay]="i * 100">
             <div class="card h-100 shadow-sm border-0 position-relative">
               <img [src]="video.image ? video.image : '../../../../assets/logo-svg.svg'" class="card-img-top"
-                alt="{{ video.title }}">
+                [alt]="currentLanguage === 'en' ? video.title : video.titleAr">
               <div class="card-body">
                 <div class="doc-section-description">
-                  <p><i>{{ video.category }}</i></p>
+                  <p><i>{{ currentLanguage === 'en' ? video.category.nameEn : video.category.nameAr }}</i></p>
                 </div>
-                <h5 class="card-title title">{{ video.title }}</h5>
+                <h5 class="card-title title">{{ currentLanguage === 'en' ? video.title : video.titleAr }}</h5>
                 <div>
-                  <p class="card-text small text-muted">
-                    {{ video.isExpanded ? video.description : (video.description | slice:0:100) }}
+                  <p class="card-text small text-muted text-justify">
+                    {{ video.isExpanded ? (currentLanguage === 'en' ? video.description : video.descriptionAr) :
+                    ((currentLanguage === 'en' ? video.description : video.descriptionAr) | slice:0:100) }}
                   </p>
                 </div>
 
                 <button class="btn p-0 mt-3" (click)="video.isExpanded = !video.isExpanded">
-                  {{ video.isExpanded ? 'Read less' : 'Read more' }}
+                  {{ video.isExpanded ? translateService.translate('education.readLess') :
+                  translateService.translate('education.readMore') }}
                 </button>
               </div>
               <div class="card-footer border-0 text-muted small d-flex justify-content-between align-items-center">

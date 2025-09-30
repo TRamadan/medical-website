@@ -5,8 +5,11 @@ import { BadgeModule } from 'primeng/badge';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { TooltipModule } from 'primeng/tooltip';
 import { MenuItem } from 'primeng/api';
+import { LanguageService, Language } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
 
 import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
+import { TranslationService } from '../../../services/translation.service';
 @Component({
   standalone: true,
   imports: [
@@ -22,12 +25,35 @@ import { TitleComponentComponent } from '../../shared-ui/title-component/title-c
   styleUrls: ['./educational-videos.component.css'],
 })
 export class EducationalVideosComponent implements OnInit, OnDestroy {
+  currentLanguage: Language = 'en';
+  private languageSubscription?: Subscription;
+
   categories: any[] = [
-    { id: 'all', name: 'All Articles', count: 12 },
-    { id: 'physical-therapy', name: 'Physical Therapy', count: 4 },
-    { id: 'mental-health', name: 'Mental Health', count: 3 },
-    { id: 'occupational-therapy', name: 'Occupational Therapy', count: 3 },
-    { id: 'rehabilitation', name: 'Rehabilitation', count: 2 },
+    { id: 'all', name_en: 'All Articles', name_ar: 'كل المقالات', count: 12 },
+    {
+      id: 'physical-therapy',
+      name_en: 'Physical Therapy',
+      name_ar: 'علاج طبيعي',
+      count: 4,
+    },
+    {
+      id: 'mental-health',
+      name_en: 'Mental Health',
+      name_ar: 'صحة نفسية',
+      count: 3,
+    },
+    {
+      id: 'occupational-therapy',
+      name_en: 'Occupational Therapy',
+      name_ar: 'علاج وظيفي',
+      count: 3,
+    },
+    {
+      id: 'rehabilitation',
+      name_en: 'Rehabilitation',
+      name_ar: 'إعادة تأهيل',
+      count: 2,
+    },
   ];
 
   articles: any[] = [];
@@ -37,16 +63,27 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
   activeTab: string = 'articles';
   searchQuery: string = '';
 
+  constructor(
+    private languageService: LanguageService,
+    public translateService: TranslationService
+  ) {}
+
   ngOnInit(): void {
-    // مؤقتاً هنحط بيانات بسيطة بدل الصور
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang) => {
+        this.currentLanguage = lang;
+      }
+    );
     this.articles = [
-      // Add .map to include isExpanded property
       {
         id: '1',
         type: 'article',
         title: 'Evidence-Based Approaches to Physical Rehabilitation',
+        titleAr: 'الأساليب القائمة على الأدلة في إعادة التأهيل البدني',
         description:
           'Explore the latest research-backed methodologies in physical rehabilitation therapy. This comprehensive guide covers modern techniques for improving mobility, strength, and functional independence in patients recovering from injuries or managing chronic conditions. Learn about the integration of technology in rehabilitation, personalized treatment plans, and outcome measurement strategies that are revolutionizing the field of physical therapy. Discover how evidence-based practice is enhancing patient outcomes and setting new standards in rehabilitation medicine.',
+        descriptionAr:
+          'استكشف أحدث المنهجيات المدعومة بالبحث في علاج إعادة التأهيل البدني. يغطي هذا الدليل الشامل التقنيات الحديثة لتحسين الحركة والقوة والاستقلالية الوظيفية لدى المرضى الذين يتعافون من الإصابات أو يديرون الحالات المزمنة. تعرف على تكامل التكنولوجيا في إعادة التأهيل وخطط العلاج المخصصة واستراتيجيات قياس النتائج التي تحدث ثورة في مجال العلاج الطبيعي. اكتشف كيف تعزز الممارسة القائمة على الأدلة نتائج المرضى وتضع معايير جديدة في طب إعادة التأهيل.',
         image:
           'https://id-preview--a57dc554-4965-40b9-a935-f53213711003.lovable.app/assets/physical-therapy-DFxcq2Xa.jpg',
         author: {
@@ -56,15 +93,21 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
           avatar: '',
         },
         readTime: '8 min read',
-        category: 'Physical Therapy',
+        category: {
+          nameAr: 'العلاج الطبيعي',
+          nameEn: 'Physical Therapy',
+        },
         publishedAt: '2024-01-15',
       },
       {
         type: 'article',
         id: '2',
         title: 'Mental Health Support in Rehabilitation Settings',
+        titleAr: 'دعم الصحة النفسية في بيئات إعادة التأهيل',
         description:
           'Understanding the crucial role of mental health support during the rehabilitation process. This article delves into the psychological challenges patients face during recovery and provides strategies for healthcare professionals to address mental health needs effectively. Learn about integrated care models, screening tools, and therapeutic interventions that support both physical and mental wellbeing. Discover how addressing mental health concerns can significantly improve rehabilitation outcomes and patient satisfaction',
+        descriptionAr:
+          'فهم الدور الحاسم لدعم الصحة النفسية أثناء عملية إعادة التأهيل. يتعمق هذا المقال في التحديات النفسية التي يواجهها المرضى أثناء التعافي ويقدم استراتيجيات للمهنيين الصحيين لتلبية احتياجات الصحة النفسية بفعالية. تعرف على نماذج الرعاية المتكاملة وأدوات الفحص والتدخلات العلاجية التي تدعم كل من الرفاهية الجسدية والنفسية. اكتشف كيف يمكن أن يؤدي معالجة مخاوف الصحة النفسية إلى تحسين نتائج إعادة التأهيل ورضا المرضى بشكل كبير',
         image:
           'https://id-preview--a57dc554-4965-40b9-a935-f53213711003.lovable.app/assets/physical-therapy-DFxcq2Xa.jpg',
         author: {
@@ -74,20 +117,25 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
           avatar: '',
         },
         readTime: '6 min read',
-        category: 'Mental Health',
+        category: {
+          nameAr: 'الصحة النفسية',
+          nameEn: 'Mental Health',
+        },
         publishedAt: '2024-01-12',
       },
     ].map((article) => ({ ...article, isExpanded: false }));
 
     this.videos = [
-      // Add .map to include isExpanded property
       {
         id: '1',
         type: 'video',
 
         title: 'Advanced Physical Therapy Techniques for Spinal Rehabilitation',
+        titleAr: 'تقنيات العلاج الطبيعي المتقدمة لإعادة تأهيل العمود الفقري',
         description:
           'Explore the integration of CBT techniques in physical rehabilitation programs. This educational video covers assessment of psychological barriers to recovery, implementation of cognitive restructuring techniques, and collaborative care approaches. Perfect for healthcare professionals working in multidisciplinary rehabilitation teams.',
+        descriptionAr:
+          'استكشف تكامل تقنيات العلاج السلوكي المعرفي في برامج إعادة التأهيل البدني. يغطي هذا الفيديو التعليمي تقييم الحواجز النفسية للتعافي، وتنفيذ تقنيات إعادة الهيكلة المعرفية، ومناهج الرعاية التعاونية. مثالي للمهنيين الصحيين العاملين في فرق إعادة التأهيل متعددة التخصصات.',
         youtubeId: 'dQw4w9WgXcQ',
         thumbnail:
           'https://id-preview--a57dc554-4965-40b9-a935-f53213711003.lovable.app/assets/physical-therapy-DFxcq2Xa.jpg',
@@ -96,31 +144,42 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
         likes: '1.2K',
         publishedAt: '2 weeks ago',
         channel: { name: 'Rehabilitation Academy', avatar: '', verified: true },
-        category: 'Physical Therapy',
+        category: {
+          nameAr: 'الصحة النفسية',
+          nameEn: 'Mental Health',
+        },
       },
     ].map((video) => ({ ...video, isExpanded: false }));
   }
 
   get filteredArticles(): any[] {
     return this.articles.filter((a) => {
+      const categoryId = a.category.nameEn.toLowerCase().replace(/\s+/g, '-');
       const matchesCategory =
-        this.activeCategory === 'all' ||
-        a.category.toLowerCase().replace(/\s+/g, '-') === this.activeCategory;
+        this.activeCategory === 'all' || categoryId === this.activeCategory;
+      const lowerCaseQuery = this.searchQuery.toLowerCase();
       const matchesSearch =
-        a.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        a.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+        a.title.toLowerCase().includes(lowerCaseQuery) ||
+        a.description.toLowerCase().includes(lowerCaseQuery) ||
+        (a.titleAr && a.titleAr.toLowerCase().includes(lowerCaseQuery)) ||
+        (a.descriptionAr &&
+          a.descriptionAr.toLowerCase().includes(lowerCaseQuery));
       return matchesCategory && matchesSearch;
     });
   }
 
   get filteredVideos(): any[] {
     return this.videos.filter((v) => {
+      const categoryId = v.category.nameEn.toLowerCase().replace(/\s+/g, '-');
       const matchesCategory =
-        this.activeCategory === 'all' ||
-        v.category.toLowerCase().replace(/\s+/g, '-') === this.activeCategory;
+        this.activeCategory === 'all' || categoryId === this.activeCategory;
+      const lowerCaseQuery = this.searchQuery.toLowerCase();
       const matchesSearch =
-        v.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        v.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+        v.title.toLowerCase().includes(lowerCaseQuery) ||
+        v.description.toLowerCase().includes(lowerCaseQuery) ||
+        (v.titleAr && v.titleAr.toLowerCase().includes(lowerCaseQuery)) ||
+        (v.descriptionAr &&
+          v.descriptionAr.toLowerCase().includes(lowerCaseQuery));
       return matchesCategory && matchesSearch;
     });
   }
@@ -158,18 +217,14 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
     debugger;
     if (!item) return;
 
-    // تحديد الرابط بناءً على نوع المحتوى
     let itemUrl: string;
     let itemTitle: string = item?.title?.trim() || 'Check this out!';
 
     if (item.type === 'video') {
-      // في حالة الفيديو
       itemUrl = `${window.location.origin}/education/videos/${item.id}`;
     } else if (item.type === 'article') {
-      // في حالة المقال
       itemUrl = `${window.location.origin}/education/articles/${item.id}`;
     } else {
-      // في حالة عدم معرفة نوع الكائن
       console.warn('Unknown item type');
       return;
     }
@@ -214,5 +269,9 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
     this.selectedItemId = null;
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
 }

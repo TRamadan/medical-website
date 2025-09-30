@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         href: '#superstars',
       },
       {
-        name: 'Education',
+        name: this.translationService.translate('nav.education'),
         href: 'education',
       },
       {

@@ -52,6 +52,10 @@
     color: #131337;
 }
 
+.text-justify {
+    text-align: justify;
+}
+
 .btn:hover {
     background: #70f4c3 !important;
     border: none;

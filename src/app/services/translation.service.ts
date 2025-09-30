@@ -13,6 +13,7 @@ export interface TranslationMap {
 })
 export class TranslationService {
   private translations: TranslationMap = {
+    'explore.lang': { en: 'EN', ar: 'عربي' },
     'explore.btn': { en: 'Explore Now', ar: 'استكشف المزيد' },
     // Navigation items
     'nav.home': { en: 'Home', ar: 'الرئيسية' },
@@ -21,6 +22,7 @@ export class TranslationService {
     'nav.science': { en: 'The science', ar: 'العلوم' },
     'nav.exploreSolution': { en: 'Explore solution', ar: 'حلولنا' },
     'nav.contact': { en: 'Contact', ar: 'اتصل بنا' },
+    'nav.education': { en: 'Rehabilitation Learning', ar: 'التأهيل والتعافي' },
 
     // Hero section
     'hero.title': {
@@ -233,6 +235,54 @@ export class TranslationService {
       en: 'At The Sports Doctor, we believe every setback is a setup for a powerful comeback. Our state-of-the-art rehabilitation center is designed to not only heal your injuries but to empower you with the strength and resilience needed to dominate your sport.',
       ar: 'في طبيب الرياضة، نؤمن بأن كل نكسة هي إعداد لعودة قوية. مركز إعادة التأهيل المتطور لدينا مصمم ليس فقط لشفاء إصاباتك ولكن لتمكينك بالقوة والمرونة اللازمة للسيطرة على رياضتك.',
     },
+    'footer.whoWeAre': { en: 'Who we are', ar: 'من نحن' },
+    'footer.ourStory': { en: 'Our Story', ar: 'قصتنا' },
+    'footer.ourAdvisors': { en: 'Our advisors', ar: 'مستشارونا' },
+    'footer.ourTeam': { en: 'Our team', ar: 'فريقنا' },
+    'footer.joinOurTeam': { en: 'Join our team', ar: 'انضم لفريقنا' },
+    'footer.ourApproach': { en: 'Our Approach', ar: 'نهجنا' },
+    'footer.methodology': { en: 'Methodology', ar: 'المنهجية' },
+    'footer.benefits': {
+      en: 'Benefits of working with us',
+      ar: 'فوائد العمل معنا',
+    },
+    'footer.technology': {
+      en: 'Cutting Edge Technology',
+      ar: 'أحدث التقنيات',
+    },
+    'footer.knowledgeHub': { en: 'Knowledge Hub', ar: 'مركز المعرفة' },
+    'footer.articles': { en: 'Articles', ar: 'مقالات' },
+    'footer.videos': { en: 'Videos', ar: 'فيديوهات' },
+    'footer.exercisePrograms': {
+      en: 'Exercise Programs',
+      ar: 'برامج التمارين',
+    },
+    'footer.research': { en: 'Research', ar: 'الأبحاث' },
+    'footer.ourSolutions': { en: 'Our Solutions', ar: 'حلولنا' },
+    'footer.returnToPlay': { en: 'Return to Play', ar: 'العودة للعب' },
+    'footer.athletesRecharger': {
+      en: "Athlete's Recharger",
+      ar: 'شاحن الرياضي',
+    },
+    'footer.resilientAthlete': {
+      en: 'The resilient athlete',
+      ar: 'الرياضي المرن',
+    },
+    'footer.athleteBlueprint': {
+      en: 'Athlete blueprint',
+      ar: 'مخطط الرياضي',
+    },
+    'footer.successStories': { en: 'Success Stories', ar: 'قصص النجاح' },
+    'footer.legacies': { en: 'Legacies', ar: 'الإرث' },
+    'footer.superStars': { en: 'Super stars', ar: 'النجوم الخارقون' },
+    'footer.comebackStories': {
+      en: 'Comeback stories',
+      ar: 'قصص العودة',
+    },
+    'footer.testimonials': { en: 'Testimonials', ar: 'الشهادات' },
+    'footer.collaborations': { en: 'Collaborations', ar: 'التعاونات' },
+    'footer.getInTouch': { en: 'Get in touch', ar: 'تواصل معنا' },
+    'footer.followUs': { en: 'Follow us', ar: 'تابعنا' },
 
     // How It Works
     'howItWorks.title': { en: 'How It Works', ar: 'طريقة العمل' },
@@ -709,7 +759,7 @@ export class TranslationService {
     },
 
     // Brands Section
-    'brands.title': { en: 'Branding', ar: 'العلامة التجارية' },
+    'brands.title': { en: 'The sports doctor', ar: 'العلامة التجارية' },
     'brands.subtitle': { en: 'Our Mission', ar: 'مهمتنا' },
     'brands.description': {
       en: 'We are dedicated to help our stars of all levels to defeat injuries, return to training & competition effectively with a minimal risk of recurrence. We use the latest scientific protocols according to the educational & physiological code. We also take our share of responsibility to spread awareness about prevention & peak performance.',
@@ -761,6 +811,51 @@ export class TranslationService {
     'howitworks.step5.description': {
       en: 'Regular communication with your care provider.',
       ar: 'تواصل منتظم مع مقدم الرعاية.',
+    },
+
+    'education.tabs1': {
+      en: 'Articles',
+      ar: 'المقالات',
+    },
+
+    'education.tabs2': {
+      en: 'Videos',
+      ar: 'الفيديوهات',
+    },
+
+    'education.readMore': {
+      en: 'Read more',
+      ar: 'قراءة المزيد',
+    },
+
+    'education.readLess': {
+      en: 'Read less',
+      ar: 'عرض أقل',
+    },
+
+    'education.searchplaceholder': {
+      en: 'Search articles or videos...',
+      ar: 'ابحث في المقالات أو الفيديوهات ...',
+    },
+
+    'education.badge': {
+      en: 'Rehabilitation Learning',
+      ar: 'التأهيل والتعافي',
+    },
+
+    'education.title.part1': {
+      en: 'Understand your injury,',
+      ar: 'افهم إصابتك،',
+    },
+
+    'education.title.part2': {
+      en: 'and recover the right way',
+      ar: 'وتعافَ بالطريقة الصحيحة',
+    },
+
+    'education.subtitle': {
+      en: 'Learn from medical experts how to manage, rehabilitate, and prevent sports injuries through step-by-step educational content.',
+      ar: 'تعلّم من الخبراء كيفية التعامل مع الإصابات الرياضية وتأهيلها والوقاية منها من خلال محتوى تعليمي خطوة بخطوة.',
     },
   };
 
