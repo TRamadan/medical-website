@@ -17,7 +17,7 @@ export class EducationalContentService {
    * @returns An observable of an array of Category objects.
    */
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.configURL + 'EducationalCategory');
+    return this.http.get<Category[]>(this.configURL + 'EducationCategory');
   }
 
   /**

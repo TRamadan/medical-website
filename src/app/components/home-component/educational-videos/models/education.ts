@@ -14,6 +14,6 @@ export interface Education {
 
 export interface Category {
   id?: number;
-  name: string;
-  nameEn: string;
+  nameAr?: string;
+  nameEn?: string;
 }

@@ -1,0 +1,52 @@
+<section class="justify-content-center">
+  <div class="container">
+    <div class="row">
+      @if(exercises.length){
+      @for(item of exercises; track item){
+      <div class="col-12 col-sm-6 col-lg-4 mb-4">
+        <div class="exercise-card">
+
+          <div class="card-body">
+            <h3 class="card-title" data-en="Science Experiments" data-ar="تجارب علمية">
+              Science Experiments
+            </h3>
+
+            <a href="#" class="download-btn">
+              <span class="btn-text" data-en="Download File" data-ar="تحميل الملف">Download File</span>
+              <i class="fas fa-file-download"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+      }
+
+      @else {
+      @for(item of researches; track item){
+      <div class="col-12 col-sm-6 col-lg-4 mb-4">
+        <div class="exercise-card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=600&h=400&fit=crop"
+              alt="Science Exercise" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title" data-en="Science Experiments" data-ar="تجارب علمية">
+              Science Experiments
+            </h3>
+
+            <p class="text-muted">
+              Studying the impact of AI in improving medical diagnosis and healthcare
+            </p>
+            <a href="#" class="download-btn">
+              <span class="btn-text" data-en="Learn more">Learn more</span>
+              <i class="fas fa-file-download"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+      }
+
+    </div>
+  </div>
+</section>

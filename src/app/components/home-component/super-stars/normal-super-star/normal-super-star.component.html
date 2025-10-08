@@ -1,4 +1,4 @@
-<section class="overflow-hidden">
+<section class="overflow-hidden" id="superstars">
   <app-title-component subtitle1Key="superstars.champions"></app-title-component>
 
   <div class="carousel-container position-relative overflow-hidden rounded-4" (mouseenter)="onMouseEnter()"
@@ -26,7 +26,7 @@
         <div class="card  border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
           [class.side-slide]="i !== 1 && itemsPerSlide === 3">
           <div class="position-relative">
-            <img [src]="imgUrl + superstar?.image" alt="champions-imgs" class="card-img-top object-fit-cover"
+            <img src="https://placehold.co/400" alt="champions-imgs" class="card-img-top object-fit-cover"
               style="height: 250px" />
           </div>
           <div class="card-body p-4">

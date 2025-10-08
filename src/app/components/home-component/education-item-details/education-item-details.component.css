@@ -1,0 +1,43 @@
+        .category-sidebar {
+            padding-right: 20px;
+        }
+
+        .category-btn {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+        }
+
+        .category-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .category-btn.selected {
+            background-color: #70f4c3;
+            color: #131337;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+        }
+
+        .main-section {
+            padding-top: 125px;
+        }
+
+        .category-holder {
+            background-color: #131337;
+            padding: 18px;
+            border-radius: 20px;
+            max-height: 500px;
+            overflow: auto;
+        }

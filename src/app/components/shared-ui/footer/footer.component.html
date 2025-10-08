@@ -18,11 +18,15 @@
       <div class="col-6 col-md-2 mb-4">
         <h6 class="footer-title fw-bold">{{ translationService.translate('footer.whoWeAre') }}</h6>
         <ul class="list-unstyled footer-animate">
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.ourStory')
+          <li><a href="/aboutus" class="text-light text-decoration-none">{{
+              translationService.translate('footer.ourStory')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.ourAdvisors')
+          <li><a [routerLink]="['/aboutus']" fragment="ouradvisors" fragment="advisors"
+              class="text-light text-decoration-none">{{
+              translationService.translate('footer.ourAdvisors')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.ourTeam')
+          <li><a href="#ourteam" fragment="our-team" class="text-light text-decoration-none">{{
+              translationService.translate('footer.ourTeam')
               }}</a></li>
           <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.joinOurTeam')
               }}</a></li>
@@ -32,13 +36,17 @@
       <div class="col-6 col-md-2 mb-4">
         <h6 class="footer-title fw-bold">{{ translationService.translate('footer.ourApproach') }}</h6>
         <ul class="list-unstyled footer-animate">
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.methodology')
+          <li><a href="#methodology" class="text-light text-decoration-none">{{
+              translationService.translate('footer.methodology')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.benefits')
+          <li><a href="#benefits" class="text-light text-decoration-none">{{
+              translationService.translate('footer.benefits')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.technology')
+          <li><a href="#cutting-edge-technology" class="text-light text-decoration-none">{{
+              translationService.translate('footer.technology')
               }}</a></li>
         </ul>
+
       </div>
 
       <div class="col-6 col-md-2 mb-4">
@@ -72,17 +80,19 @@
       <div class="col-6 col-md-2 mb-4">
         <h6 class="footer-title fw-bold">{{ translationService.translate('footer.successStories') }}</h6>
         <ul class="list-unstyled footer-animate">
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.legacies')
+          <li><a href="#elitesuperstars" class="text-light text-decoration-none">{{
+              translationService.translate('footer.legacies')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.superStars')
+          <li><a href="#superstars" class="text-light text-decoration-none">{{
+              translationService.translate('footer.superStars')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{
+          <li><a href="#success-videos" class="text-light text-decoration-none">{{
               translationService.translate('footer.comebackStories') }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.testimonials')
+          <li><a href="#customer-success-stories" class="text-light text-decoration-none">{{
+              translationService.translate('footer.testimonials')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{
+          <li><a href="#partners" class="text-light text-decoration-none">{{
               translationService.translate('footer.collaborations') }}</a></li>
-
         </ul>
       </div>
 
@@ -95,10 +105,10 @@
 
         <h6 class="footer-title fw-bold mt-3">{{ translationService.translate('footer.followUs') }}</h6>
         <div class="d-flex gap-3">
-          <a href="#" class="text-light fs-4"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-light fs-4" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
 
-          <a href="#" class="text-light fs-4"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-light fs-4"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-light fs-4" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-light fs-4" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
 

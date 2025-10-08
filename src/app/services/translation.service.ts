@@ -18,11 +18,11 @@ export class TranslationService {
     // Navigation items
     'nav.home': { en: 'Home', ar: 'الرئيسية' },
     'nav.about': { en: 'About Us', ar: 'من نحن' },
-    'nav.superstars': { en: 'Our super stars', ar: 'نجومنا' },
+    'nav.solutions': { en: 'Our solutions', ar: 'حلولنا' },
     'nav.science': { en: 'The science', ar: 'العلوم' },
     'nav.exploreSolution': { en: 'Explore solution', ar: 'حلولنا' },
     'nav.contact': { en: 'Contact', ar: 'اتصل بنا' },
-    'nav.education': { en: 'Rehabilitation Learning', ar: 'التأهيل والتعافي' },
+    'nav.education': { en: 'Knowledge Hub', ar: 'بنك المعرفة' },
 
     // Hero section
     'hero.title': {
@@ -813,16 +813,6 @@ export class TranslationService {
       ar: 'تواصل منتظم مع مقدم الرعاية.',
     },
 
-    'education.tabs1': {
-      en: 'Articles',
-      ar: 'المقالات',
-    },
-
-    'education.tabs2': {
-      en: 'Videos',
-      ar: 'الفيديوهات',
-    },
-
     'education.readMore': {
       en: 'Read more',
       ar: 'قراءة المزيد',
@@ -839,23 +829,23 @@ export class TranslationService {
     },
 
     'education.badge': {
-      en: 'Rehabilitation Learning',
-      ar: 'التأهيل والتعافي',
+      en: 'Knowledge Hub',
+      ar: 'منصة المعرفة',
     },
 
     'education.title.part1': {
-      en: 'Understand your injury,',
-      ar: 'افهم إصابتك،',
+      en: 'Explore trusted insights,',
+      ar: 'استكشف المعرفة الموثوقة،',
     },
 
     'education.title.part2': {
-      en: 'and recover the right way',
-      ar: 'وتعافَ بالطريقة الصحيحة',
+      en: 'learn, practice, and grow',
+      ar: 'تعلّم وتمرّن وتطوّر',
     },
 
     'education.subtitle': {
-      en: 'Learn from medical experts how to manage, rehabilitate, and prevent sports injuries through step-by-step educational content.',
-      ar: 'تعلّم من الخبراء كيفية التعامل مع الإصابات الرياضية وتأهيلها والوقاية منها من خلال محتوى تعليمي خطوة بخطوة.',
+      en: 'Access expert videos, articles, research, and exercises to advance your knowledge in sports science and recovery.',
+      ar: 'تصفّح فيديوهات ومقالات وأبحاث وتمارين متخصصة لتعزيز معرفتك في علوم الرياضة والتعافي.',
     },
   };
 

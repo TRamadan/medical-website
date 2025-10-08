@@ -1,181 +1,24 @@
-<div class="education-page py-3 margin-spacing">
+<div class="container main-content">
   <app-title-component subtitle1Key="education.badge" titleKey="education.title.part1"
     subtitle2Key="education.title.part2" subtitleKey="education.subtitle">
   </app-title-component>
-  <!-- Search Bar -->
-  <section class="py-4">
-    <div class="container d-flex justify-content-center">
-      <div class="input-group fancy-search">
-        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control border-start-0"
-          placeholder="{{translateService.translate('education.searchplaceholder')}}" [(ngModel)]="searchQuery">
+
+  <div class="row g-4 py-3">
+    @for (item of educationLibraryCategories; track item) {
+    <div class="col-12 col-md-6">
+      <div class="card content-card shadow-sm border-0 text-center p-4 h-100" style="cursor: pointer"
+        (click)="showItemDetails(item)">
+        <div class="icon-wrapper mx-auto mb-3">
+          <img [src]="item.icon" [alt]="item.nameEn" class="icon-img" />
+        </div>
+        <h4 class="fw-semibold mb-2 title">
+          {{ currentLanguage == "en" ? item.nameEn : item.nameAr }}
+        </h4>
+        <p class="text-muted mb-0">
+          {{ currentLanguage == "en" ? item.descriptionEn : item.descriptionAr }}
+        </p>
       </div>
     </div>
-  </section>
-
-  <!-- Category Filter -->
-  <div class="container py-3 d-flex justify-content-center">
-    <div class="d-flex flex-wrap  gap-2">
-      <button *ngFor="let cat of categories" class="btn categories-btn"
-        [ngClass]="{'btn-primary': activeCategory === cat.id, 'btn-outline-primary': activeCategory !== cat.id}"
-        (click)="changeCategory(cat.id)">
-        {{ currentLanguage === 'en' ? cat.name_en : cat.name_ar }} <p-badge [value]="cat.count" />
-      </button>
-    </div>
-  </div>
-
-  <!-- Tabs -->
-  <div class="container py-4">
-    <div class="tabs-holder">
-      <ul class="nav nav-pills mb-3 d-flex justify-content-between p-1" id="tripTab" role="tablist">
-        <li class="nav-item w-50" role="presentation">
-          <button class="departure-tab nav-link active rounded-pill px-4 fw-bold w-100" id="departure-tab"
-            data-bs-toggle="pill" data-bs-target="#departure" type="button" role="tab" aria-controls="departure"
-            aria-selected="true" [class.active]="activeTab === 'articles'" (click)="changeTab('articles')">
-            {{translateService.translate('education.tabs1')}}
-          </button>
-        </li>
-        <li class="nav-item w-50" role="presentation">
-          <button class="arrival-tab nav-link rounded-pill px-4 fw-bold w-100 " id="arrival-tab" data-bs-toggle="pill"
-            data-bs-target="#arrival" type="button" role="tab" aria-controls="arrival" aria-selected="false"
-            [class.active]="activeTab === 'videos'" (click)="changeTab('videos')">
-
-            {{translateService.translate('education.tabs2')}}
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Articles -->
-    <div *ngIf="activeTab === 'articles'">
-      <div *ngIf="filteredArticles.length > 0; else noArticles">
-        <div class="row g-4">
-          <div class="col-12 col-md-6 col-lg-4" *ngFor="let article of filteredArticles; let i = index"
-            data-aos="fade-up" [attr.data-aos-delay]="i * 100">
-            <div class="card h-100 shadow-sm border-0 position-relative">
-              <img [src]="article.image ? article.image : '../../../../assets/logo-svg.svg'" class="card-img-top"
-                [alt]="currentLanguage === 'en' ? article.title : article.titleAr">
-              <div class="card-body">
-                <div class="doc-section-description">
-                  <p><i>{{currentLanguage === 'en' ? article.category.nameEn : article.category.nameAr}}</i></p>
-                </div>
-                <h5 class="card-title title">{{ currentLanguage === 'en' ? article.title : article.titleAr }}</h5>
-                <div>
-                  <p class="card-text small text-muted text-justify">
-                    {{ article.isExpanded ? (currentLanguage === 'en' ? article.description : article.descriptionAr) :
-                    ((currentLanguage === 'en' ? article.description : article.descriptionAr) | slice:0:100) }}
-                  </p>
-                </div>
-
-                <button class="btn p-0 mt-3" (click)="article.isExpanded = !article.isExpanded">
-                  {{ article.isExpanded ? translateService.translate('education.readLess') :
-                  translateService.translate('education.readMore') }}
-                </button>
-              </div>
-              <div class="card-footer border-0 text-muted small d-flex justify-content-between align-items-center">
-                <span>By {{ article.author.name }} </span>
-
-                <div class="position-relative">
-                  <button class="btn btn-light btn-sm  border" (click)="toggleShareMenu(article)">
-                    <i class="bi bi-share-fill"></i>
-                  </button>
-
-                  <!-- Share Menu -->
-                  <div class="share-menu position-absolute" *ngIf="showShareMenu && selectedItemId === article.id">
-                    <button class="btn btn-outline-success btn-sm w-100 mb-1" (click)="share('whatsapp', article)">
-                      <i class="bi bi-whatsapp"></i> WhatsApp
-                    </button>
-                    <button class="btn btn-outline-primary btn-sm w-100 mb-1" (click)="share('facebook', article)">
-                      <i class="bi bi-facebook"></i> Facebook
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm w-100 mb-1" (click)="share('copy', article)">
-                      <i class="bi bi-link-45deg"></i> Copy Link
-                    </button>
-                    <button class="btn btn-outline-dark btn-sm w-100" (click)="share('native', article)">
-                      <i class="bi bi-share"></i> More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <ng-template #noArticles>
-        <div class="text-center py-5">
-          <i class="bi bi-journal-x display-6 text-muted d-block mb-3"></i>
-          <p>No articles found. Try adjusting filters.</p>
-          <button class="btn btn-outline-secondary" (click)="clearFilters()">Clear filters</button>
-        </div>
-      </ng-template>
-    </div>
-
-    <!-- Videos -->
-    <div *ngIf="activeTab === 'videos'">
-      <div *ngIf="filteredVideos.length > 0; else noVideos">
-        <div class="row g-4">
-          <div class="col-12 col-md-6 col-lg-4" *ngFor="let video of filteredVideos; let i = index" data-aos="fade-up"
-            [attr.data-aos-delay]="i * 100">
-            <div class="card h-100 shadow-sm border-0 position-relative">
-              <img [src]="video.image ? video.image : '../../../../assets/logo-svg.svg'" class="card-img-top"
-                [alt]="currentLanguage === 'en' ? video.title : video.titleAr">
-              <div class="card-body">
-                <div class="doc-section-description">
-                  <p><i>{{ currentLanguage === 'en' ? video.category.nameEn : video.category.nameAr }}</i></p>
-                </div>
-                <h5 class="card-title title">{{ currentLanguage === 'en' ? video.title : video.titleAr }}</h5>
-                <div>
-                  <p class="card-text small text-muted text-justify">
-                    {{ video.isExpanded ? (currentLanguage === 'en' ? video.description : video.descriptionAr) :
-                    ((currentLanguage === 'en' ? video.description : video.descriptionAr) | slice:0:100) }}
-                  </p>
-                </div>
-
-                <button class="btn p-0 mt-3" (click)="video.isExpanded = !video.isExpanded">
-                  {{ video.isExpanded ? translateService.translate('education.readLess') :
-                  translateService.translate('education.readMore') }}
-                </button>
-              </div>
-              <div class="card-footer border-0 text-muted small d-flex justify-content-between align-items-center">
-                <span>By {{ video.author?.name || 'Unknown' }} </span>
-
-                <div class="position-relative">
-                  <button class="btn btn-light btn-sm border" (click)="toggleShareMenu(video)">
-                    <i class="bi bi-share-fill"></i>
-                  </button>
-
-                  <!-- Share Menu -->
-                  <div class="share-menu position-absolute" *ngIf="showShareMenu && selectedItemId === video.id">
-                    <button class="btn btn-outline-success btn-sm w-100 mb-1" (click)="share('whatsapp', video)">
-                      <i class="bi bi-whatsapp"></i> WhatsApp
-                    </button>
-                    <button class="btn btn-outline-primary btn-sm w-100 mb-1" (click)="share('facebook', video)">
-                      <i class="bi bi-facebook"></i> Facebook
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm w-100 mb-1" (click)="share('copy', video)">
-                      <i class="bi bi-link-45deg"></i> Copy Link
-                    </button>
-                    <button class="btn btn-outline-dark btn-sm w-100" (click)="share('native', video)">
-                      <i class="bi bi-share"></i> More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <ng-template #noVideos>
-        <div class="text-center py-5">
-          <i class="bi bi-play-circle display-6 text-muted d-block mb-3"></i>
-          <p>No videos found. Try adjusting filters.</p>
-          <button class="btn btn-outline-secondary" (click)="clearFilters()">Clear filters</button>
-        </div>
-      </ng-template>
-    </div>
+    }
   </div>
 </div>

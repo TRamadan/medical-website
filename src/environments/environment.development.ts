@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://hamoudasw-001-site1.mtempurl.com/api/',
-  imgUrl: 'http://hamoudasw-001-site1.mtempurl.com/',
+  apiUrl: 'http://localhost:5001/api/',
+  imgUrl: 'http://localhost:5001/',
 };

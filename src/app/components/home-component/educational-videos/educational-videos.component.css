@@ -1,253 +1,34 @@
-.margin-spacing {
-    margin-top: 6rem;
+/* 🎨 --- Existing Styles --- */
+.content-card {
+    background: #fff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(123, 47, 247, 0.15);
+}
+
+.main-content {
+    padding-top: 100px;
+}
+
+.icon-wrapper {
+    background: #70F4C3;
+    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-img {
+    width: 40px;
+    height: 40px;
 }
 
 .title {
     color: #131337;
-}
-
-
-.card img {
-    object-fit: cover;
-    height: 200px;
-}
-
-.card-body {
-    min-height: 180px;
-}
-
-.categories-btn {
-    border-radius: 20px;
-}
-
-.btn-outline-primary {
-    border: 3px solid #70f4c3 !important;
-    color: #131337;
-}
-
-::ng-deep .p-badge {
-    background: #131337 !important;
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    min-width: 1.5rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
-}
-
-
-.btn-primary {
-    background-color: #70f4c3 !important;
-    color: #131337 !important;
-    border: none;
-}
-
-.doc-section-description>p i {
-    border-radius: 6px;
-    padding: 2px 6px;
-    font-size: 1rem;
-    font-weight: 500;
-    font-style: normal;
-    background-color: #e9e9e9;
-    color: #131337;
-}
-
-.text-justify {
-    text-align: justify;
-}
-
-.btn:hover {
-    background: #70f4c3 !important;
-    border: none;
-    color: #131337;
-}
-
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.75rem;
-    }
-
-    .card-body {
-        min-height: auto;
-    }
-}
-
-/* Add these styles to educational-videos.component.css */
-
-.fancy-search {
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease-in-out;
-    animation: fadeInDown 0.6s ease-out forwards;
-    opacity: 0;
-    /* Start hidden for animation */
-}
-
-.fancy-search:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-/* Remove default borders and ensure background is white */
-.fancy-search .form-control,
-.fancy-search .input-group-text {
-    background-color: #fff;
-    border-color: transparent;
-}
-
-/* Remove focus outline and ensure border-radius is applied correctly */
-.fancy-search .form-control:focus {
-    box-shadow: none;
-    border-color: transparent;
-}
-
-/* Animate border on focus within the entire group */
-.fancy-search:focus-within {
-    box-shadow: 0 0 0 2px #3b82f680;
-    /* A blue glow similar to PrimeNG's focus */
-}
-
-/* Style the icon on focus */
-.fancy-search:focus-within .input-group-text {
-    color: #3b82f6;
-    /* PrimeNG primary blue */
-}
-
-/* Ensure border radiuses are applied correctly to the inner elements */
-.fancy-search .input-group-text {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-.fancy-search .form-control {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-/* Animation Keyframes */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.tabs-holder {
-    background-color: #70f4c394;
-    margin: auto;
-    border-radius: 20px;
-}
-
-.nav-pills .nav-link.active {
-    color: #fff;
-    background-color: #131337 !important;
-}
-
-.departure-tab, .arrival-tab {
-    color: #131337;
-}
-
-.share-container {
-    display: inline-block;
-    position: relative;
-}
-
-.share-btn {
-    border: 1px solid #dee2e6;
-    background: #fff;
-    border-radius: 6px;
-    font-weight: 500;
-    color: #495057;
-    transition: all 0.2s;
-}
-
-.share-btn:hover {
-    background: #f8f9fa;
-    color: #0d6efd;
-}
-
-/* القائمة المنسدلة */
-.share-menu {
-    position: absolute;
-    top: 110%;
-    right: 0;
-    background: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    min-width: 180px;
-    padding: 4px 0;
-    animation: fadeIn 0.2s ease;
-}
-
-.share-option {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 8px 14px;
-    color: #495057;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s;
-}
-
-.share-option:hover {
-    background: #f8f9fa;
-    cursor: pointer;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.share-menu {
-    right: 45px;
-    /* تبقى جنب الزر */
-    top: -10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px;
-    width: 150px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-.share-menu button {
-    text-align: left;
-    font-size: 0.85rem;
-}
-
-.share-menu i {
-    margin-right: 5px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }

@@ -1,0 +1,78 @@
+<div class="blog-section">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Side - Featured Article -->
+      <div class="col-lg-7 col-md-12 mb-4">
+        <div class="featured-article">
+          <div style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&h=400&fit=crop" alt="Exercise"
+              class="article-image">
+            <div class="category-badge">Introduction to physical rehabilitation</div>
+          </div>
+          <div class="featured-content">
+            <h2 class="featured-title">Little Things Do Make A Difference</h2>
+            <p class="featured-description">
+              How we view ourself is extremely powerful. Actually, just assuming that comedic kids can be one
+              little thing...
+            </p>
+            <div class="author-info">
+              <span class="author-name">By. Kathryn Murphy</span>
+            </div>
+
+            <div class="article-footer">
+              <a href="#" class="read-more-btn">Read More</a>
+              <button class="share-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Side - Recent Articles List -->
+      <div class="col-lg-5 col-md-12">
+        <div class="recent-articles">
+          <h3 class="recent-title">Recent articles</h3>
+          @if(articles.length){
+          @for(item of articles; track item){
+          <div class="recent-item" [class.selected]="isItemSelected(item)" (click)="selectItem(item)">
+            <div class="recent-image">
+              <img [src]="item.image" alt="Sunset" class="img-fluid">
+            </div>
+            <div class="recent-content">
+              <h4 class="recent-item-title">{{item.title}}</h4>
+              <div class="recent-author">
+                <span class="recent-author-name">Jane Russell</span>
+              </div>
+            </div>
+          </div>
+          }
+          }
+
+          @else if(videos.length){
+          @for(item of videos; track item){
+          <div class="recent-item" [class.selected]="isItemSelected(item)" (click)="selectItem(item)">
+            <div class="recent-image">
+              <img [src]="item.image" alt="Sunset" class="img-fluid">
+            </div>
+            <div class="recent-content">
+              <h4 class="recent-item-title">{{item.title}}</h4>
+              <div class="recent-author">
+                <span class="recent-author-name">Jane Russell</span>
+              </div>
+            </div>
+          </div>
+          }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

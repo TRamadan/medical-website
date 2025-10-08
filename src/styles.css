@@ -15,6 +15,24 @@
     src: url(assets/fonts/DINNextLTArabic-Regular-3.ttf) format("opentype")
 }
 
+#partners,
+#superstars {
+    scroll-margin-top: 120px;
+}
+
+#methodology, #benefits, #cutting-edge-technology {
+    scroll-margin-top: 90px;
+}
+
+#elitesuperstars {
+    scroll-margin-top: 315px;
+}
+
+#success-videos,
+#customer-success-stories {
+    scroll-margin-top: 320px;
+
+}
 
 
 :root {

@@ -257,11 +257,15 @@
     </div>
 
     @defer(when advisorBoardData.length > 0){
-    <app-advisor-board [data]="advisorBoardData"></app-advisor-board>
+    <div id="ouradvisros">
+      <app-advisor-board [data]="advisorBoardData"></app-advisor-board>
+    </div>
     }
 
     @defer(when teamMembers.length > 0){
-    <app-our-team [data]="teamMembers"></app-our-team>
+    <div id="ourteam">
+      <app-our-team [data]="teamMembers"></app-our-team>
+    </div>
     }
   </div>
 </section>

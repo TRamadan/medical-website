@@ -26,11 +26,19 @@ export const routes: Routes = [
   },
 
   {
-    path: 'education',
+    path: 'knowledgehub',
     loadComponent: () =>
       import(
         './components/home-component/educational-videos/educational-videos.component'
       ).then((c) => c.EducationalVideosComponent),
+  },
+
+  {
+    path: 'itemDetails',
+    loadComponent: () =>
+      import(
+        './components/home-component/education-item-details/education-item-details.component'
+      ).then((c) => c.EducationItemDetailsComponent),
   },
 
   {

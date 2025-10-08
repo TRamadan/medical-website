@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-footer',
   standalone: true,
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
-  imports: [],
+  imports: [RouterModule],
 })
 export class FooterComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
