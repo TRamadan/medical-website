@@ -2,7 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment.development';
-import { Category } from '../models/education';
+import { Category, Education } from '../models/education';
+import { Researches } from '../models/researches';
+import { ExercisePrograms } from '../models/exercise-programs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,7 @@ export class EducationalContentService {
    * @returns An observable of an array of educational content items.
    */
   getAllEducationalContent(): Observable<any[]> {
-    return this.http.get<any[]>(this.configURL + 'EducationalContent');
+    return this.http.get<any[]>(this.configURL + 'Education');
   }
 
   /**
@@ -33,11 +35,27 @@ export class EducationalContentService {
    * @param categoryId The ID of the category to filter by.
    * @returns An observable of an array of educational content items belonging to the specified category.
    */
-  getEducationalContentByCategory(categoryId: string): Observable<any[]> {
-    const params = new HttpParams().set('categoryId', categoryId);
-    return this.http.get<any[]>(
-      this.configURL + 'EducationalContent/ByCategory',
-      { params }
+  getEducationalContentByCategory(categoryId: number): Observable<Education[]> {
+    return this.http.get<Education[]>(
+      `${this.configURL}EducationCategory/${categoryId}`
+    );
+  }
+
+  /**
+   * Fetches all researches  from the API.
+   * @returns An observable of an array of educational content items.
+   */
+  getAllResearches(): Observable<Researches[]> {
+    return this.http.get<Researches[]>(this.configURL + 'Researchs');
+  }
+
+  /**
+   * Fetches all researches  from the API.
+   * @returns An observable of an array of educational content items.
+   */
+  getExercises(): Observable<ExercisePrograms[]> {
+    return this.http.get<ExercisePrograms[]>(
+      this.configURL + 'ExercisePrograms'
     );
   }
 }

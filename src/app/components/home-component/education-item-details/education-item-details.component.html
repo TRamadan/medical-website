@@ -1,26 +1,32 @@
-<section class="main-section">
-  <div class="container">
-    <div class="card border-0">
-      <div class="row blog-section p-2">
-        @if(item.state == 1 || item.state == 3){
-        <div class="col-lg-3 col-md-4 category-holder">
-          @for(cat of categories; track cat){
-          <button class="category-btn" [class.selected]="isSelected(cat)" (click)="selectCategory(cat)">
-            {{cat.nameEn}}
-          </button>
-          }
-        </div>
-        }
+<section class="main-section overflow-hidden">
+  @if(item.state == 2){
+  <app-title-component subtitle1Key="knowledgehubResearches.title.badge" titleKey="knowledgehubResearches.title.part1"
+    subtitle2Key="knowledgehubResearches.title.part2" subtitleKey="knowledgehubResearches.title.subtitle">
+  </app-title-component>
+  }
+  @else if (item.state == 4){
+  <app-title-component subtitle1Key="knowledgehubExercises.title.badge" titleKey="knowledgehubExercises.title.part1"
+    subtitle2Key="knowledgehubExercises.title.part2" subtitleKey="knowledgehubExercises.title.subtitle">
+  </app-title-component>
+  }
+  <div class="row blog-section justify-content-center p-2">
+    @if(item.state == 1 || item.state == 3){
+    <div class="col-lg-3 col-md-4 category-holder">
+      @for(cat of categories; track cat){
+      <button class="category-btn" [class.selected]="isSelected(cat)" (click)="selectCategory(cat)">
+        {{currentLang == 'en' ? cat.nameEn : cat.nameAr}}
+      </button>
+      }
+    </div>
+    }
 
-        <div class="col-lg-9 col-md-8">
-          @if(item.state == 1 || item.state == 3){
-          <app-articles-videos [itemState]="item.state"></app-articles-videos>
-          }
-          @else if (item.state == 2 || item.state == 4){
-          <app-researches-exercises [itemState]="item.state"></app-researches-exercises>
-          }
-        </div>
-      </div>
+    <div class="col-lg-9 col-md-8">
+      @if(item.state == 1 || item.state == 3){
+      <app-articles-videos [itemState]="item.state" [articles]="allArticles" [videos]="allVideos"></app-articles-videos>
+      }
+      @else if (item.state == 2 || item.state == 4){
+      <app-researches-exercises [itemState]="item.state"></app-researches-exercises>
+      }
     </div>
   </div>
 </section>

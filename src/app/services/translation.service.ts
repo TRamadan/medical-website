@@ -65,6 +65,39 @@ export class TranslationService {
       ar: 'مبادئنا، رسالتنا، ونهجنا في تحقيق النجاح',
     },
 
+    //knowledgehub researches translation
+    'knowledgehubResearches.title.badge': {
+      en: 'Research & Evidence',
+      ar: 'الأبحاث والدراسات',
+    },
+    'knowledgehubResearches.title.part1': { en: 'Advancing', ar: 'تطور' },
+    'knowledgehubResearches.title.part2': {
+      en: 'Rehabilitation',
+      ar: 'التأهيل',
+    },
+    'knowledgehubResearches.title.subtitle': {
+      en: 'Latest studies, insights, and scientific breakthroughs',
+      ar: 'أحدث الدراسات والرؤى والاكتشافات العلمية',
+    },
+
+    //knowledgehub researches translation
+    'knowledgehubExercises.title.badge': {
+      en: 'Rehabilitation Exercises',
+      ar: 'تمارين التأهيل',
+    },
+    'knowledgehubExercises.title.part1': {
+      en: 'Restore',
+      ar: 'استعادة',
+    },
+    'knowledgehubExercises.title.part2': {
+      en: 'Movement',
+      ar: 'الحركة',
+    },
+    'knowledgehubExercises.title.subtitle': {
+      en: 'Guided exercises to improve strength, mobility, and recovery',
+      ar: 'تمارين موجهة لتحسين القوة والحركة والتعافي',
+    },
+
     // About - Team
     'about.team.title': {
       en: 'Leadership & Talent',
@@ -242,6 +275,10 @@ export class TranslationService {
     'footer.joinOurTeam': { en: 'Join our team', ar: 'انضم لفريقنا' },
     'footer.ourApproach': { en: 'Our Approach', ar: 'نهجنا' },
     'footer.methodology': { en: 'Methodology', ar: 'المنهجية' },
+    'footer.peakPerformance': {
+      en: 'Peak performance',
+      ar: 'نحو الأداء الأمثل',
+    },
     'footer.benefits': {
       en: 'Benefits of working with us',
       ar: 'فوائد العمل معنا',

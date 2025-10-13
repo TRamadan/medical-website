@@ -62,7 +62,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (
           e.urlAfterRedirects.startsWith('/aboutus') ||
           e.urlAfterRedirects.startsWith('/knowledgehub') ||
-          e.urlAfterRedirects.startsWith('/itemDetails')
+          e.urlAfterRedirects.startsWith('/itemDetails') ||
+          e.urlAfterRedirects.startsWith('/oursolutions')
         ) {
           this.forceSolidNavbar = true;
           this.isScrolled = true;
@@ -91,7 +92,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       },
       {
         name: this.translationService.translate('nav.solutions'),
-        href: '',
+        href: 'oursolutions',
       },
       {
         name: this.translationService.translate('nav.education'),

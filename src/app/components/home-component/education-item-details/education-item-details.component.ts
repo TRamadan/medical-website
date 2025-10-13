@@ -6,16 +6,31 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticlesVideosComponent } from './articles-videos/articles-videos.component';
 import { ResearchesExercisesComponent } from './researches-exercises/researches-exercises.component';
+import { TitleComponentComponent } from '../../shared-ui/title-component/title-component.component';
+import { Education } from '../educational-videos/models/education';
+import { LanguageService } from '../../../services/language.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-education-item-details',
   standalone: true,
-  imports: [ArticlesVideosComponent, FormsModule, ResearchesExercisesComponent],
+  imports: [
+    ArticlesVideosComponent,
+    FormsModule,
+    ResearchesExercisesComponent,
+    TitleComponentComponent,
+  ],
   templateUrl: './education-item-details.component.html',
   styleUrls: ['./education-item-details.component.css'],
 })
 export class EducationItemDetailsComponent implements OnInit {
   categories: Category[] = [];
+  allArticles: Education[] = [];
+  allVideos: Education[] = [];
+  allContent: Education[] = [];
+  currentLang: 'en' | 'ar' = 'en';
+  languageSubscription?: Subscription;
+
   searchQuery: string = '';
   selectedCategoryId = signal<number | null>(null);
   item: any;
@@ -24,13 +39,21 @@ export class EducationItemDetailsComponent implements OnInit {
   constructor(
     public translateService: TranslationService,
     private _educationalService: EducationalContentService,
-    private _router: Router
+    private _router: Router,
+    public languageService: LanguageService
   ) {}
 
   ngOnInit() {
     this.getCategories();
+    this.getEducationalContent();
     const nav = this._router.getCurrentNavigation();
     this.item = nav?.extras?.state?.['item'] || history.state;
+
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
+      }
+    );
   }
 
   //here is the function needed to get all added categories
@@ -53,9 +76,60 @@ export class EducationItemDetailsComponent implements OnInit {
 
   selectCategory(cat: any): void {
     this.selectedCategory = cat;
+    this.selectedCategory.id == ''
+      ? this.getEducationalContent()
+      : this.getDataBasedOnSelectedCategory(cat.id);
+  }
+
+  //here is the function needed to get the data based on the choosed category
+  getDataBasedOnSelectedCategory(catId: number): void {
+    this._educationalService.getEducationalContentByCategory(catId).subscribe({
+      next: (res: any) => {
+        debugger;
+        this.allArticles = [];
+        this.allVideos = [];
+        this.allContent = res.educations;
+        if (this.item.state == 1) {
+          this.allArticles = this.allContent.filter((element: Education) => {
+            return element.isArticle;
+          });
+        } else {
+          this.allVideos = this.allContent.filter((element: Education) => {
+            return !element.isArticle;
+          });
+        }
+      },
+      error: (error: any) => {
+        //error handling goes here
+      },
+    });
   }
 
   isSelected(cat: any): boolean {
     return this.selectedCategory?.id === cat.id;
+  }
+
+  //here is the function needed to get all educational content for articles and videos
+  getEducationalContent() {
+    this.allArticles = [];
+    this.allVideos = [];
+    this._educationalService.getAllEducationalContent().subscribe({
+      next: (res: any) => {
+        debugger;
+        this.allContent = res;
+        if (this.item.state == 1) {
+          this.allArticles = this.allContent.filter((element: Education) => {
+            return element.isArticle;
+          });
+        } else {
+          this.allVideos = this.allContent.filter((element: Education) => {
+            return !element.isArticle;
+          });
+        }
+      },
+      error: (error: any) => {
+        //error handling goes here
+      },
+    });
   }
 }

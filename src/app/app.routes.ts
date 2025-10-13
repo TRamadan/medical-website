@@ -26,6 +26,14 @@ export const routes: Routes = [
   },
 
   {
+    path: 'oursolutions',
+    loadComponent: () =>
+      import(
+        './components/home-component/our-solutions/our-solutions.component'
+      ).then((c) => c.OurSolutionsComponent),
+  },
+
+  {
     path: 'knowledgehub',
     loadComponent: () =>
       import(
