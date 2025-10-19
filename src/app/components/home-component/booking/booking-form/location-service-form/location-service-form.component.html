@@ -3,7 +3,7 @@
     <div class="col-12 col-md-10 col-lg-8">
       <!-- Header -->
       <div class="text-center mb-4">
-        <h2 class="h3 fw-bold text-dark mb-2">{{ translationService.translate('booking.locationService.title') }}</h2>
+        <h2 class="h3 fw-bold title mb-2">{{ translationService.translate('booking.locationService.title') }}</h2>
         <p class="text-muted">{{ translationService.translate('booking.locationService.subtitle') }}</p>
       </div>
 
@@ -24,20 +24,20 @@
         <p class="fw-bold mb-0">
           {{ translationService.translate('booking.locationService.selectService') }}
         </p>
-        @for(service of services; track service; let i = $index){
+        @for(category of categories; track category; let i = $index){
         <div class="col-12">
           <div class="card shadow-sm border-0">
             <div class="card-header card-header border-0">
               <h5 class="card-title mb-0 d-flex align-items-center">
                 <i class="bi bi-gear text-primary me-2"></i>
-                <span>{{ service.name }}
+                <span>{{currentLang == 'en' ? category.nameEn : category.nameAr}}
                 </span>
               </h5>
             </div>
 
             <div class="card-body">
               <div class="row g-2">
-                @for(category of service.categories; track category; let i = $index){
+                <!-- @for(category of service.categories; track category; let i = $index){
                 <div class="col-6 col-md-4 ">
                   <button type="button" class="btn w-100 btn-sm"
                     [class.btn-primary]="isSelectedServiceCategory(category.name)"
@@ -48,7 +48,7 @@
                     </span>
                   </button>
                 </div>
-                }
+                } -->
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
         <p class="fw-bold mb-0">
           {{ translationService.translate('booking.locationService.selectLocation') }}
         </p>
-        @for(location of locations; track location; let i = $index){
+        <!-- @for(location of locations; track location; let i = $index){
         <div class="col-12">
           <div class="card shadow-sm border-0">
             <div class="card-header border-0">
@@ -85,11 +85,11 @@
             </div>
           </div>
         </div>
-        }
+        } -->
       </div>
       }
 
-      @if(bookingData.serviceCategory && bookingData.area){
+      <!-- @if(bookingData.serviceCategory && bookingData.area){
       <div class="py-3 border-primary">
         <p-messages severity="info">
           <ng-template pTemplate>
@@ -103,7 +103,7 @@
 
       </div>
 
-      }
+      } -->
     </div>
   </div>
 </div>

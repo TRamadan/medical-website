@@ -63,7 +63,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           e.urlAfterRedirects.startsWith('/aboutus') ||
           e.urlAfterRedirects.startsWith('/knowledgehub') ||
           e.urlAfterRedirects.startsWith('/itemDetails') ||
-          e.urlAfterRedirects.startsWith('/oursolutions')
+          e.urlAfterRedirects.startsWith('/oursolutions') ||
+          e.urlAfterRedirects.startsWith('/bookappointment')
         ) {
           this.forceSolidNavbar = true;
           this.isScrolled = true;

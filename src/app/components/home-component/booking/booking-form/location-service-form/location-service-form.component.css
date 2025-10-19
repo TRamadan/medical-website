@@ -11,6 +11,10 @@
     transition: all 0.2s ease;
 }
 
+.title {
+    color: #131337;
+}
+
 .btn:hover {
     transform: translateY(-1px);
 }

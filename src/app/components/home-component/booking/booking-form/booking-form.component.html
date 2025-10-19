@@ -39,8 +39,11 @@
               <div class="col" [class.text-primary]="isStepActive(i)" [class.text-muted]="!isStepActive(i)">
                 <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
                   [class.bg-primary]="isStepActive(i)" [class.text-white]="isStepActive(i)"
-                  [class.bg-light]="!isStepActive(i)"
-                  style="width: 32px; height: 32px; font-size: 14px; font-weight: 600;">
+                  [class.bg-light]="!isStepActive(i)" style="width: 32px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #131337 !important;">
                   {{ i + 1 }}
                 </div>
                 <div class="small d-none d-sm-block">{{ step }}</div>

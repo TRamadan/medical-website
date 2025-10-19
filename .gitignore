@@ -1,5 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+#C:\Program Files\Microsoft SQL Server\160\Setup Bootstrap\Log\20251019_133410
 # Compiled output
 /dist
 /tmp

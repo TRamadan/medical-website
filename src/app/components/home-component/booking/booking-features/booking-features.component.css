@@ -1,10 +1,11 @@
 .feature-card {
-    border: 1px solid #fc6b44;
+    border-left: 6px solid #131337;
     border-radius: 0.75rem;
     padding: 2rem 1.5rem;
     height: 100%;
     transition: all 0.2s ease-in-out;
     background: #ffffff;
+    box-shadow: 1px 1px 10px 2px lightgray;
 }
 
 .feature-card:hover {
@@ -13,7 +14,7 @@
 }
 
 .features-section {
-    margin-top: 80px;
+    margin-top: 7rem;
 }
 
 .feature-icon {

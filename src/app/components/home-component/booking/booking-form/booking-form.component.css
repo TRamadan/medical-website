@@ -2,6 +2,14 @@
     min-height: 100vh;
 }
 
+.text-primary {
+    color: #131337 !important;
+}
+
+.bg-primary {
+    background-color: #70f4c3 !important;
+}
+
 .btn-link {
     color: #6c757d;
     text-decoration: none;

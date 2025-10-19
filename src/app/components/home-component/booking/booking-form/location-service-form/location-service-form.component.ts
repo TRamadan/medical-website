@@ -6,30 +6,7 @@ import { MessagesModule } from 'primeng/messages';
 import { TranslationService } from '../../../../../services/translation.service';
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
-
-interface Location {
-  city: string;
-  areas: string[];
-}
-
-interface BookingData {
-  location: string;
-  area: string;
-  serviceCategory?: any;
-}
-
-interface Category {
-  id?: number;
-  name: string;
-  categories: Services[];
-}
-
-interface Services {
-  id?: number;
-  name: string;
-  price: any;
-  locations: Location[];
-}
+import { ServiceslocationService } from './services/serviceslocation.service';
 
 @Component({
   selector: 'app-location-service-form',
@@ -39,119 +16,42 @@ interface Services {
   styleUrls: ['./location-service-form.component.css'],
 })
 export class LocationServiceFormComponent implements OnInit, OnDestroy {
+  currentLang: 'en' | 'ar' = 'en';
+
   searchTerm: string = '';
   servicesSearchTerm: string = '';
   private languageSubscription?: Subscription;
 
   messages: Message[] | any;
-
-  bookingData: BookingData = {
-    location: '',
-    area: '',
-    serviceCategory: '',
-  };
-
   locations: Location[] = [];
 
-  services: Category[] = [
-    {
-      id: 1,
-      name: 'Sports Rehab',
-      categories: [
-        {
-          id: 1,
-          name: 'Consultation',
-          price: 500,
-          locations: [
-            {
-              city: '3rd settelment',
-              areas: ['Evo fitness club'],
-            },
-            {
-              city: 'El Mohandseen',
-              areas: ['Tawfikia Tennis Club'],
-            },
-          ],
-        },
-        {
-          id: 2,
-          name: 'Rehab Session',
-          price: 900,
-          locations: [
-            {
-              city: '3rd settelment',
-              areas: ['Evo fitness club'],
-            },
-            {
-              city: 'El Mohandseen',
-              areas: ['Tawfikia Tennis Club'],
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      id: 2,
-      name: 'Sports Recovery',
-      categories: [
-        {
-          id: 3,
-          name: 'Full Body',
-          price: 900,
-          locations: [
-            {
-              city: '3rd settelment',
-              areas: ['Evo fitness club'],
-            },
-            {
-              city: 'El Mohandseen',
-              areas: ['Tawfikia Tennis Club'],
-            },
-          ],
-        },
-        {
-          id: 4,
-          name: 'Half Body',
-          price: 600,
-          locations: [
-            {
-              city: '3rd settelment',
-              areas: ['Evo fitness club'],
-            },
-          ],
-        },
-      ],
-    },
-
-    {
-      id: 3,
-      name: 'Measurements',
-      categories: [
-        {
-          id: 5,
-          name: 'Athelete Profile',
-          price: '3500',
-          locations: [
-            {
-              city: 'El Mohandseen',
-              areas: ['Tawfikia Tennis Club'],
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  categories: any[] = [];
 
   constructor(
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private _serviceCategory: ServiceslocationService
   ) {}
 
   ngOnInit() {
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
+      }
+    );
+    this.getAllCategories();
+  }
+
+  //here is the function needed to get all added categories
+  getAllCategories(): void {
+    this._serviceCategory.getServiceCategories().subscribe({
+      next: (res: any) => {
+        this.categories = res;
+      },
+      error: (error: any) => {
+        //error handle goes here
+      },
     });
   }
 
@@ -161,47 +61,21 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  get filteredLocations(): Location[] {
-    // if (!this.searchTerm) {
-    //   return this.locations;
-    // }
-
-    // return this.locations.filter(
-    //   (location) =>
-    //     location.city.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    //     location.areas.some((area) =>
-    //       area.toLowerCase().includes(this.searchTerm.toLowerCase())
-    //     )
-    // );
-
-    return [];
-  }
-
   handleLocationSelect(area: string): void {
-    this.bookingData.area = area;
+    // this.bookingData.area = area;
   }
 
   isSelected(area: string): boolean {
-    return this.bookingData.area === area;
+    return false;
+    // return this.bookingData.area === area;
   }
 
   isSelectedServiceCategory(name: string): boolean {
-    return this.bookingData.serviceCategory === name;
+    return false;
+    // return this.bookingData.serviceCategory === name;
   }
 
   handleServiceCategorySelection(service: any): void {
     debugger;
-    this.bookingData.serviceCategory = service.name;
-    this.locations = [];
-    this.locations = service.locations;
-    this.messages = [
-      {
-        severity: 'info',
-        detail: this.translationService.translate('booking.locationService.selectionMessage', {
-          service: this.bookingData.serviceCategory,
-          location: this.bookingData.area
-        }),
-      },
-    ];
   }
 }
