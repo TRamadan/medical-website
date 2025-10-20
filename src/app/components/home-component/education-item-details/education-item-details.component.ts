@@ -1,7 +1,7 @@
 import { TranslationService } from './../../../services/translation.service';
 import { Component, OnInit, signal } from '@angular/core';
 import { EducationalContentService } from '../educational-videos/services/educationalContent.service';
-import { Category } from '../educational-videos/models/category.model';
+import { Category } from '../educational-videos/models/category.model'; // Assuming this is correct
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticlesVideosComponent } from './articles-videos/articles-videos.component';
@@ -10,6 +10,8 @@ import { TitleComponentComponent } from '../../shared-ui/title-component/title-c
 import { Education } from '../educational-videos/models/education';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
+import { BreadcrumbService } from '../../../services/breadcrumb.service';
+import { BreadcrumbComponent } from '../../shared-ui/bread-crumb/breadcrumb.component';
 
 @Component({
   selector: 'app-education-item-details',
@@ -19,6 +21,7 @@ import { Subscription } from 'rxjs';
     FormsModule,
     ResearchesExercisesComponent,
     TitleComponentComponent,
+    BreadcrumbComponent,
   ],
   templateUrl: './education-item-details.component.html',
   styleUrls: ['./education-item-details.component.css'],
@@ -35,12 +38,14 @@ export class EducationItemDetailsComponent implements OnInit {
   selectedCategoryId = signal<number | null>(null);
   item: any;
   selectedCategory: any = null;
+  baseBreadcrumbs: any[] = [];
 
   constructor(
     public translateService: TranslationService,
     private _educationalService: EducationalContentService,
     private _router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private breadcrumbService: BreadcrumbService
   ) {}
 
   ngOnInit() {
@@ -48,6 +53,14 @@ export class EducationItemDetailsComponent implements OnInit {
     this.getEducationalContent();
     const nav = this._router.getCurrentNavigation();
     this.item = nav?.extras?.state?.['item'] || history.state;
+
+    this.baseBreadcrumbs = [
+      { label: 'Home', url: '/' },
+      { label: 'Education', url: '/education' },
+      { label: this.item.name, url: '' },
+    ];
+
+    this.breadcrumbService.setBreadcrumbs(this.baseBreadcrumbs);
 
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
       (lang: 'en' | 'ar') => {

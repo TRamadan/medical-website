@@ -6,16 +6,16 @@
       <div class="col-lg-7 col-md-12 mb-4">
         <div class="featured-article">
           <div style="position: relative;">
-            <img [src]="fetchedImgUrl  + selectedItem.img" id="Item" alt="Exercise" class="article-image">
-            <div class="category-badge">{{   currentLang == 'en' ? (selectedItem.categoryNameEn ? selectedItem.categoryNameEn : selectedItem.nameEn) : (selectedItem.categoryNameAr ? selectedItem.categoryNameAr : selectedItem.nameAr)}}</div>
+            <img [src]="fetchedImgUrl  + selectedItem?.img" id="Item" alt="Exercise" class="article-image">
+            <div class="category-badge">{{   currentLang == 'en' ? (selectedItem?.categoryNameEn ? selectedItem?.categoryNameEn : selectedItem?.nameEn) : (selectedItem?.categoryNameAr ? selectedItem?.categoryNameAr : selectedItem?.nameAr)}}</div>
           </div>
           <div class="featured-content">
-            <h2 class="featured-title">{{currentLang == 'en' ? selectedItem.titleEn : selectedItem.title}}</h2>
+            <h2 class="featured-title">{{currentLang == 'en' ? selectedItem?.titleEn : selectedItem?.title}}</h2>
             <p class="featured-description">
-              {{currentLang == 'en' ? selectedItem.descriptionEn : selectedItem.description}}
+              {{currentLang == 'en' ? selectedItem?.descriptionEn : selectedItem?.description}}
             </p>
             <div class="author-info">
-              <span class="author-name">By. {{selectedItem.createdBy}}</span>
+              <span class="author-name">By. {{selectedItem?.createdBy}}</span>
             </div>
 
             <div class="article-footer">
@@ -30,7 +30,7 @@
                     <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                   </svg>
                 </button>
-                @if (showShareMenu && selectedItemId === selectedItem.id) {
+                @if (showShareMenu && selectedItemId === selectedItem?.id) {
                 <div class="share-menu">
                   <button class="btn btn-outline-success btn-sm w-100 mb-1" (click)="share('whatsapp', selectedItem)"><i class="bi bi-whatsapp"></i> WhatsApp</button>
                   <button class="btn btn-outline-primary btn-sm w-100 mb-1" (click)="share('facebook', selectedItem)"><i class="bi bi-facebook"></i> Facebook</button>
@@ -90,7 +90,12 @@
         </div>
       </div>
     </div>
-    } @else {
+    } 
+
+
+    
+    
+    @else {
     <div class="row justify-content-center text-center py-5">
       <div class="col-md-8">
         <i class="bi bi-journal-x display-4 text-muted mb-3"></i>

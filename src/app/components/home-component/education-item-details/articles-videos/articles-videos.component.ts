@@ -5,6 +5,8 @@ import { Education } from '../../educational-videos/models/education';
 import { environment } from '../../../../../environments/environment.development';
 import { Subscription } from 'rxjs';
 import { LanguageService } from '../../../../services/language.service';
+import { BreadcrumbService } from '../../../../services/breadcrumb.service';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-articles-videos',
@@ -15,11 +17,13 @@ import { LanguageService } from '../../../../services/language.service';
 })
 export class ArticlesVideosComponent implements OnInit {
   currentLang: 'en' | 'ar' = 'en';
+  selectedVideo: any = {};
   languageSubscription?: Subscription;
 
   @Input() itemState: number = 0;
   @Input() articles: Education[] = [];
   @Input() videos: Education[] = [];
+  @Input() baseBreadcrumbs: any[] = [];
   public readonly fetchedImgUrl = environment.imgUrl;
 
   searchText: string = '';
@@ -28,7 +32,14 @@ export class ArticlesVideosComponent implements OnInit {
   showShareMenu = false;
   selectedItemId: string | number | null = null;
 
-  constructor(public languageService: LanguageService) {}
+  safeVideoUrl: SafeResourceUrl | null = null;
+  isPlaying: boolean = false;
+
+  constructor(
+    public languageService: LanguageService,
+    private breadcrumbService: BreadcrumbService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
@@ -47,18 +58,18 @@ export class ArticlesVideosComponent implements OnInit {
     if (changes['articles'] && this.itemState === 1) {
       this.articles = changes['articles'].currentValue || [];
       if (this.articles.length) {
-        this.selectedItem = this.articles[0];
+        this.selectItem(this.articles[0]);
       } else {
-        this.selectedItem = null;
+        this.selectItem(null);
       }
     }
 
     if (changes['videos'] && this.itemState === 3) {
       this.videos = changes['videos'].currentValue || [];
       if (this.videos.length) {
-        this.selectedItem = this.videos[0];
+        this.selectItem(this.videos[0]);
       } else {
-        this.selectedItem = null;
+        this.selectItem(null);
       }
     }
   }
@@ -66,27 +77,43 @@ export class ArticlesVideosComponent implements OnInit {
   private updateSelectedContent() {
     if (this.itemState === 1) {
       // Show articles
-      if (this.articles.length) {
-        this.selectedItem = this.articles[0];
-      } else {
-        this.selectedItem = null;
-      }
+      this.selectItem(this.articles.length ? this.articles[0] : null);
     } else {
       // Show videos
-      if (this.videos.length) {
-        this.selectedItem = this.videos[0];
-      } else {
-        this.selectedItem = null;
-      }
+      this.selectItem(this.videos.length ? this.videos[0] : null);
     }
   }
 
   selectItem(item: any): void {
     this.selectedItem = item;
+    this.updateBreadcrumbs();
   }
 
   isItemSelected(item: any): boolean {
     return this.selectedItem?.id === item.id;
+  }
+
+  private updateBreadcrumbs(): void {
+    if (!this.baseBreadcrumbs || this.baseBreadcrumbs.length === 0) {
+      return;
+    }
+
+    if (this.selectedItem && this.selectedItem.id) {
+      const title =
+        this.currentLang === 'en'
+          ? this.selectedItem.titleEn
+          : this.selectedItem.title;
+
+      // Create a new breadcrumb trail by adding the current item
+      const newBreadcrumbs = [
+        ...this.baseBreadcrumbs,
+        { label: title, url: '' },
+      ];
+      this.breadcrumbService.setBreadcrumbs(newBreadcrumbs);
+    } else {
+      // If no item is selected (e.g., empty category), revert to the base path
+      this.breadcrumbService.setBreadcrumbs(this.baseBreadcrumbs);
+    }
   }
 
   toggleShareMenu(item: any) {
@@ -143,5 +170,32 @@ export class ArticlesVideosComponent implements OnInit {
         break;
     }
     this.showShareMenu = false;
+  }
+
+  playVideo(): void {
+    debugger;
+    if (!this.isPlaying) {
+      const videoId = this.extractVideoId(this.selectedVideo.videoUrl ?? '');
+      if (videoId) {
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+        this.safeVideoUrl =
+          this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+        this.isPlaying = true;
+      }
+    } else {
+      this.stopVideo();
+    }
+  }
+
+  stopVideo(): void {
+    this.isPlaying = false;
+    this.safeVideoUrl = null;
+  }
+
+  private extractVideoId(url: string): string | null {
+    const regex =
+      /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
   }
 }
