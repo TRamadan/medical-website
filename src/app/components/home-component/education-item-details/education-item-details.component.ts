@@ -85,18 +85,23 @@ export class EducationItemDetailsComponent implements OnInit {
   getDataBasedOnSelectedCategory(catId: number): void {
     this._educationalService.getEducationalContentByCategory(catId).subscribe({
       next: (res: any) => {
-        debugger;
-        this.allArticles = [];
-        this.allVideos = [];
-        this.allContent = res.educations;
-        if (this.item.state == 1) {
-          this.allArticles = this.allContent.filter((element: Education) => {
-            return element.isArticle;
-          });
+        if (res && res.educations && res.educations.length > 0) {
+          this.allContent = res.educations;
+          if (this.item.state == 1) {
+            this.allArticles = this.allContent.filter((element: Education) => {
+              return element.isArticle;
+            });
+            this.allVideos = [];
+          } else {
+            this.allVideos = this.allContent.filter((element: Education) => {
+              return !element.isArticle;
+            });
+            this.allArticles = [];
+          }
         } else {
-          this.allVideos = this.allContent.filter((element: Education) => {
-            return !element.isArticle;
-          });
+          // Handle case where the category has no content
+          this.allArticles = [];
+          this.allVideos = [];
         }
       },
       error: (error: any) => {

@@ -14,6 +14,8 @@ import { TitleComponentComponent } from '../../shared-ui/title-component/title-c
 })
 export class EducationalVideosComponent implements OnInit, OnDestroy {
   currentLanguage: Language = 'en';
+  showShareMenu = false;
+  selectedItemId: string | number | null = null;
 
   educationLibraryCategories: any[] = [
     {
@@ -66,7 +68,6 @@ export class EducationalVideosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   showItemDetails(item: any): void {
-    debugger;
     this._router.navigate(['/itemDetails'], { state: item });
   }
 }

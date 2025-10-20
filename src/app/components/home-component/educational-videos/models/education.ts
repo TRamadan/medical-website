@@ -3,6 +3,8 @@ export interface Education {
   categoryId?: number;
   title?: string;
   titleEn?: string;
+  categoryNameEn?: string;
+  categoryNameAr?: string;
   description?: string;
   descriptionEn?: string;
   img?: string;
@@ -10,6 +12,8 @@ export interface Education {
   createdBy?: string;
   isArticle?: boolean;
   videoUrl?: string;
+  nameEn?: string;
+  nameAr?: string;
 }
 
 export interface Category {

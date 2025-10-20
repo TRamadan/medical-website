@@ -8,7 +8,7 @@ import { LanguageService } from '../../../../services/language.service';
 
 @Component({
   selector: 'app-articles-videos',
-  standalone: true,
+  standalone: true, // Make sure to import CommonModule if you use ngIf/ngFor with the old syntax
   imports: [FormsModule, TitleComponentComponent],
   templateUrl: './articles-videos.component.html',
   styleUrls: ['./articles-videos.component.css'],
@@ -24,6 +24,9 @@ export class ArticlesVideosComponent implements OnInit {
 
   searchText: string = '';
   selectedItem: Education | null = {};
+
+  showShareMenu = false;
+  selectedItemId: string | number | null = null;
 
   constructor(public languageService: LanguageService) {}
 
@@ -45,6 +48,8 @@ export class ArticlesVideosComponent implements OnInit {
       this.articles = changes['articles'].currentValue || [];
       if (this.articles.length) {
         this.selectedItem = this.articles[0];
+      } else {
+        this.selectedItem = null;
       }
     }
 
@@ -52,6 +57,8 @@ export class ArticlesVideosComponent implements OnInit {
       this.videos = changes['videos'].currentValue || [];
       if (this.videos.length) {
         this.selectedItem = this.videos[0];
+      } else {
+        this.selectedItem = null;
       }
     }
   }
@@ -80,5 +87,61 @@ export class ArticlesVideosComponent implements OnInit {
 
   isItemSelected(item: any): boolean {
     return this.selectedItem?.id === item.id;
+  }
+
+  toggleShareMenu(item: any) {
+    if (this.selectedItemId === item.id && this.showShareMenu) {
+      this.showShareMenu = false;
+      this.selectedItemId = null;
+    } else {
+      this.showShareMenu = true;
+      this.selectedItemId = item.id;
+    }
+  }
+
+  share(platform: 'whatsapp' | 'facebook' | 'copy' | 'native', item: any) {
+    if (!item) return;
+
+    const title =
+      (this.currentLang === 'en' ? item.titleEn : item.title)?.trim() ||
+      'Check this out!';
+    // Construct the URL based on the item type and ID
+    const itemType = this.itemState === 1 ? 'articles' : 'videos';
+    const url = `${window.location.origin}/education/${itemType}/${item.id}`;
+
+    switch (platform) {
+      case 'whatsapp':
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(title + `\n` + url)}`,
+          '_blank'
+        );
+        break;
+      case 'facebook':
+        const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          url
+        )}`;
+        window.open(fbUrl, '_blank', 'width=600,height=400');
+        break;
+      case 'copy':
+        navigator.clipboard
+          .writeText(url)
+          .then(() => alert('✅ Link copied to clipboard!'))
+          .catch(() => alert('❌ Failed to copy link.'));
+        break;
+      case 'native':
+        if (navigator.share) {
+          navigator
+            .share({
+              title: title,
+              text: title,
+              url: url,
+            })
+            .catch((error) => console.warn('Share failed', error));
+        } else {
+          alert('Native sharing is not supported on this device.');
+        }
+        break;
+    }
+    this.showShareMenu = false;
   }
 }
