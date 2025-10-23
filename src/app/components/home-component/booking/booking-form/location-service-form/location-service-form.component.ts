@@ -17,15 +17,14 @@ import { ServiceslocationService } from './services/serviceslocation.service';
 })
 export class LocationServiceFormComponent implements OnInit, OnDestroy {
   currentLang: 'en' | 'ar' = 'en';
-
   searchTerm: string = '';
   servicesSearchTerm: string = '';
   private languageSubscription?: Subscription;
 
-  messages: Message[] | any;
-  locations: Location[] = [];
-
+  messages: Message[] = [];
+  locations: any[] = [];
   categories: any[] = [];
+  bookingData: any = {};
 
   constructor(
     public translationService: TranslationService,
@@ -34,48 +33,87 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
       (lang: 'en' | 'ar') => {
         this.currentLang = lang;
       }
     );
+
     this.getAllCategories();
   }
 
-  //here is the function needed to get all added categories
+  ngOnDestroy() {
+    this.languageSubscription?.unsubscribe();
+  }
+
+  // ✅ Get all categories and services
   getAllCategories(): void {
     this._serviceCategory.getServiceCategories().subscribe({
       next: (res: any) => {
         this.categories = res;
       },
       error: (error: any) => {
-        //error handle goes here
+        console.error('Error fetching categories', error);
       },
     });
   }
 
-  ngOnDestroy() {
-    if (this.languageSubscription) {
-      this.languageSubscription.unsubscribe();
-    }
+  // ✅ When user selects a service
+  handleServiceSelection(category: any, service: any): void {
+    this.bookingData.serviceCategoryId = category.id;
+    this.bookingData.serviceCategoryName =
+      this.currentLang === 'ar' ? category.nameAr : category.nameEn;
+
+    this.bookingData.serviceId = service.id;
+    this.bookingData.serviceName =
+      this.currentLang === 'ar' ? service.nameAr : service.nameEn;
+
+    // Update locations for the selected service
+    this.locations = service.locations || [];
+
+    this.messages = [
+      {
+        severity: 'info',
+        detail: this.translationService.translate(
+          'booking.locationService.selectionMessage',
+          {
+            service: this.bookingData.serviceName,
+          }
+        ),
+      },
+    ];
   }
 
-  handleLocationSelect(area: string): void {
-    // this.bookingData.area = area;
+  trackById(index: number, item: any): number {
+    return item.id;
   }
 
-  isSelected(area: string): boolean {
-    return false;
-    // return this.bookingData.area === area;
+  // ✅ When user selects a location
+  handleLocationSelect(location: any): void {
+    this.bookingData.locationId = location.id;
+    this.bookingData.locationName =
+      this.currentLang === 'ar' ? location.nameAr : location.nameEn;
+
+    this.messages = [
+      {
+        severity: 'success',
+        detail: this.translationService.translate(
+          'booking.locationService.selectionMessage',
+          {
+            service: this.bookingData.serviceName,
+            location: this.bookingData.locationName,
+          }
+        ),
+      },
+    ];
   }
 
-  isSelectedServiceCategory(name: string): boolean {
-    return false;
-    // return this.bookingData.serviceCategory === name;
+  // ✅ Helpers for UI
+  isSelectedService(service: any): boolean {
+    return this.bookingData.serviceId === service.id;
   }
 
-  handleServiceCategorySelection(service: any): void {
-    debugger;
+  isSelectedLocation(location: any): boolean {
+    return this.bookingData.locationId === location.id;
   }
 }

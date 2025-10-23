@@ -1,23 +1,21 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnDestroy,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../../../../services/translation.service';
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
-
-interface Doctor {
-  id: string;
-  name: string;
-  specialty: string;
-  rating: number;
-  experience: number;
-  image: string;
-  availableDates: string[];
-  timeSlots: string[];
-}
+import { FormsModule } from '@angular/forms';
 
 interface BookingData {
   location?: string;
   area?: string;
-  doctor?: Doctor;
+  doctor?: any;
   appointmentDate?: string;
   appointmentTime?: string;
 }
@@ -29,7 +27,7 @@ interface TimeSlot {
 
 @Component({
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   selector: 'app-choose-time-slot',
   templateUrl: './choose-time-slot.component.html',
   styleUrls: ['./choose-time-slot.component.css'],
@@ -39,56 +37,27 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   @Output() bookingDataChange = new EventEmitter<BookingData>();
   private languageSubscription?: Subscription;
 
-  selectedDate: string = '';
-  selectedTime: any = '';
+  months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  years: number[] = [];
+  dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  availableDatesWithTimes: { [key: string]: TimeSlot[] } = {
-    '2024-06-15': [
-      { from: '09:00', to: '09:30' },
-      { from: '10:00', to: '10:30' },
-      { from: '11:00', to: '11:30' },
-      { from: '14:00', to: '14:30' },
-      { from: '15:00', to: '15:30' },
-    ],
-    '2024-06-16': [
-      { from: '08:00', to: '08:30' },
-      { from: '09:00', to: '09:30' },
-      { from: '10:00', to: '10:30' },
-      { from: '13:00', to: '13:30' },
-      { from: '14:00', to: '14:30' },
-      { from: '16:00', to: '16:30' },
-    ],
-    '2024-06-17': [
-      { from: '09:00', to: '09:30' },
-      { from: '11:00', to: '11:30' },
-      { from: '13:00', to: '13:30' },
-      { from: '15:00', to: '15:30' },
-      { from: '17:00', to: '17:30' },
-    ],
-    '2024-06-18': [
-      { from: '08:00', to: '08:30' },
-      { from: '10:00', to: '10:30' },
-      { from: '11:00', to: '11:30' },
-      { from: '14:00', to: '14:30' },
-      { from: '15:00', to: '15:30' },
-      { from: '16:00', to: '16:30' },
-    ],
-    '2024-06-19': [
-      { from: '09:00', to: '09:30' },
-      { from: '10:00', to: '10:30' },
-      { from: '13:00', to: '13:30' },
-      { from: '14:00', to: '14:30' },
-      { from: '17:00', to: '17:30' },
-    ],
-    '2024-06-20': [
-      { from: '08:00', to: '08:30' },
-      { from: '09:00', to: '09:30' },
-      { from: '11:00', to: '11:30' },
-      { from: '15:00', to: '15:30' },
-      { from: '16:00', to: '16:30' },
-      { from: '17:00', to: '17:30' },
-    ],
-  };
+  selectedMonth = new Date().getMonth();
+  selectedYear = new Date().getFullYear();
+  calendarDays: any[] = [];
+  selectedDate: string | null = null; // single selected date
 
   constructor(
     public translationService: TranslationService,
@@ -96,70 +65,97 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.languageSubscription) {
-      this.languageSubscription.unsubscribe();
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear - 5; y <= currentYear + 5; y++) {
+      this.years.push(y);
     }
+    this.generateCalendar();
   }
 
-  handleDoctorSelect(doctor: Doctor): void {
-    this.bookingData = {
-      ...this.bookingData,
-      doctor: doctor,
-      appointmentDate: this.selectedDate,
-      appointmentTime: this.selectedTime,
-    };
-    this.bookingDataChange.emit(this.bookingData);
+  formatDateLocal(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
-  onDateSelect(date: string): void {
-    this.selectedDate = date;
-    this.selectedTime = ''; // Reset time when date changes
-  }
+  generateCalendar() {
+    const firstDay = new Date(this.selectedYear, this.selectedMonth, 1);
+    const lastDay = new Date(this.selectedYear, this.selectedMonth + 1, 0);
+    const days: any[] = [];
 
-  formatDate(dateStr: string): string {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-    });
-  }
+    const startDay = firstDay.getDay();
+    const daysInMonth = lastDay.getDate();
 
-  get availableDates(): string[] {
-    return Object.keys(this.availableDatesWithTimes);
-  }
-
-  get availableTimesForSelectedDate(): TimeSlot[] {
-    if (!this.selectedDate) {
-      return [];
+    // Previous month's days
+    for (let i = 0; i < startDay; i++) {
+      const date = new Date(
+        this.selectedYear,
+        this.selectedMonth,
+        -(startDay - 1 - i)
+      );
+      days.push({
+        day: date.getDate(),
+        dateString: this.formatDateLocal(date),
+        isCurrentMonth: false,
+      });
     }
-    return this.availableDatesWithTimes[this.selectedDate] || [];
+
+    // Current month's days
+    for (let i = 1; i <= daysInMonth; i++) {
+      const date = new Date(this.selectedYear, this.selectedMonth, i);
+      days.push({
+        day: i,
+        dateString: this.formatDateLocal(date),
+        isCurrentMonth: true,
+      });
+    }
+
+    // Next month's days
+    const remaining = 7 - (days.length % 7);
+    if (remaining < 7) {
+      for (let i = 1; i <= remaining; i++) {
+        const date = new Date(this.selectedYear, this.selectedMonth + 1, i);
+        days.push({
+          day: date.getDate(),
+          dateString: this.formatDateLocal(date),
+          isCurrentMonth: false,
+        });
+      }
+    }
+
+    this.calendarDays = days;
   }
 
-  isDoctorSelected(doctor: Doctor): boolean {
-    return this.bookingData.doctor?.id === doctor.id;
+  updateCalendar() {
+    this.generateCalendar();
   }
 
-  isDateSelected(date: string): boolean {
-    return this.selectedDate === date;
+  prevMonth() {
+    if (this.selectedMonth === 0) {
+      this.selectedMonth = 11;
+      this.selectedYear--;
+    } else {
+      this.selectedMonth--;
+    }
+    this.generateCalendar();
   }
 
-  // Updated component methods:
-  onTimeSelect(timeSlot: TimeSlot): void {
-    this.selectedTime = timeSlot;
+  nextMonth() {
+    if (this.selectedMonth === 11) {
+      this.selectedMonth = 0;
+      this.selectedYear++;
+    } else {
+      this.selectedMonth++;
+    }
+    this.generateCalendar();
   }
 
-  isTimeSelected(timeSlot: TimeSlot): boolean {
-    return (
-      this.selectedTime?.from === timeSlot.from &&
-      this.selectedTime?.to === timeSlot.to
-    );
+  selectDate(day: any) {
+    if (!day.isCurrentMonth) return;
+    this.selectedDate = day.dateString;
+    console.log(this.selectedDate);
   }
+
+  ngOnDestroy() {}
 }

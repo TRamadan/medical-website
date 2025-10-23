@@ -3,8 +3,12 @@
     <div class="col-12 col-md-10 col-lg-8">
       <!-- Header -->
       <div class="text-center mb-4">
-        <h2 class="h3 fw-bold title mb-2">{{ translationService.translate('booking.locationService.title') }}</h2>
-        <p class="text-muted">{{ translationService.translate('booking.locationService.subtitle') }}</p>
+        <h2 class="h3 fw-bold title mb-2">
+          {{ translationService.translate("booking.locationService.title") }}
+        </h2>
+        <p class="text-muted">
+          {{ translationService.translate("booking.locationService.subtitle") }}
+        </p>
       </div>
 
       <!-- Search -->
@@ -13,42 +17,65 @@
           <span class="input-group-text bg-white border-end-0">
             <i class="fas fa-search text-muted"></i>
           </span>
-          <input type="text" class="form-control border-start-0 ps-0"
-            [placeholder]="translationService.translate('booking.locationService.searchPlaceholder')"
-            [(ngModel)]="searchTerm">
+          <input
+            type="text"
+            class="form-control border-start-0 ps-0"
+            [placeholder]="
+              translationService.translate(
+                'booking.locationService.searchPlaceholder'
+              )
+            "
+            [(ngModel)]="searchTerm"
+          />
         </div>
       </div>
 
-      <!-- services cards-->
+      <!-- Service Categories & Services -->
       <div class="row g-3 mb-4">
         <p class="fw-bold mb-0">
-          {{ translationService.translate('booking.locationService.selectService') }}
+          {{
+            translationService.translate(
+              "booking.locationService.selectService"
+            )
+          }}
         </p>
-        @for(category of categories; track category; let i = $index){
+
+        @for (category of categories; track category; let c = $index) {
         <div class="col-12">
           <div class="card shadow-sm border-0">
-            <div class="card-header card-header border-0">
+            <div class="card-header border-0">
               <h5 class="card-title mb-0 d-flex align-items-center">
                 <i class="bi bi-gear text-primary me-2"></i>
-                <span>{{currentLang == 'en' ? category.nameEn : category.nameAr}}
+                <span>
+                  {{ currentLang === "ar" ? category.nameAr : category.nameEn }}
                 </span>
               </h5>
             </div>
 
             <div class="card-body">
               <div class="row g-2">
-                <!-- @for(category of service.categories; track category; let i = $index){
-                <div class="col-6 col-md-4 ">
-                  <button type="button" class="btn w-100 btn-sm"
-                    [class.btn-primary]="isSelectedServiceCategory(category.name)"
-                    [class.btn-outline-secondary]="!isSelectedServiceCategory(category.name)"
-                    (click)="handleServiceCategorySelection(category)">
-                    {{ category.name }} <span class="fw-bold">
-                      {{category.price}} {{ translationService.translate('booking.locationService.currency') }}
+                @for (service of category.services; track service; let i =
+                $index) {
+                <div class="col-6 col-md-4">
+                  <button
+                    type="button"
+                    class="btn w-100 btn-sm"
+                    [class.btn-primary]="isSelectedService(service)"
+                    [class.btn-outline-secondary]="!isSelectedService(service)"
+                    (click)="handleServiceSelection(category, service)"
+                  >
+                    {{ currentLang === "ar" ? service.nameAr : service.nameEn }}
+                    <span class="fw-bold d-block">
+                      {{ service.price }}
+                      {{
+                        translationService.translate(
+                          "booking.locationService.currency"
+                        )
+                      }}
                     </span>
                   </button>
                 </div>
-                } -->
+                }
               </div>
             </div>
           </div>
@@ -57,27 +84,34 @@
       </div>
 
       <!-- Location Cards -->
-      @if(locations.length){
+      @if(locations.length > 0){ }
       <div class="row g-3 mb-4">
         <p class="fw-bold mb-0">
-          {{ translationService.translate('booking.locationService.selectLocation') }}
+          {{
+            translationService.translate(
+              "booking.locationService.selectLocation"
+            )
+          }}
         </p>
-        <!-- @for(location of locations; track location; let i = $index){
+
         <div class="col-12">
           <div class="card shadow-sm border-0">
-            <div class="card-header border-0">
-              <h5 class="card-title mb-0 d-flex align-items-center">
-                <i class="bi bi-geo-alt text-primary me-2"></i>
-                <span>{{ location.city }}</span>
-              </h5>
-            </div>
             <div class="card-body">
               <div class="row g-2">
-                @for(area of location.areas; track area){
+                @for(location of locations; track trackById($index, location);){
                 <div class="col-6 col-md-4">
-                  <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isSelected(area)"
-                    [class.btn-outline-secondary]="!isSelected( area)" (click)="handleLocationSelect(area)">
-                    {{ area }}
+                  <button
+                    type="button"
+                    class="btn w-100 btn-sm"
+                    [class.btn-success]="isSelectedLocation(location)"
+                    [class.btn-outline-secondary]="
+                      !isSelectedLocation(location)
+                    "
+                    (click)="handleLocationSelect(location)"
+                  >
+                    {{
+                      currentLang === "ar" ? location.nameAr : location.nameEn
+                    }}
                   </button>
                 </div>
                 }
@@ -85,25 +119,14 @@
             </div>
           </div>
         </div>
-        } -->
+      </div>
+
+      <!-- Confirmation Message -->
+      @if(bookingData.serviceName && bookingData.locationName){
+      <div class="py-3">
+        <p-messages [(value)]="messages"></p-messages>
       </div>
       }
-
-      <!-- @if(bookingData.serviceCategory && bookingData.area){
-      <div class="py-3 border-primary">
-        <p-messages severity="info">
-          <ng-template pTemplate>
-            <div class="ml-2">{{ translationService.translate('booking.locationService.confirmationMessage', {
-              service: bookingData.serviceCategory,
-              location: bookingData.area
-              }) }}
-            </div>
-          </ng-template>
-        </p-messages>
-
-      </div>
-
-      } -->
     </div>
   </div>
 </div>

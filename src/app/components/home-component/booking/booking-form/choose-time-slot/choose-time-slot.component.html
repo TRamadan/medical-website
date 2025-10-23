@@ -3,66 +3,86 @@
     <div class="col-12 col-lg-10 col-xl-8">
       <!-- Header -->
       <div class="text-center mb-4">
-        <h2 class="h3 fw-bold text-dark mb-2">{{ translationService.translate('booking.timeSlot.title') }}</h2>
-
+        <h2 class="h3 fw-bold text-dark mb-2">
+          {{ translationService.translate("booking.timeSlot.title") }}
+        </h2>
       </div>
 
       <!-- Date Selection -->
-      <div class="card shadow-sm mb-4 border-0 ">
-        <div class="card-header border-0">
-          <h5 class="card-title mb-0 d-flex align-items-center">
-            <i class="fas fa-calendar-alt text-primary me-2"></i>
-            <span>{{ translationService.translate('booking.timeSlot.selectDate') }}</span>
-          </h5>
-        </div>
-        <div class="card-body">
-          <div class="row g-2">
-            @for(date of availableDates; track date){
-            <div class="col-6 col-md-4 col-lg-3">
-              <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isDateSelected(date)"
-                [class.btn-outline-secondary]="!isDateSelected(date)" (click)="onDateSelect(date)">
-                {{ formatDate(date) }}
-              </button>
-            </div>
-            }
-          </div>
-        </div>
-      </div>
-
-      <!-- Time Selection -->
-      @if(selectedDate){
       <div class="card shadow-sm mb-4 border-0">
-        <div class="card-header border-0">
-          <h5 class="card-title mb-0 d-flex align-items-center">
-            <i class="fas fa-clock text-primary me-2"></i>
-            <span>{{ translationService.translate('booking.timeSlot.selectTime') }}</span>
-            <small class="text-muted ms-2">({{ availableTimesForSelectedDate.length }} {{
-              translationService.translate('booking.timeSlot.slotsAvailable') }})</small>
-          </h5>
-        </div>
-        <div class="card-body">
-          @if(availableTimesForSelectedDate.length > 0;){
-          <div class="row g-2">
-            @for(timeSlot of availableTimesForSelectedDate; track timeSlot.from){
-            <div class="col-4 col-md-3">
-              <button type="button" class="btn w-100 btn-sm" [class.btn-primary]="isTimeSelected(timeSlot)"
-                [class.btn-outline-secondary]="!isTimeSelected(timeSlot)" (click)="onTimeSelect(timeSlot)">
-                <strong>{{ translationService.translate('booking.timeSlot.from') }}</strong> {{ timeSlot.from }} -
-                <strong>{{ translationService.translate('booking.timeSlot.to') }}</strong> {{ timeSlot.to }}
+        <div class="calendar-container">
+          <!-- Header with Month & Year Selectors -->
+          <div
+            class="calendar-header d-flex justify-content-center align-items-center gap-2 mb-2"
+          >
+            <!-- Month Selector -->
+            <div class="form-group">
+              <select
+                class="form-select"
+                [(ngModel)]="selectedMonth"
+                (change)="updateCalendar()"
+              >
+                <option *ngFor="let m of months; let i = index" [ngValue]="i">
+                  {{ m }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Year Selector -->
+            <div class="form-group">
+              <select
+                class="form-select"
+                [(ngModel)]="selectedYear"
+                (change)="updateCalendar()"
+              >
+                <option *ngFor="let y of years" [ngValue]="y">{{ y }}</option>
+              </select>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons d-flex align-items-center">
+              <button
+                class="btn btn-outline-secondary btn-sm me-1"
+                (click)="prevMonth()"
+              >
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                (click)="nextMonth()"
+              >
+                <i class="bi bi-chevron-right"></i>
               </button>
             </div>
-            }
           </div>
-          }
-          <ng-template #noTimesAvailable>
-            <div class="text-center py-3">
-              <p class="text-muted mb-0">{{ translationService.translate('booking.timeSlot.noSlotsAvailable') }}</p>
+
+          <!-- Timezone Label -->
+          <div class="timezone-label text-primary fw-semibold mb-2">
+            Africa/Cairo
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="calendar-grid">
+            <!-- Weekday Names -->
+            <div class="day-name fw-bold text-muted" *ngFor="let d of dayNames">
+              {{ d }}
             </div>
-          </ng-template>
+
+            <!-- Days -->
+            <div
+              *ngFor="let day of calendarDays"
+              [ngClass]="{
+                'other-month': !day.isCurrentMonth,
+                selected: selectedDate === day.dateString
+              }"
+              (click)="selectDate(day)"
+              class="day-cell"
+            >
+              {{ day.day }}
+            </div>
+          </div>
         </div>
       </div>
-      }
-
     </div>
   </div>
 </div>
