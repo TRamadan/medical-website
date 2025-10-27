@@ -22,7 +22,10 @@
                 [(ngModel)]="selectedMonth"
                 (change)="updateCalendar()"
               >
-                <option *ngFor="let m of months; let i = index" [ngValue]="i">
+                <option
+                  *ngFor="let m of months; let i = index"
+                  [ngValue]="i + 1"
+                >
                   {{ m }}
                 </option>
               </select>
@@ -56,11 +59,6 @@
             </div>
           </div>
 
-          <!-- Timezone Label -->
-          <div class="timezone-label text-primary fw-semibold mb-2">
-            Africa/Cairo
-          </div>
-
           <!-- Calendar Grid -->
           <div class="calendar-grid">
             <!-- Weekday Names -->
@@ -71,12 +69,10 @@
             <!-- Days -->
             <div
               *ngFor="let day of calendarDays"
-              [ngClass]="{
-                'other-month': !day.isCurrentMonth,
-                selected: selectedDate === day.dateString
-              }"
+              class="calendar-day"
+              [class.not-current]="!day.isCurrentMonth"
+              [class.unavailable]="!day.isAvailable"
               (click)="selectDate(day)"
-              class="day-cell"
             >
               {{ day.day }}
             </div>

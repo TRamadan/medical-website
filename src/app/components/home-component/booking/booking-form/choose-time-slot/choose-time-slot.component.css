@@ -27,6 +27,12 @@
   background-color: #e9ecef;
 }
 
+.unavailable {
+  opacity: 0.4;
+  pointer-events: none;
+  text-decoration: line-through;
+}
+
 .other-month {
   background: #f9eaea;
   color: #aaa;
