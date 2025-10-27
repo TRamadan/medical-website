@@ -20,6 +20,7 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   servicesSearchTerm: string = '';
   private languageSubscription?: Subscription;
+  previousServiceId: number | null = null;
 
   messages: Message[] = [];
   locations: any[] = [];
@@ -46,7 +47,6 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     this.languageSubscription?.unsubscribe();
   }
 
-  // ✅ Get all categories and services
   getAllCategories(): void {
     this._serviceCategory.getServiceCategories().subscribe({
       next: (res: any) => {
@@ -58,8 +58,13 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ When user selects a service
+  trackById(index: number, item: any): number {
+    return item.id;
+  }
+
   handleServiceSelection(category: any, service: any): void {
+    const prevServiceId = this.bookingData.serviceId ?? null;
+
     this.bookingData.serviceCategoryId = category.id;
     this.bookingData.serviceCategoryName =
       this.currentLang === 'ar' ? category.nameAr : category.nameEn;
@@ -68,8 +73,14 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     this.bookingData.serviceName =
       this.currentLang === 'ar' ? service.nameAr : service.nameEn;
 
-    // Update locations for the selected service
     this.locations = service.locations || [];
+
+    if (prevServiceId !== service.id) {
+      this.bookingData.locationId = null;
+      this.bookingData.locationName = null;
+    }
+
+    this.previousServiceId = service.id;
 
     this.messages = [
       {
@@ -84,11 +95,6 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     ];
   }
 
-  trackById(index: number, item: any): number {
-    return item.id;
-  }
-
-  // ✅ When user selects a location
   handleLocationSelect(location: any): void {
     this.bookingData.locationId = location.id;
     this.bookingData.locationName =
@@ -106,9 +112,9 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
         ),
       },
     ];
+    localStorage.setItem('bookingData', JSON.stringify(this.bookingData));
   }
 
-  // ✅ Helpers for UI
   isSelectedService(service: any): boolean {
     return this.bookingData.serviceId === service.id;
   }

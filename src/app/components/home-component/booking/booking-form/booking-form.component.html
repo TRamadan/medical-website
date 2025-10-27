@@ -3,12 +3,15 @@
 @if(!showBookingFormFlag){
 <div class="my-5">
   <app-booking-features></app-booking-features>
-  <app-booking-how-it-works (showBookingForm)="onShowBookingForm($event)"></app-booking-how-it-works>
+  <app-booking-how-it-works
+    (showBookingForm)="onShowBookingForm($event)"
+  ></app-booking-how-it-works>
 </div>
-}
-
-@if(showBookingFormFlag){
-<div class="min-vh-100" style="background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);">
+} @if(showBookingFormFlag){
+<div
+  class="min-vh-100"
+  style="background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%)"
+>
   <div class="container-fluid px-3 px-md-4 py-4">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8">
@@ -17,33 +20,60 @@
           <div class="card-header bg-white">
             <div class="row align-items-center mb-3">
               <div class="col">
-                <h5 class="card-title mb-0">{{ translationService.translate('booking.form.progress.step') }} {{
-                  currentStep }} {{ translationService.translate('booking.form.progress.of') }} {{ totalSteps }}</h5>
+                <h5 class="card-title mb-0">
+                  {{
+                    translationService.translate("booking.form.progress.step")
+                  }}
+                  {{ currentStep }}
+                  {{ translationService.translate("booking.form.progress.of") }}
+                  {{ totalSteps }}
+                </h5>
               </div>
               <div class="col-auto">
-                <small class="text-muted">{{ progressRounded }}% {{
-                  translationService.translate('booking.form.progress.complete') }}</small>
+                <small class="text-muted"
+                  >{{ progressRounded }}%
+                  {{
+                    translationService.translate(
+                      "booking.form.progress.complete"
+                    )
+                  }}</small
+                >
               </div>
             </div>
 
             <!-- Progress Bar -->
-            <div class="progress mb-4" style="height: 8px;">
-              <div class="progress-bar bg-progress-bar" role="progressbar" [style.width.%]="progress"
-                [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
-              </div>
+            <div class="progress mb-4" style="height: 8px">
+              <div
+                class="progress-bar bg-progress-bar"
+                role="progressbar"
+                [style.width.%]="progress"
+                [attr.aria-valuenow]="progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
             </div>
 
             <!-- Step Indicators -->
             <div class="row text-center">
               @for(step of steps; track step; let i = $index){
-              <div class="col" [class.text-primary]="isStepActive(i)" [class.text-muted]="!isStepActive(i)">
-                <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
-                  [class.bg-primary]="isStepActive(i)" [class.text-white]="isStepActive(i)"
-                  [class.bg-light]="!isStepActive(i)" style="width: 32px;
-    height: 32px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #131337 !important;">
+              <div
+                class="col"
+                [class.text-primary]="isStepActive(i)"
+                [class.text-muted]="!isStepActive(i)"
+              >
+                <div
+                  class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
+                  [class.bg-primary]="isStepActive(i)"
+                  [class.text-white]="isStepActive(i)"
+                  [class.bg-light]="!isStepActive(i)"
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #131337 !important;
+                  "
+                >
                   {{ i + 1 }}
                 </div>
                 <div class="small d-none d-sm-block">{{ step }}</div>
@@ -59,46 +89,58 @@
             <!-- Step 1: Location Selection -->
             @if(currentStep === 1){
             <app-location-service-form></app-location-service-form>
-            }
-
-            @if(currentStep === 2){
+            } @if(currentStep === 2){
             <app-choose-time-slot></app-choose-time-slot>
-            }
-
-            @if(currentStep === 3){
+            } @if(currentStep === 3){
             <app-patient-form></app-patient-form>
-            }
-
-            @if(currentStep === 4){
+            } @if(currentStep === 4){
             <app-confirmation></app-confirmation>
             }
           </div>
         </div>
 
         <!-- Navigation Buttons -->
-        @if(currentStep < totalSteps){ <div class="row mt-4">
+        @if(currentStep < totalSteps){
+        <div class="row mt-4">
           <div class="col-6 d-flex justify-content-start">
-            <button type="button" class="btn btn-outline-secondary d-flex align-items-center" (click)="handlePrevious()"
-              [disabled]="currentStep === 1">
+            <button
+              type="button"
+              class="btn btn-outline-secondary d-flex align-items-center"
+              (click)="handlePrevious()"
+              [disabled]="currentStep === 1"
+            >
               <i class="fas fa-arrow-left me-2"></i>
-              <span class="d-none d-sm-inline">{{ translationService.translate('booking.form.navigation.previous')
-                }}</span>
+              <span class="d-none d-sm-inline">{{
+                translationService.translate("booking.form.navigation.previous")
+              }}</span>
             </button>
           </div>
           <div class="col-6 d-flex justify-content-end">
-
-            <button type="button" class="btn btn-primary d-flex align-items-center"
-              (click)="currentStep == 3 ? handleNext() :  handleNext()">
-              <span class="d-none d-sm-inline me-2">{{ currentStep == 3 ?
-                translationService.translate('booking.form.navigation.createBooking') :
-                translationService.translate('booking.form.navigation.next') }}</span>
-              <i [class]="currentStep == 3  ? 'fas fa-check-circle'  : 'fas fa-arrow-right'"></i>
+            <button
+              type="button"
+              class="btn btn-primary d-flex align-items-center"
+              (click)="currentStep == 3 ? handleNext() : handleNext()"
+            >
+              <span class="d-none d-sm-inline me-2">{{
+                currentStep == 3
+                  ? translationService.translate(
+                      "booking.form.navigation.createBooking"
+                    )
+                  : translationService.translate("booking.form.navigation.next")
+              }}</span>
+              <i
+                [class]="
+                  currentStep == 3
+                    ? 'fas fa-check-circle'
+                    : 'fas fa-arrow-right'
+                "
+              ></i>
             </button>
           </div>
+        </div>
+        }
       </div>
-      }
     </div>
   </div>
-</div>
 </div>
 }

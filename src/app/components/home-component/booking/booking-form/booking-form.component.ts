@@ -157,6 +157,10 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  setBookingDataFromPreviousStep(event: any): void {
+    console.log(event);
+  }
+
   isStepActive(stepIndex: number): boolean {
     return stepIndex + 1 <= this.currentStep;
   }
