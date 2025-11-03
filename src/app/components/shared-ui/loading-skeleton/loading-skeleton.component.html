@@ -1,3 +1,9 @@
 <div class="skeleton-wrapper">
-    <p-skeleton *ngFor="let _ of skeletons" [shape]="shape" [ngStyle]="skeletonStyle"></p-skeleton>
+  <ngx-skeleton-loader
+    count="{{ count }}"
+    [appearance]="appearance"
+    [theme]="theme"
+    [animation]="animation"
+  >
+  </ngx-skeleton-loader>
 </div>

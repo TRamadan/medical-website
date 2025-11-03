@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { LanguageService } from '../../../../services/language.service';
 import { BreadcrumbService } from '../../../../services/breadcrumb.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { TranslationService } from '../../../../services/translation.service';
 
 @Component({
   selector: 'app-articles-videos',
@@ -37,6 +38,7 @@ export class ArticlesVideosComponent implements OnInit {
 
   constructor(
     public languageService: LanguageService,
+    public translateService: TranslationService,
     private breadcrumbService: BreadcrumbService,
     private sanitizer: DomSanitizer
   ) {}

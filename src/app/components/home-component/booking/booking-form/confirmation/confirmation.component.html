@@ -5,8 +5,8 @@
         <div class="success-icon mx-auto mb-3">
           <img src="../../../../../../assets/done.PNG" />
         </div>
-        <h2 class="h3 fw-bold text-dark mb-2">{{ translationService.translate('booking.confirmation.title') }}</h2>
-        <p class="text-muted">{{ translationService.translate('booking.confirmation.subtitle') }}</p>
+        <h2 class="h3 fw-bold text-dark mb-2">Booking Confirmed!</h2>
+        <p class="text-muted">Your appointment has been successfully booked.</p>
       </div>
 
       <!-- Appointment Details Card -->
@@ -14,21 +14,20 @@
         <div class="card-header bg-white">
           <h5 class="card-title mb-0 d-flex align-items-center">
             <i class="bi bi-calendar3 text-primary me-2"></i>
-            {{ translationService.translate('booking.confirmation.appointmentDetails.title') }}
+            Appointment Details
           </h5>
         </div>
         <div class="card-body">
           <div class="row g-4">
             <!-- Left Column -->
             <div class="col-12 col-md-6">
-
-
               <div class="d-flex align-items-start">
                 <i class="bi bi-geo-alt text-muted me-3 mt-1"></i>
                 <div>
-                  <p class="text-muted small mb-1">{{
-                    translationService.translate('booking.confirmation.appointmentDetails.location') }}</p>
-                  <p class="fw-semibold mb-0">{{ bookingData.area }}, {{ bookingData.location }}</p>
+                  <p class="text-muted small mb-1">Location</p>
+                  <p class="fw-semibold mb-0">
+                    Evo fitness club, 3rd settelment
+                  </p>
                 </div>
               </div>
             </div>
@@ -38,42 +37,37 @@
               <div class="mb-3 d-flex align-items-start">
                 <i class="bi bi-calendar3 text-muted me-3 mt-1"></i>
                 <div>
-                  <p class="text-muted small mb-1">{{
-                    translationService.translate('booking.confirmation.appointmentDetails.date') }}</p>
-                  <p class="fw-semibold mb-0">{{ formatDate(bookingData.appointmentDate) }}</p>
+                  <p class="text-muted small mb-1">Date</p>
+                  <p class="fw-semibold mb-0">Saturday, June 15, 2024</p>
                 </div>
               </div>
 
               <div class="d-flex align-items-start">
                 <i class="bi bi-clock text-muted me-3 mt-1"></i>
                 <div>
-                  <p class="text-muted small mb-1">{{
-                    translationService.translate('booking.confirmation.appointmentDetails.time') }}</p>
-                  <p class="fw-semibold mb-0">{{ bookingData.appointmentTime }}</p>
+                  <p class="text-muted small mb-1">Time</p>
+                  <p class="fw-semibold mb-0">09:00 - 09:30</p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
       <!-- Patient Information Card -->
       <div class="card shadow-sm mb-4">
         <div class="card-header bg-white">
-          <h5 class="card-title mb-0">{{ translationService.translate('booking.confirmation.patientInfo.title') }}</h5>
+          <h5 class="card-title mb-0">Patient Information</h5>
         </div>
         <div class="card-body">
           <div class="row g-4">
             <div class="col-12 col-md-6">
-              <p class="text-muted small mb-1">{{ translationService.translate('booking.confirmation.patientInfo.name')
-                }}</p>
-              <p class="fw-semibold">{{ bookingData.patient.firstName }} {{ bookingData.patient.lastName }}</p>
+              <p class="text-muted small mb-1">Name</p>
+              <p class="fw-semibold">John Doe</p>
             </div>
             <div class="col-12 col-md-6">
-              <p class="text-muted small mb-1">{{
-                translationService.translate('booking.confirmation.patientInfo.dateOfBirth') }}</p>
-              <p class="fw-semibold">{{ bookingData.patient.dateOfBirth }}</p>
+              <p class="text-muted small mb-1">Date of Birth</p>
+              <p class="fw-semibold">1990-01-01</p>
             </div>
           </div>
 
@@ -82,9 +76,8 @@
               <div class="d-flex align-items-center">
                 <i class="bi bi-envelope text-muted me-2"></i>
                 <div>
-                  <p class="text-muted small mb-1">{{
-                    translationService.translate('booking.confirmation.patientInfo.email') }}</p>
-                  <p class="fw-semibold mb-0">{{ bookingData.patient.email }}</p>
+                  <p class="text-muted small mb-1">Email</p>
+                  <p class="fw-semibold mb-0">{{ "john.doe@example.com" }}</p>
                 </div>
               </div>
             </div>
@@ -92,9 +85,8 @@
               <div class="d-flex align-items-center">
                 <i class="bi bi-telephone text-muted me-2"></i>
                 <div>
-                  <p class="text-muted small mb-1">{{
-                    translationService.translate('booking.confirmation.patientInfo.phone') }}</p>
-                  <p class="fw-semibold mb-0">{{ bookingData.patient.phone }}</p>
+                  <p class="text-muted small mb-1">Phone</p>
+                  <p class="fw-semibold mb-0">+1234567890</p>
                 </div>
               </div>
             </div>
@@ -105,8 +97,7 @@
       <!-- Next Steps Card -->
       <div class="card shadow-sm mb-4 next-steps-card">
         <div class="card-header">
-          <h5 class="card-title mb-0 text-primary">{{
-            translationService.translate('booking.confirmation.nextSteps.title') }}</h5>
+          <h5 class="card-title mb-0 text-primary">What's Next?</h5>
         </div>
         <div class="card-body">
           <div class="row g-3">
@@ -114,10 +105,10 @@
               <div class="d-flex align-items-start">
                 <div class="step-number me-3">1</div>
                 <div>
-                  <p class="fw-semibold text-primary mb-1">{{
-                    translationService.translate('booking.confirmation.nextSteps.step1.title') }}</p>
-                  <p class="text-primary small mb-0">{{
-                    translationService.translate('booking.confirmation.nextSteps.step1.description') }}</p>
+                  <p class="fw-semibold text-primary mb-1">Check your Email</p>
+                  <p class="text-primary small mb-0">
+                    We've sent a confirmation email with all the details.
+                  </p>
                 </div>
               </div>
             </div>
@@ -126,10 +117,13 @@
               <div class="d-flex align-items-start">
                 <div class="step-number me-3">2</div>
                 <div>
-                  <p class="fw-semibold text-primary mb-1">{{
-                    translationService.translate('booking.confirmation.nextSteps.step2.title') }}</p>
-                  <p class="text-primary small mb-0">{{
-                    translationService.translate('booking.confirmation.nextSteps.step2.description') }}</p>
+                  <p class="fw-semibold text-primary mb-1">
+                    Prepare for your visit
+                  </p>
+                  <p class="text-primary small mb-0">
+                    Please arrive 10 minutes early and bring any relevant
+                    medical documents.
+                  </p>
                 </div>
               </div>
             </div>
@@ -138,10 +132,11 @@
               <div class="d-flex align-items-start">
                 <div class="step-number me-3">3</div>
                 <div>
-                  <p class="fw-semibold text-primary mb-1">{{
-                    translationService.translate('booking.confirmation.nextSteps.step3.title') }}</p>
-                  <p class="text-primary small mb-0">{{
-                    translationService.translate('booking.confirmation.nextSteps.step3.description') }}</p>
+                  <p class="fw-semibold text-primary mb-1">Download our App</p>
+                  <p class="text-primary small mb-0">
+                    Manage your appointments and get reminders on our mobile
+                    app.
+                  </p>
                 </div>
               </div>
             </div>
@@ -152,31 +147,27 @@
       <!-- Arabic Email Card -->
       <div class="card shadow-sm mb-4 arabic-card">
         <div class="card-header bg-light">
-          <h5 class="card-title mb-0 text-end" dir="rtl">{{
-            translationService.translate('booking.confirmation.arabicEmail.title') }}</h5>
+          <h5 class="card-title mb-0 text-end" dir="rtl">تأكيد الحجز</h5>
         </div>
         <div class="card-body text-end" dir="rtl">
-          <p class="text-dark">{{ translationService.translate('booking.confirmation.arabicEmail.greeting', { name:
-            bookingData.patient.firstName }) }}</p>
-          <p class="text-muted">{{ translationService.translate('booking.confirmation.arabicEmail.intro') }}</p>
+          <p class="text-dark">مرحباً جون،</p>
+          <p class="text-muted">تم تأكيد حجزك بنجاح. إليك تفاصيل الموعد:</p>
           <ul class="list-unstyled me-4">
-            <li class="text-muted mb-1">• {{ translationService.translate('booking.confirmation.arabicEmail.details') }}
+            <li class="text-muted mb-1">
+              • تفاصيل الموعد: السبت، 15 يونيو 2024، الساعة 09:00 صباحًا في ايفو
+              فيتنس كلوب، التجمع الثالث.
             </li>
-            <li class="text-muted mb-1">• {{ translationService.translate('booking.confirmation.arabicEmail.appLink') }}
+            <li class="text-muted mb-1">• رابط التطبيق: [رابط التطبيق]</li>
+            <li class="text-muted mb-1">
+              • تعليمات النموذج: يرجى ملء النموذج الطبي قبل زيارتك.
             </li>
-            <li class="text-muted mb-1">• {{
-              translationService.translate('booking.confirmation.arabicEmail.formInstructions') }}</li>
-            <li class="text-muted mb-1">• {{ translationService.translate('booking.confirmation.arabicEmail.clinicInfo')
-              }}</li>
+            <li class="text-muted mb-1">
+              • معلومات العيادة: [رقم هاتف العيادة]
+            </li>
           </ul>
-          <p class="text-muted">{{ translationService.translate('booking.confirmation.arabicEmail.instruction') }}</p>
+          <p class="text-muted">نتطلع لرؤيتك قريباً!</p>
         </div>
       </div>
-
-
-
-
-
     </div>
   </div>
 </div>

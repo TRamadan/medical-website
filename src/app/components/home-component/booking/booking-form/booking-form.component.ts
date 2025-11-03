@@ -131,6 +131,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   handleNext(): void {
     if (this.currentStep < this.totalSteps) {
       this.currentStep++;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
@@ -138,6 +139,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     if (this.currentStep > 1) {
       this.currentStep--;
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   canProceed(): boolean {

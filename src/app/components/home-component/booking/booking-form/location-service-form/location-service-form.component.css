@@ -87,13 +87,13 @@ label.radio-card input[type="radio"] {
 }
 
 label.radio-card input[type="radio"]:checked + .card-content-wrapper {
-  box-shadow: 0 2px 4px rgba(219, 215, 215, 0.5), 0 0 0 2px #3057d5;
+    box-shadow: 0 2px 4px rgba(219, 215, 215, 0.5), 0 0 0 2px #131337;
 }
 
 label.radio-card input[type="radio"]:checked + .card-content-wrapper .check-icon {
-  background: #3057d5;
-  border-color: #3057d5;
-  transform: scale(1.2);
+     background: #131337;
+    border-color: #131337;
+    transform: scale(1.2);
 }
 
 label.radio-card input[type="radio"]:checked + .card-content-wrapper .check-icon::before {
@@ -103,7 +103,7 @@ label.radio-card input[type="radio"]:checked + .card-content-wrapper .check-icon
 
 label.radio-card input[type="radio"]:focus + .card-content-wrapper .check-icon {
   box-shadow: 0 0 0 4px rgba(48, 86, 213, 0.2);
-  border-color: #3056d5;
+  border-color: #131337;
 }
 
 .card-content h4 {
@@ -119,4 +119,12 @@ label.radio-card input[type="radio"]:focus + .card-content-wrapper .check-icon {
   line-height: 1.4;
   text-align: center;
   color: #686d73;
+}
+
+::ng-deep .p-message.p-message-success {
+     background: rgb(112 244 195 / 17%);
+    border: solid #70f4c3;
+    border-width: 0 0 0 6px;
+    color: #131337 !important;
+    font-weight: bold;
 }

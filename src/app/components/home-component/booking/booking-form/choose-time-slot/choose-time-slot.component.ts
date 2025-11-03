@@ -38,6 +38,8 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   @Input() bookingData: BookingData = {};
   @Output() bookingDataChange = new EventEmitter<BookingData>();
   private languageSubscription?: Subscription;
+  currentSlideIndex = 0;
+  mobileSlides: any[][] = [];
 
   months = [
     'January',
@@ -56,12 +58,17 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   years: number[] = [];
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  selectedMonth = new Date().getMonth() + 1; // 1-based month
+  selectedMonth = new Date().getMonth() + 1;
   selectedYear = new Date().getFullYear();
   calendarDays: any[] = [];
   selectedDate: string | null = null;
 
   availableDays: string[] = [];
+
+  availableTimesForSelectedDate: any[] = [];
+
+  desktopSlides: any[][] = [];
+  desktopSlideIndex = 0;
 
   constructor(
     public translationService: TranslationService,
@@ -76,6 +83,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
     }
 
     this.fetchAvailableDays();
+    this.getSlots();
   }
 
   // Fetch available days from API
@@ -91,9 +99,8 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (res: any) => {
-          debugger;
           this.availableDays = res?.data || [];
-          this.generateCalendar(); // generate after getting data
+          this.generateCalendar();
         },
         error: (err: any) => {
           this.availableDays = [];
@@ -138,7 +145,6 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
         day: i,
         dateString,
         isCurrentMonth: true,
-        // ✅ Mark day as available only if it's in API response
         isAvailable: this.availableDays.includes(dateString),
       });
     }
@@ -162,8 +168,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   updateCalendar() {
-    console.log('Selected month:', this.selectedMonth);
-    this.fetchAvailableDays(); // ✅ refetch data when month changes
+    this.fetchAvailableDays();
   }
 
   prevMonth() {
@@ -187,9 +192,67 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   selectDate(day: any) {
-    if (!day.isCurrentMonth || !day.isAvailable) return;
+    if (!day.isAvailable || !day.isCurrentMonth) return;
     this.selectedDate = day.dateString;
-    console.log('✅ Selected date:', this.selectedDate);
+  }
+
+  //here is the function needed to get the slots per the selected date
+  getSlots(): void {
+    const locationServicedata = JSON.parse(
+      localStorage.getItem('bookingData') || ''
+    );
+    this._workingDaysService.getAvailableSlotsNew().subscribe({
+      next: (response: any) => {
+        if (response?.isSuccess && Array.isArray(response.data)) {
+          this.availableTimesForSelectedDate = response.data.map(
+            (slot: any) => ({
+              ...slot,
+              from: this.formatTime(slot.from),
+              to: this.formatTime(slot.to),
+            })
+          );
+          console.log(this.availableTimesForSelectedDate);
+        }
+        this.generateMobileSlides(this.availableTimesForSelectedDate);
+      },
+      error: (error: any) => {
+        //error handling goes here
+      },
+    });
+  }
+
+  generateMobileSlides(slots: any[]): void {
+    const perSlide = 3;
+    this.mobileSlides = [];
+    for (let i = 0; i < slots.length; i += perSlide) {
+      this.mobileSlides.push(slots.slice(i, i + perSlide));
+    }
+    console.log(this.mobileSlides);
+  }
+
+  formatTime(dateTime: string): string {
+    const date = new Date(dateTime);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  isTimeSelected(slot: any): boolean {
+    return false;
+  }
+
+  onTimeSelect(slot: any): void {
+    console.log('Selected slot:', slot);
+  }
+
+  nextSlide(): void {
+    if (this.currentSlideIndex < this.mobileSlides.length - 1) {
+      this.currentSlideIndex++;
+    }
+  }
+
+  prevSlide(): void {
+    if (this.currentSlideIndex > 0) {
+      this.currentSlideIndex--;
+    }
   }
 
   ngOnDestroy() {

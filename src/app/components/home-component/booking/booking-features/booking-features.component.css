@@ -26,6 +26,20 @@
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+} 
+
+i{
+    width: 3rem;
+    height: 3rem;
+    background-color: #70f4c35c;
+    color: #131337;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    font-size: 26px;
+    font-weight: bold;
 }
 
 .feature-title {

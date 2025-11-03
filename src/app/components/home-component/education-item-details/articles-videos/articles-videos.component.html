@@ -5,24 +5,59 @@
       <!-- Left Side - Featured Article -->
       <div class="col-lg-7 col-md-12 mb-4">
         <div class="featured-article">
-          <div style="position: relative;">
-            <img [src]="fetchedImgUrl  + selectedItem?.img" id="Item" alt="Exercise" class="article-image">
-            <div class="category-badge">{{   currentLang == 'en' ? (selectedItem?.categoryNameEn ? selectedItem?.categoryNameEn : selectedItem?.nameEn) : (selectedItem?.categoryNameAr ? selectedItem?.categoryNameAr : selectedItem?.nameAr)}}</div>
+          <div style="position: relative">
+            <img
+              [src]="fetchedImgUrl + selectedItem?.img"
+              id="Item"
+              alt="Exercise"
+              class="article-image"
+            />
+            <div class="category-badge">
+              {{
+                currentLang == "en"
+                  ? selectedItem?.categoryNameEn
+                    ? selectedItem?.categoryNameEn
+                    : selectedItem?.nameEn
+                  : selectedItem?.categoryNameAr
+                  ? selectedItem?.categoryNameAr
+                  : selectedItem?.nameAr
+              }}
+            </div>
           </div>
           <div class="featured-content">
-            <h2 class="featured-title">{{currentLang == 'en' ? selectedItem?.titleEn : selectedItem?.title}}</h2>
+            <h2 class="featured-title">
+              {{
+                currentLang == "en"
+                  ? selectedItem?.titleEn
+                  : selectedItem?.title
+              }}
+            </h2>
             <p class="featured-description">
-              {{currentLang == 'en' ? selectedItem?.descriptionEn : selectedItem?.description}}
+              {{
+                currentLang == "en"
+                  ? selectedItem?.descriptionEn
+                  : selectedItem?.description
+              }}
             </p>
             <div class="author-info">
-              <span class="author-name">By. {{selectedItem?.createdBy}}</span>
+              <span class="author-name">By. {{ selectedItem?.createdBy }}</span>
             </div>
 
             <div class="article-footer">
               <a href="#" class="read-more-btn">Read More</a>
               <div class="position-relative">
-                <button class="share-btn" (click)="toggleShareMenu(selectedItem)">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button
+                  class="share-btn"
+                  (click)="toggleShareMenu(selectedItem)"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
                     <circle cx="18" cy="5" r="3"></circle>
                     <circle cx="6" cy="12" r="3"></circle>
                     <circle cx="18" cy="19" r="3"></circle>
@@ -32,16 +67,35 @@
                 </button>
                 @if (showShareMenu && selectedItemId === selectedItem?.id) {
                 <div class="share-menu">
-                  <button class="btn btn-outline-success btn-sm w-100 mb-1" (click)="share('whatsapp', selectedItem)"><i class="bi bi-whatsapp"></i> WhatsApp</button>
-                  <button class="btn btn-outline-primary btn-sm w-100 mb-1" (click)="share('facebook', selectedItem)"><i class="bi bi-facebook"></i> Facebook</button>
-                  <button class="btn btn-outline-secondary btn-sm w-100 mb-1" (click)="share('copy', selectedItem)"><i class="bi bi-link-45deg"></i> Copy Link</button>
-                  <button class="btn btn-outline-dark btn-sm w-100" (click)="share('native', selectedItem)"><i class="bi bi-share"></i> More</button>
+                  <button
+                    class="btn btn-outline-success btn-sm w-100 mb-1"
+                    (click)="share('whatsapp', selectedItem)"
+                  >
+                    <i class="bi bi-whatsapp"></i> WhatsApp
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm w-100 mb-1"
+                    (click)="share('facebook', selectedItem)"
+                  >
+                    <i class="bi bi-facebook"></i> Facebook
+                  </button>
+                  <button
+                    class="btn btn-outline-secondary btn-sm w-100 mb-1"
+                    (click)="share('copy', selectedItem)"
+                  >
+                    <i class="bi bi-link-45deg"></i> Copy Link
+                  </button>
+                  <button
+                    class="btn btn-outline-dark btn-sm w-100"
+                    (click)="share('native', selectedItem)"
+                  >
+                    <i class="bi bi-share"></i> More
+                  </button>
                 </div>
                 }
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -52,54 +106,70 @@
             <h3 class="recent-title">Recent articles</h3>
           </div>
           <div class="search-wrapper">
-            <input type="text" class="form-control search-input" placeholder="Search..." [(ngModel)]="searchText" />
+            <input
+              type="text"
+              class="form-control search-input"
+              placeholder="Search..."
+              [(ngModel)]="searchText"
+            />
             <i class="pi pi-search search-icon"></i>
           </div>
-          @if(articles.length){
-          @for(item of articles; track item){
-          <div class="recent-item" [class.selected]="isItemSelected(item)" (click)="selectItem(item)">
+          @if(articles.length){ @for(item of articles; track item){
+          <div
+            class="recent-item"
+            [class.selected]="isItemSelected(item)"
+            (click)="selectItem(item)"
+          >
             <div class="recent-image">
-              <img [src]="fetchedImgUrl  + item?.img" alt="Sunset" class="img-fluid">
+              <img
+                [src]="fetchedImgUrl + item?.img"
+                alt="Sunset"
+                class="img-fluid"
+              />
             </div>
             <div class="recent-content">
-              <h4 class="recent-item-title">{{currentLang == 'en' ?item.titleEn : item.title}}</h4>
+              <h4 class="recent-item-title">
+                {{ currentLang == "en" ? item.titleEn : item.title }}
+              </h4>
 
               <div class="recent-author">
-                <span class="recent-author-name">By {{item.createdBy}}</span>
+                <span class="recent-author-name">By {{ item.createdBy }}</span>
               </div>
             </div>
           </div>
-          }
-          }
-
-          @else if(videos.length){
-          @for(item of videos; track item){
-          <div class="recent-item" [class.selected]="isItemSelected(item)" (click)="selectItem(item)">
+          } } @else if(videos.length){ @for(item of videos; track item){
+          <div
+            class="recent-item"
+            [class.selected]="isItemSelected(item)"
+            (click)="selectItem(item)"
+          >
             <div class="recent-image">
-              <img src="../../../../../assets/logo-new2-transperant.png" alt="Sunset" class="img-fluid">
+              <img
+                src="../../../../../assets/logo-new2-transperant.png"
+                alt="Sunset"
+                class="img-fluid"
+              />
             </div>
             <div class="recent-content">
-              <h4 class="recent-item-title">{{currentLang == 'en' ?item.titleEn : item.title}}</h4>
+              <h4 class="recent-item-title">
+                {{ currentLang == "en" ? item.titleEn : item.title }}
+              </h4>
               <div class="recent-author">
-                <span class="recent-author-name">By. {{item.createdBy}}</span>
+                <span class="recent-author-name">By. {{ item.createdBy }}</span>
               </div>
             </div>
           </div>
-          }
-          }
+          } }
         </div>
       </div>
     </div>
-    } 
-
-
-    
-    
-    @else {
+    } @else {
     <div class="row justify-content-center text-center py-5">
       <div class="col-md-8">
         <i class="bi bi-journal-x display-4 text-muted mb-3"></i>
-        <h4 class="text-muted">No content available in this category.</h4>
+        <h4 class="text-muted">
+          {{ translateService.translate("educationalcontent.noCategories") }}.
+        </h4>
       </div>
     </div>
     }

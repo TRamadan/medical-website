@@ -150,6 +150,12 @@ export class TranslationService {
       ar: 'هل لديك أسئلة حول خدماتنا؟ هل تحتاج إلى مساعدة في رحلة شفائك؟ نحن هنا للمساعدة ويسعدنا التواصل معك.',
     },
 
+    //educational content
+    'educationalcontent.noCategories': {
+      en: 'No content available in this category',
+      ar: 'لا توجد محتوي متاح في هذه الفئة',
+    },
+
     // Contact - Information
     'contact.getInTouch': { en: 'Get in Touch', ar: 'تواصل معنا' },
     'contact.followUs': { en: 'Follow Us', ar: 'تابعنا' },
@@ -473,7 +479,7 @@ export class TranslationService {
       ar: 'اختر موقعك وخدمتك المفضلة للموعد',
     },
     'booking.locationService.searchPlaceholder': {
-      en: 'Search here for location or service...',
+      en: 'Search here for service or sub service...',
       ar: 'ابحث هنا عن الموقع أو الخدمة...',
     },
     'booking.locationService.selectService': {
@@ -496,8 +502,8 @@ export class TranslationService {
 
     // Time Slot
     'booking.timeSlot.title': {
-      en: 'Choose Your Appointment Time',
-      ar: 'اختر وقت موعدك',
+      en: 'Choose Your Appointment available date and time slot',
+      ar: 'اختر موعدك من التواريخ والأوقات المتاحة',
     },
     'booking.timeSlot.selectDate': { en: 'Select Date', ar: 'اختر التاريخ' },
     'booking.timeSlot.selectTime': { en: 'Select Time', ar: 'اختر الوقت' },

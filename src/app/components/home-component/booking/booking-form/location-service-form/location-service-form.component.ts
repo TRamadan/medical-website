@@ -7,11 +7,12 @@ import { TranslationService } from '../../../../../services/translation.service'
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
 import { ServiceslocationService } from './services/serviceslocation.service';
+import { CategorySearchPipe } from './category-search.pipe';
 
 @Component({
   selector: 'app-location-service-form',
   standalone: true,
-  imports: [FormsModule, CardModule, MessagesModule],
+  imports: [FormsModule, CardModule, MessagesModule, CategorySearchPipe],
   templateUrl: './location-service-form.component.html',
   styleUrls: ['./location-service-form.component.css'],
 })
@@ -40,6 +41,31 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
       }
     );
 
+    const savedBookingData = localStorage.getItem('bookingData');
+    if (savedBookingData) {
+      this.bookingData = JSON.parse(savedBookingData);
+      if (this.bookingData.serviceName && this.bookingData.locationName) {
+        this.messages = [
+          {
+            severity: 'success',
+            detail: this.translationService.translate(
+              'booking.locationService.selectionMessage',
+              {
+                service: this.bookingData.serviceName,
+                location: this.bookingData.locationName,
+              }
+            ),
+          },
+        ];
+      } else if (this.bookingData.serviceName) {
+        this.messages = [
+          {
+            severity: 'info',
+            detail: `Your chosen service is ${this.bookingData.serviceName}. Now select a location.`,
+          },
+        ];
+      }
+    }
     this.getAllCategories();
   }
 
@@ -50,7 +76,7 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   getAllCategories(): void {
     this._serviceCategory.getServiceCategories().subscribe({
       next: (res: any) => {
-        this.categories = res;
+        this.categories = res.data;
       },
       error: (error: any) => {
         console.error('Error fetching categories', error);

@@ -45,6 +45,8 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   startBookingProcess(): void {
-    this.router.navigate(['/bookappointment']);
+    this.router.navigate(['/bookappointment']).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
 }

@@ -3,12 +3,15 @@
     <div class="col-12 col-lg-10 col-xl-8">
       <!-- Header -->
       <div class="text-center mb-4">
-        <h2 class="h3 fw-bold text-dark mb-2">
+        <h4 class="fw-bold text-dark mb-2">
           {{ translationService.translate("booking.timeSlot.title") }}
-        </h2>
+        </h4>
       </div>
 
       <!-- Date Selection -->
+      <p>
+        {{ translationService.translate("booking.timeSlot.selectDate") }}
+      </p>
       <div class="card shadow-sm mb-4 border-0">
         <div class="calendar-container">
           <!-- Header with Month & Year Selectors -->
@@ -66,17 +69,138 @@
               {{ d }}
             </div>
 
-            <!-- Days -->
             <div
               *ngFor="let day of calendarDays"
               class="calendar-day"
               [class.not-current]="!day.isCurrentMonth"
               [class.unavailable]="!day.isAvailable"
+              [class.selected]="selectedDate === day.dateString"
               (click)="selectDate(day)"
             >
               {{ day.day }}
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Time Selecteion-->
+      <p>
+        {{ translationService.translate("booking.timeSlot.selectTime") }}
+      </p>
+
+      <div class="card shadow-sm mb-4 border-0">
+        <div class="card-body">
+          @if (availableTimesForSelectedDate.length > 0) {
+
+          <!-- Desktop grid -->
+          <!-- Desktop slider -->
+          <div class="d-none d-md-block position-relative">
+            <!-- Navigation buttons -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                (click)="prevDesktopSlide()"
+                [disabled]="desktopSlideIndex === 0"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                (click)="nextDesktopSlide()"
+                [disabled]="desktopSlideIndex === desktopSlides.length - 1"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Slider container -->
+            <div class="slider-container overflow-hidden">
+              <div
+                class="slider-wrapper d-flex transition-all"
+                [style.transform]="
+                  'translateX(-' + desktopSlideIndex * 100 + '%)'
+                "
+              >
+                @for (slide of desktopSlides; track index; let index = $index) {
+                <div
+                  class="slide flex-shrink-0 w-100 d-flex justify-content-around gap-2"
+                >
+                  @for (timeSlot of slide; track timeSlot.from) {
+                  <button
+                    type="button"
+                    class="btn btn-sm time-slot-btn flex-fill"
+                    [class.btn-primary]="isTimeSelected(timeSlot)"
+                    [class.btn-outline-secondary]="!isTimeSelected(timeSlot)"
+                    (click)="onTimeSelect(timeSlot)"
+                  >
+                    {{ timeSlot.from }} - {{ timeSlot.to }}
+                  </button>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile slider -->
+          <div class="d-md-none position-relative">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <button
+                class="btn prev-btn btn-sm border-none"
+                (click)="prevSlide()"
+                [disabled]="currentSlideIndex === 0"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="btn next-btn btn-sm border-none"
+                (click)="nextSlide()"
+                [disabled]="currentSlideIndex === mobileSlides.length - 1"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="slider-container overflow-hidden">
+              <div
+                class="slider-wrapper d-flex transition-all"
+                [style.transform]="
+                  'translateX(-' + currentSlideIndex * 100 + '%)'
+                "
+              >
+                @for (slide of mobileSlides; track index; let index = $index) {
+                <div
+                  class="slide flex-shrink-0 w-100 d-flex justify-content-around"
+                >
+                  @for (timeSlot of slide; track timeSlot.from) {
+                  <button
+                    type="button"
+                    class="btn btn-sm time-slot-btn flex-fill mx-1"
+                    [class.btn-primary]="isTimeSelected(timeSlot)"
+                    [class.btn-outline-secondary]="!isTimeSelected(timeSlot)"
+                    (click)="onTimeSelect(timeSlot)"
+                  >
+                    {{ timeSlot.from }} - {{ timeSlot.to }}
+                  </button>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          } @else {
+          <div class="text-center py-3">
+            <p class="text-muted mb-0">
+              {{
+                translationService.translate(
+                  "booking.timeSlot.noSlotsAvailable"
+                )
+              }}
+            </p>
+          </div>
+          }
         </div>
       </div>
     </div>

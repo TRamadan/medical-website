@@ -3,8 +3,12 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <!-- Header -->
-        <app-title-component subtitle1Key="technology.badge" titleKey="technology.title.part1"
-          subtitle2Key="technology.title.part2" subtitleKey="technology.subtitle">
+        <app-title-component
+          subtitle1Key="technology.badge"
+          titleKey="technology.title.part1"
+          subtitle2Key="technology.title.part2"
+          subtitleKey="technology.subtitle"
+        >
         </app-title-component>
 
         <!-- Technology Grid -->
@@ -15,13 +19,24 @@
           <div class="col-lg-4 col-md-6">
             <div class="tech-card is-loading">
               <div class="tech-icon-wrapper">
-                <app-loading-skeleton shape="circle" height="60px" width="60px"></app-loading-skeleton>
+                <app-loading-skeleton
+                  shape="circle"
+                  height="60px"
+                  width="60px"
+                />
               </div>
-              <app-loading-skeleton height="1.5rem" width="70%"
-                style="margin: 1.5rem auto 1rem;"></app-loading-skeleton>
+              <app-loading-skeleton
+                height="1.5rem"
+                width="70%"
+                style="margin: 1.5rem auto 1rem"
+              ></app-loading-skeleton>
               <app-loading-skeleton [count]="3"></app-loading-skeleton>
-              <div class="tech-carod-footer">
-                <app-loading-skeleton height="40px" width="120px" borderRadius="8px"></app-loading-skeleton>
+              <div class="tech-card-footer">
+                <app-loading-skeleton
+                  height="40px"
+                  width="120px"
+                  borderRadius="8px"
+                ></app-loading-skeleton>
               </div>
             </div>
           </div>
@@ -30,7 +45,8 @@
         } @else {
         <!-- Actual Content -->
         <div class="row g-4 mb-5">
-          @for (cuttingEdgeTechnology of CuttingEdgeTechnologySectionSignal(); track cuttingEdgeTechnology) {
+          @for (cuttingEdgeTechnology of CuttingEdgeTechnologySectionSignal();
+          track cuttingEdgeTechnology) {
           <div class="col-lg-4 col-md-6" data-aos="flip-up">
             <div class="tech-card">
               <div class="tech-icon-wrapper">
@@ -39,13 +55,26 @@
                   <i class="fas fa-brain tech-icon"></i>
                 </div>
               </div>
-              <h3 class="tech-title">{{ currentLang == 'en' ? cuttingEdgeTechnology.titleEn :
-                cuttingEdgeTechnology.title }}</h3>
-              <p class="tech-description">{{ currentLang == 'en' ? cuttingEdgeTechnology.descriptionEn :
-                cuttingEdgeTechnology.description }}</p>
+              <h3 class="tech-title">
+                {{
+                  currentLang == "en"
+                    ? cuttingEdgeTechnology.titleEn
+                    : cuttingEdgeTechnology.title
+                }}
+              </h3>
+              <p class="tech-description">
+                {{
+                  currentLang == "en"
+                    ? cuttingEdgeTechnology.descriptionEn
+                    : cuttingEdgeTechnology.description
+                }}
+              </p>
               <div class="tech-accent"></div>
-              <div class="tech-card-footer"><a href="#" class="btn btn-primary">{{
-                  translationService.translate('explore.btn') }}</a></div>
+              <div class="tech-card-footer">
+                <a href="#" class="btn btn-primary">{{
+                  translationService.translate("explore.btn")
+                }}</a>
+              </div>
             </div>
           </div>
           }

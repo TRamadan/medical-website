@@ -1,45 +1,41 @@
-.calendar-container {
-  max-width: 420px;
-  margin: 20px auto;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-}
-
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: 6px;
+  text-align: center;
 }
 
-.day-name {
-  font-size: 14px;
-}
-
-.day-cell {
-  padding: 8px 0;
-  border-radius: 6px;
-  font-size: 14px;
+.calendar-day {
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
 }
 
-.day-cell:hover {
+.calendar-day:hover {
   background-color: #e9ecef;
 }
 
-.unavailable {
-  opacity: 0.4;
-  pointer-events: none;
-  text-decoration: line-through;
-}
-
-.other-month {
-  background: #f9eaea;
+.calendar-day.unavailable {
   color: #aaa;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
 }
 
-.selected {
-  border: 1px solid #0d6efd;
-  color: #0d6efd;
-  font-weight: 500;
+.calendar-day.not-current {
+  color: #ccc;
+}
+
+.calendar-day.selected {
+  background-color: #70f4c3 !important; /* Bootstrap primary */
+  color: #1f2949 !important;
+  font-weight: 600;
+}
+
+.time-slot-btn{
+  padding: 3px;
+}
+
+.prev-btn, .next-btn {
+      background: #70f4c3;
 }
