@@ -67,6 +67,8 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   private languageSubscription?: Subscription;
   showBookingFormFlag: boolean = false;
 
+  selectedTimeSlot: any;
+
   bookingData: BookingData = {
     location: '',
     area: '',
@@ -175,5 +177,11 @@ export class BookingFormComponent implements OnInit, OnDestroy {
 
   onShowBookingForm(show: boolean) {
     this.showBookingFormFlag = show;
+  }
+
+  // called when <app-choose-time-slot> emits data
+  onTimeSlotSelected(slot: any) {
+    this.selectedTimeSlot = slot;
+    console.log('Selected slot received in parent:', slot);
   }
 }

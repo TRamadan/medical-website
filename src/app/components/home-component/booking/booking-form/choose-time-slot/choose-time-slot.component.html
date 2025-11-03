@@ -92,13 +92,14 @@
         <div class="card-body">
           @if (availableTimesForSelectedDate.length > 0) {
 
-          <!-- Desktop grid -->
           <!-- Desktop slider -->
           <div class="d-none d-md-block position-relative">
             <!-- Navigation buttons -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div
+              class="d-flex justify-content-between align-items-center mb-3 p-2"
+            >
               <button
-                class="btn btn-outline-secondary btn-sm"
+                class="btn prev-btn btn-sm"
                 (click)="prevDesktopSlide()"
                 [disabled]="desktopSlideIndex === 0"
               >
@@ -106,7 +107,7 @@
               </button>
 
               <button
-                class="btn btn-outline-secondary btn-sm"
+                class="btn next-btn btn-sm"
                 (click)="nextDesktopSlide()"
                 [disabled]="desktopSlideIndex === desktopSlides.length - 1"
               >
@@ -119,7 +120,9 @@
               <div
                 class="slider-wrapper d-flex transition-all"
                 [style.transform]="
-                  'translateX(-' + desktopSlideIndex * 100 + '%)'
+                  'translateX(' +
+                  (direction === 'rtl' ? 1 : -1) * desktopSlideIndex * 100 +
+                  '%)'
                 "
               >
                 @for (slide of desktopSlides; track index; let index = $index) {
@@ -129,9 +132,10 @@
                   @for (timeSlot of slide; track timeSlot.from) {
                   <button
                     type="button"
+                    type="button"
                     class="btn btn-sm time-slot-btn flex-fill"
-                    [class.btn-primary]="isTimeSelected(timeSlot)"
-                    [class.btn-outline-secondary]="!isTimeSelected(timeSlot)"
+                    [class.selected-slot]="isTimeSelected(timeSlot)"
+                    [class.unselected-slot]="!isTimeSelected(timeSlot)"
                     (click)="onTimeSelect(timeSlot)"
                   >
                     {{ timeSlot.from }} - {{ timeSlot.to }}
@@ -166,7 +170,9 @@
               <div
                 class="slider-wrapper d-flex transition-all"
                 [style.transform]="
-                  'translateX(-' + currentSlideIndex * 100 + '%)'
+                  'translateX(' +
+                  (direction === 'rtl' ? 1 : -1) * currentSlideIndex * 100 +
+                  '%)'
                 "
               >
                 @for (slide of mobileSlides; track index; let index = $index) {

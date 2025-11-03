@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../../../../services/translation.service';
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 export interface PatientData {
   firstName: string;
@@ -21,6 +30,7 @@ export interface PatientData {
   gender: string;
   emergencyContact: string;
   medicalHistory: string;
+  favoriteSport: string;
 }
 
 export interface BookingData {
@@ -37,9 +47,11 @@ export interface BookingData {
 })
 export class PatientFormComponent implements OnInit, OnDestroy {
   @Input() bookingData: BookingData = {};
+  @Input() selectedSlot: any;
   @Output() bookingDataChange = new EventEmitter<BookingData>();
   private languageSubscription?: Subscription;
 
+  isSubmitting = false;
   patientForm!: FormGroup;
   submitted = false;
 
@@ -51,11 +63,12 @@ export class PatientFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-    
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
-    });
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        // Component will automatically update when language changes
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -69,14 +82,15 @@ export class PatientFormComponent implements OnInit, OnDestroy {
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
+      phoneNumber: [
         '',
         [Validators.required, Validators.pattern(/^[\+]?[0-9\s\-\(\)]{10,}$/)],
       ],
       dateOfBirth: ['', [Validators.required, this.ageValidator]],
-      gender: ['', Validators.required],
+      genderId: ['', Validators.required],
       emergencyContact: [''],
       medicalHistory: [''],
+      favoriteSport: [''],
     });
 
     // Subscribe to form changes to update booking data
@@ -114,10 +128,54 @@ export class PatientFormComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.submitted = true;
-    if (this.patientForm.valid) {
-      console.log('Form submitted:', this.patientForm.value);
-      // Handle form submission logic here
+    if (this.patientForm.invalid) {
+      return;
     }
+
+    this.isSubmitting = true;
+
+    const locationServiceData = JSON.parse(
+      localStorage.getItem('bookingData') || '{}'
+    );
+    const formValue = this.patientForm.value;
+
+    const requestBody = {
+      doctorId: this.selectedSlot.doctorId,
+      patientId: 0,
+      serviceId: locationServiceData.serviceId || 0,
+      locationId: locationServiceData.locationId || 0,
+      startTime: '',
+      endTime: '',
+      appointmentProfile: {
+        firstName: formValue.firstName,
+        lastName: formValue.lastName,
+        email: formValue.email,
+        phoneNumber: formValue.phone,
+        emergencyPhoneNumber: formValue.emergencyContact,
+        genderId: formValue.gender === 'male' ? 1 : 2,
+        dateOfBirth: formValue.dateOfBirth,
+        medicaHistory: formValue.medicalHistory,
+        favoriteSport: formValue.favoriteSport,
+        address: '',
+        interestedServiceId: locationServiceData.serviceId || 0,
+      },
+      isAnonymousPatient: true,
+    };
+
+    // this.bookingService.createBooking(requestBody).subscribe({
+    //   next: (response: any) => {
+    //     this.isSubmitting = false;
+    //     Swal.fire({
+    //       icon: 'success',
+    //       title: 'Booking Confirmed!',
+    //       text: 'Your appointment has been successfully booked.',
+    //     });
+    //   },
+    //   error: (error) => {
+    //     this.isSubmitting = false;
+    //     console.error('Booking failed', error);
+    //   },
+    // });
   }
 
   // Helper methods for template
@@ -134,18 +192,35 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     const field = this.patientForm.get(fieldName);
     if (field && field.errors) {
       if (field.errors['required'])
-        return this.translationService.translate('booking.patientForm.errors.required', { field: this.getFieldLabel(fieldName) });
+        return this.translationService.translate(
+          'booking.patientForm.errors.required',
+          { field: this.getFieldLabel(fieldName) }
+        );
       if (field.errors['minlength'])
-        return this.translationService.translate('booking.patientForm.errors.minlength', { field: this.getFieldLabel(fieldName) });
-      if (field.errors['email']) return this.translationService.translate('booking.patientForm.errors.email');
-      if (field.errors['pattern']) return this.translationService.translate('booking.patientForm.errors.phone');
-      if (field.errors['minAge']) return this.translationService.translate('booking.patientForm.errors.minAge');
+        return this.translationService.translate(
+          'booking.patientForm.errors.minlength',
+          { field: this.getFieldLabel(fieldName) }
+        );
+      if (field.errors['email'])
+        return this.translationService.translate(
+          'booking.patientForm.errors.email'
+        );
+      if (field.errors['pattern'])
+        return this.translationService.translate(
+          'booking.patientForm.errors.phone'
+        );
+      if (field.errors['minAge'])
+        return this.translationService.translate(
+          'booking.patientForm.errors.minAge'
+        );
     }
     return '';
   }
 
   private getFieldLabel(fieldName: string): string {
-    return this.translationService.translate(`booking.patientForm.fields.${fieldName}`);
+    return this.translationService.translate(
+      `booking.patientForm.fields.${fieldName}`
+    );
   }
 
   get isFormValid(): boolean {

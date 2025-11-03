@@ -37,9 +37,12 @@ interface TimeSlot {
 export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   @Input() bookingData: BookingData = {};
   @Output() bookingDataChange = new EventEmitter<BookingData>();
+  @Output() timeSlotSelected = new EventEmitter<any>();
+
   private languageSubscription?: Subscription;
   currentSlideIndex = 0;
   mobileSlides: any[][] = [];
+  direction: 'ltr' | 'rtl' = 'ltr';
 
   months = [
     'January',
@@ -67,6 +70,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
   availableTimesForSelectedDate: any[] = [];
 
+  selectedTimeSlot: TimeSlot | null = null;
   desktopSlides: any[][] = [];
   desktopSlideIndex = 0;
 
@@ -84,6 +88,12 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
     this.fetchAvailableDays();
     this.getSlots();
+
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      (language) => {
+        this.direction = language === 'ar' ? 'rtl' : 'ltr';
+      }
+    );
   }
 
   // Fetch available days from API
@@ -194,6 +204,10 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   selectDate(day: any) {
     if (!day.isAvailable || !day.isCurrentMonth) return;
     this.selectedDate = day.dateString;
+    this.selectedTimeSlot = null;
+    this.bookingData.appointmentDate = day.dateString;
+    this.bookingData.appointmentTime = undefined;
+    this.bookingDataChange.emit(this.bookingData);
   }
 
   //here is the function needed to get the slots per the selected date
@@ -226,8 +240,8 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
     this.mobileSlides = [];
     for (let i = 0; i < slots.length; i += perSlide) {
       this.mobileSlides.push(slots.slice(i, i + perSlide));
+      this.desktopSlides.push(slots.slice(i, i + perSlide));
     }
-    console.log(this.mobileSlides);
   }
 
   formatTime(dateTime: string): string {
@@ -236,11 +250,16 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   isTimeSelected(slot: any): boolean {
-    return false;
+    return (
+      this.selectedTimeSlot?.from === slot.from &&
+      this.selectedTimeSlot?.to === slot.to
+    );
   }
 
-  onTimeSelect(slot: any): void {
-    console.log('Selected slot:', slot);
+  onTimeSelect(slot: TimeSlot): void {
+    this.selectedTimeSlot = slot;
+    this.bookingData.appointmentTime = `${slot.from} - ${slot.to}`;
+    this.timeSlotSelected.emit(slot);
   }
 
   nextSlide(): void {
@@ -252,6 +271,18 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   prevSlide(): void {
     if (this.currentSlideIndex > 0) {
       this.currentSlideIndex--;
+    }
+  }
+
+  nextDesktopSlide() {
+    if (this.desktopSlideIndex < this.desktopSlides.length - 1) {
+      this.desktopSlideIndex++;
+    }
+  }
+
+  prevDesktopSlide() {
+    if (this.desktopSlideIndex > 0) {
+      this.desktopSlideIndex--;
     }
   }
 

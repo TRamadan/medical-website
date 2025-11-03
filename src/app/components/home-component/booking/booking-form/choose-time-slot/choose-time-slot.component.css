@@ -39,3 +39,32 @@
 .prev-btn, .next-btn {
       background: #70f4c3;
 }
+
+
+.slider-wrapper {
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+.slide {
+  min-width: 100%;
+}
+
+.time-slot-btn {
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.selected-slot {
+  background-color: #70f4c3;
+  color: #1f2949;
+  font-weight: 600;
+}
+
+.unselected-slot {
+  background-color: #f8f9fa;
+}
+
+.time-slot-btn:hover {
+  transform: scale(1.03);
+}

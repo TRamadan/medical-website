@@ -90,9 +90,13 @@
             @if(currentStep === 1){
             <app-location-service-form></app-location-service-form>
             } @if(currentStep === 2){
-            <app-choose-time-slot></app-choose-time-slot>
+            <app-choose-time-slot
+              (timeSlotSelected)="onTimeSlotSelected($event)"
+            ></app-choose-time-slot>
             } @if(currentStep === 3){
-            <app-patient-form></app-patient-form>
+            <app-patient-form
+              [selectedSlot]="selectedTimeSlot"
+            ></app-patient-form>
             } @if(currentStep === 4){
             <app-confirmation></app-confirmation>
             }
