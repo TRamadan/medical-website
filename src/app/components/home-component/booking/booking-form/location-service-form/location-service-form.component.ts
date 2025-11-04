@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { CardModule } from 'primeng/card';
@@ -22,6 +28,7 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   servicesSearchTerm: string = '';
   private languageSubscription?: Subscription;
   previousServiceId: number | null = null;
+  @Output() choosedServiceAndLocation = new EventEmitter<any>();
 
   messages: Message[] = [];
   locations: any[] = [];
@@ -89,8 +96,8 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   }
 
   handleServiceSelection(category: any, service: any): void {
+    debugger;
     const prevServiceId = this.bookingData.serviceId ?? null;
-
     this.bookingData.serviceCategoryId = category.id;
     this.bookingData.serviceCategoryName =
       this.currentLang === 'ar' ? category.nameAr : category.nameEn;
@@ -105,6 +112,10 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
       this.bookingData.locationId = null;
       this.bookingData.locationName = null;
     }
+
+    service.subServices.length > 0
+      ? (this.bookingData.isContainSubservices = true)
+      : (this.bookingData.isContainSubservices = false);
 
     this.previousServiceId = service.id;
 
@@ -138,7 +149,7 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
         ),
       },
     ];
-    localStorage.setItem('bookingData', JSON.stringify(this.bookingData));
+    this.choosedServiceAndLocation.emit(this.bookingData);
   }
 
   isSelectedService(service: any): boolean {

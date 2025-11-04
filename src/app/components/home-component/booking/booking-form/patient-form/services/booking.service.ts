@@ -1,10 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookingService {
+  apiUrl: string = 'http://localhost:5000/api/Appointments';
+  constructor(private http: HttpClient) {}
 
-constructor() { }
-
+  makeAnAppointment(bookingBody: any): any {
+    return this.http.post(this.apiUrl, bookingBody);
+  }
 }

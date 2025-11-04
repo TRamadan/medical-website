@@ -3,6 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   OnInit,
+  ViewChild,
   Output,
   OnDestroy,
 } from '@angular/core';
@@ -15,6 +16,8 @@ import { LanguageService } from '../../../../services/language.service';
 import { Subscription } from 'rxjs';
 import { BookingHowItWorksComponent } from '../booking-how-it-works/booking-how-it-works.component';
 import { BookingFeaturesComponent } from '../booking-features/booking-features.component';
+import { BookingService } from './patient-form/services/booking.service';
+import Swal from 'sweetalert2';
 
 export interface Doctor {
   id: string;
@@ -66,8 +69,11 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   totalSteps: number = 4;
   private languageSubscription?: Subscription;
   showBookingFormFlag: boolean = false;
+  @ViewChild(PatientFormComponent) patientFormComponent!: PatientFormComponent;
 
   selectedTimeSlot: any;
+  selectedServiceAndLocation: any;
+  confirmationData: any;
 
   bookingData: BookingData = {
     location: '',
@@ -79,16 +85,17 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     patient: null,
   };
 
+  steps: string[] = [];
+
   constructor(
     public elementRef: ElementRef,
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private bookingService: BookingService
   ) {}
 
   ngOnInit() {
     this.updateSteps();
-
-    // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
       () => {
         this.updateSteps();
@@ -111,23 +118,12 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     ];
   }
 
-  steps: string[] = [
-    'Choose location and service',
-    'Pick your time slot',
-    'Patient Info',
-    'Confirmation',
-  ];
-
   get progress(): number {
     return (this.currentStep / this.totalSteps) * 100;
   }
 
   get progressRounded(): number {
     return Math.round(this.progress);
-  }
-
-  onBack(): void {
-    this.back.emit();
   }
 
   handleNext(): void {
@@ -140,29 +136,33 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   handlePrevious(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  handleNextOrSubmit(): void {
+    if (this.currentStep === 3) {
+      this.patientFormComponent.onSubmit();
+    } else {
+      this.handleNext();
+    }
+  }
+
+  // 🔹 Disable or enable the "Next" button based on step validity
   canProceed(): boolean {
     switch (this.currentStep) {
       case 1:
-        return !!(this.bookingData.location && this.bookingData.area);
+        // Step 1: Must select location + service
+        return !!this.selectedServiceAndLocation;
       case 2:
-        return !!(
-          this.bookingData.doctor &&
-          this.bookingData.appointmentDate &&
-          this.bookingData.appointmentTime
-        );
+        // Step 2: Must select a time slot
+        return !!this.selectedTimeSlot;
       case 3:
-        return !!this.bookingData.patient;
+        // Step 3: Patient form handles validation internally
+        return true;
       default:
         return true;
     }
-  }
-
-  setBookingDataFromPreviousStep(event: any): void {
-    console.log(event);
   }
 
   isStepActive(stepIndex: number): boolean {
@@ -173,15 +173,72 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     this.bookingData = { ...this.bookingData, ...data };
   }
 
-  confirmBooking(): void {}
+  confirmBooking(bookingPayload: any): void {
+    Swal.fire({
+      title: this.translationService.translate('booking.loading.title'),
+      text: this.translationService.translate('booking.loading.text'),
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    this.bookingService.makeAnAppointment(bookingPayload).subscribe({
+      next: (response: any) => {
+        this.confirmationData = response.data;
+        Swal.fire({
+          icon: 'success',
+          title: this.translationService.translate(
+            'booking.confirmation.title'
+          ),
+          text: this.translationService.translate(
+            'booking.confirmation.subtitle'
+          ),
+          confirmButtonText: this.translationService.translate(
+            'booking.confirmation.okButton'
+          ),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.handleNext();
+          }
+        });
+      },
+      error: (error: any) => {
+        console.error('Booking failed', error);
+        Swal.fire({
+          icon: 'error',
+          title: this.translationService.translate('booking.error.title'),
+          text: this.translationService.translate('booking.error.text'),
+          confirmButtonText: this.translationService.translate(
+            'booking.error.okButton'
+          ),
+        });
+      },
+    });
+  }
 
   onShowBookingForm(show: boolean) {
     this.showBookingFormFlag = show;
   }
 
-  // called when <app-choose-time-slot> emits data
+  onServiceLocationSelected(locationService: any) {
+    this.selectedServiceAndLocation = locationService;
+    this.updateBookingData({
+      location: locationService.locationName,
+      area: locationService.serviceName, // adjust based on your data structure
+    });
+  }
+
   onTimeSlotSelected(slot: any) {
     this.selectedTimeSlot = slot;
-    console.log('Selected slot received in parent:', slot);
+    this.updateBookingData({
+      appointmentDate: slot.date,
+      appointmentTime: slot.time,
+    });
+  }
+
+  // 🔹 Step 3: user submitted booking
+  createBooking(bookingPayload: any): void {
+    this.confirmBooking(bookingPayload);
   }
 }

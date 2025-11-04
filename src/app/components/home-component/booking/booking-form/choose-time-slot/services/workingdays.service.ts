@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class WorkingdaysService {
   private apiUrl =
     'http://localhost:5000/api/Appointments/GetAvailableSlotsWithinMoth';
-  private slotsUrl = '../../../../../../../assets/availableslots.json';
+  private slotsUrl = 'http://localhost:5000/api/Appointments/GetAvailableSlots';
 
   constructor(private http: HttpClient) {}
 
@@ -39,15 +39,11 @@ export class WorkingdaysService {
     const params = {
       locationId: locationId,
       serviceId: serviceId,
-      dayOfWeek: dayOfWeek,
+      DateofDay: dayOfWeek,
     };
     return this.http
       .get(this.slotsUrl, { params })
       .pipe(catchError(this.handleError));
-  }
-
-  getAvailableSlotsNew(): any {
-    return this.http.get(this.slotsUrl);
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -1,5 +1,3 @@
-<!-- <app-location-service-form></app-location-service-form> -->
-
 @if(!showBookingFormFlag){
 <div class="my-5">
   <app-booking-features></app-booking-features>
@@ -86,19 +84,25 @@
         <!-- Step Content -->
         <div class="card shadow-sm">
           <div class="card-body p-4">
-            <!-- Step 1: Location Selection -->
             @if(currentStep === 1){
-            <app-location-service-form></app-location-service-form>
+            <app-location-service-form
+              (choosedServiceAndLocation)="onServiceLocationSelected($event)"
+            ></app-location-service-form>
             } @if(currentStep === 2){
             <app-choose-time-slot
+              [choosedLocationService]="selectedServiceAndLocation"
               (timeSlotSelected)="onTimeSlotSelected($event)"
             ></app-choose-time-slot>
             } @if(currentStep === 3){
             <app-patient-form
+              (createBooking)="createBooking($event)"
               [selectedSlot]="selectedTimeSlot"
+              [selectedLocationAndService]="selectedServiceAndLocation"
             ></app-patient-form>
             } @if(currentStep === 4){
-            <app-confirmation></app-confirmation>
+            <app-confirmation
+              [confirmationData]="confirmationData"
+            ></app-confirmation>
             }
           </div>
         </div>
@@ -107,11 +111,12 @@
         @if(currentStep < totalSteps){
         <div class="row mt-4">
           <div class="col-6 d-flex justify-content-start">
+            <!-- ✅ FIXED: use [hidden] instead of *ngIf -->
             <button
               type="button"
               class="btn btn-outline-secondary d-flex align-items-center"
               (click)="handlePrevious()"
-              [disabled]="currentStep === 1"
+              [hidden]="currentStep === 1"
             >
               <i class="fas fa-arrow-left me-2"></i>
               <span class="d-none d-sm-inline">{{
@@ -119,11 +124,13 @@
               }}</span>
             </button>
           </div>
+
           <div class="col-6 d-flex justify-content-end">
             <button
               type="button"
               class="btn btn-primary d-flex align-items-center"
-              (click)="currentStep == 3 ? handleNext() : handleNext()"
+              (click)="handleNextOrSubmit()"
+              [disabled]="!canProceed()"
             >
               <span class="d-none d-sm-inline me-2">{{
                 currentStep == 3

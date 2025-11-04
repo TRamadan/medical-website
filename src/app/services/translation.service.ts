@@ -626,11 +626,15 @@ export class TranslationService {
     // Confirmation
     'booking.confirmation.title': {
       en: 'Appointment Booked Successfully!',
-      ar: 'تم حجز الموعد بنجاح!',
+      ar: 'تم حجز الموعد بنجاح !',
     },
     'booking.confirmation.subtitle': {
-      en: 'Your consultation has been scheduled and account created',
-      ar: 'تم جدولة استشارتك وإنشاء الحساب',
+      en: 'Your consultation has been scheduled',
+      ar: 'تم جدولة استشارتك بنجاح',
+    },
+    'booking.confirmation.okButton': {
+      en: 'Ok',
+      ar: 'موافق',
     },
     'booking.confirmation.emailSent': {
       en: 'Confirmation Email Sent!\nتم إرسال إيميل التأكيد مع رابط تحميل التطبيق إلى بريدك الإلكتروني',

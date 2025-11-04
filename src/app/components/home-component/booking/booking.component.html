@@ -1,15 +1,22 @@
 <section id="booking">
   <div>
-    <div class="container">
-      <app-title-component subtitle1Key="booking.badge" titleKey="booking.title.part1"
-        subtitle2Key="booking.title.part2" subtitleKey="booking.subtitle">
+    <div class="container mt-3">
+      <app-title-component
+        subtitle1Key="booking.badge"
+        titleKey="booking.title.part1"
+        subtitle2Key="booking.title.part2"
+        subtitleKey="booking.subtitle"
+      >
       </app-title-component>
 
       <div class="row justify-content-center">
         <div class="col-12 text-center mb-5">
-
-          <button type="button" class="btn btn-primary btn-lg booking-btn border-0" (click)="startBookingProcess()">
-            {{ translationService.translate('booking.cta') }}
+          <button
+            type="button"
+            class="btn btn-primary btn-lg booking-btn border-0"
+            (click)="startBookingProcess()"
+          >
+            {{ translationService.translate("booking.cta") }}
           </button>
         </div>
       </div>

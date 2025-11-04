@@ -11,9 +11,8 @@ describe('AdvisorBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdvisorBoardComponent ]
-    })
-    .compileComponents();
+      imports: [AdvisorBoardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

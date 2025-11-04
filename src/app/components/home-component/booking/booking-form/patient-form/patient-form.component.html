@@ -12,9 +12,8 @@
 
       <form [formGroup]="patientForm" novalidate>
         <div class="card shadow-sm mb-4 border-0">
-          <div class="card-header bg-primary text-white border-0">
-            <h5 class="card-title mb-0">
-              <i class="fas fa-user me-2"></i>
+          <div class="card-header text-white border-0">
+            <h5 class="card-title mb-0 text-dark">
               {{
                 translationService.translate(
                   "booking.patientForm.personalInfo.title"
@@ -94,9 +93,6 @@
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="fas fa-envelope text-muted"></i>
-                  </span>
                   <input
                     type="email"
                     id="email"
@@ -124,9 +120,6 @@
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="fas fa-phone text-muted"></i>
-                  </span>
                   <input
                     type="tel"
                     id="phone"
@@ -161,9 +154,6 @@
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="fas fa-calendar text-muted"></i>
-                  </span>
                   <input
                     type="date"
                     id="dateOfBirth"
@@ -201,7 +191,7 @@
                       )
                     }}
                   </option>
-                  <option value="male">
+                  <option selected value="male">
                     {{
                       translationService.translate(
                         "booking.patientForm.options.male"
@@ -223,8 +213,8 @@
             </div>
 
             <!-- Emergency Contact -->
-            <div class="row">
-              <div class="col-12">
+            <div class="row mb-3">
+              <div class="col-6">
                 <label for="emergencyContact" class="form-label fw-semibold">
                   {{
                     translationService.translate(
@@ -244,11 +234,7 @@
                   "
                 />
               </div>
-            </div>
-
-            <!-- Favorite Sport -->
-            <div class="row">
-              <div class="col-12">
+              <div class="col-6">
                 <label for="favoriteSport" class="form-label fw-semibold">
                   Favorite Sport
                 </label>
@@ -265,14 +251,30 @@
                 />
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-12">
+                <label> Interested service </label>
+                <ng-select
+                  [searchable]="true"
+                  [clearable]="true"
+                  formControlName="interestedServiceId"
+                >
+                  @for (service of services; track $index) {
+                  <ng-option>
+                    {{ currentLang == "en" ? service.nameEn : service.nameAr }}
+                  </ng-option>
+                  }
+                </ng-select>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Medical History Card -->
         <div class="card shadow-sm mb-4 border-0">
-          <div class="card-header bg-info text-white border-0">
-            <h5 class="card-title mb-0">
-              <i class="fas fa-notes-medical me-2"></i>
+          <div class="card-header border-0">
+            <h5 class="card-title mb-0 text-dark">
               {{
                 translationService.translate(
                   "booking.patientForm.medicalHistory.title"
@@ -300,71 +302,6 @@
               "
             ></textarea>
           </div>
-        </div>
-
-        <!-- Form Validation Status -->
-        <div
-          class="card mb-4"
-          [ngClass]="{
-            'border-success bg-success bg-opacity-10': isFormValid,
-            'border-warning bg-warning bg-opacity-10': !isFormValid
-          }"
-        >
-          <div class="card-body py-3">
-            <div class="d-flex align-items-center">
-              <div class="me-2">
-                <div
-                  class="rounded-circle d-inline-block"
-                  [ngClass]="{
-                    'bg-success': isFormValid,
-                    'bg-warning': !isFormValid
-                  }"
-                  style="width: 8px; height: 8px"
-                ></div>
-              </div>
-              <p
-                class="mb-0 fw-medium"
-                [ngClass]="{
-                  'text-success': isFormValid,
-                  'text-warning': !isFormValid
-                }"
-              >
-                <span *ngIf="isFormValid">
-                  <i class="fas fa-check-circle me-1 text-white"></i>
-                  <span class="text-white">{{
-                    translationService.translate(
-                      "booking.patientForm.validation.ready"
-                    )
-                  }}</span>
-                </span>
-                <span *ngIf="!isFormValid">
-                  <i class="fas fa-exclamation-triangle me-1"></i>
-                  {{
-                    translationService.translate(
-                      "booking.patientForm.validation.incomplete"
-                    )
-                  }}
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="d-grid mt-4">
-          <button
-            type="submit"
-            class="btn btn-primary btn-lg"
-            [disabled]="!patientForm.valid || isSubmitting"
-          >
-            <span
-              *ngIf="isSubmitting"
-              class="spinner-border spinner-border-sm me-2"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            {{ "Submit" }}
-          </button>
         </div>
       </form>
     </div>

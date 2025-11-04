@@ -39,6 +39,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   @Output() bookingDataChange = new EventEmitter<BookingData>();
   @Output() timeSlotSelected = new EventEmitter<any>();
 
+  @Input() choosedLocationService: any;
   private languageSubscription?: Subscription;
   currentSlideIndex = 0;
   mobileSlides: any[][] = [];
@@ -87,7 +88,6 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
     }
 
     this.fetchAvailableDays();
-    this.getSlots();
 
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
       (language) => {
@@ -98,13 +98,10 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
   // Fetch available days from API
   fetchAvailableDays() {
-    const locationServicedata = JSON.parse(
-      localStorage.getItem('bookingData') || ''
-    );
     this._workingDaysService
       .getWorkingDaysWithinMonth(
-        locationServicedata.locationId,
-        locationServicedata.serviceId,
+        this.choosedLocationService.locationId,
+        this.choosedLocationService.serviceId,
         this.selectedMonth
       )
       .subscribe({
@@ -205,6 +202,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
     if (!day.isAvailable || !day.isCurrentMonth) return;
     this.selectedDate = day.dateString;
     this.selectedTimeSlot = null;
+    this.getSlots();
     this.bookingData.appointmentDate = day.dateString;
     this.bookingData.appointmentTime = undefined;
     this.bookingDataChange.emit(this.bookingData);
@@ -212,27 +210,29 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
   //here is the function needed to get the slots per the selected date
   getSlots(): void {
-    const locationServicedata = JSON.parse(
-      localStorage.getItem('bookingData') || ''
-    );
-    this._workingDaysService.getAvailableSlotsNew().subscribe({
-      next: (response: any) => {
-        if (response?.isSuccess && Array.isArray(response.data)) {
-          this.availableTimesForSelectedDate = response.data.map(
-            (slot: any) => ({
-              ...slot,
-              from: this.formatTime(slot.from),
-              to: this.formatTime(slot.to),
-            })
-          );
-          console.log(this.availableTimesForSelectedDate);
-        }
-        this.generateMobileSlides(this.availableTimesForSelectedDate);
-      },
-      error: (error: any) => {
-        //error handling goes here
-      },
-    });
+    this._workingDaysService
+      .getAvailableSlots(
+        this.choosedLocationService.locationId,
+        this.choosedLocationService.serviceId,
+        this.selectedDate
+      )
+      .subscribe({
+        next: (response: any) => {
+          if (response?.isSuccess && Array.isArray(response.data)) {
+            this.availableTimesForSelectedDate = response.data.map(
+              (slot: any) => ({
+                ...slot,
+                fromFormatted: this.formatTime(slot.from),
+                toFormatted: this.formatTime(slot.to),
+              })
+            );
+          }
+          this.generateMobileSlides(this.availableTimesForSelectedDate);
+        },
+        error: (error: any) => {
+          //error handling goes here
+        },
+      });
   }
 
   generateMobileSlides(slots: any[]): void {
@@ -245,6 +245,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   formatTime(dateTime: string): string {
+    debugger;
     const date = new Date(dateTime);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }

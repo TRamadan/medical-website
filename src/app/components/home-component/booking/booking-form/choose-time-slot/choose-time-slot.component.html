@@ -138,7 +138,7 @@
                     [class.unselected-slot]="!isTimeSelected(timeSlot)"
                     (click)="onTimeSelect(timeSlot)"
                   >
-                    {{ timeSlot.from }} - {{ timeSlot.to }}
+                    {{ timeSlot.fromFormatted }} - {{ timeSlot.toFormatted }}
                   </button>
                   }
                 </div>
@@ -187,7 +187,7 @@
                     [class.btn-outline-secondary]="!isTimeSelected(timeSlot)"
                     (click)="onTimeSelect(timeSlot)"
                   >
-                    {{ timeSlot.from }} - {{ timeSlot.to }}
+                    {{ timeSlot.fromFormatted }} - {{ timeSlot.toFormatted }}
                   </button>
                   }
                 </div>

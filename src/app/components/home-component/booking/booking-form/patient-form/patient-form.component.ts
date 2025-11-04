@@ -14,12 +14,15 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import Swal from 'sweetalert2';
 
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../../../../services/translation.service';
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
-import Swal from 'sweetalert2';
+import { ServiceslocationService } from '../location-service-form/services/serviceslocation.service';
+import { BookingService } from './services/booking.service';
 
 export interface PatientData {
   firstName: string;
@@ -41,15 +44,21 @@ export interface BookingData {
 @Component({
   selector: 'app-patient-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [NgSelectModule, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './patient-form.component.html',
   styleUrls: ['./patient-form.component.css'],
 })
 export class PatientFormComponent implements OnInit, OnDestroy {
+  currentLang: 'en' | 'ar' = 'en';
+
   @Input() bookingData: BookingData = {};
   @Input() selectedSlot: any;
   @Output() bookingDataChange = new EventEmitter<BookingData>();
+  @Output() createBooking = new EventEmitter<any>();
+  @Input() selectedLocationAndService: any;
   private languageSubscription?: Subscription;
+
+  services: any[] = [];
 
   isSubmitting = false;
   patientForm!: FormGroup;
@@ -58,17 +67,24 @@ export class PatientFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private _services: ServiceslocationService,
+    private _bookingService: BookingService
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+
+    console.log('here is the service', this.selectedLocationAndService);
+    console.log('here is the slot', this.selectedSlot);
+
     // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
-      () => {
-        // Component will automatically update when language changes
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
       }
     );
+    this.getAllServices();
   }
 
   ngOnDestroy() {
@@ -87,10 +103,11 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         [Validators.required, Validators.pattern(/^[\+]?[0-9\s\-\(\)]{10,}$/)],
       ],
       dateOfBirth: ['', [Validators.required, this.ageValidator]],
-      genderId: ['', Validators.required],
+      gender: ['', Validators.required],
       emergencyContact: [''],
       medicalHistory: [''],
       favoriteSport: [''],
+      interestedServiceId: [''],
     });
 
     // Subscribe to form changes to update booking data
@@ -131,51 +148,32 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     if (this.patientForm.invalid) {
       return;
     }
-
-    this.isSubmitting = true;
-
-    const locationServiceData = JSON.parse(
-      localStorage.getItem('bookingData') || '{}'
-    );
     const formValue = this.patientForm.value;
-
     const requestBody = {
-      doctorId: this.selectedSlot.doctorId,
-      patientId: 0,
-      serviceId: locationServiceData.serviceId || 0,
-      locationId: locationServiceData.locationId || 0,
-      startTime: '',
-      endTime: '',
+      doctorId: this.selectedLocationAndService.isContainSubservices
+        ? null
+        : this.selectedSlot.doctorId,
+      patientId: null,
+      serviceId: this.selectedLocationAndService.serviceId || 0,
+      locationId: this.selectedLocationAndService.locationId || 0,
+      startTime: this.selectedSlot.from,
+      endTime: this.selectedSlot.to,
       appointmentProfile: {
         firstName: formValue.firstName,
         lastName: formValue.lastName,
         email: formValue.email,
-        phoneNumber: formValue.phone,
+        phoneNumber: formValue.phoneNumber,
         emergencyPhoneNumber: formValue.emergencyContact,
         genderId: formValue.gender === 'male' ? 1 : 2,
         dateOfBirth: formValue.dateOfBirth,
-        medicaHistory: formValue.medicalHistory,
+        medicalHistory: formValue.medicalHistory,
         favoriteSport: formValue.favoriteSport,
         address: '',
-        interestedServiceId: locationServiceData.serviceId || 0,
+        interestedServiceId: this.selectedLocationAndService.serviceId || 0,
       },
       isAnonymousPatient: true,
     };
-
-    // this.bookingService.createBooking(requestBody).subscribe({
-    //   next: (response: any) => {
-    //     this.isSubmitting = false;
-    //     Swal.fire({
-    //       icon: 'success',
-    //       title: 'Booking Confirmed!',
-    //       text: 'Your appointment has been successfully booked.',
-    //     });
-    //   },
-    //   error: (error) => {
-    //     this.isSubmitting = false;
-    //     console.error('Booking failed', error);
-    //   },
-    // });
+    this.createBooking.emit(requestBody);
   }
 
   // Helper methods for template
@@ -225,5 +223,14 @@ export class PatientFormComponent implements OnInit, OnDestroy {
 
   get isFormValid(): boolean {
     return this.patientForm.valid;
+  }
+
+  //here is the function needed to get all added services
+  getAllServices(): void {
+    this._services.getServices().subscribe({
+      next: (res: any) => {
+        this.services = res.data;
+      },
+    });
   }
 }

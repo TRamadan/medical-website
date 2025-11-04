@@ -3,27 +3,23 @@ import { TranslationService } from '../../../../../services/translation.service'
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
 
-export interface Doctor {
-  name: string;
-  specialty: string;
+export interface AppointmentDetails {
+  locationNameAr: string;
+  locationNameEn: string;
+  from: string;
+  to: string;
 }
 
-export interface Patient {
-  firstName: string;
-  lastName: string;
+export interface PatientInfo {
+  name: string;
   dateOfBirth: string;
   email: string;
   phone: string;
 }
 
 export interface BookingData {
-  doctor: Doctor;
-  area: string;
-  location: string;
-  appointmentDate: string;
-  appointmentTime: string;
-  injuryType: string;
-  patient: Patient;
+  appointmentDetails: AppointmentDetails;
+  patientInfo: PatientInfo;
 }
 
 @Component({
@@ -34,7 +30,7 @@ export interface BookingData {
   styleUrls: ['./confirmation.component.css'],
 })
 export class ConfirmationComponent implements OnInit, OnDestroy {
-  @Input() bookingData!: BookingData;
+  @Input() confirmationData!: any;
   private languageSubscription?: Subscription;
 
   bookingReference: string;
@@ -48,9 +44,11 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Subscribe to language changes
-    this.languageSubscription = this.languageService.currentLanguage$.subscribe(() => {
-      // Component will automatically update when language changes
-    });
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(
+      () => {
+        // Component will automatically update when language changes
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -61,9 +59,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   handleSendConfirmation(): void {
     // Simulate sending email confirmation
-    alert(
-      this.translationService.translate('booking.confirmation.emailSent')
-    );
+    alert(this.translationService.translate('booking.confirmation.emailSent'));
   }
 
   formatDate(dateStr: string): string {
