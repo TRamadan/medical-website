@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BookingService {
-  apiUrl: string = 'http://localhost:5000/api/Appointments';
+  apiUrl: string = 'http://portalapi.thesportsdoctorlab.com/api/Appointments';
   constructor(private http: HttpClient) {}
 
   makeAnAppointment(bookingBody: any): any {

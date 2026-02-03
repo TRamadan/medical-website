@@ -10,8 +10,8 @@ import Swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class ServiceslocationService {
-  private apiUrl = 'http://localhost:5000/api/ServiceCategories';
-  private ServicesApiUrl = 'http://localhost:5000/api/Serivces';
+  private apiUrl = 'http://portalapi.thesportsdoctorlab.com/api/ServiceCategories';
+  private ServicesApiUrl = 'http://portalapi.thesportsdoctorlab.com/api/Serivces';
   constructor(private http: HttpClient) {}
 
   /**

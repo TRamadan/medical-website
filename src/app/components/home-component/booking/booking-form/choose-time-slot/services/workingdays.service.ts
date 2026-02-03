@@ -9,8 +9,8 @@ import Swal from 'sweetalert2';
 })
 export class WorkingdaysService {
   private apiUrl =
-    'http://localhost:5000/api/Appointments/GetAvailableSlotsWithinMoth';
-  private slotsUrl = 'http://localhost:5000/api/Appointments/GetAvailableSlots';
+    'http://portalapi.thesportsdoctorlab.com/api/Appointments/GetAvailableSlotsWithinMoth';
+  private slotsUrl = 'http://portalapi.thesportsdoctorlab.com/api/Appointments/GetAvailableSlots';
 
   constructor(private http: HttpClient) {}
 

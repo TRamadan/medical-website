@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5001/api/',
-  imgUrl: 'http://localhost:5001/',
+  apiUrl: 'http://websiteapi.thesportsdoctorlab.com/api/',
+  imgUrl: 'http://websiteapi.thesportsdoctorlab.com/',
 };
