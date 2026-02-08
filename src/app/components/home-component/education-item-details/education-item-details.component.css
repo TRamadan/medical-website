@@ -41,3 +41,84 @@
             max-height: 500px;
             overflow: auto;
         }
+
+        /* Mobile Navigation Buttons */
+        .nav-btn {
+            display: none;
+            /* Hidden by default */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #131337;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+            background-color: #f0f0f0;
+        }
+
+        .prev-btn {
+            left: 0px;
+            /* Aligned to edge */
+        }
+
+        .next-btn {
+            right: 0px;
+            /* Aligned to edge */
+        }
+
+        /* Responsive Slider for Categories */
+        @media (max-width: 767px) {
+            .category-holder {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+                max-height: none;
+                padding: 10px;
+                gap: 10px;
+                /* Hide scrollbar for Chrome, Safari and Opera */
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+            }
+
+            .category-holder::-webkit-scrollbar {
+                display: none;
+            }
+
+            .category-btn {
+                width: auto;
+                flex: 0 0 auto;
+                margin-bottom: 0;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            /* Optional: Ensure the selected button is fully visible */
+            .category-btn.selected {
+                border: 2px solid #70f4c3;
+            }
+
+            .nav-btn {
+                display: flex;
+                /* Show buttons on mobile */
+            }
+        }
+
+        /* Ensure wrapper handles absolute positioning */
+        .mobile-slider-wrapper {
+            /* Handled by bootstrap position-relative class in HTML,
+                but we can ensure it here if needed or leave it */
+        }

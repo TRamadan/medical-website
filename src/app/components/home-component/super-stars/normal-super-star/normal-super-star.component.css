@@ -12,7 +12,8 @@
     z-index: 0;
 }
 
-.next-button, .previous-button {
+.next-button,
+.previous-button {
     background-color: #70f4c3;
 }
 
@@ -88,7 +89,8 @@ i {
     color: #131337;
 }
 
-.athelete-sport, .athelete-achievement {
+.athelete-sport,
+.athelete-achievement {
     color: gray;
 }
 

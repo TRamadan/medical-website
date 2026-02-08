@@ -1,5 +1,5 @@
 import { TranslationService } from './../../../services/translation.service';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ViewChild, ElementRef } from '@angular/core';
 import { EducationalContentService } from '../educational-videos/services/educationalContent.service';
 import { Category } from '../educational-videos/models/category.model'; // Assuming this is correct
 import { FormsModule } from '@angular/forms';
@@ -27,6 +27,7 @@ import { BreadcrumbComponent } from '../../shared-ui/bread-crumb/breadcrumb.comp
   styleUrls: ['./education-item-details.component.css'],
 })
 export class EducationItemDetailsComponent implements OnInit {
+  @ViewChild('categoryContainer') categoryContainer!: ElementRef;
   categories: Category[] = [];
   allArticles: Education[] = [];
   allVideos: Education[] = [];
@@ -133,7 +134,6 @@ export class EducationItemDetailsComponent implements OnInit {
     this.allVideos = [];
     this._educationalService.getAllEducationalContent().subscribe({
       next: (res: any) => {
-        debugger;
         this.allContent = res;
         if (this.item.state == 1) {
           this.allArticles = this.allContent.filter((element: Education) => {
@@ -149,5 +149,17 @@ export class EducationItemDetailsComponent implements OnInit {
         //error handling goes here
       },
     });
+  }
+
+  scrollCategories(direction: 'left' | 'right') {
+    if (this.categoryContainer) {
+      const container = this.categoryContainer.nativeElement;
+      const scrollAmount = 200; // Adjust scroll step as needed
+      if (direction === 'left') {
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
   }
 }

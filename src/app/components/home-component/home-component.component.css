@@ -9,8 +9,8 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #fc6b44 0%);
-    color: white;
+    background: linear-gradient(135deg, rgb(112 244 195) 0%);
+    color: #131337;
     border: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     cursor: pointer;

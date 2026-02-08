@@ -25,10 +25,11 @@
               class="text-light text-decoration-none">{{
               translationService.translate('footer.ourAdvisors')
               }}</a></li>
-          <li><a href="#ourteam" fragment="our-team" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="ourteam" class="text-light text-decoration-none">{{
               translationService.translate('footer.ourTeam')
               }}</a></li>
-          <li><a href="#" class="text-light text-decoration-none">{{ translationService.translate('footer.joinOurTeam')
+          <li><a [routerLink]="['/']" fragment="jointeam" class="text-light text-decoration-none">{{
+              translationService.translate('footer.joinOurTeam')
               }}</a></li>
         </ul>
       </div>
@@ -36,13 +37,13 @@
       <div class="col-6 col-md-2 mb-4">
         <h6 class="footer-title fw-bold">{{ translationService.translate('footer.ourApproach') }}</h6>
         <ul class="list-unstyled footer-animate">
-          <li><a href="#methodology" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="methodology" class="text-light text-decoration-none">{{
               translationService.translate('footer.methodology')
               }}</a></li>
-          <li><a href="#benefits" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="benefits" class="text-light text-decoration-none">{{
               translationService.translate('footer.benefits')
               }}</a></li>
-          <li><a href="#cutting-edge-technology" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="cutting-edge-technology" class="text-light text-decoration-none">{{
               translationService.translate('footer.technology')
               }}</a></li>
         </ul>
@@ -84,18 +85,18 @@
       <div class="col-6 col-md-2 mb-4">
         <h6 class="footer-title fw-bold">{{ translationService.translate('footer.successStories') }}</h6>
         <ul class="list-unstyled footer-animate">
-          <li><a href="#elitesuperstars" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="elitesuperstars" class="text-light text-decoration-none">{{
               translationService.translate('footer.legacies')
               }}</a></li>
-          <li><a href="#superstars" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="superstars" class="text-light text-decoration-none">{{
               translationService.translate('footer.superStars')
               }}</a></li>
-          <li><a href="#success-videos" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="success-videos" class="text-light text-decoration-none">{{
               translationService.translate('footer.comebackStories') }}</a></li>
-          <li><a href="#customer-success-stories" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="customer-success-stories" class="text-light text-decoration-none">{{
               translationService.translate('footer.testimonials')
               }}</a></li>
-          <li><a href="#partners" class="text-light text-decoration-none">{{
+          <li><a [routerLink]="['/']" fragment="partners" class="text-light text-decoration-none">{{
               translationService.translate('footer.collaborations') }}</a></li>
         </ul>
       </div>

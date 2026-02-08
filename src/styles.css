@@ -20,7 +20,9 @@
     scroll-margin-top: 120px;
 }
 
-#methodology, #benefits, #cutting-edge-technology {
+#methodology,
+#benefits,
+#cutting-edge-technology {
     scroll-margin-top: 90px;
 }
 
@@ -39,6 +41,14 @@
     --transition: all 0.3s ease;
     --font-arabic: 'DinArabic';
     --font-english: 'Din'
+}
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Global RTL Support */
