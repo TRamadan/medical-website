@@ -21,7 +21,6 @@ import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../../../../services/translation.service';
 import { LanguageService } from '../../../../../services/language.service';
 import { Subscription } from 'rxjs';
-import { ServiceslocationService } from '../location-service-form/services/serviceslocation.service';
 import { BookingService } from './services/booking.service';
 
 export interface PatientData {
@@ -58,8 +57,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
   @Input() selectedLocationAndService: any;
   private languageSubscription?: Subscription;
 
-  services: any[] = [];
-
   isSubmitting = false;
   patientForm!: FormGroup;
   submitted = false;
@@ -68,9 +65,8 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     public translationService: TranslationService,
     private languageService: LanguageService,
-    private _services: ServiceslocationService,
     private _bookingService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -84,7 +80,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
         this.currentLang = lang;
       }
     );
-    this.getAllServices();
   }
 
   ngOnDestroy() {
@@ -107,7 +102,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
       emergencyContact: [''],
       medicalHistory: [''],
       favoriteSport: [''],
-      interestedServiceId: [''],
     });
 
     // Subscribe to form changes to update booking data
@@ -144,10 +138,9 @@ export class PatientFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    debugger
     this.submitted = true;
-    if (this.patientForm.invalid) {
-      return;
-    }
+
     const formValue = this.patientForm.value;
     const requestBody = {
       doctorId: this.selectedLocationAndService.isContainSubservices
@@ -225,12 +218,5 @@ export class PatientFormComponent implements OnInit, OnDestroy {
     return this.patientForm.valid;
   }
 
-  //here is the function needed to get all added services
-  getAllServices(): void {
-    this._services.getServices().subscribe({
-      next: (res: any) => {
-        this.services = res.data;
-      },
-    });
-  }
+
 }

@@ -24,6 +24,7 @@ import { CategorySearchPipe } from './category-search.pipe';
 })
 export class LocationServiceFormComponent implements OnInit, OnDestroy {
   currentLang: 'en' | 'ar' = 'en';
+  loading: boolean = false;
   searchTerm: string = '';
   servicesSearchTerm: string = '';
   private languageSubscription?: Subscription;
@@ -39,7 +40,7 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
     public translationService: TranslationService,
     private languageService: LanguageService,
     private _serviceCategory: ServiceslocationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
@@ -81,12 +82,15 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   }
 
   getAllCategories(): void {
+    this.loading = true;
     this._serviceCategory.getServiceCategories().subscribe({
       next: (res: any) => {
         this.categories = res.data;
+        this.loading = false;
       },
       error: (error: any) => {
         console.error('Error fetching categories', error);
+        this.loading = false;
       },
     });
   }

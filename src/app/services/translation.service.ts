@@ -358,6 +358,19 @@ export class TranslationService {
       ar: 'ابق على تواصل مع مقدم الرعاية الصحية الخاص بك من خلال المواعيد الافتراضية أو الشخصية المنتظمة.',
     },
 
+    'booking.noservices': {
+      ar: '',
+      en: ''
+    },
+    'booking.locationService.loading': {
+      en: 'Loading services...',
+      ar: 'جاري تحميل الخدمات...',
+    },
+    'booking.locationService.noServices': {
+      en: 'No services available',
+      ar: 'لا توجد خدمات متاحة',
+    },
+
     // Booking
     'booking.title': {
       en: 'Book Your Medical Consultation',
@@ -517,6 +530,14 @@ export class TranslationService {
       en: 'No time slots available for this date',
       ar: 'لا توجد فترات زمنية متاحة لهذا التاريخ',
     },
+    'booking.timeSlot.loadingCalendar': {
+      en: 'Loading calendar...',
+      ar: 'جاري تحميل التقويم...',
+    },
+    'booking.timeSlot.loadingSlots': {
+      en: 'Loading time slots...',
+      ar: 'جاري تحميل المواعيد...',
+    },
 
     // Patient Form
     'booking.patientForm.title': {
@@ -556,6 +577,10 @@ export class TranslationService {
       en: 'Emergency Contact',
       ar: 'جهة اتصال الطوارئ',
     },
+    'booking.patientForm.fields.interestedService': {
+      en: 'Interested Service',
+      ar: 'الخدمة المطلوبة',
+    },
     'booking.patientForm.placeholders.firstName': {
       en: 'Enter your first name',
       ar: 'أدخل اسمك الأول',
@@ -574,15 +599,19 @@ export class TranslationService {
     },
     'booking.patientForm.placeholders.gender': {
       en: 'Select gender',
-      ar: 'اختر الجنس',
+      ar: 'اختر النوع',
+    },
+    'booking.patientForm.placeholders.favoriteSport': {
+      en: 'Your favorait sport',
+      ar: 'ادخل رياضتك المفضلة',
     },
     'booking.patientForm.placeholders.emergencyContact': {
-      en: 'Emergency contact name and phone number',
-      ar: 'اسم جهة اتصال الطوارئ ورقم الهاتف',
+      en: 'Emergency contact phone number',
+      ar: ' رقم هاتف الطوارئ ',
     },
     'booking.patientForm.placeholders.medicalHistory': {
       en: 'Please provide any relevant medical history that might help your doctor...',
-      ar: 'يرجى تقديم أي تاريخ طبي ذي صلة قد يساعد طبيبك...',
+      ar: 'يرجى تقديم أي تاريخ طبي ذي صلة قد يساعد طبيبك',
     },
     'booking.patientForm.options.male': { en: 'Male', ar: 'ذكر' },
     'booking.patientForm.options.female': { en: 'Female', ar: 'أنثى' },
@@ -617,10 +646,6 @@ export class TranslationService {
     'booking.patientForm.errors.phone': {
       en: 'Please enter a valid phone number',
       ar: 'يرجى إدخال رقم هاتف صحيح',
-    },
-    'booking.patientForm.errors.minAge': {
-      en: 'You must be at least 16 years old',
-      ar: 'يجب أن تكون على الأقل 16 سنة',
     },
 
     // Confirmation
@@ -696,35 +721,41 @@ export class TranslationService {
       ar: 'حمل تطبيق الهاتف المحمول لإكمال استمارة تقييم الإصابة',
     },
     'booking.confirmation.arabicEmail.title': {
-      en: 'رسالة التأكيد',
+      en: 'Confirmation Message',
       ar: 'رسالة التأكيد',
     },
     'booking.confirmation.arabicEmail.greeting': {
-      en: 'مرحباً {name}،',
+      en: 'Hello {name},',
       ar: 'مرحباً {name}،',
     },
     'booking.confirmation.arabicEmail.intro': {
-      en: 'تم حجز موعدك بنجاح! سيتم إرسال إيميل تأكيد يحتوي على:',
+      en: 'Your appointment has been successfully booked! A confirmation email will be sent containing:',
       ar: 'تم حجز موعدك بنجاح! سيتم إرسال إيميل تأكيد يحتوي على:',
     },
     'booking.confirmation.arabicEmail.details': {
-      en: 'تفاصيل الموعد المحجوز',
+      en: 'Booked Appointment Details is on',
       ar: 'تفاصيل الموعد المحجوز',
     },
     'booking.confirmation.arabicEmail.appLink': {
-      en: 'رابط تحميل التطبيق',
+      en: 'App Download Link',
       ar: 'رابط تحميل التطبيق',
     },
     'booking.confirmation.arabicEmail.formInstructions': {
-      en: 'تعليمات ملء استمارة بيانات الإصابة',
+      en: 'Injury Assessment Form Instructions',
       ar: 'تعليمات ملء استمارة بيانات الإصابة',
     },
     'booking.confirmation.arabicEmail.clinicInfo': {
-      en: 'معلومات التواصل مع العيادة',
+      en: 'Clinic Contact Information',
       ar: 'معلومات التواصل مع العيادة',
     },
+    'booking.confirmation.arabicEmail.from': { en: 'From', ar: 'من' },
+    'booking.confirmation.arabicEmail.to': { en: 'To', ar: 'إلى' },
+    'booking.confirmation.arabicEmail.atLocation': {
+      en: 'at location',
+      ar: 'في',
+    },
     'booking.confirmation.arabicEmail.instruction': {
-      en: 'يرجى تحميل التطبيق وملء الاستمارة قبل موعد الزيارة لضمان تقديم أفضل رعاية طبية.',
+      en: 'Please download the app and fill out the form before your visit to ensure the best medical care.',
       ar: 'يرجى تحميل التطبيق وملء الاستمارة قبل موعد الزيارة لضمان تقديم أفضل رعاية طبية.',
     },
 
@@ -836,6 +867,8 @@ export class TranslationService {
       en: 'Schedule your first consultation through our website or mobile app.',
       ar: 'جدولة الاستشارة الأولى عبر الموقع أو التطبيق.',
     },
+
+
     'howitworks.step2.title': {
       en: 'Initial Assessment',
       ar: 'التقييم الأولي',
@@ -894,9 +927,60 @@ export class TranslationService {
       en: 'Access expert videos, articles, research, and exercises to advance your knowledge in sports science and recovery.',
       ar: 'تصفّح فيديوهات ومقالات وأبحاث وتمارين متخصصة لتعزيز معرفتك في علوم الرياضة والتعافي.',
     },
+
+    // Booking confirmation card
+    'booking.confirmation.title1': {
+      en: 'Booking Confirmation',
+      ar: 'تأكيد الحجز',
+    },
+
+    'booking.confirmation.greeting': {
+      en: 'Hello {{name}},',
+      ar: 'مرحباً {{name}}،',
+    },
+
+    'booking.confirmation.successMessage': {
+      en: 'Your booking has been successfully confirmed. Here are the appointment details:',
+      ar: 'تم تأكيد حجزك بنجاح. إليك تفاصيل الموعد:',
+    },
+
+    'booking.confirmation.appointmentDetails': {
+      en: 'Appointment details: {{date}}, at {{time}} at {{location}}.',
+      ar: 'تفاصيل الموعد: {{date}}، الساعة {{time}} في {{location}}.',
+    },
+
+    'booking.confirmation.appLink': {
+      en: 'Application link: [App Link]',
+      ar: 'رابط التطبيق: [رابط التطبيق]',
+    },
+
+    'booking.confirmation.formInstructions': {
+      en: 'Form instructions: Please complete the medical form before your visit.',
+      ar: 'تعليمات النموذج: يرجى ملء النموذج الطبي قبل زيارتك.',
+    },
+
+    'booking.confirmation.clinicInfo': {
+      en: 'Clinic information: {{phone}}',
+      ar: 'معلومات العيادة: {{phone}}',
+    },
+
+    'booking.confirmation.footerMessage': {
+      en: 'We look forward to seeing you soon ',
+      ar: 'نتطلع لرؤيتك قريباً',
+    },
+
+    'booking.loading.title': {
+      ar: 'برجاء الانتظار ...',
+      en: 'Please wait  ...'
+    },
+
+    'booking.loading.subtitle': {
+      ar: 'جاري انشاء الطلب ...',
+      en: 'Creating the request ...'
+    }
   };
 
-  constructor(private languageService: LanguageService) {}
+  constructor(private languageService: LanguageService) { }
 
   translate(key: string, params?: { [key: string]: string }): string {
     const currentLang = this.languageService.getCurrentLanguage();

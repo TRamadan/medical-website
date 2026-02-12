@@ -44,7 +44,7 @@ export class NormalSuperStarComponent implements OnInit {
     public translationService: TranslationService,
     private languageService: LanguageService,
     private _ourSuperStars: SuperstarsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.updateItemsPerSlide();
@@ -64,7 +64,7 @@ export class NormalSuperStarComponent implements OnInit {
       .subscribe({
         next: (res: SuperstarAthelete[]) => {
           const mapped = res.filter(
-            (athelete: any) => athelete.isElite === false
+            (athelete: any) => athelete.isElite === false || athelete.isElite == null
           );
           this.normalSuperStarsSignal.set(mapped);
         },
@@ -81,7 +81,7 @@ export class NormalSuperStarComponent implements OnInit {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onResize(): void {
     this.updateItemsPerSlide();
   }
@@ -101,7 +101,7 @@ export class NormalSuperStarComponent implements OnInit {
     if (!this.isHovered) {
       this.intervalId = window.setInterval(() => {
         this.nextSlide();
-      }, 4000);
+      }, 50000);
     }
   }
 
@@ -145,7 +145,13 @@ export class NormalSuperStarComponent implements OnInit {
       return skeletons;
     }
     const slides: SuperstarAthelete[] = [];
-    const superstars = this.normalSuperStarsSignal();
+    const superstars = this.normalSuperStarsSignal().map((normalSuperStar: any) => {
+      return {
+        ...normalSuperStar,
+        image: this.imgUrl + normalSuperStar.image
+      }
+    })
+    console.log(superstars)
     for (let i = 0; i < this.itemsPerSlide; i++) {
       const index = (this.currentSlide + i) % superstars.length;
       slides.push(superstars[index]);

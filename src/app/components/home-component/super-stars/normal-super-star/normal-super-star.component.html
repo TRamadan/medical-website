@@ -25,9 +25,8 @@
       <div class="col-12 col-md-6 col-lg-4">
         <div class="card  border-0 h-100 slide-card" [class.center-slide]="i === 1 && itemsPerSlide === 3"
           [class.side-slide]="i !== 1 && itemsPerSlide === 3">
-          <div class="position-relative">
-            <img src="https://placehold.co/400" alt="champions-imgs" class="card-img-top object-fit-cover"
-              style="height: 250px" />
+          <div class="position-relative image-container">
+            <img [src]="superstar.image" alt="champions-imgs" class="card-img-top" loading="lazy" />
           </div>
           <div class="card-body p-4">
             <h3 class="card-title h4 fw-bold mb-2">

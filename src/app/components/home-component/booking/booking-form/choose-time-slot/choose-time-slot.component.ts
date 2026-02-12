@@ -44,6 +44,8 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   currentSlideIndex = 0;
   mobileSlides: any[][] = [];
   direction: 'ltr' | 'rtl' = 'ltr';
+  loadingCalendar: boolean = false;
+  loadingSlots: boolean = false;
 
   months = [
     'January',
@@ -79,7 +81,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
     public translationService: TranslationService,
     private languageService: LanguageService,
     private _workingDaysService: WorkingdaysService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const currentYear = new Date().getFullYear();
@@ -98,6 +100,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
   // Fetch available days from API
   fetchAvailableDays() {
+    this.loadingCalendar = true;
     this._workingDaysService
       .getWorkingDaysWithinMonth(
         this.choosedLocationService.locationId,
@@ -108,10 +111,12 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
         next: (res: any) => {
           this.availableDays = res?.data || [];
           this.generateCalendar();
+          this.loadingCalendar = false;
         },
         error: (err: any) => {
           this.availableDays = [];
           this.generateCalendar();
+          this.loadingCalendar = false;
         },
       });
   }
@@ -211,6 +216,7 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
 
   //here is the function needed to get the slots per the selected date
   getSlots(): void {
+    this.loadingSlots = true;
     this._workingDaysService
       .getAvailableSlots(
         this.choosedLocationService.locationId,
@@ -229,9 +235,11 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
             );
           }
           this.generateMobileSlides(this.availableTimesForSelectedDate);
+          this.loadingSlots = false;
         },
         error: (error: any) => {
           //error handling goes here
+          this.loadingSlots = false;
         },
       });
   }
@@ -246,7 +254,6 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   formatTime(dateTime: string): string {
-    debugger;
     const date = new Date(dateTime);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }

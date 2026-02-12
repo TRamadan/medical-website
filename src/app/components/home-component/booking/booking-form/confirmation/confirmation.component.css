@@ -1,0 +1,86 @@
+.card {
+    border: 1px solid #e9ecef !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.card-header {
+    background-color: white !important;
+    border-bottom: 1px solid #e9ecef !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 1.25rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: #131337;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background-color: #70f4c3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #131337;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.detail-label {
+    color: #adb5bd;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #212529;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #e7f1ff;
+    color: #0d6efd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.step-title {
+    color: #212529;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.step-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.arabic-card .card-header,
+.arabic-card .card-body {
+    text-align: right;
+    direction: rtl;
+}
+
+.arabic-card .card-title {
+    color: #212529;
+}

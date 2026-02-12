@@ -15,8 +15,8 @@
       <ul class="navbar-nav mx-auto navbar-nav-desktop">
         @for(item of mainNavItems; track item;){
         <li class="nav-item">
-          <a class="nav-link py-2 nav-link-custom" [href]="item.href" [class.active]="item.active"
-            (click)="onNavItemClick(item)">
+          <a class="nav-link py-2 nav-link-custom" [routerLink]="[item.path]" [fragment]="item.fragment"
+            [class.active]="isActive(item)" (click)="onNavItemClick(item)">
             {{ item.name }}
           </a>
         </li>

@@ -13,22 +13,33 @@
         {{ translationService.translate("booking.timeSlot.selectDate") }}
       </p>
       <div class="card shadow-sm mb-4 border-0">
-        <div class="calendar-container">
+        <div class="calendar-container position-relative">
+          @if(loadingCalendar){
+          <div class="loading-overlay d-flex justify-content-center align-items-center" style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(255, 255, 255, 0.8);
+              z-index: 10;
+            ">
+            <div class="text-center">
+              <i class="fas fa-spinner fa-spin fa-2x mb-2 text-primary"></i>
+              <p class="mb-0 text-muted small">
+                {{
+                translationService.translate("booking.timeSlot.loadingCalendar")
+                }}
+              </p>
+            </div>
+          </div>
+          }
           <!-- Header with Month & Year Selectors -->
-          <div
-            class="calendar-header d-flex justify-content-center align-items-center gap-2 mb-2"
-          >
+          <div class="calendar-header d-flex justify-content-center align-items-center gap-2 mb-2">
             <!-- Month Selector -->
             <div class="form-group">
-              <select
-                class="form-select"
-                [(ngModel)]="selectedMonth"
-                (change)="updateCalendar()"
-              >
-                <option
-                  *ngFor="let m of months; let i = index"
-                  [ngValue]="i + 1"
-                >
+              <select class="form-select" [(ngModel)]="selectedMonth" (change)="updateCalendar()">
+                <option *ngFor="let m of months; let i = index" [ngValue]="i + 1">
                   {{ m }}
                 </option>
               </select>
@@ -36,27 +47,17 @@
 
             <!-- Year Selector -->
             <div class="form-group">
-              <select
-                class="form-select"
-                [(ngModel)]="selectedYear"
-                (change)="updateCalendar()"
-              >
+              <select class="form-select" [(ngModel)]="selectedYear" (change)="updateCalendar()">
                 <option *ngFor="let y of years" [ngValue]="y">{{ y }}</option>
               </select>
             </div>
 
             <!-- Navigation Buttons -->
             <div class="nav-buttons d-flex align-items-center">
-              <button
-                class="btn btn-outline-secondary btn-sm me-1"
-                (click)="prevMonth()"
-              >
+              <button class="btn btn-outline-secondary btn-sm me-1" (click)="prevMonth()">
                 <i class="bi bi-chevron-left"></i>
               </button>
-              <button
-                class="btn btn-outline-secondary btn-sm"
-                (click)="nextMonth()"
-              >
+              <button class="btn btn-outline-secondary btn-sm" (click)="nextMonth()">
                 <i class="bi bi-chevron-right"></i>
               </button>
             </div>
@@ -69,14 +70,9 @@
               {{ d }}
             </div>
 
-            <div
-              *ngFor="let day of calendarDays"
-              class="calendar-day"
-              [class.not-current]="!day.isCurrentMonth"
-              [class.unavailable]="!day.isAvailable"
-              [class.selected]="selectedDate === day.dateString"
-              (click)="selectDate(day)"
-            >
+            <div *ngFor="let day of calendarDays" class="calendar-day" [class.not-current]="!day.isCurrentMonth"
+              [class.unavailable]="!day.isAvailable" [class.selected]="selectedDate === day.dateString"
+              (click)="selectDate(day)">
               {{ day.day }}
             </div>
           </div>
@@ -90,54 +86,43 @@
 
       <div class="card shadow-sm mb-4 border-0">
         <div class="card-body">
-          @if (availableTimesForSelectedDate.length > 0) {
+          @if (loadingSlots) {
+          <div class="text-center py-4">
+            <i class="fas fa-spinner fa-spin fa-2x mb-3 text-primary"></i>
+            <p class="text-muted mb-0">
+              {{
+              translationService.translate("booking.timeSlot.loadingSlots")
+              }}
+            </p>
+          </div>
+          } @else if (availableTimesForSelectedDate.length > 0) {
 
           <!-- Desktop slider -->
           <div class="d-none d-md-block position-relative">
             <!-- Navigation buttons -->
-            <div
-              class="d-flex justify-content-between align-items-center mb-3 p-2"
-            >
-              <button
-                class="btn prev-btn btn-sm"
-                (click)="prevDesktopSlide()"
-                [disabled]="desktopSlideIndex === 0"
-              >
+            <div class="d-flex justify-content-between align-items-center mb-3 p-2">
+              <button class="btn prev-btn btn-sm" (click)="prevDesktopSlide()" [disabled]="desktopSlideIndex === 0">
                 <i class="fas fa-chevron-left"></i>
               </button>
 
-              <button
-                class="btn next-btn btn-sm"
-                (click)="nextDesktopSlide()"
-                [disabled]="desktopSlideIndex === desktopSlides.length - 1"
-              >
+              <button class="btn next-btn btn-sm" (click)="nextDesktopSlide()"
+                [disabled]="desktopSlideIndex === desktopSlides.length - 1">
                 <i class="fas fa-chevron-right"></i>
               </button>
             </div>
 
             <!-- Slider container -->
             <div class="slider-container overflow-hidden">
-              <div
-                class="slider-wrapper d-flex transition-all"
-                [style.transform]="
+              <div class="slider-wrapper d-flex transition-all" [style.transform]="
                   'translateX(' +
                   (direction === 'rtl' ? 1 : -1) * desktopSlideIndex * 100 +
                   '%)'
-                "
-              >
+                ">
                 @for (slide of desktopSlides; track index; let index = $index) {
-                <div
-                  class="slide flex-shrink-0 w-100 d-flex justify-content-around gap-2"
-                >
+                <div class="slide flex-shrink-0 w-100 d-flex justify-content-around gap-2">
                   @for (timeSlot of slide; track timeSlot.from) {
-                  <button
-                    type="button"
-                    type="button"
-                    class="btn btn-sm time-slot-btn flex-fill"
-                    [class.selected-slot]="isTimeSelected(timeSlot)"
-                    [class.unselected-slot]="!isTimeSelected(timeSlot)"
-                    (click)="onTimeSelect(timeSlot)"
-                  >
+                  <button class="btn btn-sm time-slot-btn flex-fill" [class.selected-slot]="isTimeSelected(timeSlot)"
+                    [class.unselected-slot]="!isTimeSelected(timeSlot)" (click)="onTimeSelect(timeSlot)">
                     {{ timeSlot.fromFormatted }} - {{ timeSlot.toFormatted }}
                   </button>
                   }
@@ -150,43 +135,28 @@
           <!-- Mobile slider -->
           <div class="d-md-none position-relative">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <button
-                class="btn prev-btn btn-sm border-none"
-                (click)="prevSlide()"
-                [disabled]="currentSlideIndex === 0"
-              >
+              <button class="btn prev-btn btn-sm border-none" (click)="prevSlide()"
+                [disabled]="currentSlideIndex === 0">
                 <i class="fas fa-chevron-left"></i>
               </button>
-              <button
-                class="btn next-btn btn-sm border-none"
-                (click)="nextSlide()"
-                [disabled]="currentSlideIndex === mobileSlides.length - 1"
-              >
+              <button class="btn next-btn btn-sm border-none" (click)="nextSlide()"
+                [disabled]="currentSlideIndex === mobileSlides.length - 1">
                 <i class="fas fa-chevron-right"></i>
               </button>
             </div>
 
             <div class="slider-container overflow-hidden">
-              <div
-                class="slider-wrapper d-flex transition-all"
-                [style.transform]="
+              <div class="slider-wrapper d-flex transition-all" [style.transform]="
                   'translateX(' +
                   (direction === 'rtl' ? 1 : -1) * currentSlideIndex * 100 +
                   '%)'
-                "
-              >
+                ">
                 @for (slide of mobileSlides; track index; let index = $index) {
-                <div
-                  class="slide flex-shrink-0 w-100 d-flex justify-content-around"
-                >
+                <div class="slide flex-shrink-0 w-100 d-flex justify-content-around">
                   @for (timeSlot of slide; track timeSlot.from) {
-                  <button
-                    type="button"
-                    class="btn btn-sm time-slot-btn flex-fill mx-1"
-                    [class.btn-primary]="isTimeSelected(timeSlot)"
-                    [class.btn-outline-secondary]="!isTimeSelected(timeSlot)"
-                    (click)="onTimeSelect(timeSlot)"
-                  >
+                  <button type="button" class="btn btn-sm time-slot-btn flex-fill mx-1"
+                    [class.selected-slot]="isTimeSelected(timeSlot)"
+                    [class.class.unselected-slot]="!isTimeSelected(timeSlot)" (click)="onTimeSelect(timeSlot)">
                     {{ timeSlot.fromFormatted }} - {{ timeSlot.toFormatted }}
                   </button>
                   }
@@ -200,9 +170,7 @@
           <div class="text-center py-3">
             <p class="text-muted mb-0">
               {{
-                translationService.translate(
-                  "booking.timeSlot.noSlotsAvailable"
-                )
+              translationService.translate("booking.timeSlot.noSlotsAvailable")
               }}
             </p>
           </div>

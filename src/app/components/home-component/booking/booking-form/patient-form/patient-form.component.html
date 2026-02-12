@@ -15,9 +15,9 @@
           <div class="card-header text-white border-0">
             <h5 class="card-title mb-0 text-dark">
               {{
-                translationService.translate(
-                  "booking.patientForm.personalInfo.title"
-                )
+              translationService.translate(
+              "booking.patientForm.personalInfo.title"
+              )
               }}
             </h5>
           </div>
@@ -26,56 +26,38 @@
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="firstName" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.firstName"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.firstName"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
-                <input
-                  type="text"
-                  id="firstName"
-                  class="form-control"
-                  [class.is-invalid]="isFieldInvalid('firstName')"
-                  formControlName="firstName"
-                  [placeholder]="
+                <input type="text" id="firstName" class="form-control" [class.is-invalid]="isFieldInvalid('firstName')"
+                  formControlName="firstName" [placeholder]="
                     translationService.translate(
                       'booking.patientForm.placeholders.firstName'
                     )
-                  "
-                />
-                <div
-                  class="invalid-feedback"
-                  *ngIf="isFieldInvalid('firstName')"
-                >
+                  " />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
                   {{ getFieldError("firstName") }}
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <label for="lastName" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.lastName"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.lastName"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
-                <input
-                  type="text"
-                  id="lastName"
-                  class="form-control"
-                  [class.is-invalid]="isFieldInvalid('lastName')"
-                  formControlName="lastName"
-                  [placeholder]="
+                <input type="text" id="lastName" class="form-control" [class.is-invalid]="isFieldInvalid('lastName')"
+                  formControlName="lastName" [placeholder]="
                     translationService.translate(
                       'booking.patientForm.placeholders.lastName'
                     )
-                  "
-                />
-                <div
-                  class="invalid-feedback"
-                  *ngIf="isFieldInvalid('lastName')"
-                >
+                  " />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
                   {{ getFieldError("lastName") }}
                 </div>
               </div>
@@ -86,25 +68,19 @@
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="email" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.email"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.email"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input
-                    type="email"
-                    id="email"
-                    class="form-control"
-                    [class.is-invalid]="isFieldInvalid('email')"
-                    formControlName="email"
-                    [placeholder]="
+                  <input type="email" id="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')"
+                    formControlName="email" [placeholder]="
                       translationService.translate(
                         'booking.patientForm.placeholders.email'
                       )
-                    "
-                  />
+                    " />
                   <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
                     {{ getFieldError("email") }}
                   </div>
@@ -113,29 +89,20 @@
               <div class="col-12 col-md-6">
                 <label for="phone" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.phone"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.phone"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input
-                    type="tel"
-                    id="phone"
-                    class="form-control"
-                    [class.is-invalid]="isFieldInvalid('phoneNumber')"
-                    formControlName="phoneNumber"
-                    [placeholder]="
+                  <input type="tel" id="phone" class="form-control" [class.is-invalid]="isFieldInvalid('phoneNumber')"
+                    formControlName="phoneNumber" [placeholder]="
                       translationService.translate(
                         'booking.patientForm.placeholders.phone'
                       )
-                    "
-                  />
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="isFieldInvalid('phoneNumber')"
-                  >
+                    " />
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('phoneNumber')">
                     {{ getFieldError("phoneNumber") }}
                   </div>
                 </div>
@@ -147,62 +114,47 @@
               <div class="col-12 col-md-6 mb-3 mb-md-0">
                 <label for="dateOfBirth" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.dateOfBirth"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.dateOfBirth"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                  <input
-                    type="date"
-                    id="dateOfBirth"
-                    class="form-control"
-                    [class.is-invalid]="isFieldInvalid('dateOfBirth')"
-                    formControlName="dateOfBirth"
-                  />
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="isFieldInvalid('dateOfBirth')"
-                  >
-                    {{ getFieldError("dateOfBirth") }}
-                  </div>
+                  <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth" />
+
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <label for="gender" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.gender"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.gender"
+                  )
                   }}
                   <span class="text-danger">*</span>
                 </label>
-                <select
-                  id="gender"
-                  class="form-select"
-                  [class.is-invalid]="isFieldInvalid('gender')"
-                  formControlName="gender"
-                >
+                <select id="gender" class="form-select" [class.is-invalid]="isFieldInvalid('gender')"
+                  formControlName="gender">
                   <option value="">
                     {{
-                      translationService.translate(
-                        "booking.patientForm.placeholders.gender"
-                      )
+                    translationService.translate(
+                    "booking.patientForm.placeholders.gender"
+                    )
                     }}
                   </option>
                   <option selected value="male">
                     {{
-                      translationService.translate(
-                        "booking.patientForm.options.male"
-                      )
+                    translationService.translate(
+                    "booking.patientForm.options.male"
+                    )
                     }}
                   </option>
                   <option value="female">
                     {{
-                      translationService.translate(
-                        "booking.patientForm.options.female"
-                      )
+                    translationService.translate(
+                    "booking.patientForm.options.female"
+                    )
                     }}
                   </option>
                 </select>
@@ -217,55 +169,53 @@
               <div class="col-6">
                 <label for="emergencyContact" class="form-label fw-semibold">
                   {{
-                    translationService.translate(
-                      "booking.patientForm.fields.emergencyContact"
-                    )
+                  translationService.translate(
+                  "booking.patientForm.fields.emergencyContact"
+                  )
                   }}
                 </label>
-                <input
-                  type="text"
-                  id="emergencyContact"
-                  class="form-control"
-                  formControlName="emergencyContact"
+                <input type="text" id="emergencyContact" class="form-control" formControlName="emergencyContact"
                   [placeholder]="
                     translationService.translate(
                       'booking.patientForm.placeholders.emergencyContact'
                     )
-                  "
-                />
+                  " />
               </div>
               <div class="col-6">
                 <label for="favoriteSport" class="form-label fw-semibold">
                   Favorite Sport
                 </label>
-                <input
-                  type="text"
-                  id="favoriteSport"
-                  class="form-control"
-                  formControlName="favoriteSport"
+                <input type="text" id="favoriteSport" class="form-control" formControlName="favoriteSport"
                   [placeholder]="
                     translationService.translate(
                       'booking.patientForm.placeholders.favoriteSport'
                     )
-                  "
-                />
+                  " />
               </div>
             </div>
 
             <div class="row">
               <div class="col-12">
-                <label> Interested service </label>
-                <ng-select
-                  [searchable]="true"
-                  [clearable]="true"
-                  formControlName="interestedServiceId"
-                >
-                  @for (service of services; track $index) {
-                  <ng-option>
-                    {{ currentLang == "en" ? service.nameEn : service.nameAr }}
-                  </ng-option>
-                  }
-                </ng-select>
+                <label class="form-label fw-semibold">
+                  {{
+                  translationService.translate(
+                  "booking.patientForm.fields.interestedService"
+                  )
+                  }}
+                </label>
+                <div>
+                  <div
+                    class="d-inline-flex align-items-center bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-4 py-3 shadow-sm">
+                    <i class="fas fa-check-circle fs-5 me-2"></i>
+                    <span class="fw-bold fs-6">
+                      {{
+                      bookingData["serviceName"] ||
+                      selectedLocationAndService?.serviceName ||
+                      "Service Selected"
+                      }}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -276,31 +226,25 @@
           <div class="card-header border-0">
             <h5 class="card-title mb-0 text-dark">
               {{
-                translationService.translate(
-                  "booking.patientForm.medicalHistory.title"
-                )
+              translationService.translate(
+              "booking.patientForm.medicalHistory.title"
+              )
               }}
             </h5>
           </div>
           <div class="card-body">
             <label for="medicalHistory" class="form-label fw-semibold">
               {{
-                translationService.translate(
-                  "booking.patientForm.medicalHistory.description"
-                )
+              translationService.translate(
+              "booking.patientForm.medicalHistory.description"
+              )
               }}
             </label>
-            <textarea
-              id="medicalHistory"
-              class="form-control"
-              formControlName="medicalHistory"
-              rows="4"
-              [placeholder]="
+            <textarea id="medicalHistory" class="form-control" formControlName="medicalHistory" rows="4" [placeholder]="
                 translationService.translate(
                   'booking.patientForm.placeholders.medicalHistory'
                 )
-              "
-            ></textarea>
+              "></textarea>
           </div>
         </div>
       </form>

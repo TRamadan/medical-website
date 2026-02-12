@@ -31,6 +31,7 @@ export interface BookingData {
 })
 export class ConfirmationComponent implements OnInit, OnDestroy {
   @Input() confirmationData!: any;
+  currentLang: 'en' | 'ar' = 'en';
   private languageSubscription?: Subscription;
 
   bookingReference: string;
@@ -45,8 +46,8 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
-      () => {
-        // Component will automatically update when language changes
+      (lang: 'en' | 'ar') => {
+        this.currentLang = lang;
       }
     );
   }

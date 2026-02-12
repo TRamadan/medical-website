@@ -92,7 +92,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
     public translationService: TranslationService,
     private languageService: LanguageService,
     private bookingService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.updateSteps();
@@ -141,6 +141,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   }
 
   handleNextOrSubmit(): void {
+
     if (this.currentStep === 3) {
       this.patientFormComponent.onSubmit();
     } else {
@@ -176,7 +177,7 @@ export class BookingFormComponent implements OnInit, OnDestroy {
   confirmBooking(bookingPayload: any): void {
     Swal.fire({
       title: this.translationService.translate('booking.loading.title'),
-      text: this.translationService.translate('booking.loading.text'),
+      text: this.translationService.translate('booking.loading.subtitle'),
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();

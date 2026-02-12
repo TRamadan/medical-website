@@ -16,6 +16,13 @@
   background-color: #e9ecef;
 }
 
+
+.btn:hover{
+    background-color: #f8f9fa !important;
+    color: black;
+    font-weight: bold;
+}
+
 .calendar-day.unavailable {
   color: #aaa;
   cursor: not-allowed;

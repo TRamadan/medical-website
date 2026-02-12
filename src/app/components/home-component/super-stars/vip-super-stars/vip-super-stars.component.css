@@ -113,8 +113,8 @@ button {
 
 .item {
     flex-shrink: 0;
-    width: 320px;
-    height: 400px;
+    /* width: 320px;  Removed for dynamic calculation */
+    height: 480px;
     display: flex;
     display: -webkit-flex;
     align-items: flex-end;
@@ -129,7 +129,7 @@ button {
 }
 
 .item.active {
-    width: 500px;
+    /* width: 500px; Removed for dynamic calculation */
 }
 
 .owl-dots {
