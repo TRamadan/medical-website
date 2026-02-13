@@ -34,13 +34,10 @@ export class ServiceslocationService {
     let errorMessage = 'Something bad happened; please try again later.';
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
       errorMessage = `An error occurred: ${error.error.message}`;
     } else {
       // The backend returned an unsuccessful response code.
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+    
       errorMessage = `Server returned code ${error.status}: ${error.error || error.statusText
         }`;
     }

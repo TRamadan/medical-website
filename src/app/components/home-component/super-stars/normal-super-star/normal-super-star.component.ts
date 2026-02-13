@@ -69,7 +69,6 @@ export class NormalSuperStarComponent implements OnInit {
           this.normalSuperStarsSignal.set(mapped);
         },
         error: (error: any) => {
-          console.error('Error fetching super stars', error);
         },
       });
   }
@@ -151,7 +150,6 @@ export class NormalSuperStarComponent implements OnInit {
         image: this.imgUrl + normalSuperStar.image
       }
     })
-    console.log(superstars)
     for (let i = 0; i < this.itemsPerSlide; i++) {
       const index = (this.currentSlide + i) % superstars.length;
       slides.push(superstars[index]);

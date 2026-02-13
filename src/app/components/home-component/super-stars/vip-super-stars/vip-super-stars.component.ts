@@ -249,7 +249,6 @@ export class VipSuperStarsComponent implements OnInit, OnDestroy {
           }, 0);
         },
         error: (err: any) => {
-          console.error('Error fetching super stars', err);
         },
       });
   }

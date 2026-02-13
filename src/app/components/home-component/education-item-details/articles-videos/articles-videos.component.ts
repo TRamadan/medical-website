@@ -175,7 +175,6 @@ export class ArticlesVideosComponent implements OnInit {
   }
 
   playVideo(): void {
-    debugger;
     if (!this.isPlaying) {
       const videoId = this.extractVideoId(this.selectedVideo.videoUrl ?? '');
       if (videoId) {

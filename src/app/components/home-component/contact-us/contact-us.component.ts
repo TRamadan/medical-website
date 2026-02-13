@@ -191,8 +191,6 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     if (this.contactForm.valid) {
       this.isSubmitting = true;
 
-      // Simulate form submission
-      console.log('Form submitted:', this.contactForm.value);
 
       // Here you would typically send the data to your backend
       setTimeout(() => {

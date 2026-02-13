@@ -205,7 +205,6 @@ export class BookingFormComponent implements OnInit, OnDestroy {
         });
       },
       error: (error: any) => {
-        console.error('Booking failed', error);
         Swal.fire({
           icon: 'error',
           title: this.translationService.translate('booking.error.title'),

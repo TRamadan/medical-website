@@ -71,8 +71,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeForm();
 
-    console.log('here is the service', this.selectedLocationAndService);
-    console.log('here is the slot', this.selectedSlot);
 
     // Subscribe to language changes
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(
@@ -138,7 +136,6 @@ export class PatientFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    debugger
     this.submitted = true;
 
     const formValue = this.patientForm.value;

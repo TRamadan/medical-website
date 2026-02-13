@@ -58,7 +58,6 @@ export class SuccessVideosComponent implements OnInit, OnChanges {
   }
 
   playVideo(): void {
-    debugger;
     if (!this.isPlaying) {
       const videoId = this.extractVideoId(this.selectedVideo.videoUrl ?? '');
       if (videoId) {

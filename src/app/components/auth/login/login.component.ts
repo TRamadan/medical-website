@@ -13,7 +13,6 @@ export class LoginComponent {
 
   onLogin(event: Event): void {
     event.preventDefault(); // Prevent actual form submission
-    console.log('Login successful, navigating to home.');
     this.router.navigate(['/']);
   }
 } 

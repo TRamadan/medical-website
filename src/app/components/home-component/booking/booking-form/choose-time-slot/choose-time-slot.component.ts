@@ -204,7 +204,6 @@ export class ChooseTimeSlotComponent implements OnInit, OnDestroy {
   }
 
   selectDate(day: any) {
-    debugger;
     if (!day.isAvailable || !day.isCurrentMonth) return;
     this.selectedDate = day.dateString;
     this.selectedTimeSlot = null;

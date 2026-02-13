@@ -89,7 +89,6 @@ export class AboutUsSectionComponent implements OnInit, OnDestroy {
   }
 
   viewAllContent(): void {
-    console.log('sflksjf');
   }
 
   startBookingProcess(): void {

@@ -148,7 +148,7 @@ isRTL(): boolean {
 3. **Font not loading**: Verify Google Fonts import in styles.css
 4. **Build errors**: Make sure @angular/localize is installed
 
-### Debugging:
+### ing:
 - Check browser console for translation errors
 - Verify localStorage has the correct language preference
 - Test with different screen sizes in both languages

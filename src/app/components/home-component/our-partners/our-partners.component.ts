@@ -77,7 +77,6 @@ export class OurPartnersComponent implements OnInit {
         },
         error: (error: any) => {
           if (isDevMode()) {
-            console.error('Error fetching companies:', error);
           }
           // Fallback to default logos if API fails
           this.loading.set(false);

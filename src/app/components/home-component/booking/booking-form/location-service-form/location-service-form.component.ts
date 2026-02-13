@@ -89,7 +89,6 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
       error: (error: any) => {
-        console.error('Error fetching categories', error);
         this.loading = false;
       },
     });
@@ -100,7 +99,6 @@ export class LocationServiceFormComponent implements OnInit, OnDestroy {
   }
 
   handleServiceSelection(category: any, service: any): void {
-    debugger;
     const prevServiceId = this.bookingData.serviceId ?? null;
     this.bookingData.serviceCategoryId = category.id;
     this.bookingData.serviceCategoryName =

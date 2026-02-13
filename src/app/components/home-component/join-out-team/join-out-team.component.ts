@@ -116,7 +116,6 @@ export class JoinOutTeamComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      console.log('Application submitted:', this.applicationData);
       alert(this.translationService.translate('joinOurTeam.form.alerts.success'));
       this.resetForm();
     } else {

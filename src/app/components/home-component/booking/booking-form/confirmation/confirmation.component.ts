@@ -75,6 +75,5 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   downloadApp(): void {
     // Handle app download
-    console.log('Download app');
   }
 }

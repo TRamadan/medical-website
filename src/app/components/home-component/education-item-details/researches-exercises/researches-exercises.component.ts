@@ -40,8 +40,7 @@ export class ResearchesExercisesComponent implements OnInit {
   getResearches(): void {
     this._educationalContent.getAllResearches().subscribe({
       next: (res: any) => {
-        debugger;
-        this.researches = res;
+            this.researches = res;
       },
       error: (error: any) => {
         //error handle goes here
