@@ -31,7 +31,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/_redirects"
+              "src/_redirects",
+              "src/jnx74hpf8tpsw1hg7ovap14adbj9qx.html"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
