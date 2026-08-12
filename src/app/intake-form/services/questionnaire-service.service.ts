@@ -10,7 +10,7 @@ import { QuestionnaireGetDTO, QuestionnaireAnswers, QuestionnaireSubmitResponse 
 export class QuestionnaireServiceService {
 
   // Public endpoints — token travels in the query string, no Authorization header.
-  private readonly baseUrl = `${environment.apiUrl}/api/Questionnaire`;
+  private readonly baseUrl = `${environment.questionnaireUrl}Questionnaire`;
 
   constructor(private http: HttpClient) { }
 
