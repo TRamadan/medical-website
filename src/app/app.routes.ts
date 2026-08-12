@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { IntakeFormComponent } from "./intake-form/intake-form.component";
 export const routes: Routes = [
   {
     path: '',
@@ -8,6 +8,13 @@ export const routes: Routes = [
         (c) => c.HomeComponentComponent
       ),
   },
+
+  {
+    path: 'intake-form',
+    component: IntakeFormComponent,
+  },
+
+
 
   {
     path: 'bookappointment',
@@ -49,26 +56,8 @@ export const routes: Routes = [
       ).then((c) => c.EducationItemDetailsComponent),
   },
 
-  {
-    path: 'auth',
-    loadComponent: () =>
-      import('./components/auth/auth.component').then((c) => c.AuthComponent),
-    children: [
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./components/auth/login/login.component').then(
-            (c) => c.LoginComponent
-          ),
-      },
-      {
-        path: 'register',
-        loadComponent: () =>
-          import('./components/auth/register/register.component').then(
-            (c) => c.RegisterComponent
-          ),
-      },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-    ],
-  },
+
+
+
 ];
+

@@ -1,0 +1,153 @@
+<div class="lab-form" dir="rtl" lang="ar">
+    <div class="lab-form__shell">
+
+        <!-- Loading state -->
+        <div class="lab-form__status" *ngIf="loading">
+            <p>جارٍ تحميل الاستمارة...</p>
+        </div>
+
+        <!-- Load error state (bad/expired/missing token) -->
+        <div class="lab-form__status lab-form__status--error" *ngIf="!loading && loadErrorMessage">
+            <p>{{ loadErrorMessage }}</p>
+        </div>
+
+        <!-- Submit success state -->
+        <div class="lab-form__status lab-form__status--success" *ngIf="submitSuccessMessage">
+            <p>{{ submitSuccessMessage }}</p>
+        </div>
+
+        <ng-container *ngIf="!loading && !loadErrorMessage && !submitSuccessMessage">
+
+            <!-- Header + performance-style progress pulse -->
+            <header class="lab-form__header">
+                <p class="lab-form__eyebrow">استمارة الاستقبال · مختبر الأداء</p>
+                <h1 class="lab-form__title">أخبرنا عن حالتك</h1>
+                <p class="lab-form__subtitle" *ngIf="appointmentInfo">
+                    {{ appointmentInfo.patientName }} · {{ appointmentInfo.serviceName }} ·
+                    {{ appointmentInfo.appointmentDate }} — {{ appointmentInfo.appointmentTime }}
+                </p>
+                <p class="lab-form__subtitle" *ngIf="!appointmentInfo">خمس دقائق تكفي لنجهّز تقييمك بدقة</p>
+
+                <p class="lab-form__note" *ngIf="appointmentInfo?.isAlreadyAnswered">
+                    سبق أن أجبت على هذه الاستمارة — يمكنك تعديل إجاباتك وإعادة الإرسال.
+                </p>
+
+                <div class="pulse" role="progressbar" [attr.aria-valuenow]="completedSteps"
+                    [attr.aria-valuemax]="totalSteps">
+                    <div class="pulse__track">
+                        <div class="pulse__fill" [style.width.%]="(completedSteps / totalSteps) * 100"></div>
+                    </div>
+                    <div class="pulse__dots">
+                        <span *ngFor="let step of [1,2,3,4,5]; let i = index" class="pulse__dot"
+                            [class.pulse__dot--done]="completedSteps > i"></span>
+                    </div>
+                    <span class="pulse__count">{{ completedSteps }} / {{ totalSteps }}</span>
+                </div>
+            </header>
+
+            <form class="lab-form__body" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <!-- Q1: Visit goal -->
+                <section class="question">
+                    <div class="question__meta">
+                        <span class="question__index">01</span>
+                    </div>
+                    <h2 class="question__label">ما هدفك الرئيسي من الزيارة؟</h2>
+
+                    <p-selectButton [options]="visitGoalOptions" formControlName="visitGoal" optionLabel="label"
+                        optionValue="value" styleClass="pill-select"></p-selectButton>
+
+                    <div class="question__followup" *ngIf="showVisitGoalOther">
+                        <input pInputText type="text" formControlName="visitGoalOther" placeholder="يرجى التوضيح"
+                            class="w-full" />
+                    </div>
+
+                    <small class="question__error" *ngIf="submitted && f['visitGoal'].invalid">
+                        هذا الحقل مطلوب
+                    </small>
+                </section>
+
+                <!-- Q2: Sport practiced -->
+                <section class="question">
+                    <div class="question__meta">
+                        <span class="question__index">02</span>
+                    </div>
+                    <h2 class="question__label">ما الرياضة التي تمارسها؟</h2>
+
+                    <input pInputText type="text" formControlName="sportPracticed"
+                        placeholder="مثال: كرة القدم، الجري، السباحة..." class="w-full" />
+
+                    <small class="question__error" *ngIf="submitted && f['sportPracticed'].invalid">
+                        هذا الحقل مطلوب
+                    </small>
+                </section>
+
+                <!-- Q3: Problem duration -->
+                <section class="question">
+                    <div class="question__meta">
+                        <span class="question__index">03</span>
+                    </div>
+                    <h2 class="question__label">منذ متى والمشكلة موجودة؟</h2>
+
+                    <p-selectButton [options]="problemDurationOptions" formControlName="problemDuration"
+                        optionLabel="label" optionValue="value" styleClass="pill-select"></p-selectButton>
+
+                    <small class="question__error" *ngIf="submitted && f['problemDuration'].invalid">
+                        هذا الحقل مطلوب
+                    </small>
+                </section>
+
+                <!-- Q4: Prior treatment -->
+                <section class="question">
+                    <div class="question__meta">
+                        <span class="question__index">04</span>
+                    </div>
+                    <h2 class="question__label">هل جربت علاجاً سابقاً لهذه المشكلة؟</h2>
+
+                    <p-selectButton [options]="yesNoOptions" formControlName="hadPriorTreatment" optionLabel="label"
+                        optionValue="value" styleClass="pill-select pill-select--binary"></p-selectButton>
+
+                    <div class="question__followup" *ngIf="showPriorTreatmentDetails">
+                        <input pInputText type="text" formControlName="priorTreatmentDetails"
+                            placeholder="ما نوع العلاج الذي جربته؟" class="w-full" />
+                    </div>
+
+                    <small class="question__error" *ngIf="submitted && f['hadPriorTreatment'].invalid">
+                        هذا الحقل مطلوب
+                    </small>
+                </section>
+
+                <!-- Q5: How they heard about the lab -->
+                <section class="question">
+                    <div class="question__meta">
+                        <span class="question__index">05</span>
+                    </div>
+                    <h2 class="question__label">كيف عرفت عن مختبر الأداء؟</h2>
+
+                    <p-selectButton [options]="sourceOptions" formControlName="hearAboutUs" optionLabel="label"
+                        optionValue="value" styleClass="pill-select"></p-selectButton>
+
+                    <div class="question__followup" *ngIf="showSourceOther">
+                        <input pInputText type="text" formControlName="hearAboutUsOther" placeholder="يرجى التوضيح"
+                            class="w-full" />
+                    </div>
+
+                    <small class="question__error" *ngIf="submitted && f['hearAboutUs'].invalid">
+                        هذا الحقل مطلوب
+                    </small>
+                </section>
+
+                <small class="question__error" *ngIf="submitErrorMessage">
+                    {{ submitErrorMessage }}
+                </small>
+
+                <footer class="lab-form__footer">
+                    <p class="lab-form__note">بياناتك تُستخدم فقط لإعداد تقييمك في مختبر الأداء</p>
+                    <p-button type="submit" label="إرسال الاستمارة" icon="pi pi-arrow-left" iconPos="left"
+                        styleClass="submit-btn" [loading]="submitting" [disabled]="submitting"></p-button>
+                </footer>
+
+            </form>
+        </ng-container>
+    </div>
+</div>

@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   title = 'medical-website';
   isLoading = true;
   isAuthPage = false;
+  showHeaderFooter = true
 
   isMobile = false;
   showFab = false;
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
     private route: ActivatedRoute,
     private titleService: Title,
     private metaService: Meta
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Defer non-critical JS like animations to improve initial load performance.
@@ -77,6 +78,8 @@ export class AppComponent implements OnInit {
         this.checkCurrentRoute();
         this.updateMetaTags(event.urlAfterRedirects);
         this.handleFabDisplay();
+        this.showHeaderFooter = !event.urlAfterRedirects.includes('/intake-form');
+
       });
 
     // Simulate loading completion
@@ -88,6 +91,8 @@ export class AppComponent implements OnInit {
       // A small extra delay ensures the browser has painted everything.
       setTimeout(() => AOS.refreshHard(), 50);
     }, 2000);
+
+
   }
 
   private updateMetaTags(url: string) {

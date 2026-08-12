@@ -1,12 +1,12 @@
 <app-landing-page *ngIf="isLoading"></app-landing-page>
 
 <div [hidden]="isLoading">
-    <app-header *ngIf="!isAuthPage" />
+    <app-header *ngIf="showHeaderFooter" />
     <router-outlet />
-    <app-footer *ngIf="!isAuthPage" />
+    <app-footer *ngIf="showHeaderFooter" />
 
     <!-- Global FAB button - only shown on mobile and non-auth pages -->
-    <div class="fab-container" *ngIf="showFab">
+    <div class="fab-container" *ngIf="showFab && showHeaderFooter">
         <!-- Animated tooltip -->
         <div class="tooltip" [class.show]="showTooltip" [class.hide]="!showTooltip">
             Book Now!

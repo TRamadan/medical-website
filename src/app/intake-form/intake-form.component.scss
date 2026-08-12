@@ -1,0 +1,423 @@
+/* ==========================================================================
+   Design tokens
+   Subject: sports-performance / rehab intake form ("مختبر الأداء")
+   Palette: thesportsdoctorlab.com brand — deep navy + kinetic mint
+   ========================================================================== */
+:host {
+    --lab-bg: #F2F3F9;
+    --lab-surface: #FFFFFF;
+    --lab-surface-alt: #F6F7FB;
+    --lab-primary: #131337;
+    --lab-primary-dark: #0A0A24;
+    --lab-accent: #70F4C3;
+    --lab-accent-dark: #45D9A6;
+    --lab-text: #14152E;
+    --lab-text-muted: #6A6B85;
+    --lab-border: #E2E3EE;
+    --lab-error: #D64545;
+
+    --lab-font-display: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
+    --lab-font-body: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+
+    --lab-radius-lg: 20px;
+    --lab-radius-md: 14px;
+    --lab-radius-sm: 10px;
+
+    display: block;
+    font-family: var(--lab-font-body);
+    color: var(--lab-text);
+    -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.lab-form {
+    background: var(--lab-bg);
+    min-height: 100%;
+    padding: 40px 20px 64px;
+    box-sizing: border-box;
+}
+
+.lab-form__shell {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ---------------------------------- Header ---------------------------- */
+.lab-form__header {
+    background: linear-gradient(155deg, var(--lab-primary) 0%, var(--lab-primary-dark) 100%);
+    border-radius: var(--lab-radius-lg);
+    padding: 32px 32px 28px;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    box-shadow: 0 18px 40px -18px rgba(10, 10, 36, 0.55);
+}
+
+.lab-form__eyebrow {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lab-accent);
+    font-weight: 600;
+}
+
+.lab-form__title {
+    margin: 0 0 6px;
+    font-family: var(--lab-font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 5.5vw, 28px);
+    line-height: 1.3;
+}
+
+.lab-form__subtitle {
+    margin: 0 0 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* "Pulse" progress indicator — the signature element.
+   A heartbeat-style track that fills as the athlete answers,
+   echoing the vitals-monitor language of a performance lab. */
+.pulse {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.pulse__track {
+    position: relative;
+    flex: 1 1 140px;
+    min-width: 100px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.pulse__fill {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--lab-accent);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+}
+
+.pulse__dots {
+    display: flex;
+    gap: 6px;
+}
+
+.pulse__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.28);
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.pulse__dot--done {
+    background: var(--lab-accent);
+    transform: scale(1.15);
+}
+
+.pulse__count {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.75);
+    min-width: 34px;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------- Body / cards ------------------------ */
+.lab-form__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.question {
+    background: var(--lab-surface);
+    border: 1px solid var(--lab-border);
+    border-radius: var(--lab-radius-md);
+    padding: 24px 24px 22px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.question:focus-within {
+    border-color: var(--lab-primary);
+    box-shadow: 0 0 0 3px rgba(19, 19, 55, 0.08);
+}
+
+.question__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.question__index {
+    font-family: var(--lab-font-display);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--lab-primary);
+    background: var(--lab-surface-alt);
+    border: 1px solid var(--lab-border);
+    border-radius: 999px;
+    padding: 2px 9px;
+}
+
+.question__tag {
+    font-size: 11.5px;
+    color: var(--lab-text-muted);
+    background: var(--lab-surface-alt);
+    border-radius: 999px;
+    padding: 3px 10px;
+    border: 1px dashed var(--lab-border);
+}
+
+.question__tag--free {
+    color: #8A6D00;
+}
+
+.question__tag--binary {
+    color: #A13E3E;
+}
+
+.question__tag--multi {
+    color: #256B4E;
+}
+
+.question__label {
+    font-family: var(--lab-font-display);
+    font-size: 16.5px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    line-height: 1.5;
+    color: var(--lab-text);
+}
+
+.question__followup {
+    margin-top: 12px;
+}
+
+.question__error {
+    display: block;
+    margin-top: 8px;
+    color: var(--lab-error);
+    font-size: 12.5px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+/* ---------------------------------- Footer ------------------------------ */
+.lab-form__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+    padding: 4px 4px 0;
+    flex-wrap: wrap;
+}
+
+.lab-form__note {
+    font-size: 12.5px;
+    color: var(--lab-text-muted);
+    margin: 0;
+}
+
+/* ==========================================================================
+   PrimeNG overrides (encapsulated child DOM -> ::ng-deep)
+   ========================================================================== */
+
+::ng-deep .lab-form input.p-inputtext {
+    font-family: var(--lab-font-body);
+    border-radius: var(--lab-radius-sm);
+    border: 1px solid var(--lab-border);
+    padding: 11px 14px;
+    font-size: 14.5px;
+    background: var(--lab-surface-alt);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+::ng-deep .lab-form input.p-inputtext:enabled:focus {
+    border-color: var(--lab-primary);
+    box-shadow: 0 0 0 3px rgba(19, 19, 55, 0.1);
+}
+
+::ng-deep .lab-form .pill-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+::ng-deep .lab-form .pill-select .p-button {
+    font-family: var(--lab-font-body);
+    background: var(--lab-surface-alt);
+    border: 1px solid var(--lab-border);
+    color: var(--lab-text);
+    border-radius: 999px !important;
+    padding: 9px 18px;
+    min-height: 40px;
+    font-size: 13.5px;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+::ng-deep .lab-form .pill-select .p-button:not(.p-disabled):hover {
+    background: #E4FBF2;
+    border-color: var(--lab-primary);
+}
+
+::ng-deep .lab-form .pill-select .p-highlight {
+    background: var(--lab-primary) !important;
+    border-color: var(--lab-primary) !important;
+    color: #FFFFFF !important;
+}
+
+::ng-deep .lab-form .pill-select--binary .p-button {
+    min-width: 96px;
+    text-align: center;
+    justify-content: center;
+}
+
+::ng-deep .lab-form .submit-btn.p-button {
+    font-family: var(--lab-font-display);
+    background: var(--lab-accent);
+    border-color: var(--lab-accent);
+    color: var(--lab-primary-dark);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 14.5px;
+}
+
+::ng-deep .lab-form .submit-btn.p-button:hover {
+    background: var(--lab-accent-dark);
+    border-color: var(--lab-accent-dark);
+}
+
+::ng-deep .lab-form .submit-btn .p-button-icon {
+    transform: scaleX(-1);
+    /* mirror the arrow icon for RTL flow */
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 640px) {
+    .lab-form {
+        padding: 20px 12px 40px;
+    }
+
+    .lab-form__header {
+        padding: 20px 18px 20px;
+        border-radius: var(--lab-radius-md);
+        margin-bottom: 16px;
+    }
+
+    .lab-form__eyebrow {
+        font-size: 11px;
+    }
+
+    .lab-form__body {
+        gap: 12px;
+    }
+
+    .question {
+        padding: 16px 14px;
+        border-radius: var(--lab-radius-sm);
+    }
+
+    .question__label {
+        font-size: 15.5px;
+        margin-bottom: 14px;
+    }
+
+    .lab-form__footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .lab-form__note {
+        order: 2;
+    }
+
+    /* 16px prevents iOS Safari from auto-zooming on focus */
+    ::ng-deep .lab-form input.p-inputtext {
+        font-size: 16px;
+        padding: 12px 14px;
+    }
+
+    ::ng-deep .lab-form .pill-select .p-button {
+        flex: 1 1 auto;
+        padding: 10px 16px;
+        min-height: 44px;
+    }
+
+    ::ng-deep .lab-form .pill-select--binary .p-button {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    ::ng-deep .lab-form .submit-btn.p-button {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+        order: 1;
+    }
+}
+
+@media (max-width: 380px) {
+    .lab-form {
+        padding: 16px 10px 32px;
+    }
+
+    .lab-form__header {
+        padding: 18px 14px;
+    }
+
+    .lab-form__subtitle {
+        margin-bottom: 18px;
+    }
+
+    .question {
+        padding: 14px 12px;
+    }
+
+    .pulse__count {
+        min-width: 30px;
+        font-size: 11.5px;
+    }
+
+    ::ng-deep .lab-form .pill-select .p-button {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+    .lab-form__shell {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 901px) {
+    .lab-form__shell {
+        max-width: 760px;
+    }
+}
