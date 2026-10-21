@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslationService } from '../../../services/translation.service';
 import { LanguageService } from '../../../services/language.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  imports: [],
   standalone: true,
+  imports: [],
   selector: 'app-hero-section',
   templateUrl: './hero-section.component.html',
   styleUrls: ['./hero-section.component.css'],
@@ -15,7 +16,8 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
 
   constructor(
     public translationService: TranslationService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   ngOnInit() {
@@ -28,6 +30,15 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.languageSubscription) {
       this.languageSubscription.unsubscribe();
+    }
+  }
+
+  scrollToBooking() {
+    if (isPlatformBrowser(this.platformId)) {
+      const bookingSection = document.getElementById('booking');
+      if (bookingSection) {
+        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   }
 }

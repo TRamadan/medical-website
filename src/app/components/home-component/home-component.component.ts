@@ -83,4 +83,13 @@ export class HomeComponentComponent implements OnInit {
   hideTooltipHandler() {
     this.showTooltip = false;
   }
+
+  scrollToBookingSection() {
+    if (isPlatformBrowser(this.platformId)) {
+      const bookingSection = document.getElementById('booking');
+      if (bookingSection) {
+        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
 }

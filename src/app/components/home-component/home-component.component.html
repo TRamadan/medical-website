@@ -27,6 +27,18 @@
 </div>
 }
 
+<!-- FAB button for large screens -->
+@if(!isSmallScreen){
+<div class="fab-container fab-container--lg" (mouseenter)="showTooltipHandler()" (mouseleave)="hideTooltipHandler()">
+    <button class="fab-button fab-button--lg" (click)="scrollToBookingSection()" (focus)="showTooltipHandler()"
+        (blur)="hideTooltipHandler()" aria-label="Scroll to booking section">
+        <i class="fas fa-calendar-plus"></i>
+    </button>
+
+
+</div>
+}
+
 <!-- 
     
 <app-about-us-section></app-about-us-section>

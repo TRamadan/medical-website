@@ -48,6 +48,11 @@ export class TranslationService {
       ar: 'تحميل تطبيق الـ iOS ',
     },
 
+    'hero.bookAppointment': {
+      en: 'Book an Appointment',
+      ar: 'احجز موعدك',
+    },
+
     // About
     'about.title': { en: 'About Us', ar: 'من نحن' },
     'about.subtitle1': {

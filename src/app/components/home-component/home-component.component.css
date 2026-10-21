@@ -92,3 +92,70 @@
 .fab-container {
     animation: fabEntrance 0.5s ease-out;
 }
+
+/* ── Large-screen FAB overrides ── */
+.fab-container--lg {
+    bottom: 32px;
+    right: 32px;
+}
+
+.fab-button--lg {
+    width: auto;
+    height: 52px;
+    border-radius: 50px;
+    padding: 0 1.5rem 0 1.1rem;
+    gap: 0.55rem;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -1.5rem;
+    background: linear-gradient(135deg, #70F4C3 0%, #3be0a8 100%);
+    box-shadow: 0 6px 24px rgba(112, 244, 195, 0.45);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* Label inside large FAB */
+.fab-button--lg::after {
+    content: '';
+    font-size: 14px;
+    font-weight: 700;
+    color: #131337;
+}
+
+/* Pulsing ring */
+.fab-container--lg .fab-button--lg {
+    position: relative;
+}
+
+.fab-container--lg .fab-button--lg::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50px;
+    border: 2px solid rgba(112, 244, 195, 0.55);
+    animation: fabRingPulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes fabRingPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+.fab-button--lg:hover,
+.fab-button--lg:focus-visible {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 32px rgba(112, 244, 195, 0.6);
+    background: linear-gradient(135deg, #88f8cf 0%, #4dedb6 100%);
+    outline: none;
+}
